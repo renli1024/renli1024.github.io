@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C#笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="第一章_基本语法C#概述 C#运行环境.NET框架，是生成和运行.NET应用程序和Web Service的组件库，包括.net framework类库和公共语言运行库(CLR).net framework类库：标准库。CLR：类似JAVA虚拟机，将C#编译为IL中间语言(Intermediate Language)。  C#可创建的程序C#可创建的程序：控制台应用程序，Windows窗体应用程序，">
+<meta name="keywords" content="C_Sharp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/26/Csharp/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="第一章_基本语法C#概述 C#运行环境.NET框架，是生成和运行.NET应用程序和Web Service的组件库，包括.net framework类库和公共语言运行库(CLR).net framework类库：标准库。CLR：类似JAVA虚拟机，将C#编译为IL中间语言(Intermediate Language)。  C#可创建的程序C#可创建的程序：控制台应用程序，Windows窗体应用程序，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-15T10:14:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#笔记">
+<meta name="twitter:description" content="第一章_基本语法C#概述 C#运行环境.NET框架，是生成和运行.NET应用程序和Web Service的组件库，包括.net framework类库和公共语言运行库(CLR).net framework类库：标准库。CLR：类似JAVA虚拟机，将C#编译为IL中间语言(Intermediate Language)。  C#可创建的程序C#可创建的程序：控制台应用程序，Windows窗体应用程序，">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Csharp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      C#笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-26
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="第一章-基本语法"><a href="#第一章-基本语法" class="headerlink" title="第一章_基本语法"></a>第一章_基本语法</h2><h3 id="C-概述"><a href="#C-概述" class="headerlink" title="C#概述"></a>C#概述</h3><ul>
+<li><p><strong>C#运行环境</strong><br>.NET框架，是生成和运行.NET应用程序和Web Service的组件库，包括.net framework类库和公共语言运行库(CLR)<br>.net framework类库：标准库。<br>CLR：类似JAVA虚拟机，将C#编译为IL中间语言(Intermediate Language)。</p>
+</li>
+<li><p><strong>C#可创建的程序</strong><br>C#可创建的程序：控制台应用程序，Windows窗体应用程序，Web应用程序</p>
+</li>
+<li><p><strong>命名空间</strong><br>对类的一种划分形式，命名空间和类的关系类似于目录和文件的关系，引入方法<code>using spacename;</code></p>
+</li>
+<li><p><strong>Main方法</strong><br>应用程序的入口点；声明为static void Main(string[] args)，返回值只能是void或者int；可以放在任何一个类中，一个应用程序中必须有一个类包含Main方法。</p>
+</li>
+</ul>
+<h3 id="C-基本数据类型"><a href="#C-基本数据类型" class="headerlink" title="C#基本数据类型"></a>C#基本数据类型</h3><ul>
+<li><p><strong>数据类型</strong><br>分为值类型和引用类型，值类型存的是数据，在栈中；引用类型则存引用数据的指针，在堆中。<br><strong>值类型：</strong>简单类型、枚举类型、结构类型、可空类型，存储在栈(但若在类内定义，则存储在堆)。<br><strong>引用类型(对象)：</strong> 类、接口、数组，存储在堆，赋值时传的是引用，通常被称为<strong>对象</strong>。</p>
+</li>
+<li><p><strong>整型和浮点型</strong><br>int：4字节有符号，short：2字节有符号，long：8字节有符号<br>float：4字节浮点数。<br>double：8字节浮点数。<br>decimal：16字节浮点数，精度高，适用于金融、货币等领域</p>
+</li>
+<li><p><strong>类型转换</strong><br>分为隐式类型转换和显示类型转换<br>隐式类型转换：小范围类型-&gt;大范围类型，程序自动转换，不会丢失数据<br>显示类型转换：大范围类型-&gt;小范围类型，要手动强转，可能会丢失精度。</p>
+</li>
+<li><p><strong>装箱与拆箱</strong><br>主要作用是实现值类型和引用类型的相互转换，让值类型可以使用引用类型的一些方法。<br>Object/object类型：所有类型的基类</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//装箱：将值类型转换为object类型，会在堆上为其分配一个object对象的实例</span></span><br><span class="line"><span class="keyword">int</span> i=<span class="number">5</span>;</span><br><span class="line">object o = i;</span><br><span class="line"></span><br><span class="line"><span class="comment">//拆箱：将object类型转换为值类型，必须先装箱再拆箱。</span></span><br><span class="line"><span class="keyword">int</span> k = (<span class="keyword">int</span>) o;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>判断是否要强转：苹果是水果，水果不是苹果。</p>
+<ul>
+<li><p><strong>常量类型</strong><br>const：编译时初始化，所以不能用变量初始化赋值，且声明和初始化必须在一起。<br>readonly：运行时初始化，声明和初始化可以分开，可用变量初始化赋值，但赋值后值就不能更改。</p>
+</li>
+<li><p><strong>匿名类型var</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无需指定具体类型，常用于foreach语句</span></span><br><span class="line"><span class="comment">//foreach语句多用于集合操作中</span></span><br><span class="line"><span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">foreach (var i in arr)&#123;</span><br><span class="line">    Console.write(i);  <span class="comment">//输出1234</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="程序控制语句"><a href="#程序控制语句" class="headerlink" title="程序控制语句"></a>程序控制语句</h3><h4 id="控制台输入输出"><a href="#控制台输入输出" class="headerlink" title="控制台输入输出"></a>控制台输入输出</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制台输入</span></span><br><span class="line">String str = Console.ReadLine();   <span class="comment">//读取一行字符。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//控制台输出</span></span><br><span class="line">Console.Write(<span class="string">"123"</span>);                       <span class="comment">//不换行</span></span><br><span class="line">Console.WriteLine(<span class="string">"3+&#123;0&#125;=&#123;1&#125;"</span>, i, i+<span class="number">3</span>);     <span class="comment">//换行，格式化输出，0、1表序号</span></span><br><span class="line">Console.WriteLine(<span class="string">"&#123;0:F4&#125;"</span>,x);  <span class="comment">//格式化输出，小数点后4位</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//tostring用法，将数字转化为一定格式的字符串</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">double</span> b = <span class="number">1.2345</span>;</span><br><span class="line">String str1 = a.toString(<span class="string">"d8"</span>);  <span class="comment">//转换为8位字符串，位数不够用0补</span></span><br><span class="line">String str2 = b.toString(<span class="string">"f3"</span>);  <span class="comment">//四舍五入保留3位小数，不够时用0补</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//String转整型</span></span><br><span class="line"><span class="keyword">int</span> a = Int32.Parse(str);</span><br></pre></td></tr></table></figure>
+<h4 id="基本流程控制语句"><a href="#基本流程控制语句" class="headerlink" title="基本流程控制语句"></a>基本流程控制语句</h4><ul>
+<li><p><strong>switch case语句</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> <span class="keyword">case</span>语句</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">switch</span> (n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> (<span class="number">1</span>):</span><br><span class="line">        Console.WriteLine(<span class="string">"1"</span>);  <span class="comment">//case后可以加&#123;&#125;，也可以不加</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> (<span class="number">2</span>):</span><br><span class="line">        Console.WriteLine(<span class="string">"2"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        Console.WriteLine(<span class="string">"3"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>while语句</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//语句序列</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//语句序列</span></span><br><span class="line">&#125;<span class="keyword">while</span> (条件);  <span class="comment">//注意分号</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：while和do whiley语句都是<strong>条件不满足</strong>时跳出循环，唯一的区别是do while语句至少会执行一次。</p>
+<ul>
+<li><strong>foreach语句</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] myInt=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">foreach(<span class="keyword">int</span> i in myInt)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：循环变量i是只读的，不能更改值</p>
+<ul>
+<li><strong>try-catch语句</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//语句序列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(Exception err)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//异常处理</span></span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//语句序列</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：finally语句块加不加都可以，如果加了，就是无论有没有捕获到异常，finally中的语句都会执行。</p>
+<ul>
+<li><strong>throw语句</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用法1，throw 异常表达式</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"方法中抛出的异常"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用法2，直接 throw</span></span><br><span class="line"><span class="comment">//只能用在catch块中，重新抛出当前由catch块处理的异常。</span></span><br><span class="line"><span class="keyword">catch</span>(Exception err)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">throw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="第二章-常用数据类型的用法"><a href="#第二章-常用数据类型的用法" class="headerlink" title="第二章_常用数据类型的用法"></a>第二章_常用数据类型的用法</h2><h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line">String a = <span class="string">"str"</span>; </span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> b = a;  <span class="comment">//传值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> c = b[<span class="number">1</span>];  <span class="comment">//取某字符</span></span><br><span class="line"></span><br><span class="line">String.Compare(<span class="built_in">string</span> s1,<span class="built_in">string</span> s2)</span><br><span class="line"><span class="comment">//s1&gt;s2，结果为1；s1=s2，结果为0；s1&lt;s2，结果为-1。</span></span><br><span class="line"><span class="comment">//字符串大小是一一比较字符，比较对应字符的ASCII码大小</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//判断字符串是否相等</span></span><br><span class="line"><span class="keyword">if</span>(b==a)</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断字符串中是否包含指定的子字符串</span></span><br><span class="line"><span class="built_in">string</span> str1 = <span class="string">"this is a string"</span>;</span><br><span class="line"><span class="keyword">bool</span> b=str1.Contains(<span class="string">"is"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//截取字符串</span></span><br><span class="line"><span class="comment">//从startIndex开始，截取conut个字符</span></span><br><span class="line"><span class="comment">//字符串的序号都是从0开始</span></span><br><span class="line">str.Subtring(<span class="keyword">int</span> startIndex，<span class="keyword">int</span> count)</span><br></pre></td></tr></table></figure>
+<p>注：C#中<code>string</code>是<code>String</code>的别名，两者等价，编译器编译时会将string转换为String。</p>
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><ul>
+<li><strong>基本使用方法</strong><br>数组是一种引用类型，而非值类型。<br>声明数组：<code>int[] a = new int[10]</code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组是引用类型，而非值类型。</span></span><br><span class="line"><span class="comment">//可动态申请</span></span><br><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">30</span>];   <span class="comment">//一维数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[,] ar = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>,<span class="number">2</span>];  <span class="comment">//二维数组，形式是括号内逗号分隔[,]</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; ++i)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        ar[i,j] = i + j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//交错数组，数组的数组，每个一维数组元素也是一个数组，“数组的数组”。</span></span><br><span class="line"><span class="comment">//形式为两个括号。</span></span><br><span class="line"><span class="keyword">int</span>[][] ar = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>][];  <span class="comment">//只指定行数即可</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i)</span><br><span class="line">&#123;</span><br><span class="line">    ar[i] = <span class="keyword">new</span> <span class="keyword">int</span>[i + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i + <span class="number">1</span>; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        ar[i][j] = j+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：二维数组和交错数组的区别，二维数组每行列数一样，交错数组不一定。</p>
+<ul>
+<li><strong>动态改变数组大小</strong><br>函数原型：<code>public static void Resize&lt;T&gt;(ref T[ ] array, int newSize)</code><br>使用了泛型的概念，T表示数组类型，array表示要调整的数组，newSize表示要调整为多大。<br>若newSize&gt;array.Length，则分配一个新数组，并将所有元素复制到新数组。<br>若newSize&lt;array.Length，则分配一个新数组，并将元素复制到新数组直至填满，剩余元素将被忽略。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>] &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> &#125;;</span><br><span class="line">Array.Resize&lt;<span class="keyword">int</span>&gt;(ref <span class="built_in">array</span>, <span class="number">10</span>);  <span class="comment">//ref为传引用关键字，必须显示传入</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p>枚举是一组命名常量的集合，为一组在逻辑上紧密联系的整数值提供便于记忆的符号，从而使代码更清晰。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//手动赋值</span></span><br><span class="line"><span class="keyword">enum</span> days &#123;Mon=<span class="number">0</span>, Tue=<span class="number">1</span>, Wed=<span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">//默认赋值(默认为int，从0开始)</span></span><br><span class="line"><span class="keyword">enum</span> days &#123;Mon, Tue, Wed&#125;;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line">days d1 = days.Mon</span><br></pre></td></tr></table></figure></p>
+<p>注1：enum都是使用专门的类型名，名字对应的数值使用的不多。<br>注2：enmu只能在类外部、namespace内部定义，不能在类里面定义</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><ul>
+<li><strong>基本概念</strong><br>泛型可简单地理解为“广泛的数据类型”，就是说，泛型是数据类型的一种通用表示形式，可以表示任意一种数据类型。<br>具体形式：泛型是具有占位符（类型参数）的类、结构、接口和方法，它与普通类的区别是泛型多了表示类型的占位符<code>&lt;T&gt;</code>，定义时无需指定具体类型，创建实例时才指定类型。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>&lt;T&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span> T MyProp;   <span class="comment">//定义属性MyProp</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(MyProp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建实例</span></span><br><span class="line">MyClass&lt;<span class="keyword">int</span>&gt; c1 = <span class="keyword">new</span> MyClass&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">c1.MyProp = <span class="number">15</span>;</span><br><span class="line">MyClass&lt;String&gt; c2 = <span class="keyword">new</span> MyClass&lt;String&gt;();</span><br><span class="line">c2.MyProp = <span class="string">"1234"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="常用泛型集合"><a href="#常用泛型集合" class="headerlink" title="常用泛型集合"></a>常用泛型集合</h3><ul>
+<li><strong>泛型集合的特点</strong><br>非泛型集合如<code>ArrayList、Stack</code>等，无法在编译前确定数据类型，因此在运行时可能会进行频繁地进行数据类型转换，降低运行效率，因此推荐使用泛型集合类，尽量不要使用其对应的非泛型集合类。</li>
+</ul>
+<h4 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List<t></t></h4><ul>
+<li><p><strong>基本特点</strong><br><code>List&lt;T&gt;</code>可通过下标索引、允许重复元素、按插入顺序排序、可使用foreach语句遍历</p>
+</li>
+<li><p><strong>具体用法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; li = <span class="keyword">new</span> List&lt;String&gt;();</span><br><span class="line">li.Add(<span class="string">"张三"</span>);  <span class="comment">//末尾插入元素</span></span><br><span class="line">li.Add(<span class="string">"李四"</span>);</span><br><span class="line">li.Insert(<span class="number">1</span>,<span class="string">"李大"</span>);  <span class="comment">//在指定位置插入元素</span></span><br><span class="line">Console.WriteLine(li[<span class="number">1</span>]);   <span class="comment">//按下标索引</span></span><br><span class="line">foreach(var i in li)&#123;</span><br><span class="line">    <span class="comment">//处理程序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="链表LinkedList"><a href="#链表LinkedList" class="headerlink" title="链表LinkedList"></a>链表LinkedList<t></t></h4><ul>
+<li><p><strong>基本特点</strong><br><code>LinkedList&lt;T&gt;</code>为双向链表，其中的每个节点都属于LinkedListNode<t>类型，通过<code>.Previous</code>和<code>.Next</code>和属性指向其前后节点。<br><strong>不能</strong>通过下标索引，可以重复元素，可以foreach遍历</t></p>
+</li>
+<li><p><strong>具体用法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String[] word = &#123; <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span> &#125;;</span><br><span class="line">LinkedList&lt;String&gt; <span class="built_in">list</span> = <span class="keyword">new</span> LinkedList&lt;<span class="built_in">string</span>&gt;(word); <span class="comment">//用数组初始化</span></span><br><span class="line"><span class="built_in">list</span>.AddFirst(<span class="string">"dog"</span>);</span><br><span class="line">LinkedListNode&lt;String&gt; n1 = <span class="built_in">list</span>.Find(<span class="string">"a"</span>);  <span class="comment">//通过值来查找某个节点</span></span><br><span class="line">LinkedListNode&lt;String&gt; n2 = n1.Next;       <span class="comment">//.Next访问下一个节点</span></span><br><span class="line">Console.WriteLine(n2.Value);  <span class="comment">//输出b</span></span><br><span class="line">foreach(var i in <span class="built_in">list</span>)  <span class="comment">//foreach遍历</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(i);</span><br><span class="line">&#125;</span><br><span class="line">Console.WriteLine();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="队列Queue"><a href="#队列Queue" class="headerlink" title="队列Queue"></a>队列Queue<t></t></h4><ul>
+<li><p><strong>基本特点</strong><br><code>Queue&lt;T&gt;</code>表示先进先出集合，在按接收顺序存储消息的情况下非常有用，元素在一端插入，在另一端移除。<br>允许重复元素、可以保存null值、不能下标索引</p>
+</li>
+<li><p><strong>具体用法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;<span class="built_in">string</span>&gt; q = <span class="keyword">new</span> Queue&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">q.Enqueue(<span class="string">"one"</span>);  <span class="comment">//Enqueue方法在队列末尾添加元素</span></span><br><span class="line">q.Enqueue(<span class="string">"two"</span>);</span><br><span class="line">q.Enqueue(<span class="string">"three"</span>);</span><br><span class="line">q.Dequeue();    <span class="comment">//Dequeue方法删除队列头部元素</span></span><br><span class="line">foreach(var i in q)</span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(i + <span class="string">" "</span>);   <span class="comment">//输出 two three</span></span><br><span class="line">&#125;</span><br><span class="line">Console.WriteLine();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="堆栈Stack"><a href="#堆栈Stack" class="headerlink" title="堆栈Stack"></a>堆栈Stack<t></t></h4><ul>
+<li><p><strong>基本特点</strong><br><code>Stack&lt;T&gt;</code>表示后进先出集合，适用于递归的相关情况。<br>允许重复元素、可以保存null值、不能下标索引</p>
+</li>
+<li><p><strong>具体用法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;String&gt; st = <span class="keyword">new</span> Stack&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">st.Push(<span class="string">"one"</span>);   <span class="comment">//元素入站</span></span><br><span class="line">st.Push(<span class="string">"two"</span>);</span><br><span class="line">st.Push(<span class="string">"three"</span>);</span><br><span class="line">st.Pop();  <span class="comment">//栈顶元素出栈</span></span><br><span class="line">foreach(var i in st)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(i + <span class="string">" "</span>);  <span class="comment">//输出 one two</span></span><br><span class="line">&#125;</span><br><span class="line">Console.WriteLine();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="时间类型DateTime"><a href="#时间类型DateTime" class="headerlink" title="时间类型DateTime"></a>时间类型DateTime</h3><p>DateTime：表示时间点；TimeSpan：表示时间间隔。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DateTime now = DateTime.Now;  <span class="comment">//获取当前时间</span></span><br><span class="line">DateTime dt = <span class="keyword">new</span> DateTime(<span class="number">2018</span>,<span class="number">6</span>,<span class="number">30</span>);  <span class="comment">//手动构造时间</span></span><br><span class="line">Console.WriteLine(dt.toString(<span class="string">"yyyy年M月d日"</span>));   <span class="comment">//格式化时间类型，输出2018年6月30日</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//时间计算</span></span><br><span class="line">DateTime dt = <span class="keyword">new</span> DateTime(<span class="number">2010</span>, <span class="number">10</span>, <span class="number">3</span>);</span><br><span class="line">DateTime dt2 = <span class="keyword">new</span> DateTime(<span class="number">2009</span>, <span class="number">10</span>, <span class="number">3</span>);</span><br><span class="line">TimeSpan times = now - dt2;</span><br><span class="line">Console.WriteLine(times);</span><br><span class="line"><span class="comment">//输出为365.00:00:00，格式为TimeSpan，天.时:分:秒的格式</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="第三章-面向对象编程基础"><a href="#第三章-面向对象编程基础" class="headerlink" title="第三章_面向对象编程基础"></a>第三章_面向对象编程基础</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ul>
+<li><p><strong>类和对象</strong><br>类：一组具有相同数据结构和相同操作的对象的集合，类声明默认为<strong>private</strong>。<br>对象：类的实例化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义类的的格式，[]表示可省略</span></span><br><span class="line">[附加声明] [访问修饰符] <span class="class"><span class="keyword">class</span> 类名称[：[基类] [，接口序列]]</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    [字段声明]</span><br><span class="line">    [构造函数]</span><br><span class="line">    [方法]</span><br><span class="line">    [事件]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>访问修饰符</strong><br>Public：类的数据成员和方法可以在外部使用。<br>private：<strong>默认</strong>访问修饰符，类中的所有方法和数据成员只能在此类中使用，外部无法使用。<br>Protected：本身和继承此类的子类可以使用。<br>Partial：局部类型，类的定义和实现可以分布在多个文件中，但都要使用partial标注。</p>
+</li>
+<li><p><strong>构造函数</strong><br>构造函数是一个特殊的方法，用于在建立对象时进行初始化的动作。<br>1、每个类至少有一个构造函数。<br>2、一个构造函数总是和它的类名相同。<br>3、构造函数的声明不写任何返回值，void都没有。<br>4、构造函数总是public的。</p>
+</li>
+<li><p><strong>默认构造函数</strong><br>若程序代码中没有构造函数则系统会自动提供一个默认的构造函数<br>默认构造函数没有参数，会为非静态成员变量初始化，int/double-&gt;0，bool-&gt;false，引用类型-&gt;null（静态成员变量不赋值的话会默认初始化赋值为0）。</p>
+</li>
+<li><p><strong>类的静态成员</strong><br>在类内被声明为Static的成员，被类的所有对象所共享。<br>静态变量不是存储在某一个对象中的，其存储在专门的一片内存区域中，因此一个对象更改了它的值，其他对象会共享这个改变。<br>必须通过类来访问，不能通过对象来访问。</p>
+</li>
+<li><p><strong>字段、局部变量、属性</strong><br>字段：定义在类一级别，就是类的成员变量<br>局部变量：定义在类的方法内部的变量<br>属性：带有<code>{get; set;}</code>声明的字段。</p>
+</li>
+</ul>
+<h3 id="结构-struct"><a href="#结构-struct" class="headerlink" title="结构(struct)"></a>结构(struct)</h3><p>struct是由一系列变量组织在一起而构成的数据表示形式，所有结构类型都隐式地从类型object继承。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>结构和类的区别：</strong><br>结构类型是值类型，类类型是引用类型。<br>凡是定义为结构的，都可以用类来定义。<br>创建轻量级对象时，可以使用结构。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li><p><strong>方法的定义</strong><br>因为其是属于类的函数，因此定义方法必须放在某个类中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问修饰符 返回值类型 方法名称(参数列表)&#123;</span><br><span class="line">    程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>方法的参数传递</strong><br>1、<strong>传值：</strong>为形参申请新的内存空间，复制实参的值到形参中。在函数内操作的是形参，对实参没有影响。<br>2、<strong>传引用：</strong>格式为<code>fun(ref 参数类型 参数名)</code>，需要加上<code>ref</code>(reference)关键字，这时不再为形参申请新的空间，形参相当于实参的别名，函数内操作的就是实参。<br>3、<strong>输出多个引用类型的参数：</strong>有时方法的计算结果可能有多个，但return只能返回一个结果，这时就可以用<code>out</code>关键字，使用该参数来接收输出值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MyMethod</span><span class="params">(out <span class="keyword">int</span> a, out <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    a = <span class="number">5</span>;</span><br><span class="line">    b = <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span>&#123;   </span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    MyMethod(out x, out y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>方法重载</strong><br>具有相同的方法名，但参数类型或参数个数不同的方法。<br>重载方法的参数列表必须不同，不能只有返回值不同</p>
+</li>
+</ul>
+<h3 id="属性和索引器"><a href="#属性和索引器" class="headerlink" title="属性和索引器"></a>属性和索引器</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>带有<code>{get; set;}</code>声明的字段。<br>作用：给外部提供读写private成员的途径。<br>步骤：<br>1、为private成员定义一个对应的public成员。<br>2、为public成员定义get、set属性，并编写读写时的检查代码。<br>3、通过访问public成员来读写私有成员。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具体用法</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">string</span> name;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">string</span> Name&#123;</span><br><span class="line">    <span class="comment">//定义检查操作</span></span><br><span class="line">    get&#123;</span><br><span class="line">        <span class="keyword">return</span> name != null? name: <span class="built_in">string</span>.Empty;   <span class="comment">//修改的是name的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">set</span>&#123;</span><br><span class="line">        name = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//最后通过xx.Name来间接修改name的值，同时会执行检查操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//简化写法</span></span><br><span class="line"><span class="comment">//意义将公有成员设为read-only或write-only </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> a&#123;get; <span class="built_in">set</span>;&#125;           <span class="comment">//可以这么写，但没什么意义</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> b&#123;get; <span class="keyword">private</span> <span class="built_in">set</span>;&#125;   <span class="comment">//read-only</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> c&#123;<span class="keyword">private</span> get; <span class="built_in">set</span>;&#125;   <span class="comment">//write-only</span></span><br></pre></td></tr></table></figure>
+<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><ul>
+<li><strong>基本概念</strong><br>在C#中，用冒号<code>:</code>表示继承，被继承的类叫基类/父类，继承的类叫派生类/子类。若没有指定基类，则编译器就将<code>System.Object</code>作为基类。<br><strong>两种继承方式：</strong>类继承和接口继承。类继承只允许单一继承，多重继承通过接口来实现。<br><strong>继承的成员：</strong>子类只能继承父类的<code>public, protected</code>成员，不能继承<code>private</code>成员。<br><strong>关于构造函数：</strong>子类初始化时，会首先调用父类的构造函数（初始化继承自父类的数据成员），再调用自己的构造函数（初始化自身特有的数据成员）。<br><strong>在子类中访问父类的成员：</strong>通过<code>base.xx</code>来调用。<br><strong>基类和派生类的转换：</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"A的构造函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span> A</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"B的构造函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> B();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//最终输出：</span></span><br><span class="line"><span class="comment">//A的构造函数</span></span><br><span class="line"><span class="comment">//B的构造函数</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="类的多态性"><a href="#类的多态性" class="headerlink" title="类的多态性"></a>类的多态性</h3><p>多态是指同一操作用于不同的类的实例，不同的类将会进行不同的解释，最后产生不同的执行结果。</p>
+<ul>
+<li><p><strong>三种实现多态的方法</strong><br>通过继承实现多态性。<br>通过抽象类实现多态性。<br>通过接口实现多态性。</p>
+</li>
+<li><p><strong>通过继承实现多态</strong><br>可通过<code>virtual和override</code>关键字，基类中通过<code>virtual</code>关键字定义要被重写的方法，子类中通过<code>override</code>关键字重写方法。<br>也可通过<code>new</code>关键字，在子类中隐藏父类的同名方法。<br>override和new的区别：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">eat1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"A eat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"A eat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span> A</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> override <span class="keyword">void</span> <span class="title">eat1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"B eat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">new</span> <span class="keyword">void</span> <span class="title">eat2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"B eat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> B();</span><br><span class="line">        a.eat1();</span><br><span class="line">        a.eat2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//B eat</span></span><br><span class="line"><span class="comment">//A eat</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果是override，父类方法是被覆盖的，因此在实例a中只有一个B重写后的eat()方法，因此调用的是B的eat()方法；<br>而如果是new，父类方法是被隐藏，还是会有两个方法。而经过类型转换后，子类就会被限制为父类的数据成员和方法，因此调用的就是父类的eat()。</p>
+<ul>
+<li><p><strong>通过抽象类实现多态</strong><br>抽象类<code>abstract</code>表示类中的成员不一定全部实现，可以只有声明部分而没有实现部分，因此抽象类不能实例化。<br>当抽象类派生非抽象类时，必须实现抽象类的所有抽象成员，通过<code>override</code>方法。</p>
+</li>
+<li><p><strong>通过接口实现多态</strong><br>接口就是完全抽象的成员集合，只有声明没有实现，通过<code>interface 接口名{ //接口体 }</code>来声明一个接口，实现时直接重写相应方法即可。<br>接口中所有的成员都是<code>public</code>的，因此不能再指定访问修饰符。<br>接口中不能出现字段，只能出现方法声明和属性。<br>当有继承了多个接口时，且继承的接口中有同名方法，可通过<code>接口名.方法名</code>来显示指定实现哪个接口。<br>具体代码见书p91。</p>
+</li>
+</ul>
+<h3 id="委托与事件"><a href="#委托与事件" class="headerlink" title="委托与事件"></a>委托与事件</h3><h4 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h4><p>委托是一种数据结构，类似C++中的函数指针，作用：可通过委托来调用相应的函数。<br><strong>委托定义格式：</strong><code>[访问修饰符] delegate 返回类型 委托名([参数序列]);</code><br>编译器编译这行代码时，会自动为其生成一个继承自<code>System.Delegate</code>的委托类，因此委托的定义虽然像是函数，但本质还是类。<br><strong>委托的应用：</strong>回调机制、事件处理。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用委托的步骤</span></span><br><span class="line"><span class="comment">//第一步：定义委托类的原型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> delegate <span class="keyword">void</span> <span class="title">MyDelegate</span><span class="params">(<span class="built_in">string</span> name)</span></span>;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">//第二步：定义被委托调用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">FunA</span><span class="params">(<span class="built_in">string</span> name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"A "</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">FunB</span><span class="params">(<span class="built_in">string</span> name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"B "</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//第三步：实例化委托对象，并关联相关方法(相当于让函数指针指向对应函数)。</span></span><br><span class="line">        MyDelegate da = <span class="keyword">new</span> MyDelegate(FunA);</span><br><span class="line">        MyDelegate db = <span class="keyword">new</span> MyDelegate(FunB);</span><br><span class="line">        <span class="comment">//第四步：调用委托，即间接调用委托关联的方法</span></span><br><span class="line">        da(<span class="string">"张三"</span>);</span><br><span class="line">        db(<span class="string">"张三"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//A 张三</span></span><br><span class="line"><span class="comment">//B 张三</span></span><br></pre></td></tr></table></figure></p>
+<p>注1：因为调用委托就相当于调用其关联的方法，因此方法和委托的参数类型和返回类型要完全匹配。</p>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>事件是响应用户某个操作的行为，因此就涉及到两个问题：如何响应用户行为？响应后要干什么？<br><strong>如何响应：</strong>直接<code>事件名()</code>的格式调用即可，就相当于触发了这个事件。<br><strong>响应后干什么：</strong>一个事件对应一个委托类，通过这个委托类的多个实例就可调用多个方法，即完成响应后的操作。<br><strong>具体使用方法:</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestEvent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> delegate <span class="keyword">void</span> <span class="title">MyDelegate</span><span class="params">()</span></span>;  <span class="comment">//定义委托</span></span><br><span class="line">    <span class="keyword">public</span> event MyDelegate MyEvent;    <span class="comment">//定义事件，并关联委托类</span></span><br><span class="line">    <span class="comment">//定义被委托调用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"Hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"Bye"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TestEvent te = <span class="keyword">new</span> TestEvent();</span><br><span class="line">        te.MyEvent += <span class="keyword">new</span> MyDelegate(te.fun1);</span><br><span class="line">        te.MyEvent += <span class="keyword">new</span> MyDelegate(te.fun2);</span><br><span class="line">        te.MyEvent();</span><br><span class="line">        te.MyEvent -= <span class="keyword">new</span> MyDelegate(te.fun2);</span><br><span class="line">        Console.WriteLine(<span class="string">"去除一个委托"</span>);</span><br><span class="line">        te.MyEvent();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//Hello</span></span><br><span class="line"><span class="comment">//Bye</span></span><br><span class="line"><span class="comment">//去除一个委托</span></span><br><span class="line"><span class="comment">//Hello</span></span><br></pre></td></tr></table></figure></p>
+<p>注1：事件的声明方法<code>public event 委托名 事件名</code>，且事件必须在类内声明，并通过对象调用，不能脱离对象存在。<br>注2：事件可通过<code>+=, -=</code>来添加、删除委托对象，事件添加的委托对象不同，事件触发后的行为也就不一样。<br>注3：窗体控件中事件的实现也是这个原理，每个控件都有一个事件成员，编写的事件响应方法通过默认委托绑定到事件上，发生事件时，即触发相应的响应方法。</p>
+<h2 id="第四章-窗体和控件"><a href="#第四章-窗体和控件" class="headerlink" title="第四章_窗体和控件"></a>第四章_窗体和控件</h2><h3 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h3><ul>
+<li><p><strong>窗体程序的启动和停止</strong><br>使用Application类提供的静态方法来启动、停止窗体程序。<br>Run方法：<code>Application.Run(new Form1())</code>，用于在当前线程上启动应用程序消息循环，并显示窗体。<br>Exit方法：<code>Application.Exit()</code>，终止应用程序。<br>注：在程序一开始必须用<code>Run</code>方法来启动Main窗体，不能用<code>.show()</code>方法，这样无法开启应用程序的消息循环，窗口会闪一下就结束了。</p>
+</li>
+<li><p><strong>打开、关闭窗体</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打开窗体</span></span><br><span class="line">Form fm = <span class="keyword">new</span> Form();</span><br><span class="line">fm.Show();</span><br><span class="line"><span class="comment">//关闭窗体</span></span><br><span class="line">fm.Close();</span><br><span class="line"><span class="comment">//隐藏窗体</span></span><br><span class="line"><span class="keyword">this</span>.Hide();</span><br><span class="line"><span class="comment">//重新显示隐藏的窗体</span></span><br><span class="line"><span class="keyword">this</span>.Show();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>窗体常用属性</strong><br>StartPostion：设置窗体的起始位置，一般在构造函数中设置，<code>this.StartPosition = FormStartPosition.CenterScreen</code>。<br>Location：重新设置窗体的位置，<code>this.Location = new Point(500,400)</code>。<br>MaximizeBox：设置是否允许窗口最大化，true/false。<br>MinimizeBox：设置是否允许窗口最小化，true/false。</p>
+</li>
+<li><p><strong>单文档和多文档窗体</strong><br>多文档窗体(Multi-Document Interface, MDI)是指在一个主窗体中可以包含一个或多个子窗体的窗体，主窗体称为MDI父窗体，子窗体称为MDI子窗体。</p>
+</li>
+</ul>
+<h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><p>对话框用于与用户交互信息，就是弹出的那个窗口，分为标准对话框和自定义对话框。</p>
+<ul>
+<li><strong>MessageBox对话框</strong><br>标准对话框，调用MessageBox类的静态Show方法来显示消息对话框，Show方法提供了多种重载方式。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DialogResult <span class="title">Show</span><span class="params">(<span class="built_in">string</span> text)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DialogResult <span class="title">Show</span><span class="params">(<span class="built_in">string</span> text, <span class="built_in">string</span> caption)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DialogResult <span class="title">Show</span><span class="params">(<span class="built_in">string</span> text, <span class="built_in">string</span> caption, MessageBoxButtons buttons, MessageBoxIcon icon)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Text：</strong>消息框主题显示的文本。<br><strong>caption：</strong>消息框的标题。<br><strong>buttons：</strong>指定在消息框中显示哪些按钮。<code>MessageBoxButtons</code>枚举值之一，有：<code>OK、OKCancel、YesNoCancel、YesNo</code>等。<br><strong>icon：</strong>指定在消息框中显示哪个图标。<code>MessageBoxIcon</code>枚举值之一，有：<code>Question(问号)、Error(错误)、Warning(警告)</code>等。<br><strong>Show方法返回值：</strong><code>DialogResult</code>枚举值，有：<code>None(消息框未返回值)、OK、Cancel、Yes、No</code>等。</p>
+<h3 id="常用控件"><a href="#常用控件" class="headerlink" title="常用控件"></a>常用控件</h3><ul>
+<li><p><strong>基本属性</strong><br><strong>(Name)：</strong>指定控件的名称，它是控件在当前应用程序中的唯一标识，代码通过该属性来访问控件。<br><strong>Enabled：</strong>决定控件是否可用，取值为true时可用，取值为false时不可用。<br><strong>Anchor属性：</strong>设置控件与窗体哪个边框的相对距离不变。<br><strong>Dock属性：</strong>设置控件始终紧靠窗体的某边框。</p>
+</li>
+<li><p><strong>一些控件快捷操作</strong><br><strong>1、设置控件对齐方式：</strong>按住Shift键选中多个控件，在工具栏中间偏右的位置会有各种控件对齐操作，以Shift键选中的第一个控件为标准。<br><strong>2、设置控件焦点顺序：</strong>视图-Tab键顺序，可设置各控件的焦点顺序。<br><strong>3、如何删除事件：</strong>在“设计”界面，右上角-属性-事件窗口(小闪电图标)，右键对应事件-重置，然后再在代码界面删除事件方法代码即可。不能直接删除事件方法代码，因为在<code>Form.Designer.cs</code>文件中控件会和事件方法绑定，直接删除事件方法绑定就会出错，因此要连绑定的代码也一起删掉，绑定代码：<code>this.button1.Click += new System.EventHandler(this.button1_Click)</code>。<br><strong>4、如何设置控件属性：</strong>不要写在<code>InitializeComponent()</code>函数中，写在构造函数中<code>InitializeComponent()</code>函数的后面。<code>InitializeComponent()</code>是根据“设计”界面自动生成的，每次“设计”界面改变都会重新生成，因此其中写的额外代码就会被删掉。</p>
+</li>
+<li><p><strong>控件常用事件</strong><br>Click：单击鼠标左键时触发<br>MouseDoubleClick：双击鼠标左键时触发<br>MouseEnter：鼠标进入控件可见区域时触发<br>MouseMove：鼠标在控件区域内移动时触发<br>MouseLeave：鼠标离开控件可见区域时触发<br>KeyDown：按下键盘上某个键时触发<br>KeyUp：释放键盘上的按键时触发<br>KeyPress：在KeyDown之后KeyUp之前触发，非字符键不会触发该事件。</p>
+</li>
+<li><p><strong>分组控件GroupBox</strong><br>用于将多个控件组合到一起。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历GroupBox中的所有控件</span></span><br><span class="line">foreach (Control con in groupBox1.Controls)</span><br><span class="line">&#123;</span><br><span class="line">    CheckBox cb = con as CheckBox;   <span class="comment">//将循环变量转换为对应的控件类型，之后就可以调用相关属性了</span></span><br><span class="line">    <span class="comment">//处理代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>文本操作控件</strong><br><strong>Label：</strong>用于显示文字，通过<code>.text</code>属性设置文本内容。<br><strong>TextBox：</strong>用于接收用户的输入，通过<code>.text</code>属性读取用户输入的内容。<br><strong>TextBox常用属性和事件：</strong><br>PasswordChar属性：设置屏蔽密码时所用的字符，设置方法：<code>textBox1.PasswordChar = &#39;*&#39;</code><br>MaxLength属性：用户最多可输入的字符数，默认为32767个字符，因为使用的是Unicode字符，所以对中文和英文的字符计数方法是相同的，即一个英文字符的长度为1，一个汉字字符的长度也是1。<br>TextChanged事件：表示文本框中的内容更改时触发的操作。<br><strong>RichTextBox：</strong>多行文本框，可进行较复杂的文本操作，属性、事件与TextBox类似。</p>
+</li>
+<li><p><strong>ListBox和ComboBox控件</strong><br>ListBox（列表框）控件和ComboBox（下拉框）控件均用于显示一组条目，以便操作者从中选择一条或者多条信息。<br>两个控件的用法基本一样，区别仅仅在于显示的外观不同，ListBox将所有选项同时显示在框内，ComboBox则是以下拉列表显示。<br><strong>ListBox和ComoBox常用属性：</strong><br>Items：获取控件中的所有项<br>SelectedIndex：获取当前选定的条目在列表中的索引（从0开始），<code>int</code>类型<br>SelectedItem：获取当前选定的条目在列表中的项，返回object，需要<code>.ToString()</code>转化为字符串<br>Items.Add：向列表中添加一项，<code>comboBox1.Items.Add(&quot;xxx&quot;)</code><br>Items.AddRange：向列表中添加一组项，传入string数组。<br>Items.Remove：移除选项，传入string<br>Items.RemoveAt：移除对应序号的选项，传入int<br>Items.Clear：移除所有项<br>注：ComboBox允许用户在下拉列表的顶部自己键入内容，通过<code>.text</code>属性访问。</p>
+</li>
+<li><p><strong>CheckBox控件</strong><br>CheckBox为复选控件，有三种状态：选中、未选中、不确定。<br><strong>两个重要属性：</strong><br>Checked{get; set;}：表示复选框是否被选中，bool类型：true/false。<br>CheckState{get; set;}：表示复选框状态，<code>CheckState</code>枚举类型，有：<code>Checked, Unchecked, Indeterminate</code>三个值，分别表示选中、未选中和不确定。<br>text{get; set;}：表示与复选框相关联的文本。<br><strong>CheckedChanged事件：</strong>当复选框状态值改变时触发该事件</p>
+</li>
+<li><p><strong>RadioButton控件</strong><br>RadioButton为单选按钮控件，一组RadioButton只能有一个处于选中状态。<br>单选按钮是以其所在的容器来分组的，直接添加在窗体上的多个单选按钮默认属于同一组，此时窗体就是容器。若要对单选按钮分组，可以使用GroupBox控件。<br><strong>属性：</strong><br>Checked{get; set;}：表示单选框是否被选中，bool类型：true/false。<br>text{get; set;}：表示与单选框相关联的文本。<br><strong>CheckedChanged事件：</strong>当单选框状态值改变时触发该事件</p>
+</li>
+<li><p><strong>MenuStrip控件</strong><br>菜单控件</p>
+</li>
+</ul>
+<h2 id="第五章-目录与文件管理"><a href="#第五章-目录与文件管理" class="headerlink" title="第五章_目录与文件管理"></a>第五章_目录与文件管理</h2><p>三种对目录管理的类：Directory类、DirectoryInfo类、Path类，三个类的命名空间：System.IO<br><strong>Directory类的静态方法：</strong><br><code>Exists()：</code>确定是否存在现有目录，返回bool类型。<br><code>GetFiles(&quot;e:\\test&quot;)：</code>返回指定目录中的文件名称，string数组<br><code>GetDirectories()：</code>返回指定目录中的子目录的名称<br><code>CreateDirectory(&quot;e:\\test&quot;)</code>：在磁盘指定位置创建目录。</p>
+<h2 id="第六章-数据库操作"><a href="#第六章-数据库操作" class="headerlink" title="第六章_数据库操作"></a>第六章_数据库操作</h2><p>ADO：Active Data Objects<br>ADO.NET常用的对象模型：<br>(1) SqlConnection对象：建立与数据库的连接<br>(2) SqlCommand对象：执行SQL语句<br>(3) SqlDataReader对象<br>(4) SqlDataAdapter对象<br>(5) DataTable对象：<br>(6) DataSet对象：由表、关系、和约束的集合组成。</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-26</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/C_Sharp/" class="color3">C_Sharp</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-基本语法"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章_基本语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C-概述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">C#概述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C-基本数据类型"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">C#基本数据类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#程序控制语句"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">程序控制语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#控制台输入输出"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">控制台输入输出</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基本流程控制语句"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">基本流程控制语句</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-常用数据类型的用法"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二章_常用数据类型的用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String类型"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">String类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组类型"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">数组类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#枚举类型"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">枚举类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#泛型"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">泛型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用泛型集合"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">常用泛型集合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#列表List"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">列表List</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#链表LinkedList"><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">链表LinkedList</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#队列Queue"><span class="post-toc-number">2.5.3.</span> <span class="post-toc-text">队列Queue</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#堆栈Stack"><span class="post-toc-number">2.5.4.</span> <span class="post-toc-text">堆栈Stack</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间类型DateTime"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">时间类型DateTime</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-面向对象编程基础"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三章_面向对象编程基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结构-struct"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">结构(struct)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#属性和索引器"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">属性和索引器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#属性"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类的继承"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">类的继承</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类的多态性"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">类的多态性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#委托与事件"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">委托与事件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#委托"><span class="post-toc-number">3.7.1.</span> <span class="post-toc-text">委托</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件"><span class="post-toc-number">3.7.2.</span> <span class="post-toc-text">事件</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四章-窗体和控件"><span class="post-toc-number">4.</span> <span class="post-toc-text">第四章_窗体和控件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#窗体"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">窗体</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对话框"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">对话框</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用控件"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">常用控件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第五章-目录与文件管理"><span class="post-toc-number">5.</span> <span class="post-toc-text">第五章_目录与文件管理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第六章-数据库操作"><span class="post-toc-number">6.</span> <span class="post-toc-text">第六章_数据库操作</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

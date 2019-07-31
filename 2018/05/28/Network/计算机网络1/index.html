@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机网络笔记（第一部分） | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本篇笔记主要包括概述、物理层和数据链路层这三章的内容。 概述 三类网络电信网络：向用户提供电话、电报、传真等服务；有限电视网络：向用户传送各种电视节目；计算机网络：使用户可以在计算机之间传数据，由若干结点(node)和连接这些结点的链路(link)组成。注：三类网络中起到核心作用是计算机网络，且有相互融合的趋势，即所谓的“三网融合”的概念。  互联网基本概念Internet的含义Internet指">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络笔记（第一部分）">
+<meta property="og:url" content="https://renli1024.github.io/2018/05/28/Network/计算机网络1/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本篇笔记主要包括概述、物理层和数据链路层这三章的内容。 概述 三类网络电信网络：向用户提供电话、电报、传真等服务；有限电视网络：向用户传送各种电视节目；计算机网络：使用户可以在计算机之间传数据，由若干结点(node)和连接这些结点的链路(link)组成。注：三类网络中起到核心作用是计算机网络，且有相互融合的趋势，即所谓的“三网融合”的概念。  互联网基本概念Internet的含义Internet指">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/ISP架构.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/数据交换方式.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/时延.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/网络体系结构.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/五层体系结构.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/帧首部和帧尾部.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/字符填充.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IP地址和MAC地址关系.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/MAC帧格式.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/碰撞检测过程.png">
+<meta property="og:updated_time" content="2018-07-01T14:21:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络笔记（第一部分）">
+<meta name="twitter:description" content="本篇笔记主要包括概述、物理层和数据链路层这三章的内容。 概述 三类网络电信网络：向用户提供电话、电报、传真等服务；有限电视网络：向用户传送各种电视节目；计算机网络：使用户可以在计算机之间传数据，由若干结点(node)和连接这些结点的链路(link)组成。注：三类网络中起到核心作用是计算机网络，且有相互融合的趋势，即所谓的“三网融合”的概念。  互联网基本概念Internet的含义Internet指">
+<meta name="twitter:image" content="https://renli1024.github.io/images/计算机网络/ISP架构.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Network/计算机网络1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计算机网络笔记（第一部分）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-28
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script><br>本篇笔记主要包括概述、物理层和数据链路层这三章的内容。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><strong>三类网络</strong><br>电信网络：向用户提供电话、电报、传真等服务；<br>有限电视网络：向用户传送各种电视节目；<br>计算机网络：使用户可以在计算机之间传数据，由若干<strong>结点(node)</strong>和连接这些结点的<strong>链路(link)</strong>组成。<br>注：三类网络中起到核心作用是计算机网络，且有相互融合的趋势，即所谓的“三网融合”的概念。</li>
+</ul>
+<h3 id="互联网基本概念"><a href="#互联网基本概念" class="headerlink" title="互联网基本概念"></a>互联网基本概念</h3><h4 id="Internet的含义"><a href="#Internet的含义" class="headerlink" title="Internet的含义"></a>Internet的含义</h4><p>Internet指当前全球最大的、由众多网络相互连接而成的特定计算机网络，采用TCP/IP协议族作为通信规则，前身是美国的ARPANET。我们生活中的“上网”，即是指将某个电子设备连接到Internet。而关于Internet的译名，有以下两种：<br><strong>因特网：</strong>这是全国科学技术名词审定委员会推荐的译名，虽然准确，但未被广泛使用；<br><strong>互联网：</strong>使用最广泛的Internet译名，也更能体现出Internet的主要特征（连通性），因此《计算机网络》一书第七版之后都采用了这个译名，本笔记也是采用这种译名。<br>注1：Internet是计算机网络的代表，但并不等于计算机网络(还有很多其他类型的网络)。<br>注2：Internet相当于是“网络的网络”，其将全球众多的计算机网络相互连接起来。<br>注3：小写的internet，指“互连网”，任意将若干计算机网络连接起来，可以通信就行；而大写的Internet是专有名词，特指全球最大的那个“互联网”。</p>
+<h4 id="互联网的架构"><a href="#互联网的架构" class="headerlink" title="互联网的架构"></a>互联网的架构</h4><p>当前互联网是<strong>多层次ISP</strong>的架构，ISP(Internet Service Provider)为互联网服务提供商，负责建造通信线路，从互联网管理机构申请IP地址并分配给用户，分为主干ISP、地区ISP和本地ISP（移动、联通、电信即国内三大主干ISP）。示意图如下：<br><img src="/images/计算机网络/ISP架构.png" width="500" height="250" alt="多层次ISP架构示意图" align="center"><br><strong>IXP：</strong>为了提升网络传输速率，出现了互联网交换点IXP(Internet eXchange Point)，使用数据链路层的网络交换机来实现。其主要作用是允许两个网络直接相连传输数据，而无需再通过ISP转发（如上图两个地区ISP之间的IXP），这样可使得互联网的数据流量分布更合理，减少传输时延。</p>
+<h4 id="互联网的组成"><a href="#互联网的组成" class="headerlink" title="互联网的组成"></a>互联网的组成</h4><p>虽然互联网的拓扑结构非常复杂，但总体可以分为两大块：<br><strong>边缘部分：</strong>由所有连接在互联网上的主机(host)组成，这部分是用户可以直接接触到的，用来进行数据传输。<br><strong>核心部分：</strong>由大量网络和连接这些网络的路由器组成，这部分是为边缘部分提供服务的。<br><strong>边缘部分主机的通信方式：</strong>可分为两大类：客户-服务器方式(C/S方式)和点对点方式（P2P方式）。<br>C/S方式中，客户端是服务请求方，主动向服务器发起通信，因此必须知道服务端的地址；而服务端是服务提供方，被动地等待各地的客户端的请求，因此服务端无需知道客户端的地址。<br>P2P方式中，只要两台主机都运行了对等连接软件（P2P软件），它们就可以平等地进行通信，没有客户端和服务端的区分，也可理解为每台主机既是客户端也是服务端。</p>
+<h4 id="互联网核心部分的数据交换方式"><a href="#互联网核心部分的数据交换方式" class="headerlink" title="互联网核心部分的数据交换方式"></a>互联网核心部分的数据交换方式</h4><p>互联网核心部分主要作用是交换、传输数据，有三种交换方式。<br><strong>电路交换：</strong>电话的连接方式，两台电话要进行通信，必须经过“建立连接（占用通信资源）-&gt;通话（一直占用通信资源）-&gt;释放连接（归还通信资源）”三个阶段，两台电话间会建立一条专用的物理线路，通信时会一直占用，通信线路的利用较低。<br><strong>报文交换：</strong>运用了存储转发的原理，整个数据报文先传送到相邻结点，全部存储下来后查找转发表，再转发到下一个结点。<br><strong>分组交换：</strong>同样运用了存储转发(stroe and forward)的原理，将数据报文分成多个小的分组，每个分组在首部加上必要的控制信息，单独地在互联网中进行传输。当路由器收到一个分组后，先暂时存储一下，检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去(路由算法得出)，把分组交给下一个路由器，分组就这样一步步地到达目的地。<br><img src="/images/计算机网络/数据交换方式.png" width="500" height="350" alt="三种数据交换方式" align="center"></p>
+<ul>
+<li><strong>三种交换方式的比较：</strong><br>1、对于电路交换，是整个比特流连续地从原点直达终点，因此需要建立专用传输线路，如果要传送大量连续数据（传送时间远大于连接建立时间），则电路交换的效率较高；<br>2、对于报文交换和分组交换，不需要预先分配传输资源，因此非常适合传输计算机网络这种<strong>突发性</strong>的数据。另外报文传输是直接传输整个报文，因此时延比分组交换大，且如果报文中出了一点错，整个报文都要重传，开销会很大。<br>3、分组交换的优点：高效，对通信线路是<strong>逐段</strong>占用的，可以充分利用通信资源；灵活，每一个分组都可选择最适合的路由线路进行转发；可靠，当链路中某一结点出现故障，路由算法会自动选择合适的线路。<br>4、分组交换的缺点：使用存储转发(stroe and forward)的方式，分组在各个路由结点会有排队问题，产生一定的时延；分组必须携带的首部会产生一定的开销。</li>
+</ul>
+<h3 id="计算机网络分类"><a href="#计算机网络分类" class="headerlink" title="计算机网络分类"></a>计算机网络分类</h3><p><strong>按网络的作用范围分：</strong><br>    广域网WAN(Wide Area Network)：作用范围为几十到几千公里；<br>    城域网MAN(Metropolitan Area Networl)：城域网的作用范围一般是一个城市；<br>    局域网LAN(Local Area Network)：局域网在地理上局限在较小的范围内(1km左右)；<br>    个人区域网PAN(Personal Area Network)：在个人工作的地方把个人使用的电子设备（如笔记本电脑）用无线技术连接起来，如蓝牙技术。<br><strong>按网络使用者分：</strong><br>    分为公用网(public network)和专用网(private network)。<br><strong>用来把用户加入到互联网的网络：</strong><br>    这种网络叫接入网AN(Access Network)，处于从用户到互联网中第一个路由器之间的一种网络。在互联网初期，用户用电话线拨号接入互联网，速率很低，目前使用了接入网技术来连接，速率了有很大的提升。</p>
+<h3 id="计算机网络的性能指标"><a href="#计算机网络的性能指标" class="headerlink" title="计算机网络的性能指标"></a>计算机网络的性能指标</h3><p><strong>速率：</strong>指比特率(bit/s)，并非Byte，而且多指<strong>额定速率</strong>。<br><strong>带宽：</strong>传统的带宽指的是频带宽度，单位是HZ。而在计算机网络中，带宽指网络的<strong>最高发送速率</strong>。<br><strong>吞吐量：</strong>单位时间内通过网络的实际数据量，指<strong>实际速率</strong>。<br>注：在存储领域，1k=1024；而在通信领域，1k=1000。<br><strong>往返时间：</strong>往返时间RTT(Round-Trip Time)表示双向交互一次所需要的时间。<br><strong>信道利用率：</strong>指信道有多长时间是被利用的（有数据通过），空闲的信道利用率为0。注：信道利用率并非越大越好，利用率增大，时延也会增加。</p>
+<h4 id="网络时延"><a href="#网络时延" class="headerlink" title="网络时延"></a>网络时延</h4><p>时延是指数据从网络的一端传送到另一端所花费的时间，网络时延由以下几部分组成：<br><strong>发送时延：</strong>主机或路由器发送数据帧所花费的时间，发生在网卡中。$$发送时延=\frac {数据帧长度(bit)} {发送速率(bit/s)}$$<br><strong>传播时延：</strong>电磁波在信道中传播所花费的时间，发生在信道中。$$传播时延=\frac {信道长度(m)} {电磁波在信道中的传播速率(m/s)}$$<br>信号传播速率与信道有很大关系，如光纤、铜线等等。<br><strong>处理时延：</strong>在交换结点分组转发所需的时间，如分析首部、进行差错检验等，没有具体的计算公式。<br><strong>排队时延：</strong>分组在路由器的缓存队列中排队等待的时间，同样没有具体的计算公式。<br>因此网络总时延就是以上四种时延之和：$$总时延=发送时延+传播时延+处理时延+排队时延$$<br>注：高速网络链路，提高的是发送速率(带宽)，并不能提高传输速率。如我们所说的光纤传输速率高，是指可以用很高的速率向光纤信道发送数据，而光纤信道的传播速率实际上比铜线还要低。<br><img src="/images/计算机网络/时延.png" width="500" height="200" alt="四种时延产生的地方不一样" align="center"><br><strong>时延带宽积：</strong>时延带宽积=传播时延 X 带宽，如时延带宽积为\(2\times 10^5bit\)，相当于当发送的第一个比特到达终点时，发送端已经发送了20万个比特，而这20万个比特都未还在传输过程中，因此时延带宽积也表示从发送端发出的但尚未到达接收端的比特数。</p>
+<h3 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h3><p>无论哪种网络体系结构，都采用了“分层”的思想，目前主要有两种体系：OSI和TCP/IP，OSI非常权威，但因为过于复杂，更多被当作一种理论参考，工程上未广泛应用；运用最广泛的是TCP/IP协议，也是事实上的“国际标准”。OSI协议为7层，TCP/IP协议有4层，谢书中采用的是两者的结合版，即一种5层的网络结构。<br><img src="/images/计算机网络/网络体系结构.png" width="500" height="250" alt="三种网络体系结构" align="center"></p>
+<ul>
+<li><strong>五层协议结构</strong><br><strong>应用层：</strong>应用层协议定义的是<strong>进程</strong>间的交互规则，因为主机间通信的本质是主机上进程的通信（进程即为正在运行的程序）。具体的应用层协议有DNS、HTTP等。应用层数据单位：<strong>报文</strong>(message)。<br><strong>运输层：</strong>运输层负责为主机进程间的通信提供通用的数据传输服务，目前主要有两种协议：传输控制协议TCP和用户数据报协议UDP，TCP提供面向连接、可靠的数据传输服务，UDP提供无连接的、尽最大努力的数据传输服务。运输层数据单位：TCP为<strong>报文段</strong>(segment)，UDP为<strong>用户数据报</strong>。<br><strong>网络层：</strong>网络层负责分组交换网的数据传输服务，使用IP协议。与运输层的不同在于：运输层针对互联网的边缘部分，网络层针对互联网的核心部分，路由器在转发时最高就涉及到网络层，不涉及运输层和应用层。网络层数据单位：<strong>IP数据报</strong>（就是之前所说的分组）。<br><strong>数据链路层：</strong>数据链路层负责分组交换网中相邻结点的数据传输，与网络层的不同在于：网络层是源结点到目的结点(中间可能有多个结点)，而数据链路层是相邻结点。数据链路层数据单位：<strong>帧</strong>(framing)。<br><strong>物理层：</strong>负责物理硬件层面的数据传输，物理层数据单位：<strong>比特</strong>(bit)。<br>注：数据从上层到下层需要加首部，加上相关控制信息。另外，从网络层-&gt;链路层还要加尾部（做差错校验的工作）。<br><img src="/images/计算机网络/五层体系结构.png" width="350" height="200" alt="数据在各层的变化" align="center"></li>
+</ul>
+<h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><ul>
+<li><p><strong>物理层的主要任务</strong><br>物理层研究的是如何在各种传输媒体上传输比特流，如各个物理接口的尺寸、接口电缆上电压的范围、各种编码方式等，而不是具体的传输媒体（这属于通信领域的范畴）。</p>
+</li>
+<li><p><strong>物理层传输媒介</strong><br>导引型(有线)：双绞线、同轴电缆、光纤<br>非导引型(无线)：自由空间</p>
+</li>
+</ul>
+<h3 id="信道"><a href="#信道" class="headerlink" title="信道"></a>信道</h3><ul>
+<li><strong>信道的基本概念</strong><br>信道指向某一个方向传送信息的媒体，是<strong>单向</strong>的，因此一条通信线路往往包含一条发送信道和一条接收信道。<br>单工通信（单向通信）：只能有一个方向通信，如收音机。<br>半双工通信（双向交替通信）：通信双方都可以发送信息，但不能同时发送，如对讲机。<br>全双工通信（双向同时通信）：通信双方可以同时发送/接收信息。<br>注：单工通信只需一条信道，半双工和全双工通信需要两条信道。</li>
+</ul>
+<h4 id="调制"><a href="#调制" class="headerlink" title="调制"></a>调制</h4><p>为什么要进行调制：来自信源的信号不适合进行长距离传输。<br><strong>基带调制：</strong>数字信号-&gt;另一种数字信号（没有变为模拟信号），也称为编码。具体有如下几种：<br>不归零编码：正电平代表1，负电平代表0。<br>归零编码：正脉冲代表1，负脉冲代表0。<br>曼彻斯特编码：位周期中心向上跳变代表0，位周期中心向下跳变代表1。<br>差分曼彻斯特编码：位开始边界有跳变代表0，位开始边界没有跳变代表1。<br><strong>带通调制：</strong>数字信号-&gt;模拟信号（加到载波上）。具体有如下几种：<br>调幅(AM)：载波的振幅随基带数字信号变化。<br>调频(FM)：载波的频率随基带数字信号变化。<br>调相(PM)：载波的初始相位随基带数字信号变化。</p>
+<h4 id="信道的极限传输速率"><a href="#信道的极限传输速率" class="headerlink" title="信道的极限传输速率"></a>信道的极限传输速率</h4><p>如何提高数据在信道上的传输速率是一个被广泛关注的问题，大致可从以下几个方面来考虑：<br><strong>信道能通过的频率范围：</strong>由奈氏准则可知，在任何信道中，码元传输的速率都是有上限的，传输速率超过此上限，就会出现严重的码间串扰问题，因此可通过拓宽频带，来提高码元传输速率的上限。奈氏准则公式：$$极限波特率(baud/s)=2W\times log_2n$$<br>\(W\)为频带宽度，\(n\)为一个码元可表示几种值，\(log_2n\)即为一个码元携带的信息量。注意区分码元和比特的区别，1码元可以由多个bit位表示。<br><strong>信噪比：</strong>$$信噪比(dB)=10\times log_{10}(S/N)$$<br>\(S\)为信号的平均功率，\(N\)为噪声的平均功率。<br><strong>香农公式：</strong>信道的极限信息传输速率C为：$$C=W\times log_2(1+S/N)$$<br>C为比特率bit/s，W为信道的带宽(Hz)。由公式可知，信道带宽越大，信噪比越高，信息的极限传输速率就越高。<br><strong>比特率和波特率换算：</strong>$$比特率(bit/s)=波特率(baud/s)\times 码元信息量$$ $$码元信息量=log_2n$$<br>\(n\)为一个码元可表示几种值。奈氏准则的具体表示？奈氏准则和香农公式的换算？</p>
+<h4 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h4><p>频分复用(FDM)：在同一时间占用不同的频带资源。<br>时分复用(TDM)：在不同时间占用相同的频带资源，类似时间片轮转。<br>统计时分复用(STDM)：与TDM的不同在于，其并非固定顺序分配时间，而是按需动态分配。<br>波分复用(WDM)：光的频分复用，用一根光纤同时传输多个光载波信号。<br>码分多址(CDMA)：具体介绍如下。</p>
+<h4 id="码分多址-CDMA"><a href="#码分多址-CDMA" class="headerlink" title="码分多址(CDMA)"></a>码分多址(CDMA)</h4><p>各个用户使用经过挑选的不同码型，相互之间不会造成干扰，因此用户可在同一时间使用同样的频带进行通信。具体原理如下：<br><strong>码片：</strong>在CDMA中，每个用户被分配一个m位的码片序列(由+1和-1组成)，用户若要发送比特1，则直接发送这个m位码片序列；若要发送0，则发送该码片序列的反码。如码片序列为(-1-1-1+1+1-1+1+1)，则1对应的就是(-1-1-1+1+1-1+1+1)，0对应的就是(+1+1+1-1-1+1-1-1)，这个m位序列才是最终的发送结果。<br><strong>码片正交：</strong>码片的一个重要特点是，各个用户所分配的码片是正交的，如S代表某用户的码片，T代表其他用户的码片，两个码片正交，则有：<br>$$S\cdot T = \frac {1} {m} \sum_{i=1}^m S_iT_i=0$$<br>即两码片按位相乘最后结果为0。<br><strong>信号处理：</strong>不同用户码片合到一起发出去，若想从中分离出用户X的信号，则首先拿到X的码片，和收到的信号做内积运算(按位乘法)，结果为1：比特为1，结果为-1：比特为0，结果为0：其他用户的信号。按照这个方法即可把其他用户的信号剔除掉。</p>
+<h3 id="宽带接入技术"><a href="#宽带接入技术" class="headerlink" title="宽带接入技术"></a>宽带接入技术</h3><p>用户要连接到互联网，必须先连接到ISP，以便获得上网所需的IP地址，因此即出现了宽带接入技术。我国之前多采用电话线+调制解调器(Modern，猫)的方式拨号上网，因速度有限而被逐渐淘汰，目前主流宽带接入方式的有三种。<br><strong>ADSL技术：</strong>ADSL(Asymmetric Digital Subscriber Line)，非对称数字用户线路，可直接利用原有的电话线路，无需从新布线，用户使用专门的Modern即可上网，且为电信专线，网速较稳定。<br><strong>光纤同轴混合网(HFC网)：</strong>基于有线电视网开发的宽带接入网，在传送电视节目的同时提供宽带服务。将原先有线电视网中的同轴电缆主干部分改换为光纤，一直延申到相应光纤结点后，光信号转换为电信号，再通过同轴电缆将信号传送到用户家庭。要使现有的模拟计算机能够接收数字电视信号，需要使用一个称为<strong>机顶盒(set-top box)</strong>的设备，同时机顶盒大多内嵌了一个叫电缆调制解调器的设备，通过此设备用户即可接入宽带。<br><strong>FTTx技术：</strong>最理想的宽带接入方式是<strong>光纤到户</strong>FTTH(Fiber To The Home)，将光纤一直铺设到用户家庭，只有在光纤进入家门后，才把光信号转换为电信号，这样做就可使用户获得最高的上网速率。但限于价格和用户需求等问题，光纤到户目前还未被广泛使用，但其衍生出了很多宽带光纤接入方式，称为<strong>FTTx</strong>，即Fiber To The…，x代表不同的光纤接入地点，即光电转换的地方。目前大中城市较普及的是光纤接入到楼（FTTB）或小区（FTTZ），再通过网线接入用户家，从而为整幢楼或小区提供共享带宽。</p>
+<h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><ul>
+<li><p><strong>数据链路层两种信道类型</strong><br>点对点信道：点对点通信方式（一对一），最常用的协议是PPP协议，多用于住宅主机的拨号上网。<br>广播信道：广播通信方式（一对多），因为主机数较多，必须用专用的共享信道协议(CSMA/CD)来协调主机间的数据发送，多用于<strong>局域网</strong>。</p>
+</li>
+<li><p><strong>链路和数据链路</strong><br>链路：无源的点到点的物理线路段，中间没有任何其他的交换结点。<br>数据链路：物理链路+通信协议，即硬件+软件。</p>
+</li>
+</ul>
+<h3 id="数据链路层的三个基本问题"><a href="#数据链路层的三个基本问题" class="headerlink" title="数据链路层的三个基本问题"></a>数据链路层的三个基本问题</h3><ol>
+<li>封装成帧(framing)</li>
+<li>透明传输</li>
+<li>差错检测</li>
+</ol>
+<h4 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h4><p>概念：在一段数据的前后分别添加首部和尾部，就构成了一个帧。首部和尾部的作用是进行<strong>帧定界</strong>，即确定帧的开始和结束。<br>具体实现：用控制字符完成帧定界，将控制字符SOH(Start Of Header)放在帧的首部表示帧的开始，将控制字符EOT(End Of Transmission)表示帧的结束。<br><img src="/images/计算机网络/帧首部和帧尾部.png" width="470" height="100" alt="帧首部和帧尾部" align="center"></p>
+<h4 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h4><p>“封装成帧”的问题：如果数据中的某个字节的二进制代码恰好和SOH或EOT一样，帧就会错误地开始或结束。因此要对帧的数据部分出现的控制字符进行处理。<br>处理方法：字符填充(也称字节填充)，在帧数据部分的SOH/EOT前插入一个转义字符，这样接收时就不会把其当作控制字符来处理（防止帧提前结束掉），最后在数据送向网络层时删去转义字符即可。<br>注：如果转义字符也出现在数据当中，就在转义字符前也加一个转义字符。<br><img src="/images/计算机网络/字符填充.png" width="470" height="100" align="center"></p>
+<h4 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h4><p>问题背景：数据传输中可能会产生比特差错：1变成0或0变成1，因此要采用差错检测措施。<br><strong>循环冗余码CRC：</strong>重点！具体算法见《计算机网络》P74<br>注1：使用循环冗余码只能做到<strong>无比特差错</strong>，但还做不到可靠传输（CRC只能做到接受的帧都没有错误）。<br>注2：可靠传输包括两部分：无比特差错 &amp; 无传输差错。传输差错指帧丢失、帧重复和帧失序，要做到无传输差错，则必须要有确认和重传机制（由上层协议完成）。</p>
+<h3 id="MAC层"><a href="#MAC层" class="headerlink" title="MAC层"></a>MAC层</h3><p>为了制订一个通用的协议模型，IEEE802委员会将数据链路层又拆分成了两个子层：<br>介质访问控制子层(MAC)：MAC层，负责与传输介质相关的部分，将相关操作封装好共LLC透明调用。<br>逻辑链路控制子层(LLC)：LLC层，负责逻辑控制，与传输介质无关，不管采用何种协议对LLC层都是<strong>透明</strong>的。</p>
+<h4 id="MAC层地址"><a href="#MAC层地址" class="headerlink" title="MAC层地址"></a>MAC层地址</h4><p>在局域网中，每个网络适配器（网卡）都会有一个唯一的硬件地址，称为MAC地址。<br>MAC地址位数是48位，高24位为IEEE向网卡厂商分配，低24位为厂商自行指派。<br>在局域网外部传输，使用IP地址查找主机；进入局域网后，即是查找MAC地址。<br><img src="/images/计算机网络/IP地址和MAC地址关系.png" width="330" height="70" alt="IP地址和MAC地址关系" align="center"></p>
+<h4 id="MAC帧格式"><a href="#MAC帧格式" class="headerlink" title="MAC帧格式"></a>MAC帧格式</h4><p><img src="/images/计算机网络/MAC帧格式.png" width="470" height="100" alt="MAC帧格式" align="center"><br>MAC帧数据部分长度范围：46-1500。<br>整个MAC帧长度范围：64-1518，首部和尾部总共18字节。<br><strong>最大传送单元MTU：</strong>指MAC帧中数据部分的最大长度，为1500。</p>
+<h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><ul>
+<li><p><strong>局域网和以太网的区别</strong><br>以太网是一种局域网，而局域网却不一定是以太网，只是由于目前大多数的局域网是以太网，所以一般说局域网，大家都默认为以太网。<br>所谓以太网，是一种<strong>总线型局域网</strong>，局域网的拓扑结构有很多实现方式，还有有星型、环形等，但目前应用最广泛的局域网标准还是以太网。</p>
+</li>
+<li><p><strong>以太网的通信特点</strong></p>
+<ol>
+<li>和其他种类局域网中的传播方式相同，采用广播的方式。</li>
+<li>无连接的工作方式，也没有确认和重传机制，因为局域网的通信质量较好，发生错误的几率较小。</li>
+<li>收到有差错的数据帧就丢弃，但不做纠错，纠错工作交给上层协议。因此以太网提供的服务是不可靠的交付。</li>
+<li>发送的数据使用的是曼彻斯特编码，位周期中心向上跳变代表0，位周期中心向下跳变代表1 </li>
+</ol>
+</li>
+</ul>
+<h4 id="CSMA-CD"><a href="#CSMA-CD" class="headerlink" title="CSMA/CD"></a>CSMA/CD</h4><p>定义：载波监听多点接入/碰撞检测(Carrier Sense Multiple Access with Collision Detection) ，是以太网上的一种通信协议。<br>多点接入：一根总线上解入多个计算机。<br>载波监听：指发送数据之前要先检测总线上是否有其他计算机在发送数据，如果有，则暂时不要发送数据，以免发生碰撞。<br>碰撞检测：检测信道上数据是否发生了碰撞。若发生碰撞，信号就会产生严重的失真，因此一旦检测出碰撞，计算机就会立即停止发送数据，等待一段随机时间后再重新发送。<br>而且也因为信号会发生碰撞，所以以太网只能进行<strong>半双工</strong>通信，而不能全双工。</p>
+<h4 id="CSMA-CD中的碰撞检测"><a href="#CSMA-CD中的碰撞检测" class="headerlink" title="CSMA/CD中的碰撞检测"></a>CSMA/CD中的碰撞检测</h4><p>因为电磁波在信道上传播的速率是有限的，因此当监听到总线是空闲的时，总线可能并非真正的空闲（对方的信号正在信道上传输，还没传过来），因此不仅是在发数据前要检测碰撞，在发送数据的期间也要进行检测。<br><img src="/images/计算机网络/碰撞检测过程.png" width="470" height="100" alt="碰撞检测的过程" align="center"><br>由图可知，先发送数据的计算机，在发送后至多经过\(2\tau\)时间（两倍的端到端往返时延），就可知道发送的数据帧是否遭受了碰撞。<br>所以\(2\tau\)就称为争用期，只有经过争用期这段时间还没有检测到碰撞，才能肯定此次发送不会发生碰撞。<br>以太网取\(51.2\mu s\)为争用期长度，对于10Mbit/s以太网，在争用期内可发送 512 bit，即64字节。因此若发生冲突，一定是在发送的前64字节之内。<br>所以以太网规定<strong>最短有效帧长</strong>为64字节，凡长度小于64字节的帧都是由于冲突而异常中止的无效帧。</p>
+<h4 id="二进制指数退避算法"><a href="#二进制指数退避算法" class="headerlink" title="二进制指数退避算法"></a>二进制指数退避算法</h4><p>发生碰撞的站在停止发送数据后，要推迟（退避）一个随机时间才能再发送数据。<br>基本的退避时间为\(2\tau\)，之后从集合\([0, 1, … , (2^k-1)]\)中随机取一个数，记为r，重传所需的时延就是r倍的基本退避时间。<br>参数\(k\)的计算：\(k=Min[重传次数, 10]\)。<br>当重传达16次仍不能成功时即丢弃该帧，并向上层报告。 </p>
+<ul>
+<li><strong>强化碰撞</strong><br>检测到碰撞后，立即停止发送数据，之后继续发送若干比特的人为干扰信号，以便让所有用户都知道现在已经发生了碰撞。</li>
+</ul>
+<h4 id="扩展以太网"><a href="#扩展以太网" class="headerlink" title="扩展以太网"></a>扩展以太网</h4><p>集线器：用集线器将多个碰撞域组合成一个碰撞域。<br>网桥：用网桥将各网段隔离为单独的碰撞域，网桥工作在数据链路层，其根据MAC地址对收到的帧进行转发。<br>以太网交换机：相当于多接口网桥。</p>
+<ul>
+<li><strong>连接不同网络的中间设备</strong><br>物理层：集线器Hub，会扩大碰撞域，而且没法抑制广播风暴。<br>数据链路层：交换机。<br>网络层：路由器，由于历史的原因，许多有关 TCP/IP 的文献将网络层使用的路由器称为网关。<br>交换机和路由器的不同：交换机连接的是主机，路由器连接的是网络。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-05-28</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Network/" class="color3">Network</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#互联网基本概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">互联网基本概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Internet的含义"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">Internet的含义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互联网的架构"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">互联网的架构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互联网的组成"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">互联网的组成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互联网核心部分的数据交换方式"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">互联网核心部分的数据交换方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机网络分类"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">计算机网络分类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机网络的性能指标"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">计算机网络的性能指标</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网络时延"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">网络时延</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机网络体系结构"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">计算机网络体系结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#物理层"><span class="post-toc-number">2.</span> <span class="post-toc-text">物理层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信道"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">信道</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#调制"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">调制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信道的极限传输速率"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">信道的极限传输速率</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信道复用技术"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">信道复用技术</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#码分多址-CDMA"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">码分多址(CDMA)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#宽带接入技术"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">宽带接入技术</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据链路层"><span class="post-toc-number">3.</span> <span class="post-toc-text">数据链路层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据链路层的三个基本问题"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">数据链路层的三个基本问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#封装成帧"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">封装成帧</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#透明传输"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">透明传输</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#差错检测"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">差错检测</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MAC层"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">MAC层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MAC层地址"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">MAC层地址</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MAC帧格式"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">MAC帧格式</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以太网"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">以太网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSMA-CD"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">CSMA/CD</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSMA-CD中的碰撞检测"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">CSMA/CD中的碰撞检测</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二进制指数退避算法"><span class="post-toc-number">3.3.3.</span> <span class="post-toc-text">二进制指数退避算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#扩展以太网"><span class="post-toc-number">3.3.4.</span> <span class="post-toc-text">扩展以太网</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="language modelling 何为语言模型？语言模型本质任务是预测，即通过上文来预测下文，也可理解为生成模型（生成单词/句子等）；而生成的词向量只能说是语言模型的副产物，可以理解为语言模型所需要一些信息蕴含在了其中（最主要的是语义方面的信息），因此其也可以作为一维feature作为其他任务的输入；而比如在word2vec中词向量的某些特性：如相近词义单词在向量空间中离得近、词向量间有加减的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ren Li&#39;s blog">
+<meta property="og:url" content="https://renli1024.github.io/2019/07/16/nlp/bert/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="language modelling 何为语言模型？语言模型本质任务是预测，即通过上文来预测下文，也可理解为生成模型（生成单词/句子等）；而生成的词向量只能说是语言模型的副产物，可以理解为语言模型所需要一些信息蕴含在了其中（最主要的是语义方面的信息），因此其也可以作为一维feature作为其他任务的输入；而比如在word2vec中词向量的某些特性：如相近词义单词在向量空间中离得近、词向量间有加减的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T00:56:49.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ren Li&#39;s blog">
+<meta name="twitter:description" content="language modelling 何为语言模型？语言模型本质任务是预测，即通过上文来预测下文，也可理解为生成模型（生成单词/句子等）；而生成的词向量只能说是语言模型的副产物，可以理解为语言模型所需要一些信息蕴含在了其中（最主要的是语义方面的信息），因此其也可以作为一维feature作为其他任务的输入；而比如在word2vec中词向量的某些特性：如相近词义单词在向量空间中离得近、词向量间有加减的">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-nlp/bert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="language-modelling"><a href="#language-modelling" class="headerlink" title="language modelling"></a>language modelling</h2><ul>
+<li>何为语言模型？语言模型本质任务是预测，即通过上文来预测下文，也可理解为生成模型（生成单词/句子等）；而生成的词向量只能说是语言模型的副产物，可以理解为语言模型所需要一些信息蕴含在了其中（最主要的是语义方面的信息），因此其也可以作为一维feature作为其他任务的输入；而比如在word2vec中词向量的某些特性：如相近词义单词在向量空间中离得近、词向量间有加减的线性关系等，也可理解为语言模型的副产物。</li>
+<li>目前language modelling主要有两类方法：一种是feature based方法，先训练好词向量，之后将词向量作为一维特征输入下游任务模型中，训练下游任务模型来做；第二种是fine-tuning based方法，同样是训练词向量，这种方法分为pretrain和fine-tune两步，pre-train阶段同样是训练词向量，在fine-tune阶段沿用训练好的模型结构和模型参数，通过增加输出层的方式来匹配下游任务的输出格式（输入格式和pretrain阶段保持一致），同时使用下游任务的数据集来微调模型参数，从而使模型适配下游任务<h2 id="motivation-of-bert"><a href="#motivation-of-bert" class="headerlink" title="motivation of bert"></a>motivation of bert</h2></li>
+<li>传统语言模型要么是单向left-to-right的（Mikolov 2013 word2vec，训练任务是通过前面的词预测后面的词），要么只是将左边和右边的embedding简单拼接在一起（ELMo）（导致see itself的问题？），都没有充分利用左右上下文的信息。</li>
+<li>作者认为双向模型可以improve pretrain fine-tune模型，而且fine-tune模型无需task spesific的模型结构，更有通用性。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-07-16</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#language-modelling"><span class="post-toc-number">1.</span> <span class="post-toc-text">language modelling</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#motivation-of-bert"><span class="post-toc-number">2.</span> <span class="post-toc-text">motivation of bert</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

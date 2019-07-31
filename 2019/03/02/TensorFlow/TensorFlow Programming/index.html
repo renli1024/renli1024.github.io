@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TensorFlow Programming | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文介绍了TensorFlow的程序结构和编程相关的知识。">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow Programming">
+<meta property="og:url" content="https://renli1024.github.io/2019/03/02/TensorFlow/TensorFlow Programming/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文介绍了TensorFlow的程序结构和编程相关的知识。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-12T02:49:09.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow Programming">
+<meta name="twitter:description" content="本文介绍了TensorFlow的程序结构和编程相关的知识。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-TensorFlow/TensorFlow Programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      TensorFlow Programming
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-02
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文介绍了TensorFlow的程序结构和编程相关的知识。<br><a id="more"></a></p>
+<h2 id="Introduction-to-Computing-Graph"><a href="#Introduction-to-Computing-Graph" class="headerlink" title="Introduction to Computing Graph"></a>Introduction to Computing Graph</h2><ul>
+<li>TensorFlow中程序都是以计算图(computational graph)的形式来进行的，大致可以包含两部分：<code>构造计算图</code>、<code>运行计算图</code>。</li>
+<li>计算图可以看作是一系列运算操作的静态集合，其规定了计算的流程。注意计算图是静态的，只构造好计算图是无法计算出结果的，必须运行计算图才可以得到结果（使用tf.Session）。</li>
+</ul>
+<h2 id="构造计算图"><a href="#构造计算图" class="headerlink" title="构造计算图"></a>构造计算图</h2><ul>
+<li><p>计算图由两种成分组成：<code>tf.Tensor</code> 和 <code>tf.Operation</code>，<code>tf.Operation</code>可以看作是图中的节点，<code>tf.Tensor</code>可看作是图中的边。</p>
+</li>
+<li><p>如何构造计算图：</p>
+<ol>
+<li>调用相关方法，生成<code>tf.Operation</code> (node) 和 <code>tf.Tensor</code> (edge) 对象</li>
+<li>将它们添加到<code>tf.Graph</code>对象中。</li>
+</ol>
+<ul>
+<li>注：实际上tensorflow会自动将它们添加到<code>default graph</code>中，许多程序也仅仅使用default graph，因此第二步就可以省略。但如果我们要使用多个计算图，就需要手动将operation和tensor添加到相应的graph中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="multiple-graphs-programming"><a href="#multiple-graphs-programming" class="headerlink" title="multiple graphs programming"></a>multiple graphs programming</h2><ul>
+<li>大部分情况下一个graph就足够了，但如果有时候一个graph太复杂，或者有太多无关的操作，可以另开一个graph来计算。</li>
+<li>具体步骤：<ol>
+<li>通过<code>tf.Graph()</code>函数来生成graph；</li>
+<li>通过<code>with another_graph.as_default():</code>语句块来切换当前的默认graph，在这个语句块内的所有操作都会添加到默认的计算图中；</li>
+<li>可通过<code>tf.get_default_graph()</code>来获取当前默认的计算图，返回<code>tf.Graph()</code>对象。</li>
+</ol>
+</li>
+</ul>
+<h2 id="运行计算图"><a href="#运行计算图" class="headerlink" title="运行计算图"></a>运行计算图</h2><h3 id="创造session"><a href="#创造session" class="headerlink" title="创造session"></a>创造session</h3><ul>
+<li>计算图的运行是通过tf.Session来进行的，其可以理解为计算图的运行机制，负责执行运算图所定义的tensor或operation。</li>
+<li>要执行计算图首先需要创造一个session，因为session对象使用后需要释放（因为session会占有一定物理资源如GPU、网络连接等），所以建议用<code>with</code>语句块来创造session对象，这样语句块结束后可以自动释放资源。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># code relavant to sess</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="初始化session"><a href="#初始化session" class="headerlink" title="初始化session"></a>初始化session</h3><ul>
+<li>session的构造函数有三个optional参数，可以让我们对session进行一些设置<code>__init__(target = &#39;&#39;, graph = None, config = None)</code>;</li>
+<li>target：执行session的设备，常用于分布式计算情境下。默认是在当前本地设备上执行。</li>
+<li>graph：session所执行的计算图，默认是<code>default graph</code>，如果只使用一个计算图不用管这个参数。</li>
+<li>config：session的配置参数，通过传入<code>tf.ConfigProto</code>对象来对session进行设置。<code>ConfigProto</code>常用参数：<ul>
+<li>allow_soft_placement：是否允许设备代替，指定在GPU上运行的代码，如果GPU不存在，会被替换到CPU上执行。通常设为<code>true</code>。</li>
+<li>log_device_placement：是否打印设备的分配信息，通常设为<code>flase</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行session"><a href="#执行session" class="headerlink" title="执行session"></a>执行session</h3><ul>
+<li>session可以执行的有两种类型，一种是tensor，一种是operaton；若执行的是tensor，则会返回tensor所对应的值（type：numpy.ndarray）；若执行的是operation，则方法只是执行相应的操作，不会返回值，如<code>initialize</code>和<code>train</code>操作。</li>
+<li>session的执行也有两种方法：<ul>
+<li>一种是<code>sess.run(tensor/operation)</code>；</li>
+<li>另一种是调用<code>tf.Operation.run()</code>/<code>tf.Tensor.eval()</code>函数：<code>op.run()</code>实际是<code>tf.get_default_session().run(op)</code>的简写，<code>tensor.eval()</code>也是<code>tf.get_default_session().run(tensor)</code>的简写，因此这两个方法执行的前需要确保正确设置了<strong>default session</strong>（上一种方法因为已指定了session，也就不需要default session了）。</li>
+<li>而如何设置default session，主要通过with语句块：<ol>
+<li><code>with tf.Session():</code>，生成session的同时将其自动设置为了default session（当然出语句块也就清除掉了）；</li>
+<li><code>with sess.as_default():</code>，将已有的某个session设置为default session。<code>as_default()</code>方法会返回一个context manager，对应的session在本语句块内会被自动设置为default session。</li>
+</ol>
+<ul>
+<li>注：<code>as_default()</code>方法出语句块时只会清除default session设置，并不释放掉session（因为这个方法本就是为session的重用而生的），因此如果session不用了要手动close掉。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(变量名)) <span class="comment"># sess.run会自动检测计算这个变量所需要的依赖，之后执行计算图，计算出结果并输出。</span></span><br><span class="line"></span><br><span class="line">print(sess.run(&#123;<span class="string">"变量1"</span>: 变量<span class="number">1</span>, <span class="string">"变量2"</span>: 变量<span class="number">2</span>&#125;)) <span class="comment"># sess.run可以一次传入多个变量，但要以字典的形式传入（即键值对的形式）</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="构造Layer"><a href="#构造Layer" class="headerlink" title="构造Layer"></a>构造Layer</h3><ul>
+<li>计算图的一个重要构成部分就是layer，也就是神经网络中的layer，在layer中封装了可以被训练的变量（如weights, biases等）以及作用于他们的操作（各种优化算法），是神经网络训练的核心。</li>
+<li>关于layer的使用，把它理解成一个函数即可，本质就是：输入数据-&gt;经过一定运算-&gt;输出数据的过程。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构造一个densely-connected layer</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">x = tf.placeholder(tf.float32, shape=[<span class="keyword">None</span>, <span class="number">3</span>])</span><br><span class="line">linear_model = tf.layers.Dense(units=<span class="number">1</span>) <span class="comment"># units：dimensionality of output unit？？</span></span><br><span class="line">y = linear_model(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 必须先对layer中的参数初始化（weight matrix 和 bias）</span></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line">print(sess.run(y, feed_dict=&#123;x: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]]&#125;))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="在不同的设备上执行operation"><a href="#在不同的设备上执行operation" class="headerlink" title="在不同的设备上执行operation"></a>在不同的设备上执行operation</h3><p>通过<code>with tf.device():</code>语句：eg. <code>with tf.device(&quot;/device:CPU:0&quot;):</code></p>
+<h3 id="TensorFlow中的with语句"><a href="#TensorFlow中的with语句" class="headerlink" title="TensorFlow中的with语句"></a>TensorFlow中的with语句</h3><p>在TensorFlow中可以用<code>with</code>语句块进行资源管理的类：<br><code>with tf.Graph():</code><br><code>with tf.Session():</code><br><code>with tf.device()</code></p>
+<h2 id="TensorFlow训练实例"><a href="#TensorFlow训练实例" class="headerlink" title="TensorFlow训练实例"></a>TensorFlow训练实例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inputs and labels</span></span><br><span class="line">x = tf.constant([[<span class="number">1</span>], [<span class="number">2</span>], [<span class="number">3</span>], [<span class="number">4</span>]], dtype=tf.float32)</span><br><span class="line">y_true = tf.constant([[<span class="number">0</span>], [<span class="number">-1</span>], [<span class="number">-2</span>], [<span class="number">-3</span>]], dtype=tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the model</span></span><br><span class="line">linear_model = tf.layers.Dense(units=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define prediction</span></span><br><span class="line">y_pred = linear_model(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define loss function</span></span><br><span class="line">loss = tf.losses.mean_squared_error(labels=y_true, predictions=y_pred)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define optimizer</span></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define train operation</span></span><br><span class="line">train = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># train the model (run train operation in session), iterate 100 times</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    _, loss_value = sess.run((train, loss))</span><br><span class="line">    print(loss_value)</span><br></pre></td></tr></table></figure>
+<h2 id="TensorFlow-vs-PyTorch"><a href="#TensorFlow-vs-PyTorch" class="headerlink" title="TensorFlow vs PyTorch"></a>TensorFlow vs PyTorch</h2><h3 id="TF"><a href="#TF" class="headerlink" title="TF"></a>TF</h3><h4 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h4><ul>
+<li>Large community support, abundant docs and tutorials.</li>
+<li>Powerful visulization tool - tensorboard.</li>
+<li>Appropriate for development. </li>
+</ul>
+<h4 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h4><ul>
+<li>Beginner unfriendly, complicate mechanism (Must build computational graph fisrt before run it).</li>
+<li>Some functions are redundant and deprecated (many deprecating warnings).</li>
+</ul>
+<h3 id="PyT"><a href="#PyT" class="headerlink" title="PyT"></a>PyT</h3><h4 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros"></a>Pros</h4><ul>
+<li>More Pythonic and code is conciser.</li>
+<li>Easy to use, beginner friendly and can quickly verify model.</li>
+<li>Approriate for scientific research and experiment.</li>
+</ul>
+<h4 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons"></a>Cons</h4><ul>
+<li>No formal visulization support (some third party tools but hard to use).</li>
+<li>The core part like convolution, batch norm is easier to use than TensorFlow, but the auxiliary part is harder. For example, saving and loading model, calculating shapes operations are more complicate.</li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>TensorFlow: more powerful but more complicate.<br>PyTorch: more beginner friendly, easy to use but less powerful.</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-03-02</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/TensorFlow/" class="color1">TensorFlow</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Introduction-to-Computing-Graph"><span class="post-toc-number">1.</span> <span class="post-toc-text">Introduction to Computing Graph</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构造计算图"><span class="post-toc-number">2.</span> <span class="post-toc-text">构造计算图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#multiple-graphs-programming"><span class="post-toc-number">3.</span> <span class="post-toc-text">multiple graphs programming</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行计算图"><span class="post-toc-number">4.</span> <span class="post-toc-text">运行计算图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创造session"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">创造session</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化session"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">初始化session</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行session"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">执行session</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造Layer"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">构造Layer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在不同的设备上执行operation"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">在不同的设备上执行operation</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TensorFlow中的with语句"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">TensorFlow中的with语句</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TensorFlow训练实例"><span class="post-toc-number">5.</span> <span class="post-toc-text">TensorFlow训练实例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TensorFlow-vs-PyTorch"><span class="post-toc-number">6.</span> <span class="post-toc-text">TensorFlow vs PyTorch</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TF"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">TF</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Pros"><span class="post-toc-number">6.1.1.</span> <span class="post-toc-text">Pros</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Cons"><span class="post-toc-number">6.1.2.</span> <span class="post-toc-text">Cons</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PyT"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">PyT</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Pros-1"><span class="post-toc-number">6.2.1.</span> <span class="post-toc-text">Pros</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Cons-1"><span class="post-toc-number">6.2.2.</span> <span class="post-toc-text">Cons</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Summary"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">Summary</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

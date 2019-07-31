@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Markdown笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文主要包括Markdown的特殊语法，一些还与Hexo的特定Markdown渲染方式有关，在网上不是很方便查找，因此记录下来。">
+<meta name="keywords" content="Other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/19/Other/markdown语法/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文主要包括Markdown的特殊语法，一些还与Hexo的特定Markdown渲染方式有关，在网上不是很方便查找，因此记录下来。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-26T12:14:54.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown笔记">
+<meta name="twitter:description" content="本文主要包括Markdown的特殊语法，一些还与Hexo的特定Markdown渲染方式有关，在网上不是很方便查找，因此记录下来。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Other/markdown语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Markdown笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-19
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文主要包括Markdown的特殊语法，一些还与Hexo的特定Markdown渲染方式有关，在网上不是很方便查找，因此记录下来。<br><a id="more"></a></p>
+<h2 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h2><ul>
+<li><strong>md文件头设置</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标题</span><br><span class="line">date: YYYY-MM-DD HH:mm</span><br><span class="line">tags: 分类标签</span><br><span class="line">toc: true</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注1：toc为是否生成目录，默认不生成<br>注2：Hexo默认按文章时间来排序</p>
+<ul>
+<li><p><strong>书写格式</strong><br>每一章的大标题用<code>##</code>二级标题，之后依次是<code>###</code>、<code>####</code>。</p>
+</li>
+<li><p><strong>插入链接/图片</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">插入链接</span><br><span class="line">[显示文本](链接地址)</span><br><span class="line">eg : [简书](http://www.jianshu.com)</span><br><span class="line">页面内跳转也是相同的语法：[显示文本](#相应目录名)</span><br><span class="line"></span><br><span class="line">插入图片</span><br><span class="line">![](/images/图片名.xxx)</span><br><span class="line">将图片直接放到images文件夹下即可。</span><br><span class="line"></span><br><span class="line">若要控制图片大小，使用HTML标签</span><br><span class="line">&lt;img src=&quot;/images/图片名.xxx&quot; width = &quot;300&quot; height = &quot;200&quot; alt=&quot;图片名称&quot; align=center /&gt;</span><br><span class="line"></span><br><span class="line">在chrome Markdown Preview plus 插件中无法使图片居中，可使用&lt;div&gt;标签</span><br><span class="line">&lt;div align=center&gt;</span><br><span class="line">&lt;img src=&quot;图片地址&quot; width = &quot;300&quot; height = &quot;300&quot;/&gt;&lt;br&gt;</span><br><span class="line">图x 图片名字</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>插入表格</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">| Tables        | Are           | Cool  |</span><br><span class="line">| ------------- |:-------------:| -----:|</span><br><span class="line">| col 3 is      | right-aligned | $1600 |</span><br><span class="line">| col 2 is      | centered      |   $12 |</span><br><span class="line">| zebra stripes | are neat      |    $1 |</span><br><span class="line">靠左对齐、居中、靠右对齐</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>效果：</p>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th>Are</th>
+<th>Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td>right-aligned</td>
+<td>$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td>centered</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td>are neat</td>
+<td>$1</td>
+</tr>
+</tbody>
+</table>
+<p>注1：hexo/github的markdown不支持列表list嵌套表格。<br>注2：一级列表中写表格要空一行（否则表格解析不出来），二级列表中就不要写表格了。<br>注3：表格内换行，使用html代码<code>&lt;br&gt;</code><br>注4：miho主题下表格各列的宽度是根据内容多少来动态决定的，因此最好保证各列内容差不多，多的列用<code>&lt;br&gt;</code>换行，少的列用<code>&amp;nbsp;</code>加空格（只用在某一行里加就行了）</p>
+<ul>
+<li><strong>转义符号</strong><br>要使用<code>* _ #</code>等符号，但不想被翻译为格式标识符，可在符号前加反斜杠，如<code>\_</code> <code>\*</code><br>注1：<code>* _</code>为加粗/斜体格式<br>注2：markdown中反斜杠和普通字母组合时，如<code>\abc</code>，\不起作用；但反斜杠和特殊字符组合时，如<code>\*</code>，\就会起到转义作用。</li>
+</ul>
+<h2 id="零碎记录"><a href="#零碎记录" class="headerlink" title="零碎记录"></a>零碎记录</h2><ul>
+<li><p><strong>分隔线</strong><br>三个星号<code>***</code>表示分隔线</p>
+</li>
+<li><p><strong>插入代码：</strong><br>行内代码为前后一个上点，插入代码块是前后三个上点，代码块第一个三点后加<code>C</code>进行语法高亮。</p>
+</li>
+<li><p><strong>插入空格：</strong><br>半角英文空格：<code>&amp;nbsp;</code><br>全角中文空格：<code>&amp;emsp;</code>，注意单词后的分号。</p>
+</li>
+<li><p><strong>语法高亮</strong><br>Hexo语法高亮支持C语言，其他语言也凑合着用C语言的语法高亮吧。</p>
+</li>
+<li><p>VSCode中快捷键<code>ctrl+B</code>添加<code>****</code>，对字体进行加粗</p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-19</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Other/" class="color1">Other</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Markdown语法"><span class="post-toc-number">1.</span> <span class="post-toc-text">Markdown语法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#零碎记录"><span class="post-toc-number">2.</span> <span class="post-toc-text">零碎记录</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

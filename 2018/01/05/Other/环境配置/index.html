@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>环境配置 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="VSCode配置 对于左侧工作区中的文件，单击一下是浏览模式，下一次再打开其他文件就会覆盖掉窗口；双击是编辑模式，窗口会一直存在。  code-&amp;gt;preferences-&amp;gt;setting 调出设置界面，user settings：针对所有项目修改；  workspace settings：只针对当前项目修改，当前目录下会生成一个.vscode文件，包含了设置信息。  设置视线区域内自动">
+<meta name="keywords" content="Other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="环境配置">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/05/Other/环境配置/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="VSCode配置 对于左侧工作区中的文件，单击一下是浏览模式，下一次再打开其他文件就会覆盖掉窗口；双击是编辑模式，窗口会一直存在。  code-&amp;gt;preferences-&amp;gt;setting 调出设置界面，user settings：针对所有项目修改；  workspace settings：只针对当前项目修改，当前目录下会生成一个.vscode文件，包含了设置信息。  设置视线区域内自动">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-21T05:57:56.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="环境配置">
+<meta name="twitter:description" content="VSCode配置 对于左侧工作区中的文件，单击一下是浏览模式，下一次再打开其他文件就会覆盖掉窗口；双击是编辑模式，窗口会一直存在。  code-&amp;gt;preferences-&amp;gt;setting 调出设置界面，user settings：针对所有项目修改；  workspace settings：只针对当前项目修改，当前目录下会生成一个.vscode文件，包含了设置信息。  设置视线区域内自动">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Other/环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      环境配置
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-05
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="VSCode配置"><a href="#VSCode配置" class="headerlink" title="VSCode配置"></a>VSCode配置</h2><ul>
+<li><p>对于左侧工作区中的文件，单击一下是浏览模式，下一次再打开其他文件就会覆盖掉窗口；双击是编辑模式，窗口会一直存在。</p>
+</li>
+<li><p><code>code-&gt;preferences-&gt;setting</code> 调出设置界面，user settings：针对所有项目修改；  workspace settings：只针对当前项目修改，当前目录下会生成一个.vscode文件，包含了设置信息。</p>
+</li>
+<li><p>设置视线区域内自动换行：<code>&quot;editor.wordWrap&quot;: &quot;on&quot;</code></p>
+</li>
+<li><p>Mac python nltk.download()报错：certificate verify failed (_ssl.c:749)<br>解决：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /Applications/Python 3.6 </span><br><span class="line">./Install Certificates.command</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mac下VSCode配置LaTex: </p>
+</li>
+</ul>
+<ol>
+<li>下载MacTex(Text live的Mac优化版) </li>
+<li>VSCode中下载LaTex Workshop拓展</li>
+<li>对Workshop进行中文适配, 打开设置页面, 在右侧设置修改区贴上如下代码即可(设置Workshop默认编译程序为xelatex)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&quot;latex-workshop.latex.tools&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;-pdf&quot;,</span><br><span class="line">                &quot;%DOC%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;%DOC%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    </span><br><span class="line">    &quot;latex-workshop.latex.recipes&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xe-&gt;bib-&gt;xe-&gt;xe&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;bibtex&quot;,</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="VSCode-设置界面-amp-字体大小"><a href="#VSCode-设置界面-amp-字体大小" class="headerlink" title="VSCode 设置界面&amp;字体大小"></a>VSCode 设置界面&amp;字体大小</h3><ul>
+<li>整体界面大小：通过设置zoomlevel大小，可整体调节界面字体的大小（eg. -0.5）</li>
+<li>编辑框字体大小：editor</li>
+<li>命令行字体大小：terminal</li>
+</ul>
+<h2 id="anaconda配置"><a href="#anaconda配置" class="headerlink" title="anaconda配置"></a>anaconda配置</h2><ul>
+<li>anaconda是python的一个开源发行版本, 基于condo开发的, 集成了很多常用的数据分析的python包, 还可用来管理python包和开发环境.<br>管理包是指: anaconda可用来方便地安装/卸载/更新包(和pip功能类似).<br>管理开发环境是指: anaconda可以建立不同的开发环境(python2/python3..), 以满足不同的项目需求.<br>anaconda和homebrew区别: homebrew是针对mac的一个包管理软件, 不仅可以安装管理python, 还可以安装管理其他开源软件; anaconda则是python的一个开源发行版本, 针对用python进行数据分析.</li>
+<li><p>如何使用ana进行python开发:<br>anaconda默认有一个<code>base</code>环境, 即最基础python的环境(取决于一开始下载的ana版本); 还可以自己再建立其他python环境.<br>在ana中设置好python环境后, VScode中<code>shift+command+p</code>打开命令行, <code>python interprtor select</code>选择相应的环境即可.</p>
+</li>
+<li><p>安装pytorch: <code>conda install pytorch torchvision -c pytorch</code></p>
+</li>
+<li>jupyter文件目录是执行<code>juypter notebook</code>时的目录，和anaconda环境无关。</li>
+</ul>
+<h2 id="Eclipse和Tomact配置"><a href="#Eclipse和Tomact配置" class="headerlink" title="Eclipse和Tomact配置"></a>Eclipse和Tomact配置</h2><ul>
+<li><p>tomact中运行的项目理论上应该在webapps目录下(表现为出现以项目名作为名字的文件夹)，但这需要eclipse部署才可以，而eclipse默认是不部署项目的，因此需要设置。不设置的话项目是以缓存文件的形式运行在tomact中，并不会出现实体文件夹。<br>配置方法：eclispe底部栏server-双击tomact服务器-serverlocation中选中间项-Deploy path写为wepapps</p>
+</li>
+<li><p>关于部署jar包，</p>
+<ul>
+<li>方法1：直接把jar包放到lib目录下。若eclipse设置了自动部署，相关的jar包也会导入到tomact项目，即可方便地以项目为单位进行包管理。自动部署方法<a href="https://blog.csdn.net/supercyclone/article/details/18939473" target="_blank" rel="noopener">https://blog.csdn.net/supercyclone/article/details/18939473</a></li>
+<li>方法2：手动将jar包放到tomact 的webapp/lib目录下</li>
+</ul>
+</li>
+<li><p>项目文件位置：src文件下放java代码，webcontent下放jsp/html/css，webcontent/web-inf/lib下放jar包。</p>
+</li>
+<li><p>eclipse source-format自动调整代码缩进</p>
+</li>
+</ul>
+<h2 id="win10配置"><a href="#win10配置" class="headerlink" title="win10配置"></a>win10配置</h2><ul>
+<li><p><strong>取消登陆密码：</strong>cmd输入netplwiz，取消勾选“要使用本计算机，用户必须输入用户名和密码”，之后会让你输入一套用户名和密码，每次开机系统即自动用这个账号密码来登陆。若因为某种原因这套账号密码错了，系统就无法自动登陆了，登陆界面还会多出一个账户。</p>
+</li>
+<li><p><strong>如何切换全/半角</strong><br>有时候打字会莫名触发全/半角开关，导致输入字母间变为全角模式，间距特别大。而默认切换全/半角的开关<code>Shift+Space</code>被禁掉了，正常情况win10又只显示一个“输入指示符合”（日期左边），因此要切换全/半角就只能手动调出语言栏：右键日期左边的输入指示符号-显示语言栏-右键还原语言栏-点击那个太阳/月亮符号即可。</p>
+</li>
+<li><p><strong>如何隐藏语言栏</strong><br>右击语言栏符号-高级键盘设置-取消勾选“使用桌面语言栏（如果可用）”</p>
+</li>
+<li><p><strong>Windows下如何在当前目录下，打开cmd命令窗口</strong><br>在当前目录下，按下shift + 鼠标右键，会出现“在此处打开命令窗口”的字样，然后点击即可。</p>
+</li>
+</ul>
+<h2 id="Win下python装scrapy"><a href="#Win下python装scrapy" class="headerlink" title="Win下python装scrapy"></a>Win下python装scrapy</h2><p>1、<code>pip install scrapy</code><br>测试是否装好：<br><code>&gt;&gt;&gt;import scrapy</code><br><code>&gt;&gt;&gt;scrapy.version_info</code>，正常安装即会出现版本号，如(1,3,3)<br>再在shell(git bash就行)中输<code>scrapy</code>，正常安装会出现相关提示信息</p>
+<p>2、运行scrapy会提示找不到win32api，用pip装：<code>pip install pypiwin32==220</code></p>
+<h2 id="dev-c-配置"><a href="#dev-c-配置" class="headerlink" title="dev-c++配置"></a>dev-c++配置</h2><p>tools-环境-中文<br>tools-enviroment-watch variable mouse，debug自动查看变量<br>ctrl+滚轮，调代码大小<br>tools-editor-code completion，代码补全<br>tools-configure shortcuts-comment，设置注释快捷键。注释ctrl+k，取消注释ctrl+l。</p>
+<h2 id="masm配置"><a href="#masm配置" class="headerlink" title="masm配置"></a>masm配置</h2><ul>
+<li><p>dosbox挂载masm：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount c d:\masm  <span class="comment">//挂载masm</span></span><br><span class="line">c:               <span class="comment">//转到C盘</span></span><br><span class="line">debug            <span class="comment">//进入debug模式，之后即可输入命令</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>masm debug 命令<br>-a命令：输入汇编指令<br>-u命令：查看汇编代码；<br>-t命令：执行下一条语句<br>-g + 内存：跳转到该内存所对应的语句（再用t命令执行该条命令）<br>-r命令：查看寄存器的内容（后可直接接寄存器的名称，就只查看该寄存器的内容）<br>-d命令：后接内存地址，查看该地址后面8 * 16个字节空间的地址（每行16个字节，共8行）后面是对应的字符‘.’表示没有该数字对应的字符 </p>
+</li>
+<li>debug 标志寄存器顺序：<br>OF DF XX SF ZF XX PF CF</li>
+</ul>
+<h2 id="福昕阅读器"><a href="#福昕阅读器" class="headerlink" title="福昕阅读器"></a>福昕阅读器</h2><ul>
+<li>取消全屏模式下左键向下翻页/右键向上翻页功能：文件-偏好设置-全屏设置，对应项勾选掉即可。</li>
+</ul>
+<h2 id="Itunes"><a href="#Itunes" class="headerlink" title="Itunes"></a>Itunes</h2><ul>
+<li>删除同步的文件：在总的界面上，先在下拉框选择影片，再点击家庭视频，右侧出现你有同步过的视频，然后把鼠标放在影视图片后面的信息那里（就是名称或者艺人那，就是不能放在图标上，放在图标上是没有删除的），点右键最下面一个,从资料库删除，点他就好了</li>
+</ul>
+<h2 id="CSDN打开慢"><a href="#CSDN打开慢" class="headerlink" title="CSDN打开慢"></a>CSDN打开慢</h2><ul>
+<li>csdn打开慢, 是因为其广告加载有问题的，只需要在 C:\Windows\System32\drivers\etc\hosts 文件中 添加这一行就可以了: <code>127.0.0.1 allyes.com</code> </li>
+</ul>
+<h2 id="Mac下Hexo配置"><a href="#Mac下Hexo配置" class="headerlink" title="Mac下Hexo配置"></a>Mac下Hexo配置</h2><p>命令要切到blog的目录下执行</p>
+<ul>
+<li>本地预览：<code>hexo server -g</code></li>
+<li>部署服务端：<code>hexo deploy -g</code></li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-05</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Other/" class="color1">Other</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#VSCode配置"><span class="post-toc-number">1.</span> <span class="post-toc-text">VSCode配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VSCode-设置界面-amp-字体大小"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">VSCode 设置界面&amp;字体大小</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#anaconda配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">anaconda配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Eclipse和Tomact配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">Eclipse和Tomact配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#win10配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">win10配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Win下python装scrapy"><span class="post-toc-number">5.</span> <span class="post-toc-text">Win下python装scrapy</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dev-c-配置"><span class="post-toc-number">6.</span> <span class="post-toc-text">dev-c++配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#masm配置"><span class="post-toc-number">7.</span> <span class="post-toc-text">masm配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#福昕阅读器"><span class="post-toc-number">8.</span> <span class="post-toc-text">福昕阅读器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Itunes"><span class="post-toc-number">9.</span> <span class="post-toc-text">Itunes</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSDN打开慢"><span class="post-toc-number">10.</span> <span class="post-toc-text">CSDN打开慢</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mac下Hexo配置"><span class="post-toc-number">11.</span> <span class="post-toc-text">Mac下Hexo配置</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

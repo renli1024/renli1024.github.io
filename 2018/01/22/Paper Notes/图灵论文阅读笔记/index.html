@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Computing machinery and Intelligence 阅读笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="图灵在1950年发表的这篇《计算机器与智能》的论文，被公认是人工智能领域的开山之作，图灵以其超前的思维、非凡的想象力和严密的逻辑，对“机器能否思考”这个问题进行了深入的阐释，向我们展现了机器的另一种可能。 在论文的前两部分“模仿游戏”和“对新问题的评析”中，图灵提出用一种模仿游戏来替代“机器能否思考”这个问题，即在隔开的情况下，测试者向一个人和一台机器，通过一些装置来随意提问，若超过30%的测试者">
+<meta name="keywords" content="Paper Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computing machinery and Intelligence 阅读笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/22/Paper Notes/图灵论文阅读笔记/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="图灵在1950年发表的这篇《计算机器与智能》的论文，被公认是人工智能领域的开山之作，图灵以其超前的思维、非凡的想象力和严密的逻辑，对“机器能否思考”这个问题进行了深入的阐释，向我们展现了机器的另一种可能。 在论文的前两部分“模仿游戏”和“对新问题的评析”中，图灵提出用一种模仿游戏来替代“机器能否思考”这个问题，即在隔开的情况下，测试者向一个人和一台机器，通过一些装置来随意提问，若超过30%的测试者">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-28T14:25:12.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Computing machinery and Intelligence 阅读笔记">
+<meta name="twitter:description" content="图灵在1950年发表的这篇《计算机器与智能》的论文，被公认是人工智能领域的开山之作，图灵以其超前的思维、非凡的想象力和严密的逻辑，对“机器能否思考”这个问题进行了深入的阐释，向我们展现了机器的另一种可能。 在论文的前两部分“模仿游戏”和“对新问题的评析”中，图灵提出用一种模仿游戏来替代“机器能否思考”这个问题，即在隔开的情况下，测试者向一个人和一台机器，通过一些装置来随意提问，若超过30%的测试者">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Paper Notes/图灵论文阅读笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Computing machinery and Intelligence 阅读笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-22
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>图灵在1950年发表的这篇《计算机器与智能》的论文，被公认是人工智能领域的开山之作，图灵以其超前的思维、非凡的想象力和严密的逻辑，对“机器能否思考”这个问题进行了深入的阐释，向我们展现了机器的另一种可能。</p>
+<p>在论文的前两部分“模仿游戏”和“对新问题的评析”中，图灵提出用一种模仿游戏来替代“机器能否思考”这个问题，即在隔开的情况下，测试者向一个人和一台机器，通过一些装置来随意提问，若超过30%的测试者不能区分出人和机器，即认为机器具有了智能。图灵假定机器的最优策略是努力提供和人一样的答案，从而成功地将“机器能否思考”这个抽象、模糊的问题简化为了一个具体的测试，这是非常合理的。</p>
+<p>在论文的第三部分“游戏中的机器”，图灵针对参与游戏的机器进行了分析，他认为这个问题要研究的是“是否存在一台想象中的机器能通过游戏”，而非“是否所有的机器都能通过游戏”，因此只需给出一种可能性即可，之后图灵即针对这种可能性是否存在进行了论述。</p>
+<p>接下来，在论文的“数字计算机”和“数字计算机的通用性”这两部分，图灵分析了数字计算机的基本组成和功能，说明了通过编程，数字计算机就可以执行复杂的操作；而且数字计算机具有通用性，并不会因为问题的不同而需要设计不同的数字计算机。因此图灵便将问题再一次简化，变成了“对一个数字计算机，其拥有足够大的存储空间，足够快的计算速度，并对它进行适当的编程，其是否可以通过测试？”。</p>
+<p>之后图灵没有急于正面解答问题，而是针对了社会上的一些反对观点，如来自神学的反对、来自意识的观点、来自能力限制的观点等，一一进行了反驳，从而为下文更进一步的论证做出了铺垫。</p>
+<p>在文章的最后一部分，为解决上文“数字计算机是否能通过测试”的问题，图灵提出了机器学习的观点，即考虑到为一台数字计算机编程使其能够模仿成人的思维需要花费的大量时间，我们可以从另一个角度来解决问题，即参考教育儿童的过程，对一台机器进行“教育”，同时引入奖励和惩罚机制，使机器自身能够“学习”。这样机器经过不断地训练和学习，终会达到成人思维的水平，从而通过图灵测试，机器即具有了智能。</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-22</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PaperNotes/" class="color2">Paper Notes</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

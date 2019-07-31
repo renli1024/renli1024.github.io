@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Notes of Efficient Estimation of Word Representations in Vector Space读书笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="论文地址点这里    论文内容概述这是谷歌发布的关于词向量的经典论文，针对传统模型无法表征单词间关联性的问题，本文提出了两种连续的词向量模型，并针对模型实现了分布式学习模块，最后基于词向量的线性运算设计了一种评价模型精度的方法，取得了良好的效果。 简介(INTRODUCTION) 传统NLP技术的特点传统NLP技术主要是基于单词间没有相似性的思想，将词汇以单词表索引的形式来表示。这样做虽然有很多好">
+<meta name="keywords" content="Paper Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes of Efficient Estimation of Word Representations in Vector Space读书笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/09/13/Paper Notes/Efficient Estimation of Word Representations in Vector Space/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="论文地址点这里    论文内容概述这是谷歌发布的关于词向量的经典论文，针对传统模型无法表征单词间关联性的问题，本文提出了两种连续的词向量模型，并针对模型实现了分布式学习模块，最后基于词向量的线性运算设计了一种评价模型精度的方法，取得了良好的效果。 简介(INTRODUCTION) 传统NLP技术的特点传统NLP技术主要是基于单词间没有相似性的思想，将词汇以单词表索引的形式来表示。这样做虽然有很多好">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-23T12:53:11.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Notes of Efficient Estimation of Word Representations in Vector Space读书笔记">
+<meta name="twitter:description" content="论文地址点这里    论文内容概述这是谷歌发布的关于词向量的经典论文，针对传统模型无法表征单词间关联性的问题，本文提出了两种连续的词向量模型，并针对模型实现了分布式学习模块，最后基于词向量的线性运算设计了一种评价模型精度的方法，取得了良好的效果。 简介(INTRODUCTION) 传统NLP技术的特点传统NLP技术主要是基于单词间没有相似性的思想，将词汇以单词表索引的形式来表示。这样做虽然有很多好">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Paper Notes/Efficient Estimation of Word Representations in Vector Space" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Notes of Efficient Estimation of Word Representations in Vector Space读书笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-13
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://arxiv.org/pdf/1301.3781.pdf?" target="_blank" rel="noopener">论文地址点这里</a></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script> 
+
+<h2 id="论文内容概述"><a href="#论文内容概述" class="headerlink" title="论文内容概述"></a>论文内容概述</h2><p>这是谷歌发布的关于词向量的经典论文，针对传统模型无法表征单词间关联性的问题，本文提出了两种连续的词向量模型，并针对模型实现了分布式学习模块，最后基于词向量的线性运算设计了一种评价模型精度的方法，取得了良好的效果。</p>
+<h3 id="简介-INTRODUCTION"><a href="#简介-INTRODUCTION" class="headerlink" title="简介(INTRODUCTION)"></a>简介(INTRODUCTION)</h3><ul>
+<li><p><strong>传统NLP技术的特点</strong><br>传统NLP技术主要是基于单词间没有相似性的思想，将词汇以单词表索引的形式来表示。这样做虽然有很多好处，如简单、健壮、使用大量数据训练的简单模型的效果好于使用少量数据训练的复杂模型等；但同样也有很多限制，如语料数据库没有足够的数据、无法表征单词间的关联等。因此作者认为原先的技术很难再取得突破，需要去发掘新的技术。</p>
+</li>
+<li><p><strong>论文主要工作</strong><br>1、从大量单词和短语数据中学习出高质量的词向量，并且要保持一个合适的向量维度。<br>2、使用了一种评估词向量精度的技术，期望不仅相似的单词可以趋向接近，同时单词间能具有更多维的相似度。<br>3、使用单词偏移技术对词向量做简单的代数运算，以更好地挖掘词向量间的相似性规则。<br>4、设计了一个综合测试集来探究句法和语义的规律性，并研究了词向量维度和训练数据量这两个因素对训练时间和模型精度的影响。</p>
+</li>
+</ul>
+<h3 id="模型框架-Model-Architectures"><a href="#模型框架-Model-Architectures" class="headerlink" title="模型框架(Model Architectures)"></a>模型框架(Model Architectures)</h3><p>在本节中，作者使用了NNLM和RNNLM两种神经网络来学习连续的单词表示方法，并且对不同神经网络的训练复杂度进行了分析。</p>
+<ul>
+<li><p><strong>训练复杂度公式</strong><br>作者首先提出了分析训练复杂度的公式：\(O=E\times T\times Q\)，其中E为训练的趟数，T为训练集中单词的数量，Q为表征模型复杂度的变量，下文还会对Q具体分析。</p>
+</li>
+<li><p><strong>前馈神经网络语言模型(NNLM)</strong><br>基本结构：整个网络分为输入层、映射层、隐含层和输出层，输入层将前N个单词编码为1-of-V的向量，V为词表大小，这N个单词共享相同的映射矩阵，阵映射到映射层，之后再从映射层转换到隐含层，经过一系列计算后输出最终结果。<br>模型复杂度：\(Q=N\times D+N\times D\times H+H\times V\)，因为N是一个较小的量，因此\(N\times D\)也比较小；另外对单词表用二叉树做优化，可使得\(V\)下降到\(log_2(V)\)，这样\(H\times V\)也会减小，最终模型的复杂度主要就集中在\(N\times D\times H\)，即映射层-&gt;隐含层这部分。<br>注：对于单词表的表示，还可以继续用哈夫曼树做优化，减少高频单词的编码长度，从而进一步降低输出层的计算量。</p>
+</li>
+<li><p><strong>循环神经网络语言模型(RNNLM)</strong><br>模型特点：RNN最大的特点是其自连接性，即状态的更新不仅取决于输入，还取决于上一时刻自己本身的状态，这个特性就使得RNN具有了一种“短时”的记忆，可以更好地表示前后文本之间的关联。<br>模型复杂度：RNNLM中没有映射层，因此模型复杂度简化为\(Q=H\times H+H\times V\)。和上文同理，\(V\)可以优化为\(log_2(V)\)，因此模型的复杂度主要集中在\(H\times H\)。</p>
+</li>
+<li><p><strong>神经网络的平行训练模型</strong><br>为了提升在大规模数据集上训练模型的效率，作者在DistBelief框架的基础上实现了一个分布式计算模型，允许多个副本并行地学习训练，而且所有副本会同步进行梯度更新，作者在下文会分析模型的具体效果。  </p>
+</li>
+</ul>
+<h3 id="新的对数线性模型-New-Log-linear-Models"><a href="#新的对数线性模型-New-Log-linear-Models" class="headerlink" title="新的对数线性模型(New Log-linear Models)"></a>新的对数线性模型(New Log-linear Models)</h3><p>在本节中，作者提出了两个连续词向量模型，希望能使用一种更简单的模型来训练更大量的数据，以通过增加训练量来提升训练效果。</p>
+<ul>
+<li><p><strong>连续词袋模型(Continuous Bag-of-Words Model)</strong><br>基本结构：模型与前馈NNLM比较相似，但是去掉了非线性隐含层，并且所有单词直接共享整个映射层，而非只是映射矩阵。通过这种方法，所有的单词被映射到同一位置，对这些向量进行平均后即为最终的映射结果。<br>模型特点：1、所有的单词最终都被映射到同一位置，因此单词的顺序就不再起作用了；2、为了对单词进行分类，模型会同时使用上下文的一部分单词进行计算；3、模型的作用是根据上下文来推测中间可能出现的单词；4、与传统词袋模型的不同在于其对于上下文的表示是连续。<br>模型复杂度：\(Q=N\times D+D\times log_2(V)\)</p>
+</li>
+<li><p><strong>连续Skip-gram模型(Continuous Skip-gram Model)</strong><br>模型特点：1、模型的结构类似上述CBOW模型，可以说是“镜像对称”的；2、Skip-gram模型的作用也和CBOW模型相反，其是根据中间的单词，来推测单词的上下文信息；3、考虑到大部分距离较远的单词之间的关联性都较小，因此作者减少了远距离单词的训练样本数量，以降低其权重。<br>模型复杂度：\(Q=C\times (D+D\times log_2(V))\)，C指单词最大化距离，使用模型时会随机选取\([1,C]\)中的一个值作为取词窗口的长度。  </p>
+</li>
+</ul>
+<h3 id="结果分析-Results"><a href="#结果分析-Results" class="headerlink" title="结果分析(Results)"></a>结果分析(Results)</h3><ul>
+<li><p><strong>核心思想</strong><br>考虑明显具有相同相似关系的两对单词，如”biggest”、”big”和”smallest”、”small”，计算\(X=D(biggest)-D(big)+D(small)\)，若词向量模型训练成功，应有\(X\)与\(D(smallest)\)是向量空间中距离最近的点。</p>
+</li>
+<li><p><strong>实验设计</strong><br>作者从句法和语义的角度列出若干相似的类别，分别在每个类别中加入若干单词对，将这些单词对随机两两组合，基于上述公式，计算是否是距离最近的点，若是，即为一次正确的实验结果，最终统计总体正确率来评价模型的优劣。</p>
+</li>
+<li><p><strong>提升模型精度</strong><br>作者研究了训练数据量和词向量维度两个因素对CBOW模型精度的影响，发现如果只单纯提升某一个因素，对模型精度的影响都是有限的，因此需要同时提升两个因素才能取得比较好的效果。</p>
+</li>
+<li><p><strong>各模型的对比</strong><br>对比1：在相同训练量和向量维度的条件下，作者对比了RNNLM、NNLM、CBOW和Skip-gram四种模型的精确度，由Table 3可知，CBOW和Skip-gram两种模型的表现明显好于RNNLM、NNLM模型。<br>对比2：作者研究了增大训练量和增大向量维度对CBOW和Skip-gram两种模型的影响，发现只将训练量增大两倍和只将向量维度增大两倍，取得的效果是差不多的，增加的训练时间也比较接近；同时可以发现，两倍数据训练一趟比单倍数据训练三趟的效果要好。<br>对比3：作者将文中的模型与已公布的其他向量模型做了对比，综合表现最好的依旧是Skip-gram。<br>对比4：作者使用了之前提到的分布式计算框架，将向量维度提升到了1000，使用谷歌新闻数据集进行训练，在这种情况下Skip-gram模型的精度依旧是最高的，而且达到了65.6%。<br>对比5：介绍了微软的一个挑战赛，给定挖去一个词的句子和五个候选词，求哪个词和句子最匹配。作者将句子填词问题反向转化为了由词去预测句子的问题，预测出原句的概率最大的那个词，就是所求的词。作者利用Skip-gram+RNNLMs的组合模型，取得了所有模型中最好的效果。</p>
+</li>
+</ul>
+<h2 id="个人感悟"><a href="#个人感悟" class="headerlink" title="个人感悟"></a>个人感悟</h2><h3 id="关于连续词向量模型"><a href="#关于连续词向量模型" class="headerlink" title="关于连续词向量模型"></a>关于连续词向量模型</h3><ul>
+<li>本文的工作主要围绕着连续词向量模型，因为传统的词向量表示是将单词视作一个个离散的符号，这样做的缺点是无法提供足够的信息来体现词语之间的关联，比如虽然Italy和Rome两个单词看起来一点也不像，但其实两者之间是有联系的(Rome是Italy的首都)，而如何研究出这种潜在的联系，便是本文的主要讨论内容。  </li>
+<li>作者的思路是通过词向量来表征这种潜在的联系，首先使用了两种神经网络来生成词向量，但因为隐含层的计算开销过大，使得模型无法训练大量数据集，也无法提升词向量的维度；因此作者从简化模型的角度，提出CBOW和Skip-gram两种模型，并且使用了分布式训练框架，这使得模型能够针对大量数据集进行训练，从而获得更好的训练效果。  </li>
+<li>训练出向量模型后，作者为了检测向量模型的效果，基于“相似度高的向量距离近”的思想，提出了一种检测算法，对向量进行代数运算并计算之间的距离，如果相似度高的向量计算出的距离确实小，就说明模型是合理的，作者即通过这个思路分析了各个模型的优劣。</li>
+</ul>
+<h3 id="关于词向量的线性运算"><a href="#关于词向量的线性运算" class="headerlink" title="关于词向量的线性运算"></a>关于词向量的线性运算</h3><ul>
+<li>文中所用的检测词向量精度的方法是基于词向量的线性运算，即“意大利-罗马+巴黎=法国”这样的计算规则，通过这个算式，我们可以很明显地感受到词之间所具有的某种关联，利用这种关联就可以大大扩展词向量的应用范围。  </li>
+<li>但具体为什么会有这种性质呢？我认为可能的原因：词向量的假设是基于上下文的分布来推导词义，而“意大利-罗马+巴黎=法国”可以转换为“意大利+巴黎=法国+罗马”，而只有意大利和巴黎共同的上下文与法国和罗马共同的上下文是相似的，才会有这样的相等关系。而仔细考虑一下，这两对词的上下文确实是有可能比较像的，比如一篇介绍欧洲国家的文章，这些词所在的语境肯定是很相近的，这也就是我们把这些词作为相似词的原因。</li>
+</ul>
+<h3 id="关于训练数据量"><a href="#关于训练数据量" class="headerlink" title="关于训练数据量"></a>关于训练数据量</h3><ul>
+<li>本文还有一个比较重要的思想是：简化模型，提升学习效率，利用更大的训练量来求得更好的训练效果。作者一开始就是因为神经网络模型的计算量太大，因此舍弃了隐含层，简化模型，从而提出了CBOW和Skip-gram这两个模型。</li>
+<li>这样做虽然可能会损失一部分隐含层所提升的精度，但计算开销大大降低了，结合分布式学习模型，可以极大地提升训练量和向量维度的上限，从而弥补因简化模型而损失的精度。实验结果证明了这样的方案是可行的，这也为我们今后如何改善模型精度提供了一个思路。</li>
+</ul>
+<h2 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h2><h3 id="关于CBOW模型的语义问题"><a href="#关于CBOW模型的语义问题" class="headerlink" title="关于CBOW模型的语义问题"></a>关于CBOW模型的语义问题</h3><ul>
+<li>在CBOW模型中，所有的单词最终都会映射到同一位置，模型是不考虑单词顺序的。我认为这样做主要是因为CBOW模型的作用是从上下文中推测相关的单词，即模型关注的是文章中是否出现单词，并不关注单词出现的顺序，因此舍弃顺序也是合理的。  </li>
+<li>但这样做也会有一定问题，即一些语句虽然单词组成一样，但语义却有明显不同。如“李丽是谁的姐姐”和“李丽的姐姐是谁”，这两句话的词袋模型是完全一致的，但如果不考虑语法结构，我们很难得出正确的结果。因此在这种情况下，我们可以将词袋模型和句法分析相结合，来求出句子的真正含义。</li>
+</ul>
+<h3 id="CBOW模型和Skip-gram模型与神经网络相结合"><a href="#CBOW模型和Skip-gram模型与神经网络相结合" class="headerlink" title="CBOW模型和Skip-gram模型与神经网络相结合"></a>CBOW模型和Skip-gram模型与神经网络相结合</h3><ul>
+<li>文章最后提到神经网络词向量和其他技术的结合可能会有很好的效果，作者在微软的挑战赛中也通过Skip-gram+RNNLMs取得了很高的预测精度，说明这个结合思路是可行的。  </li>
+<li>因为首先CBOW和Skip-gram都未考虑单词的顺序，会带来一定的语义问题；同时RNN模型本身具有自连接性质，这可以使其对前后的单词的关联性有更好的“记忆”，因此两者结合可能会有互补的效果。关于实现，可以将两者的词向量模型以一定权重进行组合，得出新的词向量，以探究其在相关问题中的表现效果。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-09-13</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PaperNotes/" class="color2">Paper Notes</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#论文内容概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文内容概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简介-INTRODUCTION"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简介(INTRODUCTION)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型框架-Model-Architectures"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">模型框架(Model Architectures)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新的对数线性模型-New-Log-linear-Models"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">新的对数线性模型(New Log-linear Models)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结果分析-Results"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">结果分析(Results)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#个人感悟"><span class="post-toc-number">2.</span> <span class="post-toc-text">个人感悟</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于连续词向量模型"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">关于连续词向量模型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于词向量的线性运算"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">关于词向量的线性运算</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于训练数据量"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">关于训练数据量</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#改进方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">改进方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于CBOW模型的语义问题"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">关于CBOW模型的语义问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CBOW模型和Skip-gram模型与神经网络相结合"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">CBOW模型和Skip-gram模型与神经网络相结合</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

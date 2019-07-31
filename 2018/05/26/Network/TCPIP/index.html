@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TCPIP笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本笔记是主要是根据学校《TCP/IP和网络软件编程》课的课件整理的，因为部分内容与计算机网络课重合，因此笔记只记录了计算机网络课上没讲的内容，主要作补充之用，更详细的内容可见《计算机网络》笔记。 第一章 TCP/IP协议概述TCP/IP协议起源于ARPNET，ARPNET最初用于国防网络研究。随着连入ARPNET的电脑数量增加，就需要一种新的网络通信协议来管理，TCP/IP就出现了。TCP/IP协">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCPIP笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/05/26/Network/TCPIP/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本笔记是主要是根据学校《TCP/IP和网络软件编程》课的课件整理的，因为部分内容与计算机网络课重合，因此笔记只记录了计算机网络课上没讲的内容，主要作补充之用，更详细的内容可见《计算机网络》笔记。 第一章 TCP/IP协议概述TCP/IP协议起源于ARPNET，ARPNET最初用于国防网络研究。随着连入ARPNET的电脑数量增加，就需要一种新的网络通信协议来管理，TCP/IP就出现了。TCP/IP协">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/OSI和TCP对比.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/异步传输数据格式.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/fork函数.png">
+<meta property="og:updated_time" content="2018-06-18T07:57:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCPIP笔记">
+<meta name="twitter:description" content="本笔记是主要是根据学校《TCP/IP和网络软件编程》课的课件整理的，因为部分内容与计算机网络课重合，因此笔记只记录了计算机网络课上没讲的内容，主要作补充之用，更详细的内容可见《计算机网络》笔记。 第一章 TCP/IP协议概述TCP/IP协议起源于ARPNET，ARPNET最初用于国防网络研究。随着连入ARPNET的电脑数量增加，就需要一种新的网络通信协议来管理，TCP/IP就出现了。TCP/IP协">
+<meta name="twitter:image" content="https://renli1024.github.io/images/计算机网络/OSI和TCP对比.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Network/TCPIP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      TCPIP笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-26
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本笔记是主要是根据学校《TCP/IP和网络软件编程》课的课件整理的，因为部分内容与计算机网络课重合，因此笔记只记录了计算机网络课上没讲的内容，主要作补充之用，更详细的内容可见《计算机网络》笔记。</p>
+<h2 id="第一章-TCP-IP协议概述"><a href="#第一章-TCP-IP协议概述" class="headerlink" title="第一章 TCP/IP协议概述"></a>第一章 TCP/IP协议概述</h2><p>TCP/IP协议起源于ARPNET，ARPNET最初用于国防网络研究。随着连入ARPNET的电脑数量增加，就需要一种新的网络通信协议来管理，TCP/IP就出现了。<br>TCP/IP协议主要分为两部分：检测网络中传输差错的传输控制协议TCP，负责对不同网络进行互连的协议IP。</p>
+<ul>
+<li><p><strong>TCP/IP的体系结构</strong><br>TCP/IP协议采用了分层的思想，将网络系统按功能分为四层，称为<strong>协议栈</strong>，每一层都向它的上层提供服务，并使用下层所提供的功能。<br>从下到上为网络接口层、网络层、传输层、应用层。<br><strong>网络接口层：</strong>协议栈的最底层，表示能够传输数据的物理网络。<br><strong>网络层：</strong>主要功能是将源主机上的IP数据报发到另一台主机，端到端的通信，主要协议是IP协议。两大块内容：IP地址和路由选择。IP层提供的是一种“尽力而为”的传输服务，并不是可靠传输。<br><strong>传输层：</strong>应用进程间的通信<br><strong>应用层：</strong>提供面向用户的网络服务，如HTTP/DNS等。</p>
+</li>
+<li><p><strong>Internet整体架构</strong><br>Internet整体可看成是由三个级别的网络组成，国家主干网-地区级网络-企业或校园网，三层网络通过路由器连接起来。</p>
+</li>
+<li><p><strong>TCP/IP中的封装和解封</strong><br>传输数据时，从首部开始，由上到下依次通过协议栈的每一层，直到数据被当作一串比特流送入物理网络，其中每一层对收到的数据都会增加一些<strong>首部</strong>信息，称为<strong>封装/打包</strong>。<br>接收数据时，从下到上通过协议栈的每一层，每一层会对数据首部进行提取和处理，称为<strong>解封/拆包</strong>。</p>
+</li>
+<li><p><strong>OSI七层模型</strong><br><img src="/images/计算机网络/OSI和TCP对比.png" width="380" height="210" alt="OSI和TCP对比" align="center"><br>会话层：在传输层的基础上提供应用进程间的会话控制机制，包括建立和维持会话、同步会话等。<br>表示层：不同的计算机体系结构所使用的数据表示法不同，表示层就为异构的计算机通信提供一种公共表示方法。<br>应用层：面向用户，包含使用网络服务的各种应用程序。<br>注：OSI强调严格的层次划分，因此灵活性较差；TCPIP更强调功能分布而非层次划分，因此其更为灵活，但也因此层次间的分界不是那么明晰。</p>
+</li>
+</ul>
+<h3 id="网络与通信相关组织机构"><a href="#网络与通信相关组织机构" class="headerlink" title="网络与通信相关组织机构"></a>网络与通信相关组织机构</h3><p><strong>ISO：</strong>国际标准化组织(International Organization for Standard)，是目前最大的国际标准化组织。<br><strong>ITU：</strong>国际电信联盟(International Telecommunication Union)，研究电信领域的技术、业务和资费问题，并制定国际标准建议。<br><strong>IEEE：</strong>电子电气工程师协会(Institute of Electrical and Electronics Engineers)，是国际电子电信行业最大的专业学会，网络与通信中很多标准就是IEEE制订的，如IEEE 802.2：局域网中逻辑链路层的控制协议；IEEE 802.11系列：无线通信的系列协议标准。<br><strong>ELA：</strong>美国电子工业协会(Electronic Industries Association)，其制订的最著名的标准是目前在PC机和通信设备上广泛使用的RS-232接口。<br><strong>RFC文档：</strong>请求评价文档(Request for Comments)，针对一些协议和建议标准的征求意见稿。</p>
+<h2 id="第二章-网络接口层和网络层"><a href="#第二章-网络接口层和网络层" class="headerlink" title="第二章 网络接口层和网络层"></a>第二章 网络接口层和网络层</h2><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><ul>
+<li><p><strong>传输介质</strong><br>有线介质：同轴电缆、双绞线(使用RJ45接头)、光缆；无线介质：IEEE 802.11系列标准。</p>
+</li>
+<li><p><strong>同步传输与异步传输</strong><br><strong>同步传输：</strong><br>通信过程中发送方和接收方在时间上保持步调一致，如：何时检测跳变信号、上升沿还是下降沿、检测频率是多少等。<br>同步传输在发数据前先发送一串同步字符SYN，接收方只要检测到两个以上的SYN，就可以确认已进入同步状态，双方即在同一时钟频率下工作了。<br>这种方式仅在数据开始传送前添加控制字符SYN，因此传送连续、大量数据的效率比异步传输高。<br><strong>异步传输：</strong><br>把各个字符分开传输，字符与字符间插入起止信息，通信双方无需同步频率(依靠检测起止位来接收数据)，适合传送不连续的、突发的信息。<br><img src="/images/计算机网络/异步传输数据格式.png" width="335" height="80" alt="异步传输数据格式" align="center"></p>
+</li>
+<li><p><strong>信道复用</strong><br>频分复用(FDM)：在同一时间占用不同的频带资源。<br>时分复用(TDM)：在不同时间占用相同的频带资源，类似时间片轮转。<br>统计时分复用(STDM)：与TDM的不同在于，其并非固定顺序分配时间，而是按需动态分配。<br>波分复用(WDM)：光的频分复用，用一根光纤同时传输多个光载波信号。<br>码分多址(CDMA)：根据不同编码方式来复用。</p>
+</li>
+</ul>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ul>
+<li><p><strong>基本概念</strong><br>物理层上的第一层，提供基本的流量控制和差错校验功能，将不可靠的物理链路变为可靠的数据链路(无比特差错)。</p>
+</li>
+<li><p><strong>局域网</strong><br>地理范围、互连设备有限的计算机网络，多由单一组织机构建。<br><strong>基本组成：</strong><br>服务器：为局域网提供服务，如资源共享服务。<br>网路适配器/网卡：NIC(Network Interface Controller)，提供通信连接，发送和接受数据。<br>相关协议软件、驱动程序</p>
+</li>
+</ul>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><ul>
+<li><p><strong>网络层的两种连接方式</strong><br><strong>面向连接：</strong>在路由器上建立固定的线路，好像在通信的源和目标之间建立了一条逻辑通路，称为<strong>虚电路</strong>，接收端会收到顺序严格一致的数据分组。<br><strong>无连接：</strong>源端和目标端之间没有逻辑通路，但是送入网络的每一个分组都带有完整的目标主机地址，路由器会根据目标地址和当前网络状况选择合适的线路。<br>IP协议实现了无连接的通信，TCP协议实现了面向连接的通信。为什么这样设计？IP无连接保证了网络层的简单和灵活、TCP面向连接保证了传输的质量。</p>
+</li>
+<li><p><strong>网络互连技术</strong><br>网络互连主要通过路由器来实现，将异构网络连接起来，构成一个整体同一的互联网。<br>路由转发算法：见《计算机网络》笔记。<br><strong>路由器实现的功能：</strong><br>1、为网际通信选择合适的路由线路；<br>2、根据需要对数据包进行拆分和组装；<br>3、将使用不同协议的网络连接起来，构成统一的互联网；<br>4、网络安全，目前大部分路由器具备一定的防火墙功能。</p>
+</li>
+</ul>
+<h4 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h4><p>IP互联网中的计算机没有主次之分，唯一标识主机的是IP地址，因此各主机地位平等。<br>IP互联网没有确定的拓扑结构。<br>每个接入互联网的设备都需要有IP地址，因此路由器、网关也会有IP地址，主机至少有一个IP地址（实质是一个网卡一个IP地址）。</p>
+<ul>
+<li><p><strong>IP数据报</strong><br>数据在内存中字节序：大端模式，高字节在低地址，低字节在高地址；小端模式：低字节在低地址，高字节在高地址。<br>IP数据报传输的字节序：最高位在左记为第0位，最低位在右记为第31位。网络传输时，先传0-7位，再传24-31位。<br>各标志字段具体作用见《计算机网络》笔记</p>
+</li>
+<li><p><strong>IP数据报的分片和重组</strong><br>网络在进行数据传输时，对帧的最大长度会有限制，这个限制被称为最大传输单元MTU。<br>不同网络的MTU值可能不同，如果主机通信要经过多个网络，通常取最小的MTU值，被称为<strong>路径MTU</strong>，以太网的MTU为1500（数据链路层帧加头加尾最长为1518）。<br>若IP数据报的长度大于MTU，则IP层就需要对IP数据报分片，不同分片：标识字段相同，标志字段都是DF=0，MF=1后面还有分片，MF=0后面没有分片。</p>
+</li>
+</ul>
+<h4 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h4><p>Internet控制报文协议(Internet Control Message Protocol)，介于网络层和传输层之间，作为IP协议的补充而存在。<br>主要有两类消息：Error，错误信息；Informational，消息/咨询性质。<br>ICMP报文封装在IP数据报中传输，但一般不认为其是高层协议，因为：ICMP仅传送差错与控制信息，且处理都需要IP层来执行，因此把它看作是IP层的补充协议。</p>
+<ul>
+<li><p><strong>ICMP报文的特点</strong><br>ICMP差错报文都是由路由器发送到<strong>源主机</strong>的（向源主机报告差错信息）。<br>ICMP差错报文只负责报告，不负责对各类差错采取什么处理措施。<br>ICMP差错报文是伴随着抛弃出错的IP数据报而产生的（如TTL减为0时，路由器将丢弃数据报，返回ICMP差错报文）。<br>ICMP差错报文不享有任何优先权。</p>
+</li>
+<li><p><strong>其他</strong><br>TCPIP课中IP地址没讲CIDR，其他和计算机网络课内容相同，具体内容参见计算机网络笔记</p>
+</li>
+</ul>
+<h2 id="第三章-运输层"><a href="#第三章-运输层" class="headerlink" title="第三章 运输层"></a>第三章 运输层</h2><ul>
+<li><strong>端口号的分配</strong><br>端口号：16位二进制数(0-65535)，分为保留端口号和自由端口号。<br>保留端口号：0-1023，系统保留，用户一般不适用<br>其中0-255为一些众所周知的服务，如21-FTP，23-Telnet，80-HTTP等。<br>256-1023通常由Unix服务占用，提供一些特殊的Unix服务。<br>1024以上为自由端口号，由程序进行通信之前动态地向系统申请。</li>
+</ul>
+<p>TCP各字段作用<br>建立连接为什么三报文握手？理论上三次是能够在不可靠信道上双方达成一致的最小值。</p>
+<h2 id="第四章-Socket编程"><a href="#第四章-Socket编程" class="headerlink" title="第四章 Socket编程"></a>第四章 Socket编程</h2><p>Socket为一种网络编程规范，具体指网络通信的逻辑端点，由IP地址+端口号组成，位于传输层与应用层之间。<br>通信时应用程序将数据写入Socket中，Socket通过网卡将信息发送到另一台主机的Socket，再传到相应的接收方应用程序，即完成了通信。</p>
+<h3 id="TCP通信过程"><a href="#TCP通信过程" class="headerlink" title="TCP通信过程"></a>TCP通信过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#服务端</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#第一步：初始化Socket</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">HOST = <span class="string">'xxx.xxx.xxx.xxx'</span></span><br><span class="line">PORT = xxx</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  <span class="comment"># SOCK_STREAM表明是TCP模式</span></span><br><span class="line"><span class="comment">#第二步：Socket与地址、端口号绑定</span></span><br><span class="line">s.bind((HOST, PORT))</span><br><span class="line"><span class="comment">#第三步：监听请求消息</span></span><br><span class="line">s.listen(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#第四步：接收请求消息</span></span><br><span class="line">conn,address = s.accept()</span><br><span class="line"><span class="comment">#第五步：收发数据</span></span><br><span class="line"><span class="comment">#从缓冲器获得数据,参数为最大读取数量</span></span><br><span class="line">raw = conn.recv(<span class="number">100</span>)</span><br><span class="line"><span class="comment">#第六步、关闭连接</span></span><br><span class="line">s.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">HOST = <span class="string">'xxx.xxx.xxx.xxx'</span></span><br><span class="line">PORT = xxx</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">c.connect((HOST,PORT))</span><br><span class="line"><span class="comment"># 发送数据, 必须是byte类型的的数据</span></span><br><span class="line"><span class="comment"># 使用encode函数,将字符串通过UTF8编码为字节类型</span></span><br><span class="line">c.send(<span class="string">'Hello World!'</span>.encode())</span><br><span class="line">c.close()</span><br></pre></td></tr></table></figure>
+<h3 id="UDP通信过程"><a href="#UDP通信过程" class="headerlink" title="UDP通信过程"></a>UDP通信过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端</span></span><br><span class="line"><span class="keyword">import</span> socket  </span><br><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">sPORT = <span class="number">9976</span></span><br><span class="line">cPORT = <span class="number">9975</span></span><br><span class="line">s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)    <span class="comment"># SOCK_DGRAM表明是UDP模式</span></span><br><span class="line">s.bind((HOST,sPORT))</span><br><span class="line"><span class="comment"># 此函数一直阻塞当前线程, 直到收到数据</span></span><br><span class="line"><span class="comment"># 返回值：(b'Hello From UDP', ('127.0.0.1', 9975))，给出了收到的数据以及来源信息(IP地址和端口号)</span></span><br><span class="line">s.recvfrom(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端</span></span><br><span class="line"><span class="keyword">import</span> socket  </span><br><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">sPORT = <span class="number">9976</span></span><br><span class="line">cPORT = <span class="number">9975</span></span><br><span class="line">c = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)</span><br><span class="line">c.bind((HOST,cPORT))</span><br><span class="line">c.sendto(<span class="string">'Hello By UDP'</span>.encode(), (HOST,sPORT))</span><br><span class="line">Out[<span class="number">12</span>]: <span class="number">14</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>三种不同类型的Socket：</strong><br>1、<strong>流套接字(SOCK_STREAM)：</strong>使用TCP来实现，提供可靠的、面向连接的传输服务，适用于大批量的数据<br>2、<strong>数据报套接字(SOCK_DGRAM)：</strong>使用UDP来实现，无连接、不可靠的数据传输服务，数据以独立报文的形式发送，效率高，适合出现差错可能性小的网络。<br>3、<strong>原始套接字(SOCK_RAW)：</strong>可以读写内核没有处理的IP数据报。因为流套接字只针对TCP协议，数据报套接字只针对UDP协议，若要传输其他协议发送的数据必须用原始套接字。</p>
+</li>
+<li><p><strong>阻塞和非阻塞通信模式</strong><br>对于发送端：都是阻塞模式，即如果底层协议没有足够的空间存放数据，则应用程序会一致等待。<br>对于接收端：在阻塞模式下，若没有到达的数据，则I/O会一直阻塞等待着数据到达；在非阻塞模式下，应用程序定时查询或者有数据到达时通知程序处理。<br>注：因为UDP没有发送缓冲，因此即使在阻塞模式下也不会发生阻塞，即UDP没有真正的阻塞模式。</p>
+</li>
+</ul>
+<h3 id="关闭Socket"><a href="#关闭Socket" class="headerlink" title="关闭Socket"></a>关闭Socket</h3><p>在TCP中，关闭连接比建立连接更为关键，因为涉及到两方向数据传输的断开。<br>如果一方直接调用<code>.close()</code>函数，会直接将所有数据都断掉，另一方若还有数据则无法发送。<br>因此采用<strong>半关闭</strong>的方式，之关闭一部分数据交换中的流，如无法发送数据，但还可以接收数据。</p>
+<h3 id="TCP-IP网络应用"><a href="#TCP-IP网络应用" class="headerlink" title="TCP/IP网络应用"></a>TCP/IP网络应用</h3><ul>
+<li><p><strong>DNS地址信息查询</strong><br>实现域名-&gt;IP地址的转换，DNS服务由域名空间、域名服务器和解析器三部分组成。</p>
+</li>
+<li><p><strong>Telnet远程登陆协议</strong><br><strong>远程登陆系统需要具备的条件：</strong><br>一个本地系统、一个远程系统、本地系统和远程系统间可以相互通信、本地系统的用户在远程多用户系统中由用户账号、本地系统和远程系统可能是不同的操作系统，因此Telnet要能运行在不同的操作系统上。<br><strong>Telnet工作模式：</strong><br>Telnet采用C/S模式，通过TCP进行通信，服务端为23端口。<br>1、本地客户提出远程登陆请求，通过三次握手与远程系统建立连接。<br>2、客户端Telnet向远程Telnet发数据（通过TCP协议），远程Telnet收到数据后，并不直接处理数据，而是将数据转发给内核，由内核进行处理。<br>3、同时远程Telnet也接收服务端要传送的数据，发给客户端。</p>
+</li>
+<li><p><strong>Email服务</strong><br>采用了SMTP协议，通过TCP进行通信，服务端为25端口。<br>客户端邮件服务器和接收端邮件服务器建立TCP连接后，通过各种命令实现邮件服务。</p>
+</li>
+<li><p><strong>FTP文件传输协议</strong><br>FTP用来把一台主机上的文件传到另一台主机上，基于C/S模式，通过TCP进行通信。</p>
+</li>
+<li><p><strong>www服务和http协议</strong><br><strong>www和http的关系：</strong><br><strong>www：</strong>www是World Wide Web的缩写，也可以简称为Web，中文为“万维网”。是一个由许多互相链接的超文本组成的系统，通过互联网传输数据，系统中的资源由URL地址来唯一标识和访问。<br>www主要是提供基于浏览器的Web服务，并不等同互联网，万维网只是互联网所能提供的服务其中之一（还有很多其他服务如FTP、Telnet、邮件服务等等）。<br><strong>http：</strong>http是HyperText Transfer Protocol的缩写，译为超文本传输协议。其设计主要是为了提供一种传输HTML页面的标准（HTML：超文本标记语言，与HTTP超文本传输协议是对应的），用于浏览器和网页服务器之间交换数据，所有的www文件都必须遵守这个标准。如一般网址前<code>https://www.baidu.com</code>都会有http/https。<br><strong>https：</strong>安全套接字层超文本传输协议，数据不再是明文传输，更为安全。原理：在http的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。<br><strong>工作流程：</strong><br>1、用户在浏览器中输入网页的URL地址<br>2、浏览器向DNS服务器发出请求，请求解析URL地址<br>3、DNS服务器解析完成，向浏览器返回解析后的IP地址<br>4、浏览器向对应IP地址的80端口（HTTP端口）发出建立TCP连接的请求，连接建立后即可进行数据传输。</p>
+</li>
+</ul>
+<h2 id="IO复用与并行程序"><a href="#IO复用与并行程序" class="headerlink" title="IO复用与并行程序"></a>IO复用与并行程序</h2><h3 id="IO复用"><a href="#IO复用" class="headerlink" title="IO复用"></a>IO复用</h3><p>示例代码[转]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket, select  </span><br><span class="line">  </span><br><span class="line">s=socket.socket()  </span><br><span class="line">print(<span class="string">'s:'</span>,s)  </span><br><span class="line">host=socket.gethostname()  </span><br><span class="line">port= <span class="number">4321</span></span><br><span class="line">s.bind((host,port))    </span><br><span class="line">s.listen(<span class="number">5</span>)  </span><br><span class="line"><span class="comment">#设置监听对象，最初只有当前主机（还未与客户端建立连接）  </span></span><br><span class="line">inputs=[s]  </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:  </span><br><span class="line">    <span class="comment"># select函数阻塞当前线程,直到监听列表的对象发生改变</span></span><br><span class="line">    <span class="comment"># select输入参数：可读列表，可写列表，异常列表</span></span><br><span class="line">    <span class="comment"># select返回参数：发生改变的对应列表</span></span><br><span class="line">    rs,ws,es=select.select(inputs,[],[])</span><br><span class="line">                                          </span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> rs:  </span><br><span class="line">        <span class="comment"># 如果服务器套接字被触发，表明是出现建立新连接的请求</span></span><br><span class="line">        <span class="comment"># 第一次触发肯定是建立新连接的情况</span></span><br><span class="line">        <span class="keyword">if</span> r <span class="keyword">is</span> s:                          </span><br><span class="line">            c, addr = s.accept()  </span><br><span class="line">            print(<span class="string">'Got connection from'</span>, addr)  </span><br><span class="line">            <span class="comment"># 将新建的socket加入监听列表</span></span><br><span class="line">            inputs.append(c)               </span><br><span class="line">        <span class="comment"># 如果客户端套接字被触发，表明是有数据传来</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">try</span>:  </span><br><span class="line">                data = r.recv(<span class="number">1024</span>)    <span class="comment"># 接收数据</span></span><br><span class="line">                disconnected = <span class="keyword">not</span> data  </span><br><span class="line">            <span class="keyword">except</span> socket.error:  </span><br><span class="line">                disconnected = <span class="keyword">True</span>  </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> disconnected:  </span><br><span class="line">                <span class="comment"># data为空，表明数据已传完，断开连接，将对象移除监听列表</span></span><br><span class="line">                print(r.getpeername(),<span class="string">'disconnected'</span>)  </span><br><span class="line">                inputs.remove(r)</span><br><span class="line">            <span class="keyword">else</span>:  </span><br><span class="line">                print(data)</span><br></pre></td></tr></table></figure></p>
+<h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><p>进程是资源分配的单位，线程是调度运行的单位，线程共享同一进程的资源。<br>进程可理解为操作系统所完成的任务，线程表示完成该任务的许多可能的子任务。<br>创建进程：<code>fork()</code>函数，只在Linux平台下有，Win下没有。<br>创建当前进程的副本，函数之后的语句通过fork()函数返回的pid来判断是是父进程or子进程，子进程：0，父进程：子进程的进程号。<br><img src="/images/计算机网络/fork函数.png" width="500" height="400" alt="fork函数示例" align="center"><br>在子进程中，gval复制为11，lval复制为25。<br>最后输出结果为：<br>Child Proc: 27, 13<br>Parent Proc: 23, 9</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-05-26</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Network/" class="color3">Network</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-TCP-IP协议概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章 TCP/IP协议概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络与通信相关组织机构"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">网络与通信相关组织机构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-网络接口层和网络层"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二章 网络接口层和网络层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#物理层"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">物理层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据链路层"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">数据链路层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络层"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">网络层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP协议"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">IP协议</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ICMP协议"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">ICMP协议</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-运输层"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三章 运输层</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四章-Socket编程"><span class="post-toc-number">4.</span> <span class="post-toc-text">第四章 Socket编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP通信过程"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">TCP通信过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UDP通信过程"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">UDP通信过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关闭Socket"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">关闭Socket</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP-IP网络应用"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">TCP/IP网络应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IO复用与并行程序"><span class="post-toc-number">5.</span> <span class="post-toc-text">IO复用与并行程序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IO复用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">IO复用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程和线程"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">进程和线程</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

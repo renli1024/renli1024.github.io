@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Personal Recommendation Using Deep Recurrent Neural Networks in NetEase读书笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="论文地址点这里    论文内容概述本文结合RNN和FNN两种神经网络提出了一种新的个性推荐方法，希望解决传统的CF方法无法进行实时推荐的问题，最终在网易的考拉电商网站上取得了良好的效果。 简介(INTRODUCTION) 传统CF模型存在的问题因为是基于用户购物习惯的推荐，使用的是历史信息，未能利用用户当前的浏览历史，因此无法进行实时推荐。  如何进行实时推荐首先要考虑访问电商网站的用户属性，包括">
+<meta name="keywords" content="Paper Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Personal Recommendation Using Deep Recurrent Neural Networks in NetEase读书笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/09/13/Paper Notes/Personal Recommendation Using Deep Recurrent Neural Networks in NetEase/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="论文地址点这里    论文内容概述本文结合RNN和FNN两种神经网络提出了一种新的个性推荐方法，希望解决传统的CF方法无法进行实时推荐的问题，最终在网易的考拉电商网站上取得了良好的效果。 简介(INTRODUCTION) 传统CF模型存在的问题因为是基于用户购物习惯的推荐，使用的是历史信息，未能利用用户当前的浏览历史，因此无法进行实时推荐。  如何进行实时推荐首先要考虑访问电商网站的用户属性，包括">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-20T13:02:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Personal Recommendation Using Deep Recurrent Neural Networks in NetEase读书笔记">
+<meta name="twitter:description" content="论文地址点这里    论文内容概述本文结合RNN和FNN两种神经网络提出了一种新的个性推荐方法，希望解决传统的CF方法无法进行实时推荐的问题，最终在网易的考拉电商网站上取得了良好的效果。 简介(INTRODUCTION) 传统CF模型存在的问题因为是基于用户购物习惯的推荐，使用的是历史信息，未能利用用户当前的浏览历史，因此无法进行实时推荐。  如何进行实时推荐首先要考虑访问电商网站的用户属性，包括">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Paper Notes/Personal Recommendation Using Deep Recurrent Neural Networks in NetEase" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Personal Recommendation Using Deep Recurrent Neural Networks in NetEase读书笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-13
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="http://cfm.uestc.edu.cn/~zhangdongxiang/papers/ICDE16_industry_231.pdf" target="_blank" rel="noopener">论文地址点这里</a></p>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>  </p>
+<h2 id="论文内容概述"><a href="#论文内容概述" class="headerlink" title="论文内容概述"></a>论文内容概述</h2><p>本文结合RNN和FNN两种神经网络提出了一种新的个性推荐方法，希望解决传统的CF方法无法进行实时推荐的问题，最终在网易的考拉电商网站上取得了良好的效果。</p>
+<h3 id="简介-INTRODUCTION"><a href="#简介-INTRODUCTION" class="headerlink" title="简介(INTRODUCTION)"></a>简介(INTRODUCTION)</h3><ul>
+<li><p><strong>传统CF模型存在的问题</strong><br>因为是基于用户购物习惯的推荐，使用的是历史信息，未能利用用户当前的浏览历史，因此无法进行实时推荐。</p>
+</li>
+<li><p><strong>如何进行实时推荐</strong><br>首先要考虑访问电商网站的用户属性，包括基本属性(浏览器、IP地址、个人基本信息、购买历史等)和动态属性(用户所浏览页面的信息)，而基于后者，我们就可以猜测用户在本次访问中究竟想要购买什么，从而完成实时推荐。</p>
+</li>
+<li><p>之后作者对系统主要面临的挑战、所构建DRNN的特点和其他一些技术作了介绍，即完成了本节内容。</p>
+</li>
+</ul>
+<h3 id="推荐模块概述-OVERVIEW-OF-RECOMMENDATION-MODULE"><a href="#推荐模块概述-OVERVIEW-OF-RECOMMENDATION-MODULE" class="headerlink" title="推荐模块概述(OVERVIEW OF RECOMMENDATION MODULE)"></a>推荐模块概述(OVERVIEW OF RECOMMENDATION MODULE)</h3><ul>
+<li><p><strong>系统流程</strong><br>服务器首先接收用户请求并聚合为一个会话信息，之后将其输入到推荐系统中，经过RNN和FNN计算后输出推荐结果，并在页面中显示。</p>
+</li>
+<li><p><strong>数据格式</strong><br>数据收集：假设用户\(u_i\)访问网站，会生成日志文档\(D_j^l\)和会话文档\(D_i^s\)两种文档，两者关系为\(D_i^s=\{D_0^l,D_1^l,\cdots,D_{k-1}^l\}\)，即一个会话文档对应多个日志文档。<br>数据简化：又因为每个日志文档都可简化为一个URL地址\(p_j\)，因此可得\(D_i^s=\{p_0,p_1,\cdots,p_{n-1}\}\)。<br>最终的输入数据：访问网站的每个用户\(u_i\)都会对应一个\(D_i^s\)，即构成了神经网络的输入数据。</p>
+</li>
+</ul>
+<h3 id="DRNN具体介绍-DEEP-RECURRENT-NEURAL-NETWORK"><a href="#DRNN具体介绍-DEEP-RECURRENT-NEURAL-NETWORK" class="headerlink" title="DRNN具体介绍(DEEP RECURRENT NEURAL NETWORK)"></a>DRNN具体介绍(DEEP RECURRENT NEURAL NETWORK)</h3><ul>
+<li><p><strong>RNN的特点</strong><br>RNN即循环神经网络，相比其他神经网络最大的特点是：其考虑了前后两个状态之间的关联，可以更好地处理序列信息。在本文的场景中，一个session可抽象为一系列的网页序列，因此利用RNN来进行推荐直观上是非常合适的。</p>
+</li>
+<li><p><strong>基本RNN模型</strong><br>在单个隐藏层的RNN中，隐藏层节点除了的输入和输出外，还会有一个自连接环，可以根据时间来不断地更新它的值。<br>更新函数：\(a(i)=f(Ux(i)+Wa(i-1))\)，\(a(i)\)表示在状态\(i\)下的节点值，\(x(i)\)表示输入值，\(U,W\)为相应的转移矩阵，\(f(x)\)为激活函数。<br>公式理解：隐藏层节点每次更新除了会考虑输入值外，还会考虑该节点在前一状态下的值，因此RNN的结果可以反映时间序列的相应信息。</p>
+</li>
+<li><p><strong>有限状态的DRNN</strong><br>当RNN具有多个隐藏层时，即构成了DRNN。考虑DRNN中第\(i\)层的某个状态\(t\)，其不仅会连接同层的状态\(t+1\)，还会连接到第\(i+1\)层的状态\(t\)，即构成了新的更新函数：<br>$$ f(x)=\left\{<br>\begin{align}<br>&amp;f(W_ia_i(t-1)+Z_i(a_{i-1}(t)+b_i(t)))&amp;,&amp; i&gt;1 \\<br>&amp;f(W_ia_i(t-1)+Z_i(V_t+\theta (p_t)))&amp;,&amp; i=1<br>\end{align}<br>\right.<br>$$</p>
+</li>
+<li><p><strong>引入历史状态节点的DRNN</strong><br>问题背景：受限于内存，我们不可能保存用户所有产生的状态；但如果使用\(n\)状态的滑动窗口，则只能选择最新的\(n\)个数据训练模型，会降低预测精度。因此作者引入了历史状态节点(history state)的概念。<br>当用户访问的页面数\(x\)超过一定数量\(n\)时，我们将前\(x-n\)个状态组合起来作为历史状态节点，有<br>$$\bar{V}=\sum_{i=0}^{x-n}\varepsilon_iV_i$$<br>$$\varepsilon_i=\frac {\theta(p_i)} {\sum_{j=i}^{x-n}\theta(p_j)} $$<br>公式理解：根据用户在页面的停留时间对前\(x-n\)个页面作加权平均，近似表征用户的历史信息，是一个既在一定程度上保证了模型精度，计算开销又不至于太大的折中方案。</p>
+</li>
+<li><p><strong>与协同过滤算法的结合</strong><br>问题背景：虽然协同过滤算法无法提供实时的推荐，但如果用户遵循以往购买习惯，其推荐效果还是很好的。因此作者引入了FNN模型来模拟CF算法，作为RNN的补充。<br>另外使用FNN还有两点好处：</p>
+<ul>
+<li>FNN和RNN共享相同的输出层，因此可以将二者的输出融合起来作为最终结果，来表征用户购买某件商品的概率。</li>
+<li>可以使用随机最速下降法(SGD)来训练RNN和FNN结合的权重，而不用人为地决定哪个网络更为重要，减轻了模型调参的工作量。</li>
+</ul>
+</li>
+<li><p><strong>如何生成训练数据</strong><br>用户从进入网站开始到最终购买商品，会经历一定数量的页面，个性推荐的本质目标就是减少这之间页面的数量。对于一次购买行为\(I\)，其对应的页面路径为\(p_0,\cdots,p_{n-1}\rightarrow I\)。若对其进行优化，不一定非要优化成\(p_0\rightarrow I\)这样(当然这是最优情况)，只要能减少用户的页面访问数量，都可以算作优化。因此我们的训练数据还可以是\(p_0,p_1\rightarrow I\)、 \(p_0,p_1,p_2\rightarrow I\)等，这样一次购买行为就可以产生\(n\)组训练数据，大大增加了我们的训练量。</p>
+</li>
+<li><p><strong>模型的实现</strong><br>作者使用了Caffe框架来实现模型，整个网络包含三层隐含层，且同一层次的神经元共享相同的权重和偏置矩阵。此外，模型的RNN部分包含4个状态的输入，FNN包含1个状态的输入。</p>
+</li>
+</ul>
+<h3 id="模型调优-MODEL-OPTIMIZATIONS"><a href="#模型调优-MODEL-OPTIMIZATIONS" class="headerlink" title="模型调优(MODEL OPTIMIZATIONS)"></a>模型调优(MODEL OPTIMIZATIONS)</h3><p>这一节作者介绍了其为了改进模型性能所做的工作，并提出了一种自动调优框架，使得模型具有了更高的精度和更快的学习速度。</p>
+<ul>
+<li><p><strong>自动代码生成器</strong><br>问题背景：模型中包括了很多参数，调整这些参数需要更改甚至重写Caffe脚本，非常繁琐。因此作者构建了一个代码生成器，其主要任务是接收参数值，输出对应的Caffe脚本。<br>主要思想：首先将参数分为<strong>基本参数</strong>(损失函数、学习速率等)和<strong>网络结构参数</strong>(每层的神经元数)，调整基本参数只需更改相应的值，而调整网络结构参数则需要改写Caffe脚本，因此我们只需重点关注网络结构参数即可。<br>三种网络结构参数：文中提出了长、宽、高三种网络结构参数，分别对应隐含层数量、状态数以及隐含层与状态层的连接数，并编写了相应的代码生成算法，具体可见文中的Algorithm 1。</p>
+</li>
+<li><p><strong>模型调优</strong><br>为了求得表现更好的模型参数，作者采用了遗传算法这种启发式算法进行模型调优。<br>染色体结构：\(C=(w,l,h,a_1,a_2,\cdots,a_L,\cdots)\)，直观的理解就是将所有参数结合在了一起。<br>适应度函数：\(fit=accuracy+\frac {1} {1+loss}\)，\(accuracy\)为模型预测精度，\(loss\)为损失率。<br>注：虽然遗传算法最终求得的是局部最优解，但因为参数调优本就是一个非常复杂、难以建模的过程，所以作者认为这样的解已经足够好了。</p>
+</li>
+</ul>
+<h3 id="模型实验-EXPERIMENTS"><a href="#模型实验-EXPERIMENTS" class="headerlink" title="模型实验(EXPERIMENTS)"></a>模型实验(EXPERIMENTS)</h3><p>这一节作者对模型进行了全面的测试和分析，并分别研究几个重要因素对模型的影响。</p>
+<ul>
+<li><p><strong>评价指标</strong><br>作者采用了预测正确率作为模型主要的评价指标，公式为\(accuracy=\frac {f(S)} {|S|}\)，\(S\)代表训练样本总数，\(f(S)\)代表正确预测的样本数。</p>
+</li>
+<li><p><strong>batch size的影响</strong><br>在使用默认参数训练模型时，增大batch size可以提高模型精度，但对于内存的消耗也更大。而一个有趣的现象是，使用调优框架后再训练模型，batch size对精度的影响就不再显著了，可见调优框架确实使得模型的表现更为优异了。</p>
+</li>
+<li><p><strong>FNN的影响</strong><br>由Fig.11、Fig.12可得，FNN的使用显著提升了模型精度，尤其是同时使用调优框架和FNN的模型，精度提升了约10%，而且这还是在模型只推荐1个物品的情况下(即购买概率最大的那个物品)，若模型返回10个物品，模型精度可以达到50%以上。<br>同时，使用FNN并不会影响模型的收敛速率，即模型精度的提升并不会增加计算开销，这也是很重要的一点。</p>
+</li>
+<li><p><strong>历史状态节点的影响</strong><br>在使用默认参数训练模型时，使用历史状节点态可提高模型10%的精度；而使用了调优框架后，只能提升2%的精度，即调优过程降低了不同网络结构对模型的影响，这也侧面表明了作者所提出调优框架的优异性能。</p>
+</li>
+<li><p><strong>模型最终效果</strong><br>在DRNN和FNN结合的情况下，模型最终的预测精度达到了33.13%，页面路径压缩到了原先的72.41%，相当于用户从点进网站到最终购买商品，少浏览了30%的页面，效果还是显而易见的，毕竟用户每多浏览一个自己不感兴趣的页面，其离开网站的概率就会越大，这也就是推荐系统的作用所在，即帮助用户更快地进行选择。</p>
+</li>
+</ul>
+<h2 id="个人感悟"><a href="#个人感悟" class="headerlink" title="个人感悟"></a>个人感悟</h2><h3 id="关于推荐系统"><a href="#关于推荐系统" class="headerlink" title="关于推荐系统"></a>关于推荐系统</h3><ul>
+<li>本文提出了基于RNN和FNN的推荐系统，最主要的原因是传统的CF算法基于用户间购物历史的相似度来做推荐，考虑的更多是用户的购物习惯，这就使其无法把握用户突发的、低频的购买需求。</li>
+<li>比如我平常很爱买衣服，网购的大部分物品都是衣服，但有一天突然想吃零食，就会在网站上浏览零食的相关页面，这时系统给我推荐的若还是衣服，就会影响用户体验，也不利于提高网站的销量，因此实时推荐是很有必要的。</li>
+<li>但同时，在生活大部分情况中，一个人还是会遵循其所形成的习惯去购物，这时基于购物习惯的推荐便能表现出很好的效果，因此CF算法也是很有必要的。</li>
+<li>综上，论文中使用RNN和FNN两种算法共同完成推荐，这种思路是合理的，也是符合我们的直观认知的。</li>
+</ul>
+<h3 id="关于RNN算法"><a href="#关于RNN算法" class="headerlink" title="关于RNN算法"></a>关于RNN算法</h3><ul>
+<li>RNN与其他网络最大的不同在于其隐含层节点的自连接性，在其更新函数中，不仅包括正常的输入值，还包括上一时刻中节点自身的值，这就像使得节点具有了“记忆”，这个记忆表征了时间序列中前后节点的关联，因此RNN适合处理时间序列或状态间具有一定联系的情况。</li>
+<li>对应到本文，用户在网站上购物必然会浏览一系列页面，而这些页面是否是有关联的呢？我认为是有的。比如我要买一个钱包，在第一个页面中没有浏览到我喜欢的款式，那我下一个访问的页面也会是关于钱包的，甚至我之后的浏览可能都会围绕钱包来展开，因此我们就可从用户初始的浏览内容来推测其实时的购买兴趣，这也就是作者应用RNN进行实时推荐的原因。</li>
+</ul>
+<h3 id="关于历史状态节点-history-state"><a href="#关于历史状态节点-history-state" class="headerlink" title="关于历史状态节点(history state)"></a>关于历史状态节点(history state)</h3><ul>
+<li>本文的一个创新在于引入了历史状态节点，来解决状态数过多、计算开销过大的问题。根据用户在页面上停留的时间，将多出的历史状态作加权平均，构成一个新的节点，这样既可以保留历史信息，又不会造成计算开销的大量增加，是一种比较折衷的方案。</li>
+<li>这也提示我们，在数据量过大的情况下，与其直接将一部分数据丢弃掉，不如将这部分数据做整合，采用加权平均或其他的提取信息的方法，构成新的节点来参与运算，在模型精度和计算开销之间取得平衡。</li>
+</ul>
+<h3 id="关于训练数据的生成"><a href="#关于训练数据的生成" class="headerlink" title="关于训练数据的生成"></a>关于训练数据的生成</h3><ul>
+<li>本文针对用户一次的购买行为，将各种可能的路径优化方案都作为了训练数据送入模型进行训练，这样可以增加我们的训练量。因为对于有监督学习来说，带标签的数据是有限的，如何充分利用有限的标签数据去训练模型需要我们去研究，本文给了我们一种可行的思路。</li>
+</ul>
+<h3 id="关于模型调优"><a href="#关于模型调优" class="headerlink" title="关于模型调优"></a>关于模型调优</h3><ul>
+<li>本文提出了一种模型调优框架，大致可分为“生成参数”和“生成代码”两部分。</li>
+<li>首先将模型的相关参数整合成染色体，再利用遗传算法的杂交、变异等操作，生成下一代染色体，之后将参数传入代码生成器中生成对应的Caffe脚本，训练模型后，将结果回带到遗传算法的适应度函数中进行评估和自然选择，一轮轮地迭代，最终即可得出最优的参数组合。</li>
+<li>因为建模的复杂性和组合爆炸等问题，模型调优一直是机器学习的一个难点，在这种情况下，利用一些启发式算法进行智能调优不失为一个好的方法，这也是文章给我们的一个启示。</li>
+</ul>
+<h2 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h2><h3 id="关于模型的更新问题"><a href="#关于模型的更新问题" class="headerlink" title="关于模型的更新问题"></a>关于模型的更新问题</h3><ul>
+<li>在文章中提到，顾客每完成一次购物，就相当于得到了一个”ground truth”，可以用来训练、调整模型，这样模型随着网站的运行就会不断优化和改进。</li>
+<li>如果顾客这次购物是在遵循自己以往的购物习惯，那么将结果用来继续训练模型是没有问题的，因为这个行为在今后还会多次发生，这样可以使得模型更了解顾客的购买习惯，从而更好地完成推荐。</li>
+<li>但如果这是一次”unexpected”的购物行为，就像平常都喜欢买衣服的我只是突然想吃点零食，如果模型把这个突发的低频需求当作了用户的购买习惯，在今后也多次向用户进行推荐，可能会造成用户的厌烦。</li>
+<li>因此我认为在模型的持续更新中，应该考虑到用户购买行为的属性，即对利用了RNN方式完成的推荐，要降低其对模型的后续影响。</li>
+<li>方案实现：可以通过减少训练样本数量的方式，对于通过RNN推荐完成的购买，不要将<br>$$<br>  p_0 \rightarrow I \\<br>  p_0,p_1 \rightarrow I \\<br>  \cdots \\<br>  p_0,\cdots,p_{n-1} \rightarrow I<br>$$<br>所有的路径样本都送入训练，可以只送入后半段或后1/4的样本，让推荐发生的条件更为“苛刻”一些，从而使得模型不会在用户一进入网站就推荐一些低频、不经常需求的产品。</li>
+</ul>
+<h3 id="将社群属性加入到模型中"><a href="#将社群属性加入到模型中" class="headerlink" title="将社群属性加入到模型中"></a>将社群属性加入到模型中</h3><ul>
+<li>论文在”Related Work”中提到CF推荐和基于内容的推荐相结合，会在社交网络上表现得更好，因此我认为可以将这种思路应用到本文，即在推荐系统中加入一定的社群属性。</li>
+<li>问题背景：在实际生活中，我们会更倾向于接受来自朋友的推荐，而非来自商家的推荐。尤其是本文的电商网站——网易考拉，是一个主打海淘的平台，用户对一些国外的品牌可能了解并不多，这时如果有来自自己社交圈的推荐，无疑会增加购买的概率。</li>
+<li>方案实现：可以考虑改进文中的FNN部分的方法，即首先通过用户填写的基本信息或其他网易系应用中的用户资料(如网易音乐、游戏等)，对用户进行社群判别和分类，为每个用户构建一个“熟人圈”。在进行FNN推荐时，模型不仅推荐历史相似的用户购买的产品，也推荐来自熟人圈购买的产品，以将社群属性加入到推荐模型中。</li>
+</ul>
+<h3 id="关于推荐理由"><a href="#关于推荐理由" class="headerlink" title="关于推荐理由"></a>关于推荐理由</h3><ul>
+<li>问题背景：目前用户对于推荐系统的态度，不仅是想“知其然”，也想“知其所以然”，即除了推荐的物品本身，用户也会想知道系统为什么会给自己推荐这个物品，因此如果能给推荐物品附上推荐理由，无疑会提升网站的用户体验。</li>
+<li>方案实现：因为本文是将两种神经网络的输出层共享，以类似加权平均的方式进行融合(见文章第三节D部分)，来计算出用户购买某件物品的概率的，因此可以将最终结果的各个部分分离出来，从大到小排序，通过分析值最大的一项或几项来构造我们的推荐理由。</li>
+<li>具体形式：推荐理由的形式可以为“根据你以前购买过的xxx牛仔裤，我们猜你还喜欢这个”、“根据你刚刚浏览过的xxx钱包，我们猜你会喜欢这个”等等，以一种猜测、活泼的口吻对用户进行提示，以增加用户的购买欲望。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-09-13</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PaperNotes/" class="color2">Paper Notes</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#论文内容概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文内容概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简介-INTRODUCTION"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简介(INTRODUCTION)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#推荐模块概述-OVERVIEW-OF-RECOMMENDATION-MODULE"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">推荐模块概述(OVERVIEW OF RECOMMENDATION MODULE)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DRNN具体介绍-DEEP-RECURRENT-NEURAL-NETWORK"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">DRNN具体介绍(DEEP RECURRENT NEURAL NETWORK)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型调优-MODEL-OPTIMIZATIONS"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">模型调优(MODEL OPTIMIZATIONS)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型实验-EXPERIMENTS"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">模型实验(EXPERIMENTS)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#个人感悟"><span class="post-toc-number">2.</span> <span class="post-toc-text">个人感悟</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于推荐系统"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">关于推荐系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于RNN算法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">关于RNN算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于历史状态节点-history-state"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">关于历史状态节点(history state)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于训练数据的生成"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">关于训练数据的生成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于模型调优"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">关于模型调优</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#改进方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">改进方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于模型的更新问题"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">关于模型的更新问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#将社群属性加入到模型中"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">将社群属性加入到模型中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于推荐理由"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">关于推荐理由</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

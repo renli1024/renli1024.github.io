@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>On Availability For Blockchain based Systems读书笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="论文地址点这里     论文内容概述这是一篇偏重实验的论文，通过研究影响交易提交时间的因素，探讨了目前区块链的可靠性问题，并提出了一种交易终止策略来解决这个问题。 简介(INTRODUCTION) 区块链的可靠性问题可靠性保证不透明：从应用的角度上来说，并不清楚区块链技术是如何保证系统的可靠性的，而且多数区块链系统只能以一定概率保证交易信息的不变性。提交时间不稳定：客户端不可预知交易成功提交所需的">
+<meta name="keywords" content="Paper Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On Availability For Blockchain based Systems读书笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/09/13/Paper Notes/On Availability For Blockchain based Systems/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="论文地址点这里     论文内容概述这是一篇偏重实验的论文，通过研究影响交易提交时间的因素，探讨了目前区块链的可靠性问题，并提出了一种交易终止策略来解决这个问题。 简介(INTRODUCTION) 区块链的可靠性问题可靠性保证不透明：从应用的角度上来说，并不清楚区块链技术是如何保证系统的可靠性的，而且多数区块链系统只能以一定概率保证交易信息的不变性。提交时间不稳定：客户端不可预知交易成功提交所需的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-28T20:11:10.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="On Availability For Blockchain based Systems读书笔记">
+<meta name="twitter:description" content="论文地址点这里     论文内容概述这是一篇偏重实验的论文，通过研究影响交易提交时间的因素，探讨了目前区块链的可靠性问题，并提出了一种交易终止策略来解决这个问题。 简介(INTRODUCTION) 区块链的可靠性问题可靠性保证不透明：从应用的角度上来说，并不清楚区块链技术是如何保证系统的可靠性的，而且多数区块链系统只能以一定概率保证交易信息的不变性。提交时间不稳定：客户端不可预知交易成功提交所需的">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Paper Notes/On Availability For Blockchain based Systems" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      On Availability For Blockchain based Systems读书笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-13
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://research.csiro.au/data61/wp-content/uploads/sites/85/2016/08/OnAvailabilityForBlockchain-BasedSystems-SRDS2017-authors-copy.pdf" target="_blank" rel="noopener">论文地址点这里</a></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>  
+
+<h2 id="论文内容概述"><a href="#论文内容概述" class="headerlink" title="论文内容概述"></a>论文内容概述</h2><p>这是一篇偏重实验的论文，通过研究影响交易提交时间的因素，探讨了目前区块链的可靠性问题，并提出了一种交易终止策略来解决这个问题。</p>
+<h3 id="简介-INTRODUCTION"><a href="#简介-INTRODUCTION" class="headerlink" title="简介(INTRODUCTION)"></a>简介(INTRODUCTION)</h3><ul>
+<li><p><strong>区块链的可靠性问题</strong><br>可靠性保证不透明：从应用的角度上来说，并不清楚区块链技术是如何保证系统的可靠性的，而且多数区块链系统只能以一定概率保证交易信息的不变性。<br>提交时间不稳定：客户端不可预知交易成功提交所需的时间。从Fig.1中可看出，61.5%的交易在3分钟内就提交了，但13.8%的交易4.5分钟还没提交(延迟了50%)，提交时间的差异可能系统可用性的下降。</p>
+</li>
+<li><p><strong>论文主要研究内容</strong>  </p>
+<ul>
+<li>导致交易无法成功提交的因素</li>
+<li>以太坊中的transaction inclusion机制</li>
+<li>以太坊中gas price和gas limit两个参数对提交时间的影响</li>
+<li>以太坊中block gas limit的影响</li>
+<li>交易终止机制</li>
+</ul>
+</li>
+</ul>
+<h3 id="背景知识-BACKGROUND"><a href="#背景知识-BACKGROUND" class="headerlink" title="背景知识(BACKGROUND)"></a>背景知识(BACKGROUND)</h3><ul>
+<li><p><strong>区块链基本知识</strong><br>区块链可认为是一个分布式的公共账本，记载了交易信息和资产信息。区块链中的每个用户本地都存储着一个账本的副本，并运行着一个客户端，负责和整个网络同步更新账本信息。</p>
+</li>
+<li><p><strong>区块链中的链指什么</strong><br>区块链系统的交易信息存储在区块(block)中，从第二个区块开始，每个区块都有前一区块的哈希值，即相当于把各个区块链起来了，最终各个区块按时间顺序链接起来呈现一套完整的数据(区块链大账本)。 </p>
+</li>
+<li><p><strong>区块链加密技术</strong><br>区块链采用了非对称加密技术，和传统对称加密最大不同是，加密和解密不再是同一把钥匙，而是分为公钥和私钥。只有特定的用户具有私钥，可以对交易信息进行加密和数字签名；而所有的用户都具备公钥，可以对交易信息解密，并通过数字签名验证交易签署者的身份。 </p>
+</li>
+<li><p><strong>共识算法</strong><br><strong>问题背景：</strong>因为区块链是分布式存储的，所有节点都需要对区块链中块的内容和次序达成“共识”，为了解决这个问题就提出了共识算法。<br><strong>工作量证明算法(POW)：</strong>这是目前最广泛使用的共识算法，其基本原理是：一个节点将交易信息打包到区块中，并添加一个随机数，再做哈希和运算，之后将块发布到网络中。其他节点接收到块后，根据块中包含的参数进行大量的计算(俗称挖矿)，计算出的结果如果小于哈希和，即完成了这部分工作，得出的结果值就相当于对其工作量的“证明”。拥有“证明”后节点不仅会获得一定奖励，也拥有了创建区块的权利，新创建的区块会加到主链末端，其他节点可在其后面继续添加新区块，其后每添加一个区块，就相当于做了一次确认，当其后的区块达到了一定数量后(比特币是6个，以太坊是12个)，就相当于和网络中其他节点达成“共识”了，这个区块即正式被记录在案了。<br><strong>核心思想：</strong>工作量证明机制的核心思想是工作方要得出结果具有一定难度，但验证方检查结果却非常容易，因此很容易验证工作方是不是做了相应工作。既保证了工作完成后奖励的价值(需要付出大量的计算代价)，激励节点去积极打包交易信息，同时验证的简单性也保证了共识算法的效率和可靠。</p>
+</li>
+<li><p><strong>分叉问题(fork)</strong><br><strong>基本概念：</strong>考虑一种小概率情况，两个节点恰好同时完成了计算，创建了区块，并向全网进行了广播，这种情况就叫做分叉。形象的理解就是区块链主链的末端被连了两个块，像是分叉了一样。<br><strong>分叉的影响：</strong>正常情况下，网络中所有的节点达成共识，所生成的区块链就是一条主链，内容、次序都是确定的；而在分叉的情况下，区块链会向两个不同的方向延申(因为每一个区块都是依赖于上一个区块产生的)，主链的内容、次序就不确定了，各节点即无法正常地查询交易和资产信息。<br><strong>解决办法：</strong>所有节点都从当前最长的链开始工作。因为有统计结论，链中的区块数越多，越不容易发生分叉现象。</p>
+</li>
+</ul>
+<h3 id="比特币交易的提交-COMMIT-OF-BITCOIN-TRANSACTIONS"><a href="#比特币交易的提交-COMMIT-OF-BITCOIN-TRANSACTIONS" class="headerlink" title="比特币交易的提交(COMMIT OF BITCOIN TRANSACTIONS)"></a>比特币交易的提交(COMMIT OF BITCOIN TRANSACTIONS)</h3><p>在本节中，作者讨论了影响比特币提交时间的因素，并进行了实验验证。</p>
+<ul>
+<li><p><strong>影响交易提交时间的因素</strong><br><strong>交易手续费(transaction fee)：</strong>手续费的多少会影响节点打包交易信息的积极性，从而影响交易提交的时间。<br><strong>交易是否按顺序到达：</strong>如果一个交易比其所引用的父交易先到达，则被称为orphan。只有父交易提交后，子交易才能提交，否则子交易就会一直在mempool中等待。<br><strong>锁定时间(locktimes)：</strong>这是一个用户可设置的参数，可使得某个交易在特定顺序的区块产生之前一直处于不可用状态。  </p>
+</li>
+<li><p><strong>实验过程</strong><br><strong>实验任务：</strong>观测交易的产生并记录其提交所花费的时间。为了探究不同网络环境下的情况，作者在2016年11月和2017年4月分别进行了两次实验（第二次实验的网络负载较大）。<br><strong>观测窗口：</strong>为了充分收集包含在区块链中的交易信息，作者定义了观测窗口：从实验开始前的第一个区块到实验结束24h后的一个区块，这之间的交易即处于观测窗口中，都会被记录下来。</p>
+</li>
+<li><p><strong>实验结果</strong><br>作者主要研究的交易有两类：<strong>Straight-accepts</strong>和<strong>Oranphans</strong>。<br>实验结果1（针对到达顺序因素）：由Fig.2可知两次实验中，Oranphans的提交时间都比Straight-accepts的时间要长，且在第二次实验中尤为明显，可见到达的顺序对提交时间有着显著的影响，按顺序到达的交易比无序到达的交易时间要短很多。<br>实验结果2（针对交易手续费因素）：由Fig.3可知，交易手续费和提交时间之间并没有显著关联。<br>实验结果3（针对locktimes因素）：通过作者分析可知，绝大多数交易并未使用locktimes这个参数，且Oranphans和Straight-accepts这两类交易结束锁定的时间差异也很大，最终作者认为locktimes并非是Oranphans延迟的主要因素。  </p>
+</li>
+</ul>
+<h3 id="以太坊交易的提交-COMMIT-OF-ETHEREUM-TRANSACTIONS"><a href="#以太坊交易的提交-COMMIT-OF-ETHEREUM-TRANSACTIONS" class="headerlink" title="以太坊交易的提交(COMMIT OF ETHEREUM TRANSACTIONS)"></a>以太坊交易的提交(COMMIT OF ETHEREUM TRANSACTIONS)</h3><p>在本节中，作者介绍了以太坊不能保证提交的原理，并实验研究了gas price、gas limit、network三个因素对提交时间的影响。</p>
+<ul>
+<li><p><strong>以太坊中交易事务的生命周期</strong><br>1、交易声明：交易发生并声明。<br>2、交易打包进区块：发布节点将交易信息打包到区块中。<br>3、区块链接到主链：节点完成打包计算，将区块链接到主链。<br>4、交易正式提交：其后链接了一定数量的区块后，即正式提交。<br>注：因为分叉现象或其他原因，步骤2并不能保证交易最终一定被提交，这就产生系统的可靠性问题。</p>
+</li>
+<li><p><strong>实验过程</strong><br>实验任务：研究交易从打包到最终提交所花费的时间以及分支合并后会丢失多少已打包的交易。<br>创建监听节点：作者改写了一个客户端节点作为监听节点，以检测交易声明和区块声明。<br>记录时间：监听节点会记录交易声明的时间和区块到达的时间，以计算交易提交的延迟时间。<br>计算方法：根据交易声明的时间和包含此交易的第一个区块到达的时间，我们计算这之间的时间差，结果就是Fig.5中的<br><code>1st inclusion</code>；当第一个块变为叔块时，我们可根据包含此交易的第二个区块到达的时间，计算出<code>2nd inclusion</code>；同理，<br><code>3rd inclusion</code>也是这么计算的；此外，我们根据最后一个区块的到达时间，可以计算出<code>12 confirmations</code>和<code>36 confirmations</code>。将上述计算出的结果绘成图表，就是文中的Fig.5。</p>
+</li>
+<li><p><strong>实验结果</strong><br>实验结果1（各类提交时间的对比）：从Fig.5中可知，相比1st/2nd/3rd inclusion，12/36 conclusion的提交时间更长，而36 conclusion尤为明显，这说明交易数量越多，交易提交所花费的时间越长。<br>实验结果2（针对gas price因素）：从Fig.6中可知，总体趋势是gas price越高，延时越短，但gas price高于25Gwei后对延时的影响就非常小了。这也侧面解释为什么大部分交易定价在[20,25)的区间内(性价比最高)。<br>实验结果3（针对maximum gas因素）：虽然有个别交易因maximum gas过高而有明显的延时，但作者依旧认为maximum gas和提交时间之间没有很强的关联性。<br>实验结果4（针对network delays因素）：虽然没有得出明确的结论，但作者分析了in-order和out-of-order交易在提交延迟和数量方面的数据后，认为网络延迟对交易的传播是有负面影响的。</p>
+</li>
+</ul>
+<h3 id="BLOCK-GAS-LIMIT对以太坊的影响-IMPACT-OF-THE-BLOCK-GAS-LIMIT-IN-ETHEREUM"><a href="#BLOCK-GAS-LIMIT对以太坊的影响-IMPACT-OF-THE-BLOCK-GAS-LIMIT-IN-ETHEREUM" class="headerlink" title="BLOCK GAS LIMIT对以太坊的影响(IMPACT OF THE BLOCK GAS LIMIT IN ETHEREUM)"></a>BLOCK GAS LIMIT对以太坊的影响(IMPACT OF THE BLOCK GAS LIMIT IN ETHEREUM)</h3><ul>
+<li><p><strong>产生原因</strong><br>出台gas limit per block的原因是希望通过限制每个区块消耗的gas总量，防止DDoS攻击。如果交易所需的气体超过了限制值，交易就无法被包含到块中，这就使得大规模的分布式拒绝服务攻击难以发生。</p>
+</li>
+<li><p><strong>问题背景</strong><br>在没有限制之前，签署合约花费了150万的气体，因此作者认为限制会对合约相关的交易产生负面影响，但对单纯的资金转移交易应该影响不大，之后作者即针对这个观点进行了分析。</p>
+</li>
+<li><p><strong>分析结果</strong><br>由Fig.10可知，在50万气体的限制下，有46.21%的合约类交易无法正常进行；在200万气体的限制下，也有18.78%的合约类交易无法产生。因为气体限额的存在，大量的合约类交易无法进行，这也验证了作者之前的观点。</p>
+</li>
+</ul>
+<h3 id="以太坊的交易终止机制-TRANSACTION-ABORT-IN-ETHEREUM"><a href="#以太坊的交易终止机制-TRANSACTION-ABORT-IN-ETHEREUM" class="headerlink" title="以太坊的交易终止机制(TRANSACTION ABORT IN ETHEREUM)"></a>以太坊的交易终止机制(TRANSACTION ABORT IN ETHEREUM)</h3><p>这一节主要对应了作者在摘要中提到的观点：终止机制的缺失会使大量交易处于既未终止也未提交的”pending”状态，严重影响系统的可靠性。为解决这个问题，作者提出了一种交易终止的机制，并进行了实验考察。</p>
+<ul>
+<li><p><strong>终止原理</strong><br><strong>竞争法：</strong>如果先前的交易\(Tx_i\)在规定的时间内未提交，账户可以重新发布一个具有相同nonce序号的交易\(Tx_i^{\prime}\)，赋予其更高的手续费，并将交易的接收方设为自己。一旦\(Tx_i^{\prime}\)成功提交，\(Tx_i\)就会自动过期了，即终止了其状态。<br><strong>重传法：</strong>账户重新发布一个与\(Tx_i\)内容相同的交易\(Tx_i^{\prime\prime}\)，但设置较高的手续费，这样虽然\(Tx_i^{\prime\prime}\)交易信息和\(Tx_i\)是一样的，但数字签名和哈希值却不一样(因为手续费不一样)，这样其他节点会把其当作一个新的交易。只要交易\(Tx_i\)和\(Tx_i^{\prime\prime}\)任何一个成功提交了，另外一个即过期了(因为nonce是一样的)，这样也可以达到终止的目的。</p>
+</li>
+<li><p><strong>实验模拟的三种情况</strong><br>1、交易在规定时间内没有被打包<br>2、因为手续费不足，用户决定撤回之前发布的交易<br>3、因为账户余额不足，交易无法被正常提交，即进入”pending”状态</p>
+</li>
+<li><p><strong>对情况1的实验</strong><br>实验原理：为了降低交易被打包的概率，作者减少了交易的手续费，分别为市场均价的0%、10%、…、90%，并设置了10min的截止时间。如果截止时间内原交易未提交，就按照上文提到的竞争法进行终止。<br>实验结果1：大部分交易都成功提交了，甚至30%-90%市场价的交易全部成功提交。出现这样的情况，我猜测可能是因为设置的终止时间太长了，即虽然手续费低，但只要时间足够长，交易还是有可能成功提交的。<br>实验结果2：在0-20%市场价的交易中，有16个没有成功提交，但最后都成功终止了，终止成功率为100%。</p>
+</li>
+<li><p><strong>对情况2的实验</strong><br>实验原理：这种情况考虑的是客户端希望撤回原先的交易，因此相比情况1，设置的截止时间要短一些（因为如果再设置很长时间的话，就失去模拟用户自行撤回的意义了），实验中是取所有交易提交时间的中位点，即3min。<br>实验结果1：截止时间缩短后，未提交的交易数明显增多，总共有53个交易没有提交，甚至0-20%市场价的交易全部没有提交成功，这也验证了我在实验1中的猜想。<br>实验结果2：虽然未提交的交易数量大大增加，但依旧每个交易都成功终止了，成功率为100%。</p>
+</li>
+<li><p><strong>对情况3的实验</strong><br>实验原理：首先作者创建了两个交易：\(Tx_1(bonce=n+1,value=\frac {k} {1000})\)和\(Tx_1(bonce=n+1,value=\frac {999k} {1000})\)，k为当前账户的余额。其次为了模拟余额不足这种情况，作者采用了一种很巧妙的方式：先发送\(Tx_2\)，隔5s后再发送\(Tx_1\)，这样可以使得\(Tx_2\)顺利发出，因为先发\(Tx_1\)的话，一旦其被顺利打包，\(Tx_2\)就会因为余额不够而无法发送到网络中了。采用这种方式，\(Tx_2\)就有可能比\(Tx_1\)先发到网络中，又因为\(Tx_1 nonce&lt;Tx_2 nonce\)，所以\(Tx_1\)必然会比\(Tx_2\)先打包，这样\(Tx_2\)就会因余额不够而停滞在网络中，即成功模拟了因余额不足所导致的”pending”状态。<br>实验结果：作者进行了100次实验，终止成功率依然是100%，结合前两次实验的结果，说明终止机制的效果还是非常好的。</p>
+</li>
+</ul>
+<h2 id="个人感悟"><a href="#个人感悟" class="headerlink" title="个人感悟"></a>个人感悟</h2><h3 id="对于区块链的理解"><a href="#对于区块链的理解" class="headerlink" title="对于区块链的理解"></a>对于区块链的理解</h3><ul>
+<li>区块链的本质是一个去中心化的分布式账本。我认为区块链就是一个账本，记载了所有交易信息和资产信息，但和传统金融记录方式的不同在于，区块链账本并非存储在某一个中心，其在每一个用户的本地都有存储的副本，相当于每个用户都是一个中心。  </li>
+<li>去中心化带来的好处：首先是不用考虑中心的故障问题，就像双11，你再想买一个东西，淘宝服务器一旦瘫痪就不行了，所有的交易都依赖于这个第三方的中心；其次是不用担心信息泄露的问题，还是淘宝的例子，你要买东西、卖家要卖东西，都要提供个人信息，交易完成后也会产生交易信息，这些都被存在淘宝的服务器中，在当今这个强调个人隐私的时代，这是非常让人困扰的；第三是安全，区块链技术具有不可篡改性，我们不用担心因第三方中心的原因导致我们的资产受损失(如银行破产)。  </li>
+<li>去中心化带来的问题：最大的问题是我们如何在各个节点间同步数据。在中心化系统中，中心说什么就是什么，其他人只需和中心保持同步即可；而在去中心化系统中，我们需要和全网进行同步，难度增大了很多，为了解决这个问题，也就出现了共识机制，大家共同记账，一定数量的节点达成共识后，就可正式在网络中进行同步了；而为了提高大家记账的积极性，就出现了工作量证明算法，对于成功记账的人会有奖励，大家都去积极记账了，账本自然就可以不断地维护、更新了。</li>
+</ul>
+<h3 id="对于区块链可靠性的理解"><a href="#对于区块链可靠性的理解" class="headerlink" title="对于区块链可靠性的理解"></a>对于区块链可靠性的理解</h3><ul>
+<li>本文对于区块链可靠性的研究主要围绕“交易提交时间”这个概念，一个交易产生了，最好的情况是在规定时间内顺利打包，加入到区块链主链中。但因为复杂的网络环境、交易手续费或其他种种因素，一个交易的提交很可能会产生延迟，甚至会出现交易既没有提交、又没有销毁的”pending”状态。  </li>
+<li>这就需要我们去探讨两个方面的问题：到底有哪些因素会影响交易的提交时间？交易如果没有顺利提交我们应该采取什么办法？前者就是文章第三、第四节主要研究的内容，通过具体的实验分析了各种可能影响因素；后者则是作者在第六节研究的内容，提出了一种交易终止机制并进行了实验测试。</li>
+</ul>
+<h3 id="对于交易终止机制的理解"><a href="#对于交易终止机制的理解" class="headerlink" title="对于交易终止机制的理解"></a>对于交易终止机制的理解</h3><ul>
+<li>文中提到了两种交易终止的方法：竞争法和重传法，虽然有些区别，但本质思想都是一样的，都是利用了“nonce相等”的原理来终止原来的交易。  </li>
+<li>文中还提到，虽然以太坊不像比特币那样把每一个块都链接起来，但其每个块都有唯一的顺序号nonce，而且主链上的区块必须是按顺序的，因此我们就可以利用nonce号来使某次交易过期，从而达到终止的目的。</li>
+</ul>
+<h3 id="其他一些感想"><a href="#其他一些感想" class="headerlink" title="其他一些感想"></a>其他一些感想</h3><ul>
+<li>论文中还有一点使我印象很深刻，就是整篇文章都贯穿着实验的思想，作者进行了大量的实验去研究某些因素的影响，对所提出的终止机制也进行了具体的实验探究，实验过后还有对实验结果的合理分析，这些都使得整篇文章的逻辑结构很清晰，值得我在今后的科研工作中去学习。</li>
+</ul>
+<h2 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h2><h3 id="对比特币实验中无序现象产生的原因进行研究"><a href="#对比特币实验中无序现象产生的原因进行研究" class="headerlink" title="对比特币实验中无序现象产生的原因进行研究"></a>对比特币实验中无序现象产生的原因进行研究</h3><ul>
+<li>在第三节中，作者研究了到达顺序对交易提交时间的影响，最终得出了结论：顺序到达的交易比无序到达的交易的延时要短。</li>
+<li>作者虽然分析出了现象，但对产生这种现象的原因并没有深入研究，我认为如果对无序现象产生的原因进行研究，也会有助于改善区块链系统的可靠性问题。</li>
+<li>方案实现：可参考文中第三节引言部分提到的几种情况，我认为可以主要研究节点转发策略和节点负载这两个因素，转发策略的不同可能会打乱原先的交易分发顺序，从而使得交易无法按顺序到达其他节点；而节点负载主要会影响交易传播的速度，不同节点的传播速度如果不同，也可能会导致交易失序。有了初步的分析，我们可设计实验来具体研究：首先选择一定量的矿工节点，将其按照不同的转发策略和不同的节点负载进行分组，转发策略可通过观察客户端版本、研究底层转发行为的实现代码等方式得出，而节点负载可通过观测相应网络指标得到。之后可以对两种因素进行控制变量分析，从而研究其对交易到达顺序的影响。</li>
+</ul>
+<h3 id="对比特币实验2中部分Orphans数据未统计的情况进行改进"><a href="#对比特币实验2中部分Orphans数据未统计的情况进行改进" class="headerlink" title="对比特币实验2中部分Orphans数据未统计的情况进行改进"></a>对比特币实验2中部分Orphans数据未统计的情况进行改进</h3><ul>
+<li>在比特币的实验2中，因为高网络负载的原因，有20%的Orphans交易最后未被打包到块中，观测样本因此少了20%，作者也认为这对实验结果是一个很大的限制，因此我认为可根据这一点做下改进。  </li>
+<li>方案实现：我考虑了两种思路，思路一：选择网络负载比实验2小但比实验1大的一个时间点，按照同样的方式做实验3，这样既可观测到不同网络环境下的实验结果，也可以减小网络负载对Orphans交易的影响，不至于使实验观测到的样本减少太多；思路二：保持实验1和实验2的网络条件不变，增加观测窗口的时长，分别进行实验3和实验4。由Fig.2可知计算的是累积比例，因此增加观测窗口相当于延长了一段X轴，Orphans Exp 2这条线最终就有机会到达1，而对其他三条曲线则不会有影响(它们已经很接近1了)，因此就可收集到更多的Orphans数据。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-09-13</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PaperNotes/" class="color2">Paper Notes</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#论文内容概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文内容概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简介-INTRODUCTION"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简介(INTRODUCTION)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#背景知识-BACKGROUND"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">背景知识(BACKGROUND)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#比特币交易的提交-COMMIT-OF-BITCOIN-TRANSACTIONS"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">比特币交易的提交(COMMIT OF BITCOIN TRANSACTIONS)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以太坊交易的提交-COMMIT-OF-ETHEREUM-TRANSACTIONS"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">以太坊交易的提交(COMMIT OF ETHEREUM TRANSACTIONS)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BLOCK-GAS-LIMIT对以太坊的影响-IMPACT-OF-THE-BLOCK-GAS-LIMIT-IN-ETHEREUM"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">BLOCK GAS LIMIT对以太坊的影响(IMPACT OF THE BLOCK GAS LIMIT IN ETHEREUM)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以太坊的交易终止机制-TRANSACTION-ABORT-IN-ETHEREUM"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">以太坊的交易终止机制(TRANSACTION ABORT IN ETHEREUM)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#个人感悟"><span class="post-toc-number">2.</span> <span class="post-toc-text">个人感悟</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对于区块链的理解"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">对于区块链的理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对于区块链可靠性的理解"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">对于区块链可靠性的理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对于交易终止机制的理解"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">对于交易终止机制的理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他一些感想"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">其他一些感想</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#改进方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">改进方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对比特币实验中无序现象产生的原因进行研究"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">对比特币实验中无序现象产生的原因进行研究</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对比特币实验2中部分Orphans数据未统计的情况进行改进"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">对比特币实验2中部分Orphans数据未统计的情况进行改进</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

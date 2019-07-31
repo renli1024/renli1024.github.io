@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Matlab函数文档 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文记录了matlab中一些函数的用法，以便后期查阅。">
+<meta name="keywords" content="Matlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab函数文档">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/19/Matlab函数文档/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文记录了matlab中一些函数的用法，以便后期查阅。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-29T01:39:02.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Matlab函数文档">
+<meta name="twitter:description" content="本文记录了matlab中一些函数的用法，以便后期查阅。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Matlab函数文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Matlab函数文档
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-19
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文记录了matlab中一些函数的用法，以便后期查阅。<br><a id="more"></a></p>
+<h3 id="matlab一些函数用法"><a href="#matlab一些函数用法" class="headerlink" title="matlab一些函数用法"></a>matlab一些函数用法</h3><h4 id="求积分、求差分、求导数"><a href="#求积分、求差分、求导数" class="headerlink" title="求积分、求差分、求导数"></a>求积分、求差分、求导数</h4><p>数值积分：integral(fun,xmin,xmax)<br>符号积分：int()<br>求差分、求导都是用的diff函数</p>
+<h4 id="解常微分方程"><a href="#解常微分方程" class="headerlink" title="解常微分方程"></a>解常微分方程</h4><ul>
+<li>符号解：fun=dsolve(‘equ1’,’equ2’,’equ3’)，fun即为最终求得的微分方程，默认对自变量t求导</li>
+<li>数值解：ode工具箱</li>
+</ul>
+<h4 id="解方程组"><a href="#解方程组" class="headerlink" title="解方程组"></a>解方程组</h4><p>solve：求方程组的符号解<br>linsolve：求线性方程组数值解<br>fsolve：求非线性方程组数值解</p>
+<h4 id="解不等式"><a href="#解不等式" class="headerlink" title="解不等式"></a>解不等式</h4><p>matlab中没有求解不等式的函数，只能先解对应的等式再画图判断<br>normpdf(x,mu,sigma)   x(向量)的正态分布概率密度函数</p>
+<h4 id="插值函数"><a href="#插值函数" class="headerlink" title="插值函数"></a>插值函数</h4><ul>
+<li>一维插值函数：y=interp1(x0,y0,x,’spline’)，spline为三次样条插值，x0、y0为原始点，x为更密集的需求值点，y为求得的函数值，一般不推荐外插</li>
+<li>二维插值函数：z = interp2(x0,y0,z0,x,y,’spline’)</li>
+</ul>
+<h4 id="多项式拟合"><a href="#多项式拟合" class="headerlink" title="多项式拟合"></a>多项式拟合</h4><p>[p]=polyfit(x,y,n)  和  y1=polyval(p,x1)，p为降幂排列的阶数<br>matlab拟合工具箱：cftool</p>
+<h4 id="求线性规划问题"><a href="#求线性规划问题" class="headerlink" title="求线性规划问题"></a>求线性规划问题</h4><p>linprog()</p>
+<h4 id="画散点图"><a href="#画散点图" class="headerlink" title="画散点图"></a>画散点图</h4><p>scatter()</p>
+<h4 id="求矩阵行列数"><a href="#求矩阵行列数" class="headerlink" title="求矩阵行列数"></a>求矩阵行列数</h4><p>size(A)：矩阵A的行、列数；<br>size(A,1)：A的行数；<br>size(A,2)：A的列数。</p>
+<h4 id="替换方程中的特定符号"><a href="#替换方程中的特定符号" class="headerlink" title="替换方程中的特定符号"></a>替换方程中的特定符号</h4><p>subs(fun,{‘a’,’b’},{3,5})<br>对符号方程中特定符号进行替换,可替换为特定数值、其他符号变量；也可替换为数组：得到同阶数组。</p>
+<h4 id="设定有效数字位数"><a href="#设定有效数字位数" class="headerlink" title="设定有效数字位数"></a>设定有效数字位数</h4><p>vpa(xxx, 数字)<br>四舍五入控制有效数字位数，xxx可以是数，也可是表达式。</p>
+<h4 id="poly2sym"><a href="#poly2sym" class="headerlink" title="poly2sym()"></a>poly2sym()</h4><p>poly2sym(系数行向量,x)<br>系数行向量-&gt;多项式，各项次数由系数数量控制</p>
+<h4 id="一些统计学名词"><a href="#一些统计学名词" class="headerlink" title="一些统计学名词"></a>一些统计学名词</h4><ul>
+<li>SSE(残差平方和)：The sum of squares due to error，越接近0越好。点对点误差平方，再加和</li>
+<li>MSE(残差平方和均值)：Mean squared error，SSE/n</li>
+<li>RMSE：MSE开根号</li>
+<li>SSR(回归平方和)：预测数据与原始数据均值之差的平方，再加和。点对面</li>
+<li>R-square(确定系数)：[0,1]，越接近1越好</li>
+<li>Adjusted R-square(矫正后确定系数)：对复杂模型的惩罚</li>
+</ul>
+<h4 id="读excel"><a href="#读excel" class="headerlink" title="读excel"></a>读excel</h4><p>读excel：A=xlsread(filename,sheet,’B3:C4’)，sheet为对应数字<br>写excel：直接粘贴</p>
+<h4 id="Min-Max标准化"><a href="#Min-Max标准化" class="headerlink" title="Min-Max标准化"></a>Min-Max标准化</h4><p>将矩阵的【每一行】进行标准化处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A=[1,2,3];</span><br><span class="line">A=mapminmax(A,0,1);      标准化到0~1之间</span><br><span class="line">[Y,PS] = mapminmax(X,YMIN,YMAX)</span><br><span class="line">Y = mapminmax(&apos;apply&apos;,X,PS)</span><br><span class="line">X = mapminmax(&apos;reverse&apos;,Y,PS)</span><br></pre></td></tr></table></figure></p>
+<h4 id="legend加公式"><a href="#legend加公式" class="headerlink" title="legend加公式"></a>legend加公式</h4><p>legend(‘样本’,[‘y = ‘,sprintf(‘%.3fx^2+%.3fx%.3f’,p(1),p(2),p(3))]);</p>
+<h4 id="产生随机数"><a href="#产生随机数" class="headerlink" title="产生随机数"></a>产生随机数</h4><ol>
+<li>rng(2)，设置随机数种子</li>
+<li>之后rand()产生的随机数都是一定的</li>
+</ol>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-19</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Matlab/" class="color2">Matlab</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#matlab一些函数用法"><span class="post-toc-number">1.</span> <span class="post-toc-text">matlab一些函数用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#求积分、求差分、求导数"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">求积分、求差分、求导数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解常微分方程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">解常微分方程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解方程组"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">解方程组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解不等式"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">解不等式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#插值函数"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">插值函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多项式拟合"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">多项式拟合</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#求线性规划问题"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">求线性规划问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#画散点图"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">画散点图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#求矩阵行列数"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">求矩阵行列数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#替换方程中的特定符号"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">替换方程中的特定符号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#设定有效数字位数"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">设定有效数字位数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#poly2sym"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">poly2sym()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一些统计学名词"><span class="post-toc-number">1.13.</span> <span class="post-toc-text">一些统计学名词</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#读excel"><span class="post-toc-number">1.14.</span> <span class="post-toc-text">读excel</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Min-Max标准化"><span class="post-toc-number">1.15.</span> <span class="post-toc-text">Min-Max标准化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#legend加公式"><span class="post-toc-number">1.16.</span> <span class="post-toc-text">legend加公式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#产生随机数"><span class="post-toc-number">1.17.</span> <span class="post-toc-text">产生随机数</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

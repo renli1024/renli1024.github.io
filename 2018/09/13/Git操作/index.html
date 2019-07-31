@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Git操作 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本篇文章介绍了Git原理、基本命令、如何在常见开发平台中使用Git以及如何使用Github等。">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git操作">
+<meta property="og:url" content="https://renli1024.github.io/2018/09/13/Git操作/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本篇文章介绍了Git原理、基本命令、如何在常见开发平台中使用Git以及如何使用Github等。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/Git/Git系统三个区域.png">
+<meta property="og:image" content="https://renli1024.github.io/images/Git/文件状态周期.jpg">
+<meta property="og:image" content="https://renli1024.github.io/images/Git/VS_Git.png">
+<meta property="og:updated_time" content="2019-05-29T01:32:23.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git操作">
+<meta name="twitter:description" content="本篇文章介绍了Git原理、基本命令、如何在常见开发平台中使用Git以及如何使用Github等。">
+<meta name="twitter:image" content="https://renli1024.github.io/images/Git/Git系统三个区域.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Git操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Git操作
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-13
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本篇文章介绍了Git原理、基本命令、如何在常见开发平台中使用Git以及如何使用Github等。<br><a id="more"></a></p>
+<h2 id="Git原理"><a href="#Git原理" class="headerlink" title="Git原理"></a>Git原理</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Git是一个分布式版本控制系统，功能就像其名字一样，可以从两个方面来理解：一是版本控制，二是分布式。</p>
+<ul>
+<li>所谓版本控制系统，其作用是可以记录文件的每一次修改（改了哪里，改了什么，什么时候改的），当人们知道这些信息后，就可以方便地进行版本控制<br>（如查看自己之前改了什么，恢复以前的某个操作等）；</li>
+<li>而所谓分布式，则是指Git将版本信息分布地进行保存（并没有集中存储在某台电脑上），每个参与项目的电脑上都会保有一个版本信息库，这样的好处是信息不容易丢失，且配合Git强大的分支管理功能，能极大地提升协同工作效率。</li>
+</ul>
+<h3 id="Git存储格式"><a href="#Git存储格式" class="headerlink" title="Git存储格式"></a>Git存储格式</h3><p>Git系统反映在文件上就是<code>.git</code>文件夹，这个文件夹中存储了所有Git所需的信息（版本信息，分支信息，配置信息等），Git仓库本质上指的就是这个文件夹，这也是在克隆github库时后缀必须是<code>.git</code>的原因。<br>注：但是在github repository中并不能找到对应的<code>.git</code>文件夹，个人猜测应该是github将这个文件夹隐藏了（实际在电脑文件系统中.git也是隐藏文件夹），github会自动对其进行维护，用户并不需要管这个文件夹。</p>
+<h3 id="Git文件状态"><a href="#Git文件状态" class="headerlink" title="Git文件状态"></a>Git文件状态</h3><p>目录下的文件可分为<code>tracked</code>(已跟踪)和<code>untracked</code>(未跟踪)两种状态。<br><code>tracked</code>：指处于Git控制下的文件，可以进行<code>stage, commit</code>等操作；<br><code>untracked</code>：指被Git系统忽略的文件，可通过配置<code>.gitignore</code>文件来设置忽略哪些文件。<br>而根据文件所在区域的不同，<code>tracked</code>文件又可分为三种状态：<code>staged</code>、<code>committed</code>和<code>modified</code>。为便于理解，首先引入Git系统的三个区域。</p>
+<h4 id="Git系统的三个区域"><a href="#Git系统的三个区域" class="headerlink" title="Git系统的三个区域"></a>Git系统的三个区域</h4><p>包括Working Directory(工作目录), Staging Area（暂存区）, Repository(仓库)。</p>
+<ul>
+<li>Working Directory：即为当前的工作目录；</li>
+<li>Staging Area：是一个虚拟区域（并没有实际的文件夹与之对应），其存储了所有暂存的文件；</li>
+<li>Repository：仓库区，也是一个虚拟的区域，所有已保存的文件都会存入这里。</li>
+</ul>
+<p>三个区域的关系如下：<br><img src="/images/Git/Git系统三个区域.png" width="600" height="300" alt="Git系统的三个区域" align="center"></p>
+<h4 id="tracked文件的三种状态"><a href="#tracked文件的三种状态" class="headerlink" title="tracked文件的三种状态"></a>tracked文件的三种状态</h4><p><code>staged</code>：指已存入暂存区的文件，下次提交时会将暂存区中的文件提交到Git仓库。<br><code>committed</code>：指已经提交到Git仓库中的文件，也可理解为未修改的文件。<br><code>modified</code>：表示已修改，但还未提交到仓库中的文件。<br>一个文件的状态周期如下：<br><img src="/images/Git/文件状态周期.jpg" width="600" height="300" alt="文件状态周期" align="center"></p>
+<h3 id="如何在各个系统上使用Git"><a href="#如何在各个系统上使用Git" class="headerlink" title="如何在各个系统上使用Git"></a>如何在各个系统上使用Git</h3><p><strong>Linux/Mac下：</strong>安装Git后，Git会被添加到环境变量中，可直接通过terminal来执行git指令；<br><strong>Windows下：</strong>安装Git后，可通过Git Bash（命令行）和Git GUI（图形界面）两种方式使用。<br><strong>注：</strong>目前IDE大多集成了Git的功能，直接在IDE里点一点就可以很方便地使用Git。但为了充分了解Git的工作方式和原理，还是需要学习一下Git的相关指令。</p>
+<h3 id="Git-Bash"><a href="#Git-Bash" class="headerlink" title="Git Bash"></a>Git Bash</h3><p>Bash是Shell的一种，首先介绍一下Shell。</p>
+<ul>
+<li><p><strong>Shell</strong><br>Shell字面理解是“壳程序”（操作系统可以分为核心kernel和外壳Shell两部分），用于用户和系统内核间的交互。相当于是一个命令解析器，其接收用户命令，然后调用相应的内核指令，完成相应的功能。<br>Shell有很多种，如Bourne SHell(sh)、<strong>Bourne Again SHell(bash)</strong>、C SHell(csh)等，这些Shell最大的区别就是命令集的不同。<br><strong>注1：</strong>在linux/mac中预设的Shell就是bash；在Windows中的Shell是cmd和PowerShell，cmd功能较为简单，PowerShell功能则非常强大，可以看作cmd的超集。<br><strong>注2：</strong>如何区分各种shell？可通过命令的开头字符，如果是<code>$, #</code>则为bash(<code>$</code>为普通用户，<code>#</code>为管理员root超级用户)；如果是<code>PS &lt;当前地址&gt;</code>则为Powershell，如果直接是<code>&lt;当前地址&gt;</code>则为cmd。<br><strong>注3：</strong>同时Shell又是一种编程语言，可自动执行一连串的命令，并具有定义变量、循环/分支控制结构等特性。</p>
+</li>
+<li><p><strong>Git Bash</strong><br>Git Bash是Git在Windows下模拟的Linux命令行环境，在这个环境下可以使用Git命令、常用的Linux命令等。<br>注：在Git Bash中复制粘贴可以直接右键，也可以用快捷键（复制：ctrl+ins，粘贴：shift+ins），但不能ctrl+c/v。</p>
+</li>
+</ul>
+<h2 id="Git基础命令"><a href="#Git基础命令" class="headerlink" title="Git基础命令"></a>Git基础命令</h2><h3 id="从新建版本库-gt-提交第一个文件"><a href="#从新建版本库-gt-提交第一个文件" class="headerlink" title="从新建版本库-&gt;提交第一个文件"></a>从新建版本库-&gt;提交第一个文件</h3><p>以下从Git常用的使用流程出发来介绍相关命令</p>
+<ol>
+<li>创建版本库：<code>git init</code>，将当前目录变为git可管理的仓库</li>
+<li>添加追踪文件：<code>git add &lt;文件名&gt;</code>，用来跟踪新文件(tracked)；<code>add .</code>代表所有文件。</li>
+<li>修改文件</li>
+<li>暂存文件(stage)：<code>git add &lt;文件名&gt;</code>，这是一个多功能指令，也可用于将文件添加到暂存区。<code>add</code>指令可理解为“添加内容到下一次提交中”。</li>
+<li>提交文件(commit)：<ul>
+<li><code>git commit -m &quot;&lt;提交说明&gt;&quot;</code>：将暂存区中的文件提交到仓库。</li>
+<li><code>git commit -a -m &quot;&lt;提交说明&gt;&quot;</code>：直接将文件提交到仓库（跳过暂存区）。</li>
+</ul>
+</li>
+<li>推送文件到远程库(push)：<code>git push &lt;远程库名字&gt; &lt;要push的分支名&gt;</code>。远程库名字一般为<code>origin</code>；如果推送的是主分支，分支名就为<code>master</code>。<br>注：初次push可以使用<code>git push -u &lt;远程库名字&gt; &lt;要push的分支名&gt;</code>来设置默认关联的远程库和远程分支，之后再提交就可以直接<code>git push</code>，无需再指定参数。</li>
+</ol>
+<h3 id="如何使用远程库"><a href="#如何使用远程库" class="headerlink" title="如何使用远程库"></a>如何使用远程库</h3><p>一般我们都是用Github作为远程库来使用的，因此下文远程库默认指的都是Github。</p>
+<h4 id="远程库与本地库关联"><a href="#远程库与本地库关联" class="headerlink" title="远程库与本地库关联"></a>远程库与本地库关联</h4><p>如果想使用远程库，需要本地库与远程库关联，具体方法有二：</p>
+<ol>
+<li>如果本地库是从远程库clone来的，那么直接就是关联的，无需任何操作；</li>
+<li>如果本地库是自己建的，则需要手动关联远程库，命令为：<br> <code>git remote add &lt;name&gt; &lt;url&gt;</code><br><code>name</code>: 自己给远程库起个名字，直接<code>origin</code>即可；<br><code>url</code>: 远程库url。</li>
+</ol>
+<h4 id="远程库名字-amp-url"><a href="#远程库名字-amp-url" class="headerlink" title="远程库名字 &amp; url"></a>远程库名字 &amp; url</h4><ul>
+<li>远程库名字约定俗成为：<code>origin</code>；</li>
+<li>远程库url有两种写法：<ul>
+<li>SSH写法：<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:lrStyle/rep_name.git</li>
+<li>HTTPS写法：<a href="https://lrStyle/rep_name.git" target="_blank" rel="noopener">https://lrStyle/rep_name.git</a><br>推荐用SSH写法（有时HTTPS会拒绝访问），但是不管哪种写法后缀都要是<code>.git</code>。</li>
+</ul>
+</li>
+<li><code>git remote -v</code>：查看远程仓库信息，<code>-v</code>参数为显示url地址。</li>
+</ul>
+<h4 id="克隆远程库"><a href="#克隆远程库" class="headerlink" title="克隆远程库"></a>克隆远程库</h4><p><code>git clone &lt;url&gt;</code>：克隆远程库到当前目录下（会直接克隆整个文件夹，所以没必要新建一个文件夹）。</p>
+<h3 id="Git初始化设置"><a href="#Git初始化设置" class="headerlink" title="Git初始化设置"></a>Git初始化设置</h3><p>必要的两个初始化配置：姓名和邮箱<br><code>git config --global user.name &quot;&lt;name&gt;&quot;</code>：设置姓名<br><code>git config --global user.email &quot;&lt;email&gt;&quot;</code>：设置邮箱<br><code>git config --list</code>：查看设置<br>注：Github会根据在Git中设置的邮箱来判断向它提交的用户，因此git的邮箱需要与github账号的邮箱保持一致。</p>
+<p>git push -u origin &lt;要同步的分支名&gt; ??</p>
+<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p><code>git log</code>：查看commit历史记录(出现<code>END</code>时按q退出)，只有当前版本之前的信息。<br><code>git log --pretty=oneline</code>：简略显示，在每一行显示一个提交，只包含提交说明。<br><code>git reflog</code>：简略显示所有的提交信息。</p>
+<h3 id="如何撤销已经push到远端上的commit"><a href="#如何撤销已经push到远端上的commit" class="headerlink" title="如何撤销已经push到远端上的commit"></a>如何撤销已经push到远端上的commit</h3><p>如果发现push到github上的commit有错误，或者是有一点小修改没加不想再新开个push，可以选择撤销已push的commit，具体步骤如下：</p>
+<ol>
+<li>先在本地回退到相应的版本：<code>git reset --hard &lt;版本号&gt;</code>。<br>注1：通过<code>git log</code>查看历史版本号；而且版本号只写开头几位就行。<br>注2：<code>--hard</code>参数意思是抛弃当前工作区的修改；如果希望保留工作区的更改，仅仅版本信息回退到之前的，可使用<code>--soft</code>参数（其实就相当于把之前的commit &amp; push撤销了）。</li>
+<li>本地进行修改，重新commit。</li>
+<li>重新向远端push：<code>git push origin &lt;分支名&gt; --force</code>。使用<code>--force</code>参数来强制覆盖掉远端的版本信息；普通的<code>git push</code>会提示本地版本落后远程版本，是交不上去的。</li>
+</ol>
+<ul>
+<li>注：如果回退之后又后悔了，则可以用<code>git reflog</code>查找之前的commid id（直接<code>git log</code>是查不到的），然后reset到之前的版本。</li>
+</ul>
+<h4 id="多人协作中的Git"><a href="#多人协作中的Git" class="headerlink" title="多人协作中的Git"></a>多人协作中的Git</h4><p>开始工作前先同步，推送前先同步，保证你向远程库推送的修改不会与别人冲突。</p>
+<ul>
+<li><strong>分支操作</strong><br>查看分支：git branch<br>创建分支：git branch xxx(分支名)<br>切换分支：git checkout xxx(分支名)<br>创建+切换分支：git checkout -b xxx(分支名)<br>合并某分支到当前分支：git merge xxx(要合并的分支名)<br>删除分支：git branch -d xxx(分支名)<br>强制删除未合并的分支 ：git branch -D xxx(分支名)<br>若合并分支时存在冲突，需要手动解决冲突再提交。<br>git log –graph ：查看分支合并图</li>
+</ul>
+<h4 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h4><p><code>git status</code>：查看工作区中的文件状态（是否有文件被修改过）<br><code>git diff</code>：查看文件具体的修改内容(默认是比较版本库中和工作目录中的文件)<br><code>git rm --cached &lt;文件名&gt;</code>：将某文件从<code>tracked</code>设为<code>untracked</code>，但硬盘上还会保留，只是不再Git不再跟踪了。<br><code>git rm &lt;文件名&gt;</code>：删除版本库中的文件。<br><code>git checkout -- &lt;文件名&gt;</code>：从版本库中恢复硬盘中被删除的文件。</p>
+<h3 id="设置-gitignore文件"><a href="#设置-gitignore文件" class="headerlink" title="设置.gitignore文件"></a>设置.gitignore文件</h3><p>除了通过命令使得不再跟踪某个文件，还可以设置<code>.gitignore</code>文件来指定哪些文件不再跟踪，遵循glob模式（shell所使用的简化的正则表达式格式）。<br>规则：<br><code>/</code>：匹配模式前加<code>/</code>表示是相对根目录下的位置；匹配模式最后加<code>/</code>表示要匹配的是目录（及目录下的文件），不匹配文件；<br><code>*</code>匹配任意个字符；<br><code>[]</code>匹配括号内任意单个字符；<br><code>[0-9]</code>使用短划线匹配一段范围内的字符，这个例子中是匹配0到9之间的任意数字；<br><code>?</code>匹配任意单个字符。<br><code>#</code>：注释<br>eg:<br><code>*.a</code>：匹配所有<code>.a</code>类型的文件<br><code>foo</code>：匹配所有名为<code>foo</code>的目录和文件。<br><code>foo/</code>：只匹配名为<code>foo</code>的目录（不管是根目录下的<code>/foo/</code>目录，还是某个子目录下<code>/child/foo/</code>目录）；<br><code>/foo/</code>：只匹配根目录下的<code>foo</code>目录，而不匹配其他子目录下的<code>foo</code>目录；<br><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">常用.gitignore模板</a></p>
+<h4 id="VS集成Git工具的使用"><a href="#VS集成Git工具的使用" class="headerlink" title="VS集成Git工具的使用"></a>VS集成Git工具的使用</h4><p><strong>更改：</strong>相当于提交commit，将修改提交到本地库<br><strong>同步：</strong>先将远程库拉取，再将本地库推送到远程库，相当于（Pull+Push）<br><strong>推送：</strong>将所做的更改，存入远程版本库<br><strong>提取(Fetch)：</strong>从远程版本库获得最新版本<br><strong>拉取(Pull)：</strong>将远程版本库合并到本地版本库，相当于（Fetch+Merge）<br><strong>变基到(Switch)：</strong>切换分支（双击即可切换）<br><img src="/images/Git/VS_Git.png" alt="VS中Git小图标" align="center"><br>VS右下角会有两个Git小图标，如上图所示。<br><strong>铅笔：</strong>commit；右边的数字：发生修改但还未commit的文件数。<br><strong>上箭头：</strong>点击后会跳到同步界面，这时可点击“推送”将更改推送到远程库；右边数字：commit了但还未Push的文件数。<br><strong>工作流程：</strong>开始工作前先同步，把别人的提交更新到你的本地库；<strong>提交前</strong>再同步一下，再将别人的提交更新到本地库（这两次同步也可用“拉取”Pull代替，主要保证和别人的commit不冲突，如果是自己的项目就不用这么做了。且一定要commit前做，而不是push前做！否则还是会冲突）；之后再提交、推送，更新远程库。</p>
+<h4 id="VS-Code集成Git工具的使用"><a href="#VS-Code集成Git工具的使用" class="headerlink" title="VS Code集成Git工具的使用"></a>VS Code集成Git工具的使用</h4><p>同步：先Pull再Push<br>拉取：fetch<br>推送：Push<br>提交：Commit<br>左上角的小箭头：直接提交所有更改到本地库。</p>
+<h2 id="使用Github"><a href="#使用Github" class="headerlink" title="使用Github"></a>使用Github</h2><h3 id="设置SSH加密"><a href="#设置SSH加密" class="headerlink" title="设置SSH加密"></a>设置SSH加密</h3><p><strong>watch：</strong>可理解为“观察”项目，对于一个项目，默认自己处于Not watching的状态，当你选择Watching，表示你以后会关注这个项目的所有动态，这个项目以后只要发生变动，如被别人提交了pull request、被别人发起了issue等等情况，你都会在自己的个人通知中心，收到一条通知消息，如果你设置了个人邮箱，那么你的邮箱也可能收到相应的邮件。因此watch只用来关注一些你特别在意的项目，若watch得太多通知可能会爆炸…</p>
+<p><strong>Star：</strong>可理解为“关注”或“点赞”，表示喜欢这个项目。同时github会记录你所有Star的项目，因此Star还可以作为“收藏”功能来用。</p>
+<p><strong>fork：</strong>可理解为把项目“叉”过来，当选择fork，项目会拷贝到你的repositories中，你自己就有了一份原项目的拷贝，当然这个拷贝只是针对当时的项目文件，如果后续原项目文件发生改变，你必须通过其他的方式去同步。<br>使用fork的场景：修改开源项目时使用fork，这样你就可以在原项目的基础上，对项目进行修改，并可通过pull request来将修改提交给原作者，如果作者merge了，你就成为这个项目的主人之一了~</p>
+<ul>
+<li><strong>clone：</strong></li>
+</ul>
+<p><strong>团队协作流程：</strong>负责人创立一个组织（organization），其他人加入组织，分配权限，之后在这个组织下创建仓库（respository），所有人都向这个仓库提交代码。<br><strong>关于权限设置：</strong><br>可以在organization范围内设置权限，即设置成员的write/owner等的权限；<br>也可以针对respository设置权限，即将成员的ssh key公钥(id_rsa.pub)，在res内保存公钥，成员即可对这个仓库提交代码。<br><strong>关于公钥和私钥：</strong>公钥是给外界的，私钥是只自己所有。公钥私钥的主要作用是验证身份，因为只有特定人有权限向仓库提交代码。你在提交时用你的私钥加密，别人用你的公钥就可以验证确实是你（因为私钥只有你自己有）。</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-09-13</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Git/" class="color4">Git</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git原理"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git存储格式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Git存储格式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git文件状态"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Git文件状态</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Git系统的三个区域"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">Git系统的三个区域</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tracked文件的三种状态"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">tracked文件的三种状态</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何在各个系统上使用Git"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">如何在各个系统上使用Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git-Bash"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Git Bash</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git基础命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">Git基础命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从新建版本库-gt-提交第一个文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">从新建版本库-&gt;提交第一个文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何使用远程库"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">如何使用远程库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#远程库与本地库关联"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">远程库与本地库关联</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#远程库名字-amp-url"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">远程库名字 &amp; url</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#克隆远程库"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">克隆远程库</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git初始化设置"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Git初始化设置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看提交历史"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">查看提交历史</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何撤销已经push到远端上的commit"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">如何撤销已经push到远端上的commit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多人协作中的Git"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">多人协作中的Git</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他命令"><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">其他命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置-gitignore文件"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">设置.gitignore文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#VS集成Git工具的使用"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">VS集成Git工具的使用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#VS-Code集成Git工具的使用"><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">VS Code集成Git工具的使用</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Github"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用Github</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置SSH加密"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">设置SSH加密</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TensorFlow数据输入 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文主要介绍了TensorFlow官方推荐的数据输入格式：tf.data.Dataset，这种格式具有两大优点：1、提供了管道式的数据输入机制，便于进行并行处理、节省输入时间；2、提供了常用的数据预处理操作，并给出了编程接口，便于编写数据预处理模块。PS：整天看英文文档，感觉中文竟然有点词穷了…遂这篇博客尝试下用英文书写，一方面便于直接引用英文文档的用词，避免说法混淆；其次也锻炼下我的英文写作能力">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow数据输入">
+<meta property="og:url" content="https://renli1024.github.io/2019/07/23/TensorFlow/Tensorflow数据输入/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文主要介绍了TensorFlow官方推荐的数据输入格式：tf.data.Dataset，这种格式具有两大优点：1、提供了管道式的数据输入机制，便于进行并行处理、节省输入时间；2、提供了常用的数据预处理操作，并给出了编程接口，便于编写数据预处理模块。PS：整天看英文文档，感觉中文竟然有点词穷了…遂这篇博客尝试下用英文书写，一方面便于直接引用英文文档的用词，避免说法混淆；其次也锻炼下我的英文写作能力">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-23T12:45:27.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow数据输入">
+<meta name="twitter:description" content="本文主要介绍了TensorFlow官方推荐的数据输入格式：tf.data.Dataset，这种格式具有两大优点：1、提供了管道式的数据输入机制，便于进行并行处理、节省输入时间；2、提供了常用的数据预处理操作，并给出了编程接口，便于编写数据预处理模块。PS：整天看英文文档，感觉中文竟然有点词穷了…遂这篇博客尝试下用英文书写，一方面便于直接引用英文文档的用词，避免说法混淆；其次也锻炼下我的英文写作能力">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-TensorFlow/Tensorflow数据输入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      TensorFlow数据输入
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-07-23
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文主要介绍了TensorFlow官方推荐的数据输入格式：<code>tf.data.Dataset</code>，这种格式具有两大优点：1、提供了管道式的数据输入机制，便于进行并行处理、节省输入时间；2、提供了常用的数据预处理操作，并给出了编程接口，便于编写数据预处理模块。<br>PS：整天看英文文档，感觉中文竟然有点词穷了…遂这篇博客尝试下用英文书写，一方面便于直接引用英文文档的用词，避免说法混淆；其次也锻炼下我的英文写作能力。<br>那么开始吧！<br><a id="more"></a></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><code>tf.data.Dataset</code> reprents a sequence of elements, where each data example (features) is regarded as a single seperate element. Most commonly, the element is a tuple of tensors consists of one data example and one label corresponding to the example. In addition, for the sake of readablity, we often transform the the data example to the form of dictionary where value is fature value and key is its name. Example can be found <a href="#from-csv-tsv-file">here</a></li>
+<li>Dataset can be constructed in two ways: 1. reading in-memory data from some array based structures like numpy arrays/pandas dataframes; 2. reading data from disk files and the formats can be csv, tsv, plain text, TFRecord.</li>
+<li>After constructing the dataset, there are usually some pre-processing works for data and we can use <code>tf.data.Dataset.map()</code> function to achieve data trasformation.</li>
+<li>We can use iterator mechanism to access elements of a dataset. However, in some high level APIs of tensorflow (like tf.Estimator) this process is pre-implemented and what we only need to do is providing the dataset constructed to them.</li>
+</ul>
+<h2 id="Dataset-Construction"><a href="#Dataset-Construction" class="headerlink" title="Dataset Construction"></a>Dataset Construction</h2><h3 id="from-in-memory-data"><a href="#from-in-memory-data" class="headerlink" title="from in-memory data"></a>from in-memory data</h3><ul>
+<li>We can use <code>tf.data.Dataset.from_tensor_slices()</code> or <code>tf.data.Dataset.from_tensors()</code> methods to read in-memory data into a tensor. </li>
+<li><code>from_tensor_slices()</code> will slice the tensor provided along 0th dimension/axis so the dataset will get many elements. </li>
+<li>While <code>from_tensors()</code> method directly see the tensor passed as a single one so the dataset will only get one element.</li>
+<li>example code<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dataset1 = tf.data.Dataset.from_tensor_slices(tf.random_uniform([<span class="number">4</span>, <span class="number">10</span>]))</span><br><span class="line">print(dataset1.output_types)  <span class="comment"># ==&gt; "tf.float32"</span></span><br><span class="line">print(dataset1.output_shapes)  <span class="comment"># ==&gt; "(10,)"</span></span><br><span class="line"></span><br><span class="line">dataset2 = tf.data.Dataset.from_tensor_slices(</span><br><span class="line">   (tf.random_uniform([<span class="number">4</span>]),</span><br><span class="line">    tf.random_uniform([<span class="number">4</span>, <span class="number">100</span>], maxval=<span class="number">100</span>, dtype=tf.int32)))</span><br><span class="line">print(dataset2.output_types)  <span class="comment"># ==&gt; "(tf.float32, tf.int32)"</span></span><br><span class="line">print(dataset2.output_shapes)  <span class="comment"># ==&gt; "((), (100,))"</span></span><br><span class="line"></span><br><span class="line">dataset3 = tf.data.Dataset.zip((dataset1, dataset2))</span><br><span class="line">print(dataset3.output_types)  <span class="comment"># ==&gt; (tf.float32, (tf.float32, tf.int32))</span></span><br><span class="line">print(dataset3.output_shapes)  <span class="comment"># ==&gt; "(10, ((), (100,)))</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="from-csv-tsv-file"><a href="#from-csv-tsv-file" class="headerlink" title="from csv/tsv file"></a>from csv/tsv file</h3><ul>
+<li>Effectly csv/tsv files both belongs to plan text, the only difference is that in one line, csv file elements are seperated by comma(,) while tab(‘\t’) for tsv files.</li>
+<li>So we can use <code>tf.data.TextLineDataset</code> to extract data of each line in the csv/tsv file.</li>
+<li>It is worth noting that this step is only to extract data out of the file, and transforming the data to corresponding format(e.g. split the line and construct feature columns) will be undertook by <code>tf.data.Dataset.map()</code> function。</li>
+<li>example code<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_function</span><span class="params">(line)</span>:</span></span><br><span class="line"></span><br><span class="line">    COLUMNS = [<span class="string">'SepalLength'</span>, <span class="string">'SepalWidth'</span>,</span><br><span class="line">           <span class="string">'PetalLength'</span>, <span class="string">'PetalWidth'</span>,</span><br><span class="line">           <span class="string">'label'</span>]</span><br><span class="line">    FIELD_DEFAULTS = [[<span class="number">0.0</span>], [<span class="number">0.0</span>], [<span class="number">0.0</span>], [<span class="number">0.0</span>], [<span class="number">0</span>]]</span><br><span class="line"></span><br><span class="line">    fields = tf.decode_csv(line, FIELD_DEFAULTS)</span><br><span class="line">    feature = dict(zip(COLUMNS, fields))</span><br><span class="line">    label = feature.pop(<span class="string">'label'</span>)</span><br><span class="line">    <span class="keyword">return</span> feature, label</span><br><span class="line"></span><br><span class="line">dt = tf.data.TextLineDataset(<span class="string">"path/to/iris_training.csv"</span>)</span><br><span class="line">print(dt) <span class="comment"># &lt;TextLineDataset shapes: (), types: tf.string&gt;</span></span><br><span class="line">dt = dt.map(map_function)</span><br><span class="line">print(dt)</span><br><span class="line"><span class="comment"># &lt;MapDataset shapes: (&#123;SepalLength: (), SepalWidth: (), PetalLength: (), PetalWidth: ()&#125;, ()) \</span></span><br><span class="line"><span class="comment"># types: (&#123;SepalLength: tf.float32, SepalWidth: tf.float32, \</span></span><br><span class="line"><span class="comment"># PetalLength: tf.float32, PetalWidth: tf.float32&#125;, tf.int32)&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="from-TFRcord-file"><a href="#from-TFRcord-file" class="headerlink" title="from TFRcord file"></a>from TFRcord file</h3><ul>
+<li>TFRecord is a binary file format for tensorflow.</li>
+<li>to be updated</li>
+</ul>
+<h2 id="Data-preprocessing"><a href="#Data-preprocessing" class="headerlink" title="Data preprocessing"></a>Data preprocessing</h2><ul>
+<li><code>dataset = dataset.map(map_func=parse_fn)</code>, to transform data to the format approriate for model using.</li>
+<li>Functionality should be implemented in <code>parse_fn</code> function. Details can be seen <a href="#from-csv/tsv-file">here</a>.</li>
+</ul>
+<h2 id="How-to-use-dataset"><a href="#How-to-use-dataset" class="headerlink" title="How to use dataset"></a>How to use dataset</h2><h3 id="basic-usage"><a href="#basic-usage" class="headerlink" title="basic usage"></a>basic usage</h3><p><code>dataset = dataset.shuffle(1000).repeat().batch(batch_size)</code><br><code>shuffle(buffer_size)</code> is to shuffle the dataset, buffer_size determines the degree of shffuling.<br><code>repeat()</code> is to determine whether the data can be repeat by iterator.<br><code>batch()</code> is to set the batch size.</p>
+<h3 id="pipelining"><a href="#pipelining" class="headerlink" title="pipelining"></a>pipelining</h3><p>data extracting by dataset and data processing by model can be executed at the same time.<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># change</span></span><br><span class="line">dataset = dataset.batch(batch_size=FLAGS.batch_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># to</span></span><br><span class="line">dataset = dataset.batch(batch_size=FLAGS.batch_size)</span><br><span class="line">dataset = dataset.prefetch(buffer_size=FLAGS.prefetch_buffer_size) <span class="comment"># commonly buffer_size is set to 1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="parallelizing"><a href="#parallelizing" class="headerlink" title="parallelizing"></a>parallelizing</h3><p>extracting multiple data examples parallely (because data examples have little loigic dependence each other so can be highly parallelized).<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># change</span></span><br><span class="line">dataset = dataset.map(map_func=parse_fn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#to</span></span><br><span class="line">dataset = dataset.map(map_func=parse_fn, num_parallel_calls=FLAGS.num_parallel_calls)</span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-07-23</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/TensorFlow/" class="color1">TensorFlow</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Dataset-Construction"><span class="post-toc-number">2.</span> <span class="post-toc-text">Dataset Construction</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#from-in-memory-data"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">from in-memory data</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#from-csv-tsv-file"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">from csv/tsv file</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#from-TFRcord-file"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">from TFRcord file</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Data-preprocessing"><span class="post-toc-number">3.</span> <span class="post-toc-text">Data preprocessing</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#How-to-use-dataset"><span class="post-toc-number">4.</span> <span class="post-toc-text">How to use dataset</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#basic-usage"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">basic usage</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#pipelining"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">pipelining</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#parallelizing"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">parallelizing</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

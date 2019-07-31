@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LaTex语法 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文记录了在Markdown中使用LaTex输入数学公式的方法，这样Markdown在一定程度上就可以完全替代office word了。   在markdown中使用LaTex公式1、导入MathJax引擎, 在文章的任意地方加入以下代码即可：&amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/Mat">
+<meta name="keywords" content="Other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTex语法">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/19/Other/LaTex语法/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文记录了在Markdown中使用LaTex输入数学公式的方法，这样Markdown在一定程度上就可以完全替代office word了。   在markdown中使用LaTex公式1、导入MathJax引擎, 在文章的任意地方加入以下代码即可：&amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/Mat">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-23T12:52:56.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LaTex语法">
+<meta name="twitter:description" content="本文记录了在Markdown中使用LaTex输入数学公式的方法，这样Markdown在一定程度上就可以完全替代office word了。   在markdown中使用LaTex公式1、导入MathJax引擎, 在文章的任意地方加入以下代码即可：&amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/Mat">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Other/LaTex语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      LaTex语法
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-19
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<p>本文记录了在Markdown中使用LaTex输入数学公式的方法，这样Markdown在一定程度上就可以完全替代office word了。</p>
+<hr>
+<ul>
+<li><p><strong>在markdown中使用LaTex公式</strong><br>1、导入MathJax引擎, 在文章的任意地方加入以下代码即可：<br><code>&lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML&#39; async&gt;&lt;/script&gt;</code><br>2、使用LaTex语法写公式即可。<br>注1：MathJax引擎本质是一个js脚本，把页面中的LaTex代码翻译成数学公式。<br>注2：翻译LaTex的工作流程，Markdown先把代码按Markdown语法翻译一遍，因此一些\和特殊字符的组合，要对反斜杠进行转义，如<code>\\{</code>；之后再由js脚本对翻译为数学公式。</p>
+</li>
+<li><p><strong>公式表示</strong><br><code>$$公式$$</code>：表示行间公式，单独居中成行<br><code>\\(公式\\)</code>：表示行内公式，只占一行。两个斜杠<code>\\</code>表示转义。</p>
+</li>
+<li><p><strong>加减乘除</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>语法</th>
+<th>名称</th>
+<th>语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加</td>
+<td>+</td>
+<td>减</td>
+<td>-</td>
+</tr>
+<tr>
+<td>乘</td>
+<td><code>\times</code>或直接用<code>*</code></td>
+<td>除</td>
+<td><code>\div</code> 或直接用<code>/</code></td>
+</tr>
+</tbody>
+</table>
+<p>注：乘除后要加一个空格，和后面的字母区分开</p>
+<ul>
+<li><strong>上标和下标</strong><br>使用^表示上标,使用_表示下标,默认将这两个符号后的一个符号作为上下标,如果需要多个符号,则使用{和}括起来.<br>如：<code>z_{i+2} = x^{k+2}+y_2</code><br>$$z_{i+2} = x^{k+2}+y_2$$</li>
+</ul>
+<ul>
+<li><strong>使用括号</strong><br>LaTex中<code>[</code> <code>]</code> <code>(</code>和<code>)</code>都不变，直接输入即可。对于<code>{}</code>，因为其默认作用是将多个元素组合成一个整体，因此需要用<code>\</code>转义，但因为<code>\{</code>在markdown中会被转义为单独一个<code>{</code>，因此要使用<code>\\{</code>对<code>\</code>也进行转义<br>如：<code>$$(z) = \\{x\\}+[y]$$</code>    $$(z) = \{x\}+[y]$$</li>
+</ul>
+<ul>
+<li><strong>特殊符号</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>LaTex语法</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分数</td>
+<td><code>\frac {a} {b}</code></td>
+<td>\(\frac {a} {b}\)</td>
+</tr>
+<tr>
+<td>平方根</td>
+<td><code>\sqrt{a*x+b}</code></td>
+<td>\(\sqrt{a*x+b}\)</td>
+</tr>
+<tr>
+<td>n次方根</td>
+<td><code>\sqrt[n]{a*x+b}</code></td>
+<td>\(\sqrt[n]{a*x+b}\)</td>
+</tr>
+<tr>
+<td>积分</td>
+<td><code>\int_a^b f(x) dx</code></td>
+<td>\(\int_a^b f(x) dx\)</td>
+</tr>
+<tr>
+<td>极限</td>
+<td><code>\lim_{n \rightarrow 0} (\sin{x} / x)</code></td>
+<td>\(\lim_{n \rightarrow 0} (\sin{x} / x)\)</td>
+</tr>
+<tr>
+<td>求和</td>
+<td><code>\sum_{i=0}^n \frac{1}{i^2}</code></td>
+<td>\(\sum_{i=0}^n \frac{1}{i^2}\)</td>
+</tr>
+<tr>
+<td>求积</td>
+<td><code>\prod_{i=0}^n \frac{1}{i^2}</code></td>
+<td>\(\prod_{i=0}^n \frac{1}{i^2}\)</td>
+</tr>
+<tr>
+<td>梯度算子</td>
+<td><code>\nabla</code></td>
+<td>\(\nabla\)</td>
+</tr>
+<tr>
+<td>上划线</td>
+<td><code>\bar{A}</code></td>
+<td>\(\bar{A}\)</td>
+</tr>
+<tr>
+<td>长上划线</td>
+<td><code>\overline{A\cup B}</code></td>
+<td>\(\overline{A\cup B}\)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>希腊字母</strong><br>希腊字母直接用<code>\字母名</code>即可，如<code>\alpha</code>为\(\alpha\)，<code>\beta</code>为\(\beta\)，<code>\theta</code>为\(\theta\)<br>具体符号表可见：<a href="https://zh.wikipedia.org/wiki/%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D" target="_blank" rel="noopener">希腊字母维基百科</a>，注意首字母要小写</p>
+</li>
+<li><p><strong>矢量运算</strong><br>用<code>\vec{a}</code>表示矢量符号\(\vec{a}\)，<code>\cdot</code>表示点乘\(\vec{a}\cdot \vec{b}\)，<code>\times</code>表示叉乘\(\vec{a}\times \vec{b}\)</p>
+</li>
+<li><p><strong>矩阵</strong><br>矩阵的基本语法为<code>$$\begin{matrix}…\end{matrix}$$</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;matrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\\\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\\\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;matrix&#125; </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$$<br>  \begin{matrix}<br>   1 &amp; 2 &amp; 3 \\<br>   4 &amp; 5 &amp; 6 \\<br>   7 &amp; 8 &amp; 9<br>  \end{matrix}<br>$$<br>注：因为LaTex中\表示换行，因此在Markdown中使用\\表示</p>
+<ul>
+<li><strong>怎样将矩阵用括号括起来</strong><br>使用<code>\left(</code>和<code>\right)</code>引入变长括号(当然，其他符号也是可以变长的)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \left(</span><br><span class="line">  \begin&#123;matrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\\\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\\\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;matrix&#125; </span><br><span class="line">  \right)</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>\(<br>  \left(<br>  \begin{matrix}<br>   1 &amp; 2 &amp; 3 \\<br>   4 &amp; 5 &amp; 6 \\<br>   7 &amp; 8 &amp; 9<br>  \end{matrix}<br>  \right)<br>\)    \(\left|\begin{matrix}1 &amp; 2 &amp; 3 \\4 &amp; 5 &amp; 6 \\7 &amp; 8 &amp; 9\end{matrix}\right|\)</p>
+<ul>
+<li><strong>矩阵内怎样使用省略号</strong><br>与各种点代码结合可输入省略号，<code>\cdots</code>横向点，<code>\vdots</code>竖向点，<code>\ddtots</code>斜向点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line"> 1      &amp; 2      &amp; \cdots &amp; 4      \\\\</span><br><span class="line"> 7      &amp; 6      &amp; \cdots &amp; 5      \\\\</span><br><span class="line"> \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\\\</span><br><span class="line"> 8      &amp; 9      &amp; \cdots &amp; 0      \\\\</span><br><span class="line">\end&#123;matrix&#125;</span><br><span class="line">\right]</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$$<br>\left[<br>\begin{matrix}<br> 1      &amp; 2      &amp; \cdots &amp; 4      \\<br> 7      &amp; 6      &amp; \cdots &amp; 5      \\<br> \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br> 8      &amp; 9      &amp; \cdots &amp; 0      \\<br>\end{matrix}<br>\right]<br>$$</p>
+<ul>
+<li><strong>如何输入多行公式</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ f(x)=\left\\&#123;</span><br><span class="line">\begin&#123;align&#125;</span><br><span class="line">x &amp; =&amp;  &amp;\cos(t) + &amp;x\\\\</span><br><span class="line">y &amp; =&amp;  &amp;\sin(t) + &amp;y\\\\</span><br><span class="line">z &amp; =&amp;  &amp;\frac xy + &amp;z</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line">\right.</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注1：<code>align</code>用来将多行公式括起来，<code>&amp;</code>用来分割各个对齐的单元<br>注2：<code>\right.</code>表示右括号不显示<br>$$ f(x)=\left\{<br>\begin{align}<br>x12 &amp; =  &amp;\cos(t) &amp;+1 &amp;x1 &amp;=1 \\<br>y123 &amp; =  &amp;\sin(t) &amp;+12 &amp;y12 &amp;=12 \\<br>z1234 &amp; =  &amp;\frac xy &amp;+123 &amp;z123 &amp;=123<br>\end{align}<br>\right.<br>$$</p>
+<ul>
+<li><p><strong>关于align中&amp;的对齐方式</strong><br>假设有n个&amp;，会将一行分为n+1列，从左向右两个列分为一组(如1、2列为一组，3、4列为一组…，若有奇数个列，则最后一列单独为一组)。每一行的&amp;数量要保证相同，否则对齐格式会乱。<br>首先明确，LaTex对齐方式包括组内对齐和组间对齐。<br><strong>组内对齐：</strong>两列一组，在组内部，第一列向右对齐，第二列向左对齐，即两列在所在位置上向中间对齐。<br><strong>组间对齐：</strong>首先，不同行的对应组会根据组的中线进行对齐，因为每行组数是一样的，因此为保证组的中线在同一位置，会统一固定组的长度，因此若公式较短就会出现空白。<br>其次在中线对齐的基础上，第一组会紧靠页<strong>左侧</strong>，最后一组则紧靠页<strong>右侧</strong>，紧靠页左/右侧就是将最长的一组紧靠上去，也就是说对于长度不一样的行，较短的那一行是靠不上去的(因为首先要保证组的中线对齐)。</p>
+</li>
+<li><p><strong>字体选项</strong><br><strong>字体大小：</strong><br>稍微小一点：<code>\small</code>，再小一点：<code>\scriptsize</code>，最小：<code>\tiny</code><br>大一点：<code>\huge</code>，最大：<code>huge</code><br><strong>加粗：</strong><br><code>\textbf{xx}</code>，加粗和上划线混用：<code>\overline{\textbf{xx}}</code><br><strong>将公式中的斜体转为正体：</strong><br>在<code>\\( \\)</code>和<code>$$</code>公式中的字母会自动为斜体，转为正体：<code>\rm</code></p>
+</li>
+</ul>
+<ul>
+<li><p>hexo下使用LaTex，若使用了<code>A_{xxx}</code>这种复合下标(下划线和花括号连用)，且<strong>前面</strong>的公式还出现了下划线(后面公式有下划线没事…)，公式就会出错。<br>原因：hexo下的markdown将两个下划线作为斜体符号进行了翻译，公式就无法正常解析了。<br>解决：在两个下划线前分别加反斜杠，<code>\_</code>，对下划线进行转义。<br>注：只有这种情况公式中的下划线会被解析成斜体符号，其他情况下则没事，具体原因不很清楚。</p>
+</li>
+<li><p>更多符号，如逻辑运算、集合运算等可见博文<br><a href="https://blog.csdn.net/u013007900/article/details/50082205" target="_blank" rel="noopener">MathJax使用LaTeX语法编写数学公式教程</a><br><a href="https://blog.csdn.net/ying_xu/article/details/51240291" target="_blank" rel="noopener">Latex所有常用数学符号整理</a></p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-19</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Other/" class="color1">Other</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

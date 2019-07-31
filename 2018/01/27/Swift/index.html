@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Swift笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="第一节_基本知识 Mac和Xcode一些快捷键command键：win键，option键:alt键复制：com+c，粘贴：com+v，剪切：com+x保存：com+s，撤销：com+z运行程序：com+r注释、取消注释：com+/单步运行：F6  数据类型    数值类型：int,uint(无符号整数),float,double 字符串类型：String 布尔类型(Bool)：true/false">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/27/Swift/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="第一节_基本知识 Mac和Xcode一些快捷键command键：win键，option键:alt键复制：com+c，粘贴：com+v，剪切：com+x保存：com+s，撤销：com+z运行程序：com+r注释、取消注释：com+/单步运行：F6  数据类型    数值类型：int,uint(无符号整数),float,double 字符串类型：String 布尔类型(Bool)：true/false">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-12T01:24:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift笔记">
+<meta name="twitter:description" content="第一节_基本知识 Mac和Xcode一些快捷键command键：win键，option键:alt键复制：com+c，粘贴：com+v，剪切：com+x保存：com+s，撤销：com+z运行程序：com+r注释、取消注释：com+/单步运行：F6  数据类型    数值类型：int,uint(无符号整数),float,double 字符串类型：String 布尔类型(Bool)：true/false">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Swift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Swift笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-27
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="第一节-基本知识"><a href="#第一节-基本知识" class="headerlink" title="第一节_基本知识"></a>第一节_基本知识</h3><ul>
+<li><p><strong>Mac和Xcode一些快捷键</strong><br>command键：win键，option键:alt键<br>复制：com+c，粘贴：com+v，剪切：com+x<br>保存：com+s，撤销：com+z<br>运行程序：com+r<br>注释、取消注释：com+/<br>单步运行：F6</p>
+</li>
+<li><p><strong>数据类型</strong></p>
+</li>
+</ul>
+<ol>
+<li>数值类型：int,uint(无符号整数),float,double</li>
+<li>字符串类型：String</li>
+<li>布尔类型(Bool)：true/false</li>
+<li>枚举类型<br>注：Swift中不强制要求定义类型，强制定义的只有常量let、变量var<br>let值初始化后即不能再更改</li>
+</ol>
+<ul>
+<li><p><strong>数值类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int,uint(无符号整数),float,double四种基本数值类型</span><br><span class="line">let n = 70     //结尾无需分号</span><br><span class="line">let m = 50.0   //等号两边空格数必须相等</span><br><span class="line">var n:Double = 50   //显示定义类型</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>字符串类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">格式化字符串</span><br><span class="line">var n = 50</span><br><span class="line">var m = 60</span><br><span class="line">var str1 = &quot;I have \(n + m) pencils&quot;  // \(表达式)为格式化字符串</span><br><span class="line">var str2 = &quot;I have &quot; + (String)(n + m) + &quot; pencils&quot;  //效果相同</span><br><span class="line"></span><br><span class="line">字符串的下标是String.index类型，不是int类型，不能直接用int作下标</span><br><span class="line">startIndex：指向首字符；endIndex：指向末字符的后面；offsetby：偏移量。</span><br><span class="line">let index1 = str.index(str.startIndex, offsetBy:1)  //指向首字符后一字符</span><br><span class="line">let index2 = str.index(str.endIndex, offsetBy:-1)   //指向末字符</span><br><span class="line">str2 = str[index1..&lt;index2]   //截取字符串，前闭后开区间</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>计算字符串长度：str2.count<br>比较字符串是否相等：== 和 !=<br>在Swift中字符串是值类型，复制传递的是<strong>字符串的值</strong>而非引用</p>
+<ul>
+<li><p><strong>枚举类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">enum DaysOfWeek&#123;  //定义枚举类型</span><br><span class="line">    case Sunday </span><br><span class="line">    case Monday</span><br><span class="line">    case Tuesday</span><br><span class="line">    dase Wednesday</span><br><span class="line">    case Thursday</span><br><span class="line">&#125;</span><br><span class="line">var day = DaysOfWeek.Sunday   //用句号引出枚举项</span><br><span class="line">day = .Monday    //已确定day是DaysOfWeek类型，即不用再写，但句号必须写</span><br><span class="line"></span><br><span class="line">enum ea : String&#123;  //若枚举项有rawvalue,则必须写类型值</span><br><span class="line">    case a1 = &quot;aa1&quot;</span><br><span class="line">    case a2 = &quot;aa2&quot;</span><br><span class="line">    case a3 = &quot;aa3&quot;</span><br><span class="line">&#125;</span><br><span class="line">let result = ea(rawValue:&quot;aa1&quot;)  //由raw值查枚举项，返回Option(ea.a1)</span><br><span class="line">print(result!)   //拆包，输出a1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>合集类型(Collection)</strong></p>
+</li>
+</ul>
+<ol>
+<li>数组和区间</li>
+<li>字典(dict)：键值对</li>
+<li>集合(set)：无序、不重复数组<br>三种类型都可用xx.count表示元素数量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//数组</span><br><span class="line">var an1 = [1,2,3,4]</span><br><span class="line">var an2 : [Int]</span><br><span class="line">an2 = [1,2,3,4]</span><br><span class="line"></span><br><span class="line">//区间</span><br><span class="line">an1[1..&lt;3]  //an[1],an[2]</span><br><span class="line">an1[1...3]  //an[1],an[2],an[3]</span><br><span class="line"></span><br><span class="line">//字典</span><br><span class="line">var dic: [String : Int]</span><br><span class="line">dic = [&quot;Red&quot;:0,&quot;Green&quot;:1,&quot;Bule&quot;:2]</span><br><span class="line">dic[&quot;Red&quot;]  //0</span><br><span class="line"></span><br><span class="line">//集合</span><br><span class="line">let s1 = Set([1,2,3])</span><br><span class="line">let s2 : Set&lt;Int&gt;</span><br><span class="line">s2 = [1,2,3]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><strong>可选值Optional</strong><br>类型后加?为可选值，代表声明的变量可能为空(nil)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let dic = [0:&quot;Red&quot;,1:&quot;Blue&quot;,2:&quot;Yellow&quot;]</span><br><span class="line">var color = dic[0]    //color为String?类型，可能会返回nil值</span><br><span class="line">print(color)    //输出Optional(&quot;Red&quot;)，对&quot;Red&quot;封包了</span><br><span class="line"></span><br><span class="line">if color! = nil&#123; //color不为空才执行操作</span><br><span class="line">    let actualColor = color! //对Optional(&quot;Red&quot;)拆包</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    //统一在拆包阶段对nil进行处理，逻辑更清晰</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="第二节-语句"><a href="#第二节-语句" class="headerlink" title="第二节_语句"></a>第二节_语句</h3><ul>
+<li><p><strong>for-in循环</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for index in 1...5&#123;</span><br><span class="line">    print(i)</span><br><span class="line">&#125;    //条件不用加括号，但语句体要加中括号</span><br><span class="line"></span><br><span class="line">//遍历数组</span><br><span class="line">var an = [1,4,7,22,5]  </span><br><span class="line">for index in an&#123; </span><br><span class="line">    print(index)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//遍历字典</span><br><span class="line">let d = [0:&quot;Red&quot;,1:&quot;Green&quot;,2:&quot;Blue&quot;]</span><br><span class="line">for key in d.keys&#123;</span><br><span class="line">    print(&quot;\(key)-&gt;\(d[key])&quot;)  //输出的是可选值</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">for(key,value) in d&#123;</span><br><span class="line">    print(&quot;\(key)-&gt;\(value)&quot;)  //输出正常值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>switch-case</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//没有break</span><br><span class="line">//一个case可对应多个选择值</span><br><span class="line">//最后必须加default</span><br><span class="line"></span><br><span class="line">let x:Character = &quot;1&quot;</span><br><span class="line">switch x &#123;</span><br><span class="line">case &quot;a&quot;,&quot;b&quot;,&quot;d&quot;:</span><br><span class="line">    print(&quot;1&quot;)</span><br><span class="line">case &quot;s&quot;,&quot;e&quot;,&quot;p&quot;:</span><br><span class="line">    print(&quot;2&quot;)</span><br><span class="line">default:</span><br><span class="line">    print(&quot;3&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">函数定义</span><br><span class="line">func hello(name:String)-&gt;String&#123;</span><br><span class="line">    return &quot;Hello, &quot; + name </span><br><span class="line">&#125;</span><br><span class="line">调用</span><br><span class="line">str=&quot;lrrr&quot;</span><br><span class="line">hello(name:str)  //函数调用不能省略参数名称</span><br><span class="line"></span><br><span class="line">//多返回值函数，用元组作返回值</span><br><span class="line">func hello(n:Int)-&gt;(n1:Int,n2:Int)&#123;</span><br><span class="line">    let n1 = n+1</span><br><span class="line">    let n2 = n+2</span><br><span class="line">    return (n1,n2)</span><br><span class="line">&#125;</span><br><span class="line">let total = hello(n:1)</span><br><span class="line">print(total)  //输出“(n1: 2, n2: 3)”</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="第三节-IOS开发"><a href="#第三节-IOS开发" class="headerlink" title="第三节_IOS开发"></a>第三节_IOS开发</h3><ul>
+<li><p><strong>MVC模式</strong><br>Model-View-Controller(模型-视图-控制器)，面向对象的常用模式<br>模型：保存数据的类<br>视图：UI控件<br>控制器：把模型和控制器绑定在一起的类，以及实现中间逻辑层。<br><strong>优点：</strong>可最大限度地分离这三类代码(数据、UI、逻辑)，每个类只实现专一的功能。</p>
+</li>
+<li><p><strong>控制类的绑定</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输出接口：</span><br><span class="line">@IBoutlet weak war myButton: UIButton!  <span class="comment">//可与控件绑定的变量(Button按钮)</span></span><br><span class="line"></span><br><span class="line">操作方法：</span><br><span class="line"><span class="function">IBAction func <span class="title">doSomething</span><span class="params">(sender: UIButton)</span></span>&#123;</span><br><span class="line">    <span class="comment">//可响应控件所触发事件的函数，sender为控件类型</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">绑定：</span><br><span class="line">在View视图上，(ctrl+左键)/右键拖住控件，拖向辅助编辑器中的viewControl.swift文件,</span><br><span class="line">新建一个接口/方法，或绑定已有代码。</span><br><span class="line">注：和已有代码绑定时，只有类型匹配才会出现绑定框。</span><br><span class="line"></span><br><span class="line">一般流程：</span><br><span class="line">控件A绑定Action，在绑定Action时指明响应什么Event，控件B绑定outlet,</span><br><span class="line">在Action中对outlet进行操作，相当于对控件B操作。</span><br><span class="line">Event触发时，执行Action，操作outlet，界面UI发生改变。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>网络传输(HTTP协议)</strong><br>HTTP协议分为<strong>请求头</strong>和<strong>数据部分</strong>，请求头系统有内置属性，后台也是tomact服务器会自动处理<br>数据部分则是和后台自己约定的，比如提交到哪个文件夹，提交的文件叫什么名字等等。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先把HTTP数据部分写好(Data形式)，方便后面传入request中</span></span><br><span class="line"><span class="comment">//name是要提交到哪个文件夹，filename为文件上传后的文件名</span></span><br><span class="line"><span class="comment">//7d4a661c433为分隔符，任意string串都可以。以'--'+分隔符开头，固定格式。</span></span><br><span class="line"><span class="comment">//'\r\n'表示换行，属性间是否换行也是固定格式。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数据部分的开头，最后的要转成utf8格式</span></span><br><span class="line">var postdata:Data = <span class="string">"--7d4a661c433\r\nContent-Disposition: form-data;name=\"uploadFile\";filename=\"lizec.jpg\"\r\nContent-Type:application/octet-stream\r\n\r\n"</span>.data(<span class="keyword">using</span>: String.Encoding.utf8)!</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的数据部分，直接写入即可</span></span><br><span class="line">postdata.append(UIImagePNGRepresentation(faceImg.image!)!)</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据部分结尾</span></span><br><span class="line">postdata.append(<span class="string">"\r\n\r\n--7d4a661c433--\r\n"</span>.data(<span class="keyword">using</span>: String.Encoding.utf8)!)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义请求函数，写成函数形式便于之后写回调函数</span></span><br><span class="line"><span class="comment">//postData为HTTP数据部分，webServerUrl为服务器的地址</span></span><br><span class="line">func requestfun(_ postData:Data,webServerUrl:String)&#123;</span><br><span class="line">    let session:URLSession = URLSession.shared</span><br><span class="line">    let url:URL = URL(<span class="built_in">string</span>:webServerUrl)!  <span class="comment">//将String形式的服务器地址转为URL形式</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义HTTP请求头及相关属性，这部分是HTTP固定的属性</span></span><br><span class="line">    <span class="comment">//用url初始化request，NSMutableURLRequest形式</span></span><br><span class="line">    let request:NSMutableURLRequest = NSMutableURLRequest(url:url)</span><br><span class="line">    request.timeoutInterval = <span class="number">30</span></span><br><span class="line">    request.httpMethod = <span class="string">"POST"</span></span><br><span class="line">    request.httpBody = postData</span><br><span class="line">    request.setValue(<span class="string">"UTF-8"</span>, forHTTPHeaderField: <span class="string">"Charsert"</span>)</span><br><span class="line">    <span class="comment">//设置boundary，即分隔符</span></span><br><span class="line">    request.setValue(<span class="string">"multipart/form-data;boundary=7d4a661c433"</span>, forHTTPHeaderField: <span class="string">"Content-Type"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义回调任务</span></span><br><span class="line">    <span class="comment">//传入的request参数为NSMutableURLRequest形式的HTTP请求</span></span><br><span class="line">    <span class="comment">//data为后端发来的数据(系统已自动将数据部分拆出来了)</span></span><br><span class="line">    let task = session.dataTask(with: request as URLRequest)&#123; (data: Data?, response: URLResponse?, error: Error?) -&gt; Void in</span><br><span class="line">        <span class="comment">//有回调数据</span></span><br><span class="line">        <span class="keyword">if</span> data != nil &#123;</span><br><span class="line">            tempText = String(data:data!, encoding: String.Encoding.utf8)!</span><br><span class="line">            <span class="comment">//print(tempText!)</span></span><br><span class="line">            sign = <span class="number">1</span>  <span class="comment">//回调函数执行完</span></span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            print(<span class="string">"发送请求出错:\(String(describing: error?.localizedDescription))"</span>)</span><br><span class="line">            sign = <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">//执行回调任务</span></span><br><span class="line">    <span class="comment">//系统定时查询后端有无response发过来，检测到response后即执行回调任务</span></span><br><span class="line">    <span class="comment">//因此其他地方要等待回调函数执行才能更新，可while()循环检测标志位</span></span><br><span class="line">    task.resume()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最后调用请求函数即可</span></span><br><span class="line">requestfun(postdata, webServerUrl:<span class="string">"http://123.207.30.222:8080/WebHello/UploadServlet"</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>多线程操作</strong><br>在GUI中，默认操作都是在主线程中完成的(对控件的操作，以及与控件无关的操作)，因此如果有非常耗时的操作，就需要另开一个线程，放在其中执行，否则耗时的操作会使主线程阻塞，导致UI界面无法操作(点击按钮、输入文本等)。<br>而在分线程中，如果涉及到对UI界面的操作，就要再手动回到主线程中去操作相应控件，在swift中对应为<code>DispatchQueue.main.async {//code}</code>。<br>swift中的线程操作，可通过GCD(Grand Central Dispatch)的方式完成，其将代码以队列(先进先出)的形式放入其他线程中执行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...code1</span></span><br><span class="line">let <span class="built_in">queue</span> = DispatchQueue.global(qos:.<span class="keyword">default</span>)  </span><br><span class="line">    <span class="built_in">queue</span>.async &#123;</span><br><span class="line">        <span class="comment">//code3</span></span><br><span class="line">        DispatchQueue.main.async &#123;</span><br><span class="line">            <span class="comment">//在分线程中回到主线成中操作UI</span></span><br><span class="line">            upImgButton.isEnabled = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//...code2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//代码说明：</span></span><br><span class="line"><span class="comment">//code1执行完后，建立线程队列queue，系统将块内的代码放入队列中，但并不会立即执行</span></span><br><span class="line"><span class="comment">//之后会执行code2，等当前线程时间片到了，才会去执行queue线程中的代码</span></span><br><span class="line"><span class="comment">//若没有并行设置，queue线程中的代码默认是顺序执行的</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>IOS图像格式</strong><br>关于IOS的图像系统，有三种格式</p>
+<ul>
+<li>UIImage：在UIKit框架下显示的图像格式，用于UI显示，通过UIImageView.image调用或赋值</li>
+<li>CIImage：CoreImage框架操作的图像格式，CI框架的函数都是针对这个数据格式</li>
+<li>CGImage：位图格式，底层的图像存储格式，UI和CI本质都是对CGImage的封装<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三种图像的互相转换,UI和CI图像的转换都是通过CG间接完成的</span></span><br><span class="line">UI-&gt;CG:UIImage.cgImage</span><br><span class="line">UI-&gt;CI:CIImage(cgImage: UIImage.cgImage)</span><br><span class="line"></span><br><span class="line">CG-&gt;UI:UIImage.init(cgImage: CGImage)</span><br><span class="line">CG-&gt;CI:CIImage(cgImage: CGImage)</span><br><span class="line"></span><br><span class="line">CI-&gt;UI:UIImage.init(cgImage: CIImage.cgImage)</span><br><span class="line">CI-&gt;CG:CIImage.cgImage</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>人脸识别(系统库)</strong><br>参考博文：<a href="https://www.jianshu.com/p/e371099f12bd" target="_blank" rel="noopener">https://www.jianshu.com/p/e371099f12bd</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//IOS内置的图像处理库，用于处理一些复杂的图像操作</span></span><br><span class="line"><span class="keyword">import</span> CoreImage</span><br><span class="line"></span><br><span class="line"><span class="comment">//人脸识别函数的传入参数之一</span></span><br><span class="line">let imageOptions =  NSDictionary(object: NSNumber(value: <span class="number">5</span>) as NSNumber, forKey: CIDetectorImageOrientation as NSString)</span><br><span class="line"></span><br><span class="line"><span class="comment">//未识别的原始照片</span></span><br><span class="line">let personciImage = CIImage(cgImage: imageView.image!.cgImage!)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义精确度，High为较高的精度</span></span><br><span class="line">let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]  </span><br><span class="line"></span><br><span class="line"><span class="comment">//定义人脸识别器</span></span><br><span class="line">let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)</span><br><span class="line"></span><br><span class="line"><span class="comment">//识别人脸，返回人脸数组</span></span><br><span class="line">let faces = faceDetector?.features(in: personciImage, options: imageOptions as? [String : AnyObject])</span><br><span class="line"></span><br><span class="line"><span class="comment">//因为UI和CI两大框架的坐标系原点不相同</span></span><br><span class="line"><span class="comment">//UI为左上角，CI为左下角，因此要进行坐标变化</span></span><br><span class="line"><span class="comment">//否则人脸的位置坐标不对</span></span><br><span class="line">let ciImageSize = personciImage.extent.size</span><br><span class="line"><span class="comment">//改变x，y延伸方向</span></span><br><span class="line">var transform = CGAffineTransform(scaleX: <span class="number">1</span>, y: <span class="number">-1</span>)</span><br><span class="line"><span class="comment">//改变原点位置</span></span><br><span class="line">transform = transform.translatedBy(x: <span class="number">0</span>, y: -ciImageSize.height)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> let face = faces?.first as? CIFaceFeature &#123;</span><br><span class="line">    <span class="comment">//进行坐标系变换</span></span><br><span class="line">    <span class="comment">//face.bounds返回识别的人脸CRect框，包括起点位置和图像宽、高</span></span><br><span class="line">    let faceImgBounds = face.bounds.applying(transform)</span><br><span class="line">    let sourceImageRef: CGImage = imageView.image!.cgImage!</span><br><span class="line">    <span class="comment">//根据Rect截取人脸</span></span><br><span class="line">    let newCGImage = sourceImageRef.cropping(to: faceImgBounds)</span><br><span class="line">    var tempImage = UIImage.init(cgImage: newCGImage!)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//对截取的人脸图像进行压缩</span></span><br><span class="line">    let tempCGSize = CGSize(width:tempImage.size.width/<span class="number">4</span>,height:tempImage.size.height/<span class="number">4</span>)</span><br><span class="line">    UIGraphicsBeginImageContext(tempCGSize)</span><br><span class="line">    tempImage.draw(in: CGRect(x: <span class="number">0</span>, y: <span class="number">0</span>, width: tempCGSize.width, height: tempCGSize.height))</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//因为图像会有向左旋转90度的bug，因此要进行修正</span></span><br><span class="line">    tempImage = UIGraphicsGetImageFromCurrentImageContext()!</span><br><span class="line">    UIGraphicsEndImageContext()</span><br><span class="line">    tempImage = tempImage.fixOrientation()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//写入ImageView中</span></span><br><span class="line">    faceImg.image = tempImage</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    let alert = UIAlertController(title: <span class="string">"提示"</span>, message: <span class="string">"未检测到人脸"</span>, preferredStyle: UIAlertControllerStyle.alert)</span><br><span class="line">    alert.addAction(UIAlertAction(title: <span class="string">"确定"</span>, style: UIAlertActionStyle.<span class="keyword">default</span>, handler: nil))</span><br><span class="line">    self.present(alert, animated: <span class="literal">true</span>, completion: nil)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修复图片旋转代码，扩展UIImage类</span></span><br><span class="line"><span class="comment">//根据图像的imageOrientation属性值来进行旋转</span></span><br><span class="line">extension UIImage &#123;</span><br><span class="line">    func fixOrientation() -&gt; UIImage &#123;</span><br><span class="line"><span class="comment">//        if self.imageOrientation == .up &#123;</span></span><br><span class="line"><span class="comment">//            return self</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        </span><br><span class="line">        var transform = CGAffineTransform.identity</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">switch</span> self.imageOrientation &#123;</span><br><span class="line">        <span class="keyword">case</span> .down, .downMirrored:</span><br><span class="line">            transform = transform.translatedBy(x: self.size.width, y: self.size.height)</span><br><span class="line">            transform = transform.rotated(by: .pi)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .left, .leftMirrored:</span><br><span class="line">            transform = transform.translatedBy(x: self.size.width, y: <span class="number">0</span>)</span><br><span class="line">            transform = transform.rotated(by: .pi / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .right, .rightMirrored,.up:</span><br><span class="line">            transform = transform.translatedBy(x: <span class="number">0</span>, y: self.size.height)</span><br><span class="line">            transform = transform.rotated(by: -.pi / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">switch</span> self.imageOrientation &#123;</span><br><span class="line">        <span class="keyword">case</span> .upMirrored, .downMirrored:</span><br><span class="line">            transform = transform.translatedBy(x: self.size.width, y: <span class="number">0</span>)</span><br><span class="line">            transform = transform.scaledBy(x: <span class="number">-1</span>, y: <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .leftMirrored, .rightMirrored:</span><br><span class="line">            transform = transform.translatedBy(x: self.size.height, y: <span class="number">0</span>);</span><br><span class="line">            transform = transform.scaledBy(x: <span class="number">-1</span>, y: <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        let ctx = CGContext(data: nil, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: self.cgImage!.bitsPerComponent, bytesPerRow: <span class="number">0</span>, space: self.cgImage!.colorSpace!, bitmapInfo: self.cgImage!.bitmapInfo.rawValue)</span><br><span class="line">        ctx?.concatenate(transform)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">switch</span> self.imageOrientation &#123;</span><br><span class="line">        <span class="keyword">case</span> .left, .leftMirrored, .right, .rightMirrored:</span><br><span class="line">            ctx?.draw(self.cgImage!, in: CGRect(x: CGFloat(<span class="number">0</span>), y: CGFloat(<span class="number">0</span>), width: CGFloat(size.height), height: CGFloat(size.width)))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ctx?.draw(self.cgImage!, in: CGRect(x: CGFloat(<span class="number">0</span>), y: CGFloat(<span class="number">0</span>), width: CGFloat(size.width), height: CGFloat(size.height)))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        let cgimg: CGImage = (ctx?.makeImage())!</span><br><span class="line">        let img = UIImage(cgImage: cgimg)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-27</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Swift/" class="color1">Swift</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一节-基本知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一节_基本知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二节-语句"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二节_语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三节-IOS开发"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三节_IOS开发</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 17.14px;">MachineLearning</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 18.57px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 12.86px;">Paper Notes</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/python/" style="font-size: 17.14px;">python</a> <a href="/tags/uwtsd-modules/" style="font-size: 10px;">uwtsd_modules</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 17.14px;">MachineLearning</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 18.57px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 12.86px;">Paper Notes</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/python/" style="font-size: 17.14px;">python</a> <a href="/tags/uwtsd-modules/" style="font-size: 10px;">uwtsd_modules</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

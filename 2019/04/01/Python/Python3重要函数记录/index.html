@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python3函数、模块用法记录 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="os模块os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。  os.makedirs(path)：按照所给地址生成目录。os.pathos.path模块主要用于处理文件的目录信息，常用方法有如下几个： os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。 os.path.curd">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3函数、模块用法记录">
+<meta property="og:url" content="https://renli1024.github.io/2019/04/01/Python/Python3重要函数记录/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="os模块os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。  os.makedirs(path)：按照所给地址生成目录。os.pathos.path模块主要用于处理文件的目录信息，常用方法有如下几个： os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。 os.path.curd">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-29T01:38:49.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3函数、模块用法记录">
+<meta name="twitter:description" content="os模块os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。  os.makedirs(path)：按照所给地址生成目录。os.pathos.path模块主要用于处理文件的目录信息，常用方法有如下几个： os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。 os.path.curd">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Python/Python3重要函数记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Python3函数、模块用法记录
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-01
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="os模块"><a href="#os模块" class="headerlink" title="os模块"></a>os模块</h2><p>os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。</p>
+<ul>
+<li>os.makedirs(path)：按照所给地址生成目录。<h3 id="os-path"><a href="#os-path" class="headerlink" title="os.path"></a>os.path</h3>os.path模块主要用于处理文件的目录信息，常用方法有如下几个：</li>
+<li>os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。</li>
+<li>os.path.curdir：这是path模块的一个属性而非函数，返回当前目录的相对路径（在Mac OSX下就是<code>.</code>）。</li>
+<li>os.path.abspath(path)：path参数的返回绝对路径，通常用法是传入当前目录的相对路径，返回绝对路径。</li>
+<li>os.path.exists(path)：检查某个目录或文件是否存在。</li>
+</ul>
+<h2 id="time模块"><a href="#time模块" class="headerlink" title="time模块"></a>time模块</h2><p>Python提供了time 和 calendar 两个模块可以用于处理日期和时间相关信息，首先介绍time模块。</p>
+<ul>
+<li>time.time()：返回当前时间的时间戳（1970纪元后所经过的浮点秒数）。</li>
+</ul>
+<h2 id="其他函数记录"><a href="#其他函数记录" class="headerlink" title="其他函数记录"></a>其他函数记录</h2><h3 id="存储-加载数据-pickle"><a href="#存储-加载数据-pickle" class="headerlink" title="存储/加载数据 pickle"></a>存储/加载数据 pickle</h3><p>file为文件对象，<code>open(&quot;file_address&quot;, &quot;wb&quot;/&quot;rb&quot;)</code>存储为wb，读取维rb，都按二进制来就行。<br>pickle.dump(obj, file)：存储<br>pickle.load(file)：加载</p>
+<h3 id="如何查看变量类型"><a href="#如何查看变量类型" class="headerlink" title="如何查看变量类型"></a>如何查看变量类型</h3><p><code>type(object)</code>函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">123</span></span><br><span class="line">print(type(i))</span><br><span class="line"><span class="comment"># &lt;type 'int'&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-04-01</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python/" class="color2">Python</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#os模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">os模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#os-path"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">os.path</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#time模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">time模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他函数记录"><span class="post-toc-number">3.</span> <span class="post-toc-text">其他函数记录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#存储-加载数据-pickle"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">存储/加载数据 pickle</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何查看变量类型"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">如何查看变量类型</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

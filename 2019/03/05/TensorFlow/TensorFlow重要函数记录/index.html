@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TensorFlow 函数、类记录 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文介绍了我遇到的一些TensorFlow的函数和类，记录了相关用法和自己的理解，一方面为了整理自己的思路，加深印象，另一方面也方便以后查阅。">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow 函数、类记录">
+<meta property="og:url" content="https://renli1024.github.io/2019/03/05/TensorFlow/TensorFlow重要函数记录/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文介绍了我遇到的一些TensorFlow的函数和类，记录了相关用法和自己的理解，一方面为了整理自己的思路，加深印象，另一方面也方便以后查阅。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-02T22:16:12.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow 函数、类记录">
+<meta name="twitter:description" content="本文介绍了我遇到的一些TensorFlow的函数和类，记录了相关用法和自己的理解，一方面为了整理自己的思路，加深印象，另一方面也方便以后查阅。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-TensorFlow/TensorFlow重要函数记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      TensorFlow 函数、类记录
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-05
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文介绍了我遇到的一些TensorFlow的函数和类，记录了相关用法和自己的理解，一方面为了整理自己的思路，加深印象，另一方面也方便以后查阅。<br><a id="more"></a></p>
+<h2 id="构建Convolution-Layer相关"><a href="#构建Convolution-Layer相关" class="headerlink" title="构建Convolution Layer相关"></a>构建Convolution Layer相关</h2><h3 id="tf-nn-conv2d"><a href="#tf-nn-conv2d" class="headerlink" title="tf.nn.conv2d"></a>tf.nn.conv2d</h3><p>tf.nn.conv2d(<br>    input,<br>    filter,<br>    strides,<br>    padding,<br>    use_cudnn_on_gpu=True,<br>    data_format=’NHWC’,<br>    dilations=[1, 1, 1, 1],<br>    name=None<br>)</p>
+<ul>
+<li>最常见的卷积层构造方法，</li>
+<li>如何计算？</li>
+<li>参数解释：<ul>
+<li>input：为输入卷积层的数据，用4维的tensor来表示，shape为[batch, in_height, in_width, in_channels]，<code>batch</code>表示图片的个数，<code>in_height</code>表示图片的高，<code>in_width</code>表示图片的宽，<code>in_channels</code>表示图片的通道（eg. RGB三通道）；</li>
+<li>filter：表示卷积核，同样是4维的tensor，shape为[filter_height, filter_width, in_channels, out_channels]，<code>filter_height</code>为卷积核的高，<code>filter_width</code>为卷积核的宽，<code>in_channels</code>为输入卷积核的通道数，<code>out_channels</code>为输出卷积核的通道数。</li>
+<li>strides：同样是4维tensor（各个维度的意义和input参数相同），表示跨度，即卷积核在各个维度上如何移动，<code>[1, 1, 1, 1]</code>表示卷积核一个一个像素移动着计算，<code>[1, 2, 2, 1]</code>表示在in_height和in_width维度上每隔一个像素计算一次。</li>
+<li>padding：表示如何计算图像边缘的像素。只有两个可选值：<code>VALID</code>和<code>SAME</code>，<code>VALID</code>表示图像边缘一圈的像素不计算，<code>SAME</code>表示将图像边缘进行扩充以计算所有图像内像素（通常用0填充）。详细内容可参见<a href="https://www.tensorflow.org/api_guides/python/nn" target="_blank" rel="noopener">TensorFlow官方Neural Network教程</a>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="tf-nn-max-pool"><a href="#tf-nn-max-pool" class="headerlink" title="tf.nn.max_pool"></a>tf.nn.max_pool</h3><h2 id="tf-train-Optimizer类"><a href="#tf-train-Optimizer类" class="headerlink" title="tf.train.Optimizer类"></a>tf.train.Optimizer类</h2><ul>
+<li>这个类是tensorflow中各种优化器的父类，作用：给定一个目标函数/损失函数，根据一定的算法（优化器算法），来不断计算、更新函数中的变量，以使得最终函数取得最小值，即达到优化目标。</li>
+<li>下面介绍一些常用的函数API，虽然在各个优化器子类中会有一定变化，但大体还是一致的。</li>
+</ul>
+<h3 id="常用的优化类"><a href="#常用的优化类" class="headerlink" title="常用的优化类"></a>常用的优化类</h3><ul>
+<li>GradientDescentOptimizer：梯度下降优化器；</li>
+<li>AdamOptimizer：Adam优化器，一般直接用这个就行；</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a><strong>init</strong></h3><p>通常会在初始化时定义优化器的学习率/更新率，eg<code>optimizer = tf.train.AdamOptimizer(1e-3)</code>。</p>
+<h3 id="compute-gradients"><a href="#compute-gradients" class="headerlink" title="compute_gradients"></a>compute_gradients</h3><p>compute_gradients(<br>    loss,<br>    var_list=None,<br>    gate_gradients=GATE_OP,<br>    aggregation_method=None,<br>    colocate_gradients_with_ops=False,<br>    grad_loss=None<br>)</p>
+<ul>
+<li>函数作用：计算loss函数中各变量的梯度。</li>
+<li>参数解释：<ul>
+<li>loss：损失函数，在tf中就是一个变量；</li>
+<li>var_list：需要计算梯度的变量列表，只有在这个列表中的变量才会计算梯度，默认是<code>TRAINABLE_VARIABLES</code> collection中的所有变量。那有人可能会问，<code>TRAINABLE_VARIABLES</code> collection里那么多变量，岂不是会有很多多余的？是这样的，但因为有那些多余的变量都不再loss函数中，因此计算出来的梯度也是0，所以也不会有影响。</li>
+<li>gate_gradients：指定了计算操作可以并行化的程度，通常不管。</li>
+</ul>
+</li>
+<li>return：A list of (gradient, variable) pairs，即返回一个梯度-变量对的列表，反应了每个变量所计算出的梯度。</li>
+</ul>
+<h3 id="apply-gradients"><a href="#apply-gradients" class="headerlink" title="apply_gradients"></a>apply_gradients</h3><p>apply_gradients(<br>    grads_and_vars,<br>    global_step=None,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：用计算出来的梯度更新变量。</li>
+<li>参数解释：<ul>
+<li>grads_and_vars：List of (gradient, variable) pairs，即为<code>compute_gradients</code>函数的返回值。</li>
+<li>global_step：标记变量，记录已进行了多少次变量更新操作，每更新一次global_step会自动加1。</li>
+<li>注：在一次apply_gradients中会进行多次变量更新操作（会一直优化变量直到达到了指定误差），因此需要一个变量来记录进行了多少次更新。</li>
+</ul>
+</li>
+<li>return：返回op，执行该操作即进行优化更新操作。</li>
+</ul>
+<h3 id="minimize"><a href="#minimize" class="headerlink" title="minimize"></a>minimize</h3><p>minimize(<br>    loss,<br>    global_step=None,<br>    var_list=None,<br>    gate_gradients=GATE_OP,<br>    aggregation_method=None,<br>    colocate_gradients_with_ops=False,<br>    name=None,<br>    grad_loss=None<br>)</p>
+<ul>
+<li>函数作用：该函数相当于compute_gradients和apply_gradients的封装（先进行compute_gradients再进行apply_gradients），直接就返回一个最小化的Operation操作，没有中间先得到梯度、再应用梯度这些步骤了，更为简便。</li>
+<li>return：返回op，执行该操作即进行优化更新操作。</li>
+</ul>
+<h3 id="如何使用Optimizer"><a href="#如何使用Optimizer" class="headerlink" title="如何使用Optimizer"></a>如何使用Optimizer</h3><ol>
+<li><p>直接调用<code>minimize</code>函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">opt = GradientDescentOptimizer(learning_rate=<span class="number">0.1</span>)</span><br><span class="line">opt_op = opt.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行优化操作</span></span><br><span class="line">opt_op.run()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想对梯度进行一些修改，或者想观察梯度的变化情况，则分开执行<code>compute_gradients</code>和<code>apply_gradients</code>函数，中间可随意操作梯度，只要保证梯度以<code>(gradient, variable) list</code>的形式传入即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">opt = GradientDescentOptimizer(learning_rate=<span class="number">0.1</span>)</span><br><span class="line"><span class="comment"># 计算梯度</span></span><br><span class="line">grads_and_vars = opt.compute_gradients(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对梯度进行操作</span></span><br><span class="line">capped_grads_and_vars = [(MyCapper(gv[<span class="number">0</span>]), gv[<span class="number">1</span>]) <span class="keyword">for</span> gv <span class="keyword">in</span> grads_and_vars]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新变量</span></span><br><span class="line">opt_op = opt.apply_gradients(capped_grads_and_vars)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行优化操作</span></span><br><span class="line">opt_op.run()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注1：执行一次<code>minimzie()/apply_gradients()</code>返回的op操作，就相当于更新一次神经网络各边的权值（即函数中指定的<code>var_list</code>），明显只更新一次肯定不能使网络达到最优，因此就要多次调用op操作，而具体调用多少次呢？大多情况下没有明确的答案，要看何时loss函数收敛到一定范围就可以了。<br>注2：一般是一个mini-batch调用一次优化op，然后设置一个epoch次数（如300、500），使神经网络在全量数据集上优化更新一个较大的次数，就认为达到最优了。<br>注3：最终loss函数画出来应该是一个先下降再趋于平稳的曲线，说明模型确实学到东西了，且loss函数最终收敛了（至少达到了局部极小值）。如果画出来的曲线还在下降，说明更新次数不够，还应该继续训练。</p>
+<h2 id="模型、数据可视化"><a href="#模型、数据可视化" class="headerlink" title="模型、数据可视化"></a>模型、数据可视化</h2><h3 id="Protocal-Buffer"><a href="#Protocal-Buffer" class="headerlink" title="Protocal Buffer"></a>Protocal Buffer</h3><ul>
+<li>Protocol buffers 是谷歌推出一种数据序列化格式，通常以string字符串的形式实现，数据转化为protocal buffer后就可以存储到磁盘上并在需要时重新加载。</li>
+<li>protocol buffer是一种跨平台、跨语言的格式，可类比XML，但更为轻量化。</li>
+<li>tensoeflow中就使用protocal buffer格式来存储模型和数据。</li>
+</ul>
+<h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><ul>
+<li>TensorBoard主要作用是可视化，可以读取存储到磁盘上的Protocol Buffer格式的文件，并进行可视化展示，计算图、计算过程的变量变化都可进行可视化显示。</li>
+<li><a href="https://www.tensorflow.org/tensorboard/r1/overview" target="_blank" rel="noopener">TensorBoard官方文档</a></li>
+</ul>
+<h3 id="tf-summary函数"><a href="#tf-summary函数" class="headerlink" title="tf.summary函数"></a>tf.summary函数</h3><p>在tensorflow程序中主要使用tf.summary的各类方法将数据转化为protocol buffer格式并存储到磁盘上，具体介绍如下。<br>除了保存基本的变量外，还可保存文本（<code>tf.summary.text</code>）、图像（<code>tf.summary.image</code>）、音频（<code>tf.summary.audio</code>）格式的文件，且都可以用tensorboard进行展示。</p>
+<h4 id="tf-summary-scalar"><a href="#tf-summary-scalar" class="headerlink" title="tf.summary.scalar"></a>tf.summary.scalar</h4><p>tf.summary.scalar(<br>    name,<br>    tensor,<br>    collections=None,<br>    family=None<br>)</p>
+<ul>
+<li>函数作用：将标量转化为probuf格式，一般在画loss、accuary时会用到这个函数。</li>
+<li>参数解释：<ul>
+<li>name：将标量以什么名字进行保存，在tensorboard中就会使用这个名字来显示变量。type：string。</li>
+<li>tensor：待存储的tensor，注意tensor的shape必须为<code>()</code>，即tensor必须是标量（即就一个数）。</li>
+<li>其他参数一般用不到。</li>
+</ul>
+</li>
+<li>return：会返回一个string格式的tensor，存储probuf化的标量信息。</li>
+</ul>
+<h4 id="tf-summary-histogram"><a href="#tf-summary-histogram" class="headerlink" title="tf.summary.histogram"></a>tf.summary.histogram</h4><p>tf.summary.histogram(<br>    name,<br>    values,<br>    collections=None,<br>    family=None<br>)</p>
+<ul>
+<li>函数作用：用于存储tensor，不同于scalar只能存储一个数，distribution任何shape都可以存，其用来记录tensor中各个元素的分布情况。</li>
+<li>参数解释：<ul>
+<li>name：tensorboard中显示的名字；</li>
+<li>values：待存储的的tensor值；</li>
+</ul>
+</li>
+<li>renturn：会返回一个string格式的tensor，存储probuf化的tensor信息。</li>
+<li>tensorboard中的histogram和distribution其实是同一个事物的两种不同展示形式。</li>
+<li><a href="https://www.tensorflow.org/tensorboard/r1/histograms" target="_blank" rel="noopener">TensorBoard Histogram Dashboard文档</a></li>
+</ul>
+<h4 id="tf-summary-merge"><a href="#tf-summary-merge" class="headerlink" title="tf.summary.merge"></a>tf.summary.merge</h4><p>tf.summary.merge(<br>    inputs,<br>    collections=None,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：用于管理多个summary，将多个protocol buffer的数据整合到一个protocol buffer中，所以每次就可以只计算总的probuf了。</li>
+<li>参数解释：<ul>
+<li>inputs：待合并的多个tensor，每个tensor都是包含protocol buffer的string类型；type：包含多个tensor的list；</li>
+<li>其他参数不常用。</li>
+</ul>
+</li>
+<li>return：返回一个string类型的tensor，存储整合后的protocol buffer（包含了inputs中的各个probuf）。</li>
+</ul>
+<h4 id="tf-summary-merge-all"><a href="#tf-summary-merge-all" class="headerlink" title="tf.summary.merge_all"></a>tf.summary.merge_all</h4><p>tf.summary.merge_all(<br>    key=tf.GraphKeys.SUMMARIES,<br>    scope=None,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：用于管理所有的summary，将所有的protocol buffer整合到一个里，一次性计算所有的summary。</li>
+<li>参数解释：<ul>
+<li>key：指定了整合哪个范围内的summary，默认为<code>tf.GraphKeys.SUMMARIES</code>（就是所有的summary，summary默认都添加到这里）。</li>
+<li>scope：过滤掉不想整合的summary。</li>
+<li>三个参数通常情况下都不指定。</li>
+</ul>
+</li>
+<li>return：返回一个string类型的tensor，存储整合后的protocol buffer。</li>
+</ul>
+<h3 id="tf-summary-FileWriter类"><a href="#tf-summary-FileWriter类" class="headerlink" title="tf.summary.FileWriter类"></a>tf.summary.FileWriter类</h3><ul>
+<li>将变量转化为protocol buffer形式后，就需要将其写到文件中了，提供的将probuf写到文件中的类为：<code>FileWriter</code>。</li>
+<li>tensorflow称存储probuf的文件为<code>event file</code>，就是存储计算过程中各种事件的文件的意思。</li>
+<li>event file采用的是异步更新机制（系统会在空闲的时候才更新文件），保证了对文件的操作不会拖慢模型训练速度。</li>
+</ul>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p><strong>init</strong>(<br>    logdir,<br>    graph=None,<br>    max_queue=10,<br>    flush_secs=120,<br>    graph_def=None,<br>    filename_suffix=None,<br>    session=None<br>)</p>
+<ul>
+<li><code>logdir</code>参数：要将event file保存在哪个目录下；</li>
+<li>其他参数不用管。</li>
+</ul>
+<h4 id="tf-FileWriter-add-graph"><a href="#tf-FileWriter-add-graph" class="headerlink" title="tf.FileWriter.add_graph"></a>tf.FileWriter.add_graph</h4><p>add_graph(<br>    graph,<br>    global_step=None,<br>    graph_def=None<br>)</p>
+<ul>
+<li>函数作用：将graph存储到FileWriter对应的event file中。之后tensorboard读取event file就可以对计算图进行可视化展示。</li>
+<li>参数解释：<ul>
+<li>graph：待存储的计算图；</li>
+<li>global_step：计数变量，每次调用函数就+1；</li>
+</ul>
+</li>
+<li>return：无返回值。与其他返回op的函数不同，执行这个函数后数据就直接被写到文件了。</li>
+<li>通常不使用这个函数，而是直接将<code>sess.graph</code>传入FileWriter的构造函数中。</li>
+</ul>
+<h4 id="tf-FileWriter-add-summary"><a href="#tf-FileWriter-add-summary" class="headerlink" title="tf.FileWriter.add_summary"></a>tf.FileWriter.add_summary</h4><p>add_summary(<br>    summary,<br>    global_step=None<br>)</p>
+<ul>
+<li>函数作用：将summary函数产生的protocol buffer数据存储到FileWriter对应的event file中。</li>
+<li>参数解释：<ul>
+<li>summary：待存储的summary protocol buffer；注意必须先<code>run()/eval()</code>才能生成probuf，之后才能传入函数，不然就只传了一个空tensor。</li>
+<li>global_step：计数变量，每次调用函数就+1；</li>
+</ul>
+</li>
+<li>return：无返回值，函数直接执行写入操作（实际是异步的）。</li>
+</ul>
+<p>Tensor shape information：将tensor的shape反映到图中（通过边的粗细程度）</p>
+<h4 id="tf-FileWriter-flush"><a href="#tf-FileWriter-flush" class="headerlink" title="tf.FileWriter.flush()"></a>tf.FileWriter.flush()</h4><ul>
+<li>将所有pending的数据立即写入文件。</li>
+<li>因为add函数是异步执行的，所以调用函数后系统不会立即将数据写入文件。</li>
+</ul>
+<h3 id="使用tensorboard"><a href="#使用tensorboard" class="headerlink" title="使用tensorboard"></a>使用tensorboard</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化一个存储文件</span></span><br><span class="line">writer = tf.summary.FileWriter(<span class="string">'.'</span>)</span><br><span class="line"><span class="comment"># 将计算图存到文件中</span></span><br><span class="line">writer.add_graph(tf.get_default_graph())</span><br><span class="line"><span class="comment"># 文件写到磁盘上</span></span><br><span class="line">writer.flush()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如何调用TensorBoard：</p>
+<ol>
+<li><code>tensorboard --logdir=PATH</code>；省略形式：<code>tensorboard --logdir .</code>，直接在当前目录下运行。<br>注：annaconda下需要先进入相应python环境，才可以使用<code>tensorboard</code>命令。</li>
+<li>之后在<code>localhost: 6006</code>上即可访问。</li>
+</ol>
+</li>
+<li><p>tensorboard分析：<br>在tensorboard中会按照name scope将相关节点都聚集到一个父节点中，因此良好的name scope命名规则会很有利于模型可视化。</p>
+<ul>
+<li>关于<code>name_scope</code>和<code>variable_scope</code>的区别：<br>name_scope：为了更好地管理变量的命名空间而提出的。比如在 tensorboard 中，因为引入了 name_scope， 我们的 Graph 看起来才井然有序。<br>variable_scope：大部分情况下是跟 tf.get_variable() 配合使用，来实现变量共享的功能。但tensorboard也会对同一variable_scope的变量进行聚集和整理。</li>
+</ul>
+</li>
+</ul>
+<h2 id="模型的保存和重新加载"><a href="#模型的保存和重新加载" class="headerlink" title="模型的保存和重新加载"></a>模型的保存和重新加载</h2><ul>
+<li>将训练好的模型参数保存起来，以便以后直接使用或进行进一步的训练，这是我们经常要做的事情，tf里面提供模型保存相关操作的是tf.train.Saver类。</li>
+<li>注意tf.train.Saver保存的只是Variable类型的值，Tensor类型的值是不保存的。因为Tensor都是数据或者是模型传递的中间计算值，也没有保存价值。</li>
+<li><p>保存模型本质上保存的是模型的各项参数，对神经网络来说就是网络的结构信息、各个边的权值等。</p>
+</li>
+<li><p>from tensorflow.python.tools import inspect_checkpoint as chkp<br>chkp.print_tensors_in_checkpoint_file(file_name=path, tensor_name=’’, all_tensors=False)</p>
+</li>
+<li><p>saver = tf.train.import_meta_graph()</p>
+</li>
+</ul>
+<h3 id="init-1"><a href="#init-1" class="headerlink" title="init"></a><strong>init</strong></h3><p><strong>init</strong>(<br>    var_list=None,<br>    reshape=False,<br>    sharded=False,<br>    max_to_keep=5,<br>    keep_checkpoint_every_n_hours=10000.0,<br>    name=None,<br>    restore_sequentially=False,<br>    saver_def=None,<br>    builder=None,<br>    defer_build=False,<br>    allow_empty=False,<br>    write_version=tf.train.SaverDef.V2,<br>    pad_step_number=False,<br>    save_relative_paths=False,<br>    filename=None<br>)</p>
+<ul>
+<li>参数解释：<ul>
+<li>var_list：指定要保存的变量，默认是保存所传入Session中的全部变量；</li>
+<li>max_to_keep：最多保存的模型数量，默认为5，即只保存最近的5次模型训练结果；若为None或0，则保存所有的模型。</li>
+<li>keep_checkpoint_every_n_hours：每隔多长时间保存一次模型；</li>
+<li>通常情况下直接调用构造函数即可，不用指定参数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="tf-train-Saver-save"><a href="#tf-train-Saver-save" class="headerlink" title="tf.train.Saver.save()"></a>tf.train.Saver.save()</h3><p>save(<br>    sess,<br>    save_path,<br>    global_step=None,<br>    latest_filename=None,<br>    meta_graph_suffix=’meta’,<br>    write_meta_graph=True,<br>    write_state=True,<br>    strip_default_attrs=False<br>)</p>
+<ul>
+<li>函数作用：保存模型。</li>
+<li>参数解释：<ul>
+<li>sess：运行模型的session，默认是将session中所有的参数都保存下来；</li>
+<li>save_path：保存模型的路径，可以是相对路径，也可以是绝对路径。</li>
+<li>注1：这个路径的最后一项其实是模型文件名的一部分（前缀），如参数为”ckpt/mnist”，会将模型保存到ckpt目录下，文件名为”mnist-xxx”，xxx为后缀，由global_step指定。</li>
+<li>注2：无需事先创建目录，若路径中的目录不存在tf会自动创建。</li>
+<li>global_step：文件名后缀，用训练步数对文件名添加的数字标记。</li>
+</ul>
+</li>
+<li>return：返回文件的绝对路径，type：string。</li>
+</ul>
+<h3 id="tf-train-Saver-restore"><a href="#tf-train-Saver-restore" class="headerlink" title="tf.train.Saver.restore()"></a>tf.train.Saver.restore()</h3><p>restore(<br>    sess,<br>    save_path<br>)</p>
+<ul>
+<li>函数作用：恢复之前保存的模型。</li>
+<li>参数解释：<ul>
+<li>sess：要恢复到哪个session；</li>
+<li>save_path：文件保存的路径。可直接传入<code>save()</code>函数的返回值来掉用。</li>
+</ul>
+</li>
+<li>return：void。</li>
+</ul>
+<h3 id="tf-train-Saver-last-checkpoints"><a href="#tf-train-Saver-last-checkpoints" class="headerlink" title="tf.train.Saver.last_checkpoints"></a>tf.train.Saver.last_checkpoints</h3><ul>
+<li>Saver类的一个属性，type：list，保存了储存在磁盘上的模型的名字（包括路径），依照产生顺序从旧到新排列。</li>
+<li>list中任何一个元素都可以直接作为参数传给<code>restore()</code>函数。</li>
+</ul>
+<h3 id="模型的保存格式"><a href="#模型的保存格式" class="headerlink" title="模型的保存格式"></a>模型的保存格式</h3><ul>
+<li>模型和数据会被保存为三个文件：<code>filename.data-00000-of-00001</code>、<code>filename.index</code>、<code>filename.meta</code>，三个文件名字都是一样的，只是后缀不同。</li>
+<li>三个文件作用如下：<code>.meta</code>文件存储计算图结构，<code>.data</code>文件存储计算图中所有的变量值，<code>.index</code>文件则负责指示如何在<code>.data</code>文件中查找计算图变量对应的值（相当于一个<code>.meta</code>文件和<code>.data</code>文件的映射）。</li>
+<li>重新加载模型有两种情况：<ol>
+<li>在已经建立好计算图的情况下，只用在<code>restore()</code>函数中传入<code>filename</code>和其路径即可，不用考虑后缀；这个操作就相当于用<code>.data</code>中的值初始化计算图中的变量。</li>
+<li>如果没有建立好计算图，则需要先<code>tf.train.import_meta_graph(&#39;xxx.meta&#39;)</code>将计算图结构加载进来，再<code>restor()</code> <code>.data</code>文件中的变量值。</li>
+</ol>
+</li>
+</ul>
+<h2 id="tf-nn-embedding-lookup"><a href="#tf-nn-embedding-lookup" class="headerlink" title="tf.nn.embedding_lookup"></a>tf.nn.embedding_lookup</h2><p>tf.nn.embedding_lookup(<br>    params,<br>    ids,<br>    partition_strategy=’mod’,<br>    name=None,<br>    validate_indices=True,<br>    max_norm=None<br>)</p>
+<ul>
+<li>函数作用：根据序号查找tensor中的相应项。当<code>params</code>为一个tensor时，根据<code>ids</code>返回查到的行；当<code>params</code>是多个tensor所构成的list时，则根据分隔策略返回查到的各个tensor的行。</li>
+<li>构成<code>params</code>的tensor通常为2维的，此时查到的是行；如果tensor是一维的，则是查找相应的项。</li>
+<li>参数解释：<ul>
+<li>params：待查找项的集合；type：单个tensor或多个tensor的list。</li>
+<li>ids：用来查找项的索引；type：整型list或tensor，1-D/mul-D都可。</li>
+<li>partition_strategy：分隔策略，指定了怎样由索引去查找对应项。type：”mod” 或 “div”。<br>只有在<code>len(params) &gt; 1</code>时才有用，即params是由多个tensor构成时才有用。</li>
+</ul>
+</li>
+<li>return：返回一个tensor，表示查到的params的行。shape为ids的shape再加上所查到的行，即rank = ids_rank + 1。</li>
+<li>partition_strategy进一步解释：<ul>
+<li>默认为<code>mod</code>：按余数来分隔各个tensor，0~n-1分别表示第一个tensor到最后一个tensor的<strong>第一项</strong>，n~2n-1分别表示第一个tensor到最后一个tensor的<strong>第二项</strong>，以此类推；</li>
+<li><code>div</code>：按除数来分隔tensor，从前到后依次查找每个tensor中的元素。<br>example code：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># params为单个tensor的情况</span></span><br><span class="line">params = tf.constant([[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>],[<span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>]])</span><br><span class="line">ids = tf.constant([<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">print(tf.nn.embedding_lookup(params,ids).eval()) </span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># [[10 20 30]</span></span><br><span class="line"><span class="comment">#  [40 50 60]</span></span><br><span class="line"><span class="comment">#  [40 50 60]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># params为多个tensor的情况，需要指定分隔策略</span></span><br><span class="line">params1 = tf.constant([[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>],[<span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>]])</span><br><span class="line">params2 = tf.constant([[<span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>],[<span class="number">100</span>, <span class="number">110</span>, <span class="number">120</span>]])</span><br><span class="line">ids = tf.constant([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">print(tf.nn.embedding_lookup([params1, params2],ids).eval()) </span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># [[ 10  20  30]</span></span><br><span class="line"><span class="comment">#  [ 70  80  90]</span></span><br><span class="line"><span class="comment">#  [ 40  50  60]</span></span><br><span class="line"><span class="comment">#  [100 110 120]]</span></span><br><span class="line"></span><br><span class="line">print(tf.nn.embedding_lookup([params1, params2],ids, partition_strategy=<span class="string">'div'</span>).eval()) </span><br><span class="line"><span class="comment"># div分隔策略下，输出为</span></span><br><span class="line"><span class="comment"># [[ 10  20  30]</span></span><br><span class="line"><span class="comment">#  [ 40  50  60]</span></span><br><span class="line"><span class="comment">#  [ 70  80  90]</span></span><br><span class="line"><span class="comment">#  [100 110 120]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若ids是多维的，查到的内容不变，则仅仅是将查找结果整理成相应的多维数组的形式而已。</span></span><br><span class="line">params1 = tf.constant([[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>],[<span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>]])</span><br><span class="line">params2 = tf.constant([[<span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>],[<span class="number">100</span>, <span class="number">110</span>, <span class="number">120</span>]])</span><br><span class="line"></span><br><span class="line">ids = tf.constant([[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line"></span><br><span class="line">print(tf.nn.embedding_lookup([params1, params2],ids, partition_strategy=<span class="string">'div'</span>).eval()) </span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># [[[ 10  20  30]</span></span><br><span class="line"><span class="comment">#   [ 40  50  60]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 70  80  90]</span></span><br><span class="line"><span class="comment">#  [100 110 120]]]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何构建词汇表"><a href="#如何构建词汇表" class="headerlink" title="如何构建词汇表"></a>如何构建词汇表</h2><p>词汇表本质是一个word: id字典，用于将token词和对应的整数映射起来，即把每个词变成一个独立的整数，这样我们就可以通过相应的index来存储、操作token，节省存储空间、加快速度，也便于后期做词嵌入。<br>tensorflow有<code>VocabularyProcessor</code>和<code>tf.keras.preprocessing.text.Tokenizer</code>两种实现方法，下面分别介绍。</p>
+<h3 id="VocabularyProcessor类"><a href="#VocabularyProcessor类" class="headerlink" title="VocabularyProcessor类"></a>VocabularyProcessor类</h3><ul>
+<li>这个类tensoflow官方已经不推荐使用了（替代手段为<code>tf.keras.preprocessing.text.Tokenizer</code>的相关API），但因为有时阅读别人代码的需求，所以还是简单总结下这个类的使用方法。</li>
+<li>构造方法：tf.contrib.learn.preprocessing.VocabularyProcessor (max_document_length, min_frequency=0, vocabulary=None, tokenizer_fn=None)<br>max_document_length：文档的最大长度。如果文本的长度大于最大长度，那么它会被剪切，反之则用0填充；<br>min_frequency：词频的最小值，出现次数<strong>小于</strong>最小词频的词不会被收录到词汇表中；<br>vocabulary：CategoricalVocabulary对象，直接none就行；<br>tokenizer_fn：分词函数，直接none就行。</li>
+<li><p>example code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.contrib <span class="keyword">import</span> learn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">max_document_length = <span class="number">4</span></span><br><span class="line">x_text =[</span><br><span class="line">    <span class="string">'i love you'</span>,</span><br><span class="line">    <span class="string">'me too'</span></span><br><span class="line">]</span><br><span class="line">vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)</span><br><span class="line">vocab_processor.fit(x_text) <span class="comment"># 训练一个词汇表</span></span><br><span class="line">print(next(vocab_processor.transform([<span class="string">'i me too'</span>])).tolist()) <span class="comment"># 输出index形式的文档</span></span><br><span class="line">x = np.array(list(vocab_processor.transform(x_text)))</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">0</span>]</span><br><span class="line">[[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">0</span> <span class="number">0</span>]]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些常用函数：<br>VocabularyProcessor.fit()：训练词汇表，词汇表第0位默认为<code>&lt;UNK&gt;</code>（”<unk>: 0”），用于标示不在词汇表中的词；<br>VocabularyProcessor.transform()：根据词汇表将句子转化成相应的数字序列，并返回；<br>VocabularyProcessor.fit_transform()：先训练一个词汇表，再返回训练集的数字序列；<br>VocabularyProcessor.vocabulary_.<em>mapping[key]：根据key(即token词)取对应id；<br>VocabularyProcessor.vocabulary</em>.<em>mapping.get(key, default=None)：根据key(即token词)取对应id，没取到返回的default参数值；<br>VocabularyProcessor.vocabulary</em>._mapping.keys()：返回所有keys；</unk></p>
+</li>
+</ul>
+<h3 id="tf-keras-preprocessing-text-Tokenizer类"><a href="#tf-keras-preprocessing-text-Tokenizer类" class="headerlink" title="tf.keras.preprocessing.text.Tokenizer类"></a>tf.keras.preprocessing.text.Tokenizer类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Tokenizer</span></span><br><span class="line">tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=<span class="number">20000</span>， oov_token=<span class="string">'&lt;UNK&gt;'</span>)</span><br><span class="line">tokenizer.fit_on_texts(train_text)</span><br><span class="line">train_idxs = tokenizer.text_to_sequences(train_text)</span><br><span class="line">test_idxs = tokenizer.text_to_sequences(test_text)</span><br></pre></td></tr></table></figure>
+<p>更多见：<a href="https://zhuanlan.zhihu.com/p/31767633" target="_blank" rel="noopener">文本预处理方法小记-知乎</a></p>
+<h2 id="关于collection"><a href="#关于collection" class="headerlink" title="关于collection"></a>关于collection</h2><h3 id="tf-add-to-collection"><a href="#tf-add-to-collection" class="headerlink" title="tf.add_to_collection"></a>tf.add_to_collection</h3><p>add_to_collection(<br>    name,<br>    value<br>)</p>
+<ul>
+<li>函数作用：将某个变量添加到默认graph的某个collection中（是<code>tf.tf.get_default_graph().add_to_collection</code>的简写形式）。</li>
+<li>参数解释：<ul>
+<li>name：collection的名字，若collection不存在则自动创建一个并添加；</li>
+<li>value：要被添加的变量；</li>
+</ul>
+</li>
+<li>return：无返回值。</li>
+</ul>
+<h2 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h2><h3 id="关于axis参数和dimension的理解"><a href="#关于axis参数和dimension的理解" class="headerlink" title="关于axis参数和dimension的理解"></a>关于axis参数和dimension的理解</h3><ul>
+<li>在Tensorflow和numpy的函数中，经常会有<code>axis</code>这个参数，这是一个和维度dimension息息相关的概念，下面来进行介绍。</li>
+<li>axis：中文意思为“轴”，本质是一个方向！表示在当前维度上数量增加的方向，与笛卡尔坐标系中的x轴和y轴表达是一个意思。</li>
+<li>axis是从0开始计数的，在一个矩阵/2D tensor中，axis0表示竖直方向，axis1表示水平方向。在更高维的张量中，axis0、axis1也是表示相同的方向。</li>
+<li>但注意，在一维tensor（即数组/向量）中axis的表示有些不同，一维tensor只有一个axis，为axis0，且axis0的方向是<strong>水平</strong>的。原因在于：一维tensor本质应该是列向量，这样axis0方向就是竖直的了，与高维tensor统一；但因为人们的表示习惯，把一维tensor表示为行向量了，因此才会有axis0的差异。</li>
+<li>dimension：维度，本质和axis是一样的，也是指方向。但有两种上下文的理解：1、这个东西是几维几维的，是指这个东西有多少个“方向”来描述；2、这个东西的1维2维3维，是指第几个方向，即1维对应axis 0，2维对应axis 1，这样。</li>
+<li>详细解释参照：<a href="https://www.sharpsightlabs.com/blog/numpy-axes-explained/" target="_blank" rel="noopener">NUMPY AXES EXPLAINED</a></li>
+</ul>
+<h3 id="tf-split"><a href="#tf-split" class="headerlink" title="tf.split"></a>tf.split</h3><p>tf.split(<br>    value,<br>    num_or_size_splits,<br>    axis=0,<br>    num=None,<br>    name=’split’<br>)</p>
+<ul>
+<li>函数作用：将大tensor分割成几个小tensor</li>
+<li>参数解释：<ul>
+<li>value：输入数据，为tensor类型；</li>
+<li>num_or_size_splits：指定了两种分割策略。若输入的是一个整数n，则会在axis维度上<strong>平均</strong>分成n个小tensor；若输入的是一个tensor/list，则会按照指定的大小来分；</li>
+<li>axis：指定了要沿哪个维度来分，注意维度的计数从0开始。</li>
+</ul>
+</li>
+<li>return：包含被分割的小tensor的list</li>
+<li>example code：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">value = tf.get_variable(name=<span class="string">"value"</span>, shape=[<span class="number">5</span>, <span class="number">30</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 平均分 &amp; 沿维度1分</span></span><br><span class="line">split0, split1, split2 = tf.split(value, num_or_size_splits=<span class="number">3</span>, axis=<span class="number">1</span>)</span><br><span class="line">print(split0.shape) <span class="comment"># [5, 10]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按指定的大小分 &amp; 沿维度1分</span></span><br><span class="line">split0, split1, split2 = tf.split(value, [<span class="number">4</span>, <span class="number">15</span>, <span class="number">11</span>], <span class="number">1</span>)</span><br><span class="line">print(split0.shape)  <span class="comment"># [5, 4]</span></span><br><span class="line">print(split1.shape)  <span class="comment"># [5, 15]</span></span><br><span class="line">print(split2.shape)  <span class="comment"># [5, 11]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-concat"><a href="#tf-concat" class="headerlink" title="tf.concat"></a>tf.concat</h3><p>tf.concat(<br>    values,<br>    axis,<br>    name=’concat’<br>)</p>
+<ul>
+<li>函数作用：将多个小tensor拼接为一个大tensor（沿着axis指定的维度）</li>
+<li>参数解释：<ul>
+<li>values：将要拼接的tensor集合；type：tensor的list。</li>
+<li>axis：在哪个维度上进行拼接；type：int；</li>
+</ul>
+</li>
+<li>返回值：一个拼接后的新tensor。</li>
+<li>注：带拼接的各个tensor，除了axis维度，其他维度的长度必须相等。</li>
+</ul>
+<h3 id="tf-reshape"><a href="#tf-reshape" class="headerlink" title="tf.reshape"></a>tf.reshape</h3><p>tf.reshape(<br>    tensor,<br>    shape,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：改变一个tensor的shape。</li>
+<li>参数解释：<ul>
+<li>tensor：原tensor。</li>
+<li>shape：要被改变成的shape；type：list；</li>
+</ul>
+</li>
+<li>返回值：reshaped tensor。</li>
+<li>注1：shape中的某个维度可以指定为-1，表示该维度的长度由系统推断，最多只能指定一个维度为-1。如果shape就直接是<code>[-1]</code>，则会将原tensor平铺为1-Dtensor。</li>
+<li>注2：要把元素都填充到新tensor的各个维度中，肯定要以一定的顺序读取原tensor中的元素，那按什么样的顺序进行读取呢？可以理解为<strong>深度优先</strong>，即先把一个元素所有的低维度子元素读完，再读下一个元素。填充时也是这个顺序。</li>
+</ul>
+<h3 id="tf-transpose"><a href="#tf-transpose" class="headerlink" title="tf.transpose"></a>tf.transpose</h3><p>tf.transpose(<br>    a,<br>    perm=None,<br>    name=’transpose’,<br>    conjugate=False<br>)</p>
+<ul>
+<li>函数作用：对矩阵进行转置。更本质来说是对tensor的维度顺序进行调整，如将第3维调整到第2维，第2维调到第1维等；</li>
+<li>参数解释：<ul>
+<li>a：待转置的tensor；</li>
+<li>perm：在新tensor中原先各维度的排列顺序，即指定如何转置tensor；type：list；默认为[n-1, …, 0]，表示从后到前依次转置，即为2-D矩阵的转置方式。</li>
+<li>conjugate：用处不大，只在元素为复数时有用。</li>
+</ul>
+</li>
+<li>return：转置后的新tensor。</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">tf.transpose(x)  </span><br><span class="line"><span class="comment"># [[1, 4]</span></span><br><span class="line"><span class="comment">#  [2, 5]</span></span><br><span class="line"><span class="comment">#  [3, 6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Equivalently</span></span><br><span class="line">tf.transpose(x, perm=[<span class="number">1</span>, <span class="number">0</span>])  </span><br><span class="line"><span class="comment"># [[1, 4]</span></span><br><span class="line"><span class="comment">#  [2, 5]</span></span><br><span class="line"><span class="comment">#  [3, 6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 'perm' is more useful for n-dimensional tensors, for n &gt; 2</span></span><br><span class="line">x = tf.constant([[[ <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</span><br><span class="line">                  [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>]],</span><br><span class="line">                 [[ <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</span><br><span class="line">                  [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># (2, 2, 3) shape转置为 (2, 3, 2) shape</span></span><br><span class="line">tf.transpose(x, perm=[<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>])  </span><br><span class="line"><span class="comment"># [[[1,  4],</span></span><br><span class="line"><span class="comment">#   [2,  5],</span></span><br><span class="line"><span class="comment">#   [3,  6]],</span></span><br><span class="line"><span class="comment">#  [[7, 10],</span></span><br><span class="line"><span class="comment">#   [8, 11],</span></span><br><span class="line"><span class="comment">#   [9, 12]]]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-squeeze"><a href="#tf-squeeze" class="headerlink" title="tf.squeeze"></a>tf.squeeze</h3><p>tf.squeeze(<br>    input,<br>    axis=None,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：去除tensor中大小为1的维度（因为这些维度本身意义不大）。对应了函数名squeeze“挤压”。</li>
+<li>参数解释：<ul>
+<li>input：输入tensor</li>
+<li>axis：可以自己指定要去除具体哪一个大小为1的维度，list类型</li>
+</ul>
+</li>
+<li>return：返回一个处理后的tensor</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 't' is a tensor of shape [1, 2, 1, 3, 1, 1]</span></span><br><span class="line">tf.shape(tf.squeeze(t))  <span class="comment"># [2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># remove specific size 1 dimensions</span></span><br><span class="line"><span class="comment"># 't' is a tensor of shape [1, 2, 1, 3, 1, 1]</span></span><br><span class="line">tf.shape(tf.squeeze(t, [<span class="number">2</span>, <span class="number">4</span>]))  <span class="comment"># [1, 2, 3, 1]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-expand-dims"><a href="#tf-expand-dims" class="headerlink" title="tf.expand_dims"></a>tf.expand_dims</h3><p>tf.expand_dims(<br>    input,<br>    axis=None,<br>    name=None,<br>    dim=None(deprecated)<br>)</p>
+<ul>
+<li>函数作用：对tensor添加维度，添加的维度长度为1。常用来对tensor增加batch维。</li>
+<li>参数解释：<ul>
+<li>input：待操作的tensor；</li>
+<li>axis：指定在哪个位置添加维度，位置从0开始；</li>
+<li>dim：这是deprecated的参数，不推荐使用；</li>
+</ul>
+</li>
+<li>return：改变后的tensor。</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 't' is a tensor of shape [2]</span></span><br><span class="line">tf.shape(tf.expand_dims(t, <span class="number">0</span>))  <span class="comment"># [1, 2]</span></span><br><span class="line">tf.shape(tf.expand_dims(t, <span class="number">1</span>))  <span class="comment"># [2, 1]</span></span><br><span class="line">tf.shape(tf.expand_dims(t, <span class="number">-1</span>))  <span class="comment"># [2, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 't2' is a tensor of shape [2, 3, 5]</span></span><br><span class="line">tf.shape(tf.expand_dims(t2, <span class="number">0</span>))  <span class="comment"># [1, 2, 3, 5]</span></span><br><span class="line">tf.shape(tf.expand_dims(t2, <span class="number">2</span>))  <span class="comment"># [2, 3, 1, 5]</span></span><br><span class="line">tf.shape(tf.expand_dims(t2, <span class="number">3</span>))  <span class="comment"># [2, 3, 5, 1]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-tile"><a href="#tf-tile" class="headerlink" title="tf.tile"></a>tf.tile</h3><p>tf.tile(<br>    input,<br>    multiples,<br>    name=None<br>)</p>
+<ul>
+<li>函数作用：通过多次复制一个tensor的方式构造新tensor。可以理解为用tf.concat拼接相同的tensor。</li>
+<li>参数解释：<ul>
+<li>input：将要被复制的tensor；</li>
+<li>multiple：指定input中各个维度将要被复制的次数；type：list，且长度必须和input的维度数相等。</li>
+</ul>
+</li>
+<li>return：所构造的新tensor。</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session(): </span><br><span class="line">    x = tf.constant([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">    y1 = tf.tile(x, [<span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">    y2 = tf.tile(x, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">    print(y1.eval())</span><br><span class="line">    print(y2.eval())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># [[1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6]</span></span><br><span class="line"><span class="comment">#  [1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6]]</span></span><br><span class="line"><span class="comment"># [[1 2 3 1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6 4 5 6]]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-stack"><a href="#tf-stack" class="headerlink" title="tf.stack"></a>tf.stack</h3><p>tf.stack(<br>    values,<br>    axis=0,<br>    name=’stack’<br>)</p>
+<ul>
+<li>函数作用：将一个list内的多个tensor叠成一个(rank+1)的tensor，多的那一维就是tensor的数量。</li>
+<li>参数解释：<ul>
+<li>values：list of tensor；</li>
+<li>axis：要叠到新tensor的哪个维度上，默认为0，即各个tensor以行的形式进行排列。</li>
+</ul>
+</li>
+<li>return：返回新的tensor</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([<span class="number">1</span>, <span class="number">4</span>])</span><br><span class="line">y = tf.constant([<span class="number">2</span>, <span class="number">5</span>])</span><br><span class="line">z = tf.constant([<span class="number">3</span>, <span class="number">6</span>])</span><br><span class="line">tf.stack([x, y, z])  <span class="comment"># [[1, 4], [2, 5], [3, 6]] (Pack along first dim.)</span></span><br><span class="line">tf.stack([x, y, z], axis=<span class="number">1</span>)  <span class="comment"># [[1, 2, 3], [4, 5, 6]]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tf-math-zero-fraction"><a href="#tf-math-zero-fraction" class="headerlink" title="tf.math.zero_fraction"></a>tf.math.zero_fraction</h3><p>tf.math.zero_fraction(<br>    value,<br>    name=None<br>)</p>
+<ul>
+<li>Aliases：tf.nn.zero_fraction</li>
+<li>函数作用：返回value中值为0的元素所占的比例。因为relu激活函数有时会大面积的将输入参数设为0，所以此函数可以有效衡量relu激活函数的有效性。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-03-05</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/TensorFlow/" class="color1">TensorFlow</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建Convolution-Layer相关"><span class="post-toc-number">1.</span> <span class="post-toc-text">构建Convolution Layer相关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-nn-conv2d"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">tf.nn.conv2d</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-nn-max-pool"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">tf.nn.max_pool</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tf-train-Optimizer类"><span class="post-toc-number">2.</span> <span class="post-toc-text">tf.train.Optimizer类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的优化类"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">常用的优化类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#init"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">init</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compute-gradients"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">compute_gradients</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#apply-gradients"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">apply_gradients</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#minimize"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">minimize</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何使用Optimizer"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">如何使用Optimizer</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模型、数据可视化"><span class="post-toc-number">3.</span> <span class="post-toc-text">模型、数据可视化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Protocal-Buffer"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Protocal Buffer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TensorBoard"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">TensorBoard</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-summary函数"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">tf.summary函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-summary-scalar"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">tf.summary.scalar</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-summary-histogram"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">tf.summary.histogram</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-summary-merge"><span class="post-toc-number">3.3.3.</span> <span class="post-toc-text">tf.summary.merge</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-summary-merge-all"><span class="post-toc-number">3.3.4.</span> <span class="post-toc-text">tf.summary.merge_all</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-summary-FileWriter类"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">tf.summary.FileWriter类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#构造函数"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">构造函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-FileWriter-add-graph"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">tf.FileWriter.add_graph</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-FileWriter-add-summary"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">tf.FileWriter.add_summary</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tf-FileWriter-flush"><span class="post-toc-number">3.4.4.</span> <span class="post-toc-text">tf.FileWriter.flush()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用tensorboard"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">使用tensorboard</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模型的保存和重新加载"><span class="post-toc-number">4.</span> <span class="post-toc-text">模型的保存和重新加载</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#init-1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">init</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-train-Saver-save"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">tf.train.Saver.save()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-train-Saver-restore"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">tf.train.Saver.restore()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-train-Saver-last-checkpoints"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">tf.train.Saver.last_checkpoints</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型的保存格式"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">模型的保存格式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tf-nn-embedding-lookup"><span class="post-toc-number">5.</span> <span class="post-toc-text">tf.nn.embedding_lookup</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何构建词汇表"><span class="post-toc-number">6.</span> <span class="post-toc-text">如何构建词汇表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VocabularyProcessor类"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">VocabularyProcessor类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-keras-preprocessing-text-Tokenizer类"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">tf.keras.preprocessing.text.Tokenizer类</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于collection"><span class="post-toc-number">7.</span> <span class="post-toc-text">关于collection</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-add-to-collection"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">tf.add_to_collection</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他函数"><span class="post-toc-number">8.</span> <span class="post-toc-text">其他函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于axis参数和dimension的理解"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">关于axis参数和dimension的理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-split"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">tf.split</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-concat"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">tf.concat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-reshape"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">tf.reshape</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-transpose"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">tf.transpose</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-squeeze"><span class="post-toc-number">8.6.</span> <span class="post-toc-text">tf.squeeze</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-expand-dims"><span class="post-toc-number">8.7.</span> <span class="post-toc-text">tf.expand_dims</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-tile"><span class="post-toc-number">8.8.</span> <span class="post-toc-text">tf.tile</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-stack"><span class="post-toc-number">8.9.</span> <span class="post-toc-text">tf.stack</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tf-math-zero-fraction"><span class="post-toc-number">8.10.</span> <span class="post-toc-text">tf.math.zero_fraction</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 17.14px;">MachineLearning</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 18.57px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 12.86px;">Paper Notes</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/python/" style="font-size: 17.14px;">python</a> <a href="/tags/uwtsd-modules/" style="font-size: 10px;">uwtsd_modules</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 17.14px;">MachineLearning</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 18.57px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 12.86px;">Paper Notes</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 14.29px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/python/" style="font-size: 17.14px;">python</a> <a href="/tags/uwtsd-modules/" style="font-size: 10px;">uwtsd_modules</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>lecture 1_Introduction | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="关于人类语言(human language)人类语言的特点 语言就是符号：人类语言本质是一个符号系统（symbol system），无论是汉字还是英文字母，都是一种符号，用来承载、传递我们想要表达的意思（meaning）。 语言的载体：sound, vision(writting), gesture，不论是哪一种载体，都是一种连续的交流方式。 大脑是一种符号处理器（symbolic process">
+<meta name="keywords" content="cs224n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lecture 1_Introduction">
+<meta property="og:url" content="https://renli1024.github.io/2018/11/02/cs224n/lecture 1/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="关于人类语言(human language)人类语言的特点 语言就是符号：人类语言本质是一个符号系统（symbol system），无论是汉字还是英文字母，都是一种符号，用来承载、传递我们想要表达的意思（meaning）。 语言的载体：sound, vision(writting), gesture，不论是哪一种载体，都是一种连续的交流方式。 大脑是一种符号处理器（symbolic process">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/cs224n/1_NLP_levels.png">
+<meta property="og:updated_time" content="2018-11-14T23:55:49.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lecture 1_Introduction">
+<meta name="twitter:description" content="关于人类语言(human language)人类语言的特点 语言就是符号：人类语言本质是一个符号系统（symbol system），无论是汉字还是英文字母，都是一种符号，用来承载、传递我们想要表达的意思（meaning）。 语言的载体：sound, vision(writting), gesture，不论是哪一种载体，都是一种连续的交流方式。 大脑是一种符号处理器（symbolic process">
+<meta name="twitter:image" content="https://renli1024.github.io/images/cs224n/1_NLP_levels.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-cs224n/lecture 1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      lecture 1_Introduction
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-11-02
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="关于人类语言-human-language"><a href="#关于人类语言-human-language" class="headerlink" title="关于人类语言(human language)"></a>关于人类语言(human language)</h2><h3 id="人类语言的特点"><a href="#人类语言的特点" class="headerlink" title="人类语言的特点"></a>人类语言的特点</h3><ul>
+<li><strong>语言就是符号：</strong>人类语言本质是一个符号系统（symbol system），无论是汉字还是英文字母，都是一种符号，用来承载、传递我们想要表达的意思（meaning）。</li>
+<li><strong>语言的载体：</strong>sound, vision(writting), gesture，不论是哪一种载体，都是一种连续的交流方式。</li>
+<li><strong>大脑是一种符号处理器</strong>（symbolic processors）：我们可以把大脑处理语言看成是<strong>连续模式的激活过程</strong>（continious pattern of activation）。</li>
+<li>因此我们可以得到启发：探索一种<strong>连续的编码模式</strong>来表达思想(explore a continous encoding patten of thought)。这也是很多NLP算法的处理思想，同时也解决了sparsity的问题。</li>
+</ul>
+<h2 id="关于NLP"><a href="#关于NLP" class="headerlink" title="关于NLP"></a>关于NLP</h2><h3 id="NLP-levels"><a href="#NLP-levels" class="headerlink" title="NLP levels"></a>NLP levels</h3><p><img src="/images/cs224n/1_NLP_levels.png" width="500" height="270" alt="NLP levels" align="center"></p>
+<ul>
+<li><strong>两大来源：</strong>通过语音或者文本。语音：语音分析（phonetic）或音韵分析（phonological）；文本：OCR识别（Optical Character Recognition，光学字符识别）或分词处理（tokenization）。通过上述方法来获取NLP的输入。</li>
+<li><strong>形态分析</strong>（morphological）：对单词进行形态分析：前缀（prefix）、后缀（suffix）等。</li>
+<li><strong>句法分析</strong>（syntactic）：分析句子结构、语法结构（structure of sentence）。</li>
+<li><strong>语义理解</strong>（semantic interpretation）：work out the meaning of sentences.</li>
+<li><strong>语篇处理</strong>（discourse processing）：因为大多数句子含义需要通过上下文（context）来推测，不能仅仅只分析当前句子，因此就有了the field of discourse processing。<br>注：cs224n课只重点讲syntatic &amp; semantic analysis 这两块，以及一部分speech signal analysis。</li>
+</ul>
+<h3 id="NLP-Applications"><a href="#NLP-Applications" class="headerlink" title="NLP Applications"></a>NLP Applications</h3><ul>
+<li>较低级：spell checking, keyword search, finding synonyms</li>
+<li>中级：extracting information。个人比较感兴趣的方向，让计算机可以阅读文本，理解在讲些什么，至少知道讲的是哪方面内容；从文本中识别、抽取某方面内容；或者为文本阅读难度分级（work out the reading level of school text）,识别文本的目标受众（intended audience of document）；情感分析（positive or negetive）。</li>
+<li>高级：机器翻译、对话机器人、智能问答、机器撰写（exploit the knowledge of world）</li>
+</ul>
+<h3 id="Why-is-NLP-hard"><a href="#Why-is-NLP-hard" class="headerlink" title="Why is NLP hard"></a>Why is NLP hard</h3><ul>
+<li><strong>语言本身的困难性</strong>：Ambiguilty of language, and moreover, humen always do not say everything（为了高效表达，语言使用中会出现很多省略）.</li>
+<li><strong>表征语言很困难</strong>：Complexity of representing, using linguistic/situational/world knowledge.</li>
+<li><strong>解释语言很困难</strong>：Real meaning of the language depends on real world, common sense, and contextual knowledge.</li>
+</ul>
+<h2 id="关于deep-learning"><a href="#关于deep-learning" class="headerlink" title="关于deep learning"></a>关于deep learning</h2><h3 id="传统机器学习的问题"><a href="#传统机器学习的问题" class="headerlink" title="传统机器学习的问题"></a>传统机器学习的问题</h3><ul>
+<li>Most traditional machine learning algorithms work well because of human-designed representations and input featured.</li>
+<li>“Machines” are only used to optimize weights that best make a final prdiction. </li>
+<li>Moreover, manually designed featured are often over-specified(lack of generalization), incomplete and take a long time to design and validate.</li>
+</ul>
+<h3 id="What-is-deep-learning"><a href="#What-is-deep-learning" class="headerlink" title="What is deep learning"></a>What is deep learning</h3><ul>
+<li>Subfield of machine learning and part of representation learning.</li>
+<li>Deep learning algorithms attempt to learn (multiple levels of) representations and an output themselves. </li>
+<li>We only input the raw data.</li>
+<li>In a lot of times, deep learning means neural networks (the dominant model family).</li>
+</ul>
+<h3 id="deep-learning-in-NLP"><a href="#deep-learning-in-NLP" class="headerlink" title="deep learning in NLP"></a>deep learning in NLP</h3><p>核心思想：用vector去表征语言，用神经网络去组织、计算vector。</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-11-02</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/cs224n/" class="color2">cs224n</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于人类语言-human-language"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于人类语言(human language)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#人类语言的特点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">人类语言的特点</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于NLP"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于NLP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NLP-levels"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">NLP levels</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NLP-Applications"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">NLP Applications</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Why-is-NLP-hard"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Why is NLP hard</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于deep-learning"><span class="post-toc-number">3.</span> <span class="post-toc-text">关于deep learning</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传统机器学习的问题"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">传统机器学习的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#What-is-deep-learning"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">What is deep learning</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#deep-learning-in-NLP"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">deep learning in NLP</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

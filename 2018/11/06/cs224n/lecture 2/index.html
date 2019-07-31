@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>lecture 2_Word Vectors | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="How to represent the meaning of a word in computer离散表示（discrete representation） 把单词作为一个个原子符号（atomic symbol）来表征：hotel, conference, walk… 对应到计算机中，使用独热编码（one-hot encoding）来存储：[0 0 0 0 1 0 0 0] 存在的问题：1、">
+<meta name="keywords" content="cs224n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lecture 2_Word Vectors">
+<meta property="og:url" content="https://renli1024.github.io/2018/11/06/cs224n/lecture 2/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="How to represent the meaning of a word in computer离散表示（discrete representation） 把单词作为一个个原子符号（atomic symbol）来表征：hotel, conference, walk… 对应到计算机中，使用独热编码（one-hot encoding）来存储：[0 0 0 0 1 0 0 0] 存在的问题：1、">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/cs224n/2_distributed%20representation.png">
+<meta property="og:image" content="https://renli1024.github.io/images/cs224n/2_Skipgram_prediction.png">
+<meta property="og:image" content="https://renli1024.github.io/images/cs224n/2_Skipgram_model.png">
+<meta property="og:image" content="https://renli1024.github.io/images/cs224n/2_theta.png">
+<meta property="og:updated_time" content="2018-12-17T17:29:42.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lecture 2_Word Vectors">
+<meta name="twitter:description" content="How to represent the meaning of a word in computer离散表示（discrete representation） 把单词作为一个个原子符号（atomic symbol）来表征：hotel, conference, walk… 对应到计算机中，使用独热编码（one-hot encoding）来存储：[0 0 0 0 1 0 0 0] 存在的问题：1、">
+<meta name="twitter:image" content="https://renli1024.github.io/images/cs224n/2_distributed%20representation.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-cs224n/lecture 2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      lecture 2_Word Vectors
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-11-06
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<h2 id="How-to-represent-the-meaning-of-a-word-in-computer"><a href="#How-to-represent-the-meaning-of-a-word-in-computer" class="headerlink" title="How to represent the meaning of a word in computer"></a>How to represent the meaning of a word in computer</h2><h3 id="离散表示（discrete-representation）"><a href="#离散表示（discrete-representation）" class="headerlink" title="离散表示（discrete representation）"></a>离散表示（discrete representation）</h3><ul>
+<li>把单词作为一个个原子符号（atomic symbol）来表征：hotel, conference, walk…</li>
+<li>对应到计算机中，使用<strong>独热编码（one-hot encoding）</strong>来存储：<code>[0 0 0 0 1 0 0 0]</code></li>
+<li>存在的问题：<br>1、向量规模过大：每个单词都对应一个单独的位，若要存储所有单词，则会需要一个非常大的向量。<br>2、难以计算单词间的相似性：这是一种localist representation, 每个one-hot representation是独立存在的，no inherent notion of similarity, 两两间并没有天然的相似性关系。<br>3、因此与其去研究an approach to work out similarity relationship between one-hot representations，不如直接探究<strong>an approach where representation of word encodes its meaning inherently</strong>，这样就能直观去计算单词间的similarity，这就是分布表示（distributed representation）的设计初衷。<br>注：这里的similarity指的是单词词义上的相似，而不是结构相似。</li>
+</ul>
+<h3 id="分布表示（distributed-representation）"><a href="#分布表示（distributed-representation）" class="headerlink" title="分布表示（distributed representation）"></a>分布表示（distributed representation）</h3><ul>
+<li><strong>核心思想：</strong>通过单词的上下文（context）来理解词意。如<code>banking</code>这个单词，我们让计算机知道经常和它一起出现的其他单词，就相当于明白了单词的用法——怎样将单词放到正确的上下文中，就相当于理解了单词的meaning。<br><img src="/images/cs224n/2_distributed representation.png" width="500" height="120" align="center"></li>
+<li><strong>具体方法：</strong>用向量定义词语的含义。通过调整一个单词及其上下文单词的向量，使得根据两个向量可以推测两个单词词义的相似度，就可以根据中心词向量预测上下文/根据上下文向量预测中心词。这就是我们常说的<strong>word2vec</strong><br>遵循的基本原则：出现在相同上下文中的单词词义会相似。</li>
+<li>注：区分distributed和distributional<br>distributed meaning：一种词义表示，和one-hot相对，one-hot将词义独立地存储在本地（<code>[0 0 0 0 1 0 0 0]</code>向量中），distributed则存储在一个大的稠密的向量空间中。<br>distributional similarity：一种通过上下文来理解词义的方法，与denotational相对。<br>We use distributional similarity to <strong>build</strong> distributed meaning.</li>
+</ul>
+<h2 id="word2vec模型"><a href="#word2vec模型" class="headerlink" title="word2vec模型"></a>word2vec模型</h2><h3 id="Skip-grams-SG"><a href="#Skip-grams-SG" class="headerlink" title="Skip-grams(SG)"></a>Skip-grams(SG)</h3><p><img src="/images/cs224n/2_Skipgram_prediction.png" width="300" height="150" alt="Skipgram_prediction" align="center/"><br><img src="/images/cs224n/2_Skipgram_model.png" width="450" height="300" alt="Skipgram_model" align="center/"></p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>通过中心词预测上下文。</p>
+<h4 id="定义预测单词上下文的模型"><a href="#定义预测单词上下文的模型" class="headerlink" title="定义预测单词上下文的模型"></a>定义预测单词上下文的模型</h4><p><strong>预测模型：</strong>\(p(context|w_t)\)，表示在给定中心词\(w_t\)的条件下，正确预测出上下文单词的概率。<br><strong>再具体点：</strong>\(p(w_{t-1}|w_t)\)，\(p(w_{t-2}|w_t)\)，\(p(w_{t+1}|w_t)\)，\(t, t+1, t-1\)都是表示单词在文中出现的序号。<br><strong>最终形式：</strong><br>$$ p(w_{t+j}|w_t)=p(o|c)=\frac {exp(u_0^Tv_c)} {\sum_{w=1}^v exp(u_w^Tv_c)} $$<br>\(t, t+j\)是单词在文中的位置.<br>\(o, c\)则是单词在单词表中的序号，相当于在更为一般地表征两个单词的关联（与具体文本无关）。<br>\(v_c\)是中心词的词向量，\(u_0\)是上下文单词的词向量。<br><strong>公式理解：</strong>首先是\(u_0^Tv_c\)，这是一个点积操作，可用来粗糙地衡量单词间相似性（单词越相似，向量值越相近，乘积越大）；其次是softmax操作，用来把值转换成概率：<br>$$\frac {exp(u_0^Tv_c)} {\sum_{w=1}^v exp(u_w^Tv_c)} $$<br>最终即得出了由中心词预测上下文单词的概率。</p>
+<h4 id="定义损失函数（Loss-Function）"><a href="#定义损失函数（Loss-Function）" class="headerlink" title="定义损失函数（Loss Function）"></a>定义损失函数（Loss Function）</h4><p>1、首先对模型全部相乘，表示文本整体的预测正确率：<br>$$ J^`(\theta)=\prod_{t=1}^T \prod_<br>{ \begin{align}<br>-m\le j \le m\\<br>j \neq 0<br>\end{align} }<br>p(w_{t+j}|w_t)$$<br>目标：整体正确率最大，maximize the function，<br>2、做Negtive Log Likelihood处理，使maximize-&gt;minimize，即得到最终的损失函数。<br>$$ J(\theta)=-\frac {1}{T} \sum_{t=1}^T \sum_<br>{ \begin{align}<br>-m&amp; \le j \le m\\<br>j \neq 0<br>\end{align} }<br>p(w_{t+j}|w_t)\\<br>p(w_{t+j}|w_t)=\frac {exp(u_0^Tv_c)} {\sum_{w=1}^v exp(u_w^Tv_c)}<br>$$<br>最终目标：使损失函数最小。</p>
+<h4 id="怎样求损失函数最小值：梯度下降（gradient-descent）"><a href="#怎样求损失函数最小值：梯度下降（gradient-descent）" class="headerlink" title="怎样求损失函数最小值：梯度下降（gradient descent）"></a>怎样求损失函数最小值：梯度下降（gradient descent）</h4><p>注1：具体求解过程见lecture slide。<br>注2：求梯度时对\(u_o和v_c\)都要求偏导，最后组合成梯度向量。且求的是向量的导数，和实数求偏导有一定区别。<br>注3：当数据量过大时，可使用SGD随机梯度下降来加快速度（一个窗口计算一次梯度，用来估计整体梯度）。</p>
+<h4 id="怎样训练模型"><a href="#怎样训练模型" class="headerlink" title="怎样训练模型"></a>怎样训练模型</h4><p>模型中的参数就是每个单词对应的word vector向量，将所有参数组合成一个的大向量\(\theta\)，即作为损失函数的自变量。<br><img src="/images/cs224n/2_theta.png" width="150" height="150" alt="theta举例（里面单词是随便举的例子）" align="center"><br>总共V个单词，每个单词对应两个词向量，词向量每个d维，因此\(\theta\)总长度为2dV。<br>为何每个单词对应两个词向量：作为中心词时一个，作为上下文单词时一个，这样更方便数学处理。</p>
+<h3 id="Continuous-Bag-of-Words-CBOW"><a href="#Continuous-Bag-of-Words-CBOW" class="headerlink" title="Continuous Bag of Words(CBOW)"></a>Continuous Bag of Words(CBOW)</h3><h4 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h4><p>通过上下文预测中心词<br>To be continued</p>
+<h2 id="遗留问题："><a href="#遗留问题：" class="headerlink" title="遗留问题："></a>遗留问题：</h2><ol>
+<li>SG模型中，计算每个上下文词向量的值时，context matrix是一样的？ 那计算出的结果不就一样了？————context matrix是一样的，但因为每个单词的词向量表征是不一样的，所以最终训练出来的上下文词向量也是不一样的。直观来说，context martrix是一各由中心词-&gt;上下文的转换, 在词向量空间中从一个单词向这个单词周围来扩展(词义相近单词离得近), 这种变化对每个单词都是一样的, 因此context martrix一样也是正常的.</li>
+<li>如何迭代\(\theta\)来更新梯度？把\(\theta\)初始化成什么样子？<br>————按照梯度下降的法则来更新参数; 参数初始化有多种策略.</li>
+<li>这是有监督的学习过程，损失函数中没有出现计算误差的部分？</li>
+</ol>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-11-06</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/cs224n/" class="color2">cs224n</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#How-to-represent-the-meaning-of-a-word-in-computer"><span class="post-toc-number">1.</span> <span class="post-toc-text">How to represent the meaning of a word in computer</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#离散表示（discrete-representation）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">离散表示（discrete representation）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分布表示（distributed-representation）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分布表示（distributed representation）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#word2vec模型"><span class="post-toc-number">2.</span> <span class="post-toc-text">word2vec模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Skip-grams-SG"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Skip-grams(SG)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#作用"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">作用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义预测单词上下文的模型"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">定义预测单词上下文的模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义损失函数（Loss-Function）"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">定义损失函数（Loss Function）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#怎样求损失函数最小值：梯度下降（gradient-descent）"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">怎样求损失函数最小值：梯度下降（gradient descent）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#怎样训练模型"><span class="post-toc-number">2.1.5.</span> <span class="post-toc-text">怎样训练模型</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Continuous-Bag-of-Words-CBOW"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Continuous Bag of Words(CBOW)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#作用-1"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">作用</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#遗留问题："><span class="post-toc-number">3.</span> <span class="post-toc-text">遗留问题：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

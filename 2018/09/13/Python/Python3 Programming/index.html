@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python3 Programming | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3 Programming">
+<meta property="og:url" content="https://renli1024.github.io/2018/09/13/Python/Python3 Programming/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-06T01:48:09.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3 Programming">
+<meta name="twitter:description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Python/Python3 Programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Python3 Programming
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-13
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文介绍了Python3的语言机制、程序结构和一些重要函数。<br><a id="more"></a></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h3><ul>
+<li><p>python中对象有类型，变量无类型(变量可随意更改值类型)<br>数字类型有：int、float、bool、complex（复数）</p>
+</li>
+<li><p>注释<br>单行注释：#<br>多行注释：三对单/双引号，’’’xxx’’’或”””xxx”””</p>
+</li>
+<li><p>python中“/”做除法结果肯定是浮点数，取商为“//”，取余为“%”，x**y：x的y次方</p>
+</li>
+<li><p>分数除法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fraction <span class="keyword">import</span> Fraction</span><br><span class="line">Fraction(<span class="number">10</span>,<span class="number">3</span>)  <span class="comment"># 分数10/3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python3和python2区别<br>1、输出: python3是<code>print(xxx)</code>, python2是<code>print xxx</code><br>2、输入:<br>3、自定义class：python2要手动继承<code>object</code>变量，python3则自动继承了。<br>其他地方都差不多</p>
+</li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><ul>
+<li><strong>if语句</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a==<span class="number">5</span>:</span><br><span class="line">    xxx</span><br><span class="line"><span class="keyword">elif</span> a==<span class="number">10</span>:</span><br><span class="line">    xxx</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    xxx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>采用四个空格的缩进来表示语句块开始，删去缩进表示语句块结束；不要忘了冒号。<br>三元表达式：A = Y if X else Z </p>
+<ul>
+<li><strong>for语句</strong> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str=<span class="string">"hello"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(str)):</span><br><span class="line">    print(str[i],end=<span class="string">' '</span>)    <span class="comment">#输出为h e l l o</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同样注意冒号，缩进</p>
+<ul>
+<li><p><strong>for else语句</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>,<span class="number">2</span>):</span><br><span class="line">    <span class="comment">#语句块</span></span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line">    <span class="comment">#for循环正常结束会执行</span></span><br><span class="line">    <span class="comment">#break直接跳出，不会执行else</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>while语句</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> a&gt;<span class="number">5</span> :</span><br><span class="line">    <span class="comment">#while语句</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Context-Manager-机制"><a href="#Context-Manager-机制" class="headerlink" title="Context Manager 机制"></a>Context Manager 机制</h3><ul>
+<li>Python中的Context Manager指支持上下文管理的对象（这里的对象指较为广义的对象，可以是一个object，也可以是一个函数等），这种对象可以通过with语句块进行自动的上下文管理（进入语句块前和离开语句块后自动进行相应的上下文切换操作）。</li>
+<li>常用的实现Context Manager的方式有三种：<ol>
+<li>通过面向对象的形式，实现类的<code>__enter__()</code> and <code>__exit__()</code>成员函数（最常用）；</li>
+<li>使用生成器generator；</li>
+<li>使用contextmanager decorator。</li>
+</ol>
+</li>
+<li>下面重点介绍第一种方式的实现。</li>
+</ul>
+<h4 id="With-Statement"><a href="#With-Statement" class="headerlink" title="With Statement"></a>With Statement</h4><ul>
+<li>python中的with语句是主要用来简化<code>try...finally</code>语句块，以保证clean-up code一定会被执行。</li>
+<li><code>with</code>语句本质上是一个资源管理语句（或者说上下文切换语句），其特别之处在于可以在语句块开始和退出时自动执行一些功能，这就特别适合那些需要正确初始化和释放的资源，如文件操作、tensorflow的session操作等。</li>
+<li>因此当代码涉及到一些复杂的资源时，就可以把代码放到with语句块中，这样就可以保证资源能被正确地初始化和结束/正确地进行上下文切换。</li>
+<li>如何实现with语句：上文所指的“资源”本质就是class，通过定义类的成员函数<code>__enter__()</code>和<code>__exit__()</code>，就可以实现让<code>with</code>语句自动管理资源的功能。</li>
+<li>如何使用with语句：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> name]: </span><br><span class="line">    <span class="keyword">with</span>-block</span><br><span class="line"><span class="comment"># expression是一个object，as定义了对象在这个语句块中的变量名</span></span><br><span class="line"><span class="comment"># eg.</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'filename'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">        print(<span class="string">'&gt; &#123;&#125;'</span>.format(line))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><ul>
+<li><p><strong>文件路径</strong><br>Windows中文件分隔符为<code>\\</code>, Linux和Mac中是<code>/</code>, 注意区分.<br>绝对路径: Mac下绝对路径为<code>/Users/lrrr/Dekstop(Doucuments, Downloads等)</code>, 起始为<code>/Users/lrrr</code>.<br>相对路径: 相对是指相对于<code>.py</code>文件<strong>所在目录</strong>的路径, 路径中用<code>.</code>表示向上一级目录(<code>..</code>就是上两级目录). </p>
+</li>
+<li><p><strong>读取文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="string">"test.txt"</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f   <span class="comment">#读取一行</span></span><br><span class="line">    print(line)</span><br><span class="line">或</span><br><span class="line">f = open(<span class="string">"e:\\test.txt"</span>)</span><br><span class="line">f.read(<span class="number">12</span>)     <span class="comment">#读取12个字符</span></span><br><span class="line">f.readline()   <span class="comment">#读取一行</span></span><br><span class="line">f.readlines()  <span class="comment">#按行读取文件，并存到list中</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>写文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="string">"e:\\test.txt"</span>,<span class="string">"w"</span>)   <span class="comment">#先清空文件再写</span></span><br><span class="line">或</span><br><span class="line">f = open(<span class="string">"e:\\test.txt"</span>,<span class="string">"a"</span>)   <span class="comment">#追加写</span></span><br><span class="line">f.write(xxx)</span><br><span class="line"><span class="comment">#插入换行</span></span><br><span class="line">f.write(xxx+<span class="string">'\n'</span>)  <span class="comment">#win下会自动翻译为\r\n，直接在字符串中写\n没用</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Python面向对象"><a href="#Python面向对象" class="headerlink" title="Python面向对象"></a>Python面向对象</h2><h3 id="如何定义类"><a href="#如何定义类" class="headerlink" title="如何定义类"></a>如何定义类</h3><p>类和函数一样，必须先定义再使用，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>:</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注：python2中class定义的写法为<code>class ClassName(object):</code>，之所以加object是要即成object类，而在python3中类默认继承object类，所以就不用加了。</p>
+<h4 id="类变量-amp-实例变量"><a href="#类变量-amp-实例变量" class="headerlink" title="类变量 &amp; 实例变量"></a>类变量 &amp; 实例变量</h4><ul>
+<li>Class Variables：类变量，用于描述在类的所有实例中通用的数据。定义在类的成员方法<strong>之外</strong>，所有类的实例都可以访问其值，即类和实例都可以对变量的进行引用；但赋值操作只能通过类来完成，<code>实例.class_variable = xxx</code>的赋值操作只会在实例内生成一个新变量，而不会修改类变量的值。</li>
+<li>Instance Variables：实例变量，用于描述针对每个实例的特定变量。通过<code>self.xxx</code>的形式定义，因为有<code>self.</code>前缀，所以既可以定义在函数内也可在函数外，都会处于相同的namespace下。</li>
+<li>关于Class的namespace：一个class定义后，通常会有三个namespace scope：<ol>
+<li>类scope：定义在成员函数外部，没有<code>self.</code>前缀的变量，属于类变量（所有成员函数也属于类scope），这部分内容类和实例都可以访问；</li>
+<li>类成员函数scope：定义在成员函数内部，没有<code>self.</code>前缀的变量，属于函数的局部变量，只在函数内起作用；</li>
+<li>实例scope：定义在成员函数内部（因为要传入self参数），必须有<code>self.</code>前缀，属于实例变量，这部分内容只有实例才能访问；</li>
+</ol>
+</li>
+</ul>
+<h4 id="如何定义类属性"><a href="#如何定义类属性" class="headerlink" title="如何定义类属性"></a>如何定义类属性</h4><p>eg.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dims</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""Returns a list of Dimensions, or None if the shape is unspecified."""</span></span><br><span class="line">    <span class="keyword">return</span> self._dims</span><br></pre></td></tr></table></figure></p>
+<p>前面要有关键字<code>@property</code>；定义成函数的形式，把相应的值返回出去。</p>
+<h3 id="slice机制"><a href="#slice机制" class="headerlink" title="slice机制"></a>slice机制</h3><ul>
+<li>python中类可以通过实现<code>__setitem__</code>和<code>__getitem__</code>方法，来实现以list的形式设置、访问类中的属性。即<code>my_class[0], my_class[1]</code>这种方式。</li>
+<li><p>Python还有更强大的slice访问机制，只要是实现了上述方法，可以很方便地访问多个元素，如对数组list而言，有以下功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">array[start:stop]  <span class="comment"># items start through stop-1</span></span><br><span class="line">array[start:]      <span class="comment"># items start through the rest of the array</span></span><br><span class="line">array[:stop]       <span class="comment"># items from the beginning through stop-1</span></span><br><span class="line">array[:]           <span class="comment"># a copy of the whole array</span></span><br><span class="line">array[start:stop:step] <span class="comment"># start through not past stop, by step</span></span><br><span class="line"></span><br><span class="line">array[<span class="number">-1</span>]    <span class="comment"># 取最末一项</span></span><br><span class="line">array[<span class="number">-2</span>:]   <span class="comment"># 取最末两项</span></span><br><span class="line">array[:<span class="number">-2</span>]   <span class="comment"># 从开始取到倒数第二项（不包括倒数第二项）</span></span><br><span class="line"></span><br><span class="line">a[::<span class="number">-1</span>]    <span class="comment"># 倒序取所有元素</span></span><br><span class="line">a[<span class="number">1</span>::<span class="number">-1</span>]   <span class="comment"># 倒序取前两项（从1开始，倒叙取）</span></span><br><span class="line">a[:<span class="number">-3</span>:<span class="number">-1</span>]  <span class="comment"># 倒叙取后两项（以-3结束，倒叙取）</span></span><br><span class="line">a[<span class="number">-3</span>::<span class="number">-1</span>]  <span class="comment"># 从后往前倒序取所有元素（除最后两项）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还可以实现<code>__iter__</code>方法，实现对类中元素的迭代。</p>
+</li>
+</ul>
+<h2 id="Python-Naming-Conventions"><a href="#Python-Naming-Conventions" class="headerlink" title="Python Naming Conventions"></a>Python Naming Conventions</h2><h3 id="Naming-With-Underscores"><a href="#Naming-With-Underscores" class="headerlink" title="Naming With Underscores"></a>Naming With Underscores</h3><p>to be updated: <a href="https://dbader.org/blog/meaning-of-underscores-in-python" target="_blank" rel="noopener">https://dbader.org/blog/meaning-of-underscores-in-python</a></p>
+<ul>
+<li>Single Leading Underscore: <code>_var</code></li>
+<li>Single Trailing Underscore: <code>var_</code></li>
+<li>Double Leading Underscore: <code>__var</code></li>
+<li>Double Leading and Trailing Underscore: <code>__var__</code>：前后都有双下划线的命名方式，通常用于有特殊用处的的成员方法，如<code>__init__()</code>用于类的构造函数，<code>__setitem__()</code>和<code>__getitem__()</code>用于实现sclice机制。最好不要自己定义这种命名的函数，说不定就和哪个系统保留函数冲突了。</li>
+</ul>
+<h2 id="Python变量的命名空间机制"><a href="#Python变量的命名空间机制" class="headerlink" title="Python变量的命名空间机制"></a>Python变量的命名空间机制</h2><h3 id="变量的绑定-binding-机制"><a href="#变量的绑定-binding-机制" class="headerlink" title="变量的绑定(binding)机制"></a>变量的绑定(binding)机制</h3><ul>
+<li>在Python中，所有的变量名都是引用(reference)/指针(pointer)，并不是真正的对象，其只是将名字绑定到对象上，可以将其理解为指针（指向某个内存地址）。</li>
+<li>因此变量的重新赋值操作，即<code>a = b</code>，只是将变量名绑定到了另一个对象上了而已，并没有更改原对象的值（况且有些类型的值根本就不可更改：imutable types）。</li>
+<li>因此函数的参数传递也都是传引用，python中根本就没有“传值”一说。</li>
+<li>Python有垃圾回收机制，会管理所有已分配内存的对象，当对象没有变量名引用的时候，系统就会自动将其释放掉。</li>
+</ul>
+<h3 id="引用、赋值操作与namescope"><a href="#引用、赋值操作与namescope" class="headerlink" title="引用、赋值操作与namescope"></a>引用、赋值操作与namescope</h3><ul>
+<li>在Python中，对变量来说总共就有两种操作，一种是引用操作(reference)，即直接使用变量，属于读操作；一种是赋值(assignment)操作，即<code>a = 123</code>，属于写操作。</li>
+<li>对于赋值操作(assignment)，其会更改当前<code>local namespace</code>下变量所绑定的值，<code>local namespace</code>下变量不存在就新建一个变量。因此赋值操作怎么也不会改变高层次的<code>namespace</code>下的变量（除非指定<code>nonglobal</code>/<code>global</code> statement，或通过attribute的形式（<code>module_name.variable</code>）明确指定变量）；</li>
+<li>而对于引用操作(reference)，则会按<code>namespace</code>从小到大来搜索相应的变量（local-&gt;nonlocal-&gt;global-&gt;built-in），来确定变量所指向的对象。如果都找不到，程序即会出错。</li>
+</ul>
+<h3 id="可变类型和不可变类型"><a href="#可变类型和不可变类型" class="headerlink" title="可变类型和不可变类型"></a>可变类型和不可变类型</h3><ul>
+<li>在python中，类型分为可变(mutable types)和不可变(imutable types)两大类，不可变类型包括<code>int, float, bool, str, tuple, unicode</code>，可变类型包括<code>list, set, dict</code>，以及大部分的自定义class都是可变类型。</li>
+<li>这里说的可变和不可变，指的是已分配到内存上的值是否可以再更改。对于不可变类型，如<code>int</code>，一旦分配就不能再更改，想要新的值只能重新分配；对于可变类型，可通过其成员方法来改变其值（如<code>list.append()</code>方法）。</li>
+<li>注意：对于不可变类型，通过赋值(assignment)的方式是无法改变原有内存上的值的，其只是将变量名绑定到了另一个内存地址上了而已。可变类型的值的修改只能通过特定的函数。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">list_x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">list_y = list_x</span><br><span class="line">list_y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">print(list_x) <span class="comment"># 输出依旧是[1, 2, 3]</span></span><br><span class="line">list_y.append(<span class="number">4</span>)</span><br><span class="line">print(list_x) <span class="comment"># 输出为[1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="变量的命名空间-Namespaces"><a href="#变量的命名空间-Namespaces" class="headerlink" title="变量的命名空间(Namespaces)"></a>变量的命名空间(Namespaces)</h3><ul>
+<li>A namespace is a mapping from names to objects。即命名空间就是一个映射，从名字到其所指代对象的映射。</li>
+<li>具体来说，定义在module中的名字、python的内置函数（eg. <code>abs()</code>）都属于namespace。</li>
+<li>其实只要有变量名/函数名出现，就是namespace，python的变量绑定机制就是namespace所指的映射。</li>
+</ul>
+<h3 id="命名空间的四种范围-four-scopes-of-namespace"><a href="#命名空间的四种范围-four-scopes-of-namespace" class="headerlink" title="命名空间的四种范围(four scopes of namespace)"></a>命名空间的四种范围(four scopes of namespace)</h3><p>每个namespcace都会有一个范围(scope)，以此来保证名字的可重用性（相同的名字在不同命名空间中可以指向不同的对象）。命名空间按从小到大可分为以下四种：</p>
+<ol>
+<li><strong>Local Scopes</strong>：局部命名空间。在函数内即对应当前函数的命名空间，若没有<code>global</code>/<code>nonlocal</code>声明，<strong>在函数内赋值的变量默认都属于这个命名空间</strong>；在模块内即对应全局命名空间。</li>
+<li><strong>Scopes of enclosing functions</strong>：即外层函数的命名空间，对应<code>non-local</code> statement；</li>
+<li><strong>Global Scopes</strong>：全局命名空间，指module-level的命名空间，有两种声明方式：a. 在module最顶层声明的变量默认都属于全局空间（全局空间其实就相当于module的局部空间）；b. 在函数内部，通过<code>global</code> statement声明的变量，会映射到全局变量空间中去寻找其指向的对象，即到module-level去寻找对象；</li>
+</ol>
+<ul>
+<li>注1：<code>module.name</code>方式调用的都属于这个命名空间。</li>
+<li>注2：直接在写在模块最顶层的变量，最终都会变为<code>__main__</code> module的一部分，因此他们属于<code>__main__</code> module的全局空间。</li>
+</ul>
+<ol start="4">
+<li><strong>Built-in Scopes</strong>：内置命名空间，指python的内置变量、函数。</li>
+</ol>
+<ul>
+<li>给定一个变量名，必须要确定其所属的命名空间才可知道其指向的对象，赋值操作中的变量默认都是属于local namespace。</li>
+<li>因此外层命名空间的变量对内层函数来说都是只可读取、不可赋值的（因为若想通过<code>a = b</code>来更改变量所绑定值，只会创造一个属于local scope的新变量）。因此若想重写外层变量，只能通过<code>non-local</code>和<code>global</code> statement。</li>
+<li>对于变量的引用操作(reference)，会按namespace从小到大来搜索（local-&gt;nonlocal-&gt;global-&gt;built-in），以确定变量所指向的对象。如果都找不到，程序即会出错。</li>
+<li>example code<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scope_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_local</span><span class="params">()</span>:</span></span><br><span class="line">        spam = <span class="string">"local spam"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_nonlocal</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> spam</span><br><span class="line">        spam = <span class="string">"nonlocal spam"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_global</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">global</span> spam</span><br><span class="line">        spam = <span class="string">"global spam"</span></span><br><span class="line"></span><br><span class="line">    spam = <span class="string">"test spam"</span></span><br><span class="line">    do_local()</span><br><span class="line">    print(<span class="string">"After local assignment:"</span>, spam)</span><br><span class="line">    do_nonlocal()</span><br><span class="line">    print(<span class="string">"After nonlocal assignment:"</span>, spam)</span><br><span class="line">    do_global()</span><br><span class="line">    print(<span class="string">"After global assignment:"</span>, spam)</span><br><span class="line"></span><br><span class="line">scope_test()</span><br><span class="line">print(<span class="string">"In global scope:"</span>, spam)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line"><span class="comment"># After local assignment: test spam</span></span><br><span class="line"><span class="comment"># After nonlocal assignment: nonlocal spam</span></span><br><span class="line"><span class="comment"># After global assignment: nonlocal spam</span></span><br><span class="line"><span class="comment"># In global scope: global spam</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认赋值是local的，所以不会更改scope_test()的spam；</span></span><br><span class="line"><span class="comment"># nonlocal声明将命名空间改为了scope_test函数的级别，因此spam变量指向了正确的对象，修改成功；</span></span><br><span class="line"><span class="comment"># global声明则将命名空间改为了module-level，因此会创造一个新的module-level的spam，而非修改原先的。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Class的命名空间"><a href="#Class的命名空间" class="headerlink" title="Class的命名空间"></a>Class的命名空间</h3><p>类变量的命名空间是高于实例变量的，因此实例访问类变量也是可以访问的（实例内部没有，因此就会向上查找）；但实例无法对类变量进行赋值操作，一旦赋值就会生成新的实例变量覆盖掉类变量了。</p>
+<h2 id="Python基本语言机制"><a href="#Python基本语言机制" class="headerlink" title="Python基本语言机制"></a>Python基本语言机制</h2><h3 id="解释型、面向对象、动态数据类型"><a href="#解释型、面向对象、动态数据类型" class="headerlink" title="解释型、面向对象、动态数据类型"></a>解释型、面向对象、动态数据类型</h3><ul>
+<li>解释型：开发过程中没有编译环节；</li>
+<li>面向对象：Python是一种严格的面向对象语言，可以说在python中一切都是对象(object)。</li>
+<li>动态数据类型：<ul>
+<li>在python中，变量名没有类型，类型属于对象而不是变量名。从另一方面讲，对象知道自己的类型，每个对象都包含了一个头部信息，其中标记了这个对象的类型。</li>
+<li>在python中，类型是在运行过程中自动决定的，系统会自动根据变量名绑定所绑定的对象来推断其类型。</li>
+</ul>
+</li>
+<li>python中，因为无需对变量进行声明，变量直接赋值(assignment)后就可以使用了。如<code>int_x = 3</code>, <code>list_y = [1, 2, 3]</code>, <code>class_z = some_class()</code>。系统会自动为object申请内存空间，并将变量名绑定到object上。</li>
+</ul>
+<h3 id="python2和python3的区别"><a href="#python2和python3的区别" class="headerlink" title="python2和python3的区别"></a>python2和python3的区别</h3><ul>
+<li>输出函数不同：python3中print当函数用：<code>print(..)</code>，python2中直接print即可 <code>print ..</code>。</li>
+<li>从键盘输入字符不同：</li>
+</ul>
+<h3 id="Mac中的python"><a href="#Mac中的python" class="headerlink" title="Mac中的python"></a>Mac中的python</h3><ul>
+<li>Mac自带python2，且不能卸载 (一部分系统功能依赖这个python)。</li>
+<li><p>因此装python3后，系统中就会带有两个版本python, python命令就不能只写<code>python</code>了，需要用<code>python2</code>和<code>python3</code>来区分, pip命令也是<code>pip2</code> &amp; <code>pip3</code>(所以推荐使用annaconda来管理python版本)。</p>
+</li>
+<li><p>何为attritube：attribute指跟在点后面的名字，如<code>z.real</code>中<code>real</code>即是<code>z</code>的attribute。</p>
+</li>
+<li>类(Class)、对象(Object)和实例(Instance)区别：<br>对象感觉是一个更为抽象的概念，如面向对象编程；<br>类是一类方法和属性的集合，可理解为一个抽象的模版。<br>实例是类的具体实现。<br>接口：抽象程度更高的类，仅仅指明了应该有什么样的功能，没有规定具体实现。</li>
+</ul>
+<h3 id="Python如何在代码如何换行"><a href="#Python如何在代码如何换行" class="headerlink" title="Python如何在代码如何换行"></a>Python如何在代码如何换行</h3><ul>
+<li>Python并不使用特定的符号来标记一个语句的结束（如c++中的分号），而是通过检测回车符enter来判断，因此最好在一行内写完所有代码。</li>
+<li>但如果遇到一行写不完的情况，有两种换行方法：</li>
+</ul>
+<ol>
+<li>在该行代码末尾加反斜杠<code>\</code>，即可在下一行接着写（但要注意<code>\</code>必须是一行的最末字符，其后不能再有任何字符）；</li>
+<li>在括号<code>(), {}, []</code>内部不需要特别加<code>\</code>，可直接enter进行换行（但只能在项与项之间换行，不能把单个项拆开）。</li>
+</ol>
+<ul>
+<li>注：换行后最好缩进四个空格/tab，以增强可读性。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test1 = <span class="string">"123456"</span></span><br><span class="line">test2 = <span class="string">"123\</span></span><br><span class="line"><span class="string">    456"</span>  <span class="comment"># 与test相同</span></span><br><span class="line"></span><br><span class="line">test3 = (<span class="string">"123"</span>, <span class="string">"456"</span>)</span><br><span class="line">test4 = (<span class="string">"123"</span>, </span><br><span class="line">    <span class="string">"456"</span>)  <span class="comment"># 正确，与test3相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#test4 = ("123", "4</span></span><br><span class="line"><span class="comment">#    56")  </span></span><br><span class="line"><span class="comment">#错误，不能用enter将单个项拆开</span></span><br><span class="line"></span><br><span class="line">test5 = (<span class="string">"123"</span>, <span class="string">"4\</span></span><br><span class="line"><span class="string">    56"</span>)  <span class="comment"># 正确</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-09-13</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python/" class="color2">Python</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python基础"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Python基础</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#语句"><span class="post-toc-number">2.</span> <span class="post-toc-text">语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Context-Manager-机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Context Manager 机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#With-Statement"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">With Statement</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件操作"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">文件操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python面向对象"><span class="post-toc-number">4.</span> <span class="post-toc-text">Python面向对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何定义类"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">如何定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类变量-amp-实例变量"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">类变量 &amp; 实例变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#如何定义类属性"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">如何定义类属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#slice机制"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">slice机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python-Naming-Conventions"><span class="post-toc-number">5.</span> <span class="post-toc-text">Python Naming Conventions</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Naming-With-Underscores"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Naming With Underscores</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python变量的命名空间机制"><span class="post-toc-number">6.</span> <span class="post-toc-text">Python变量的命名空间机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的绑定-binding-机制"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">变量的绑定(binding)机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引用、赋值操作与namescope"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">引用、赋值操作与namescope</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变类型和不可变类型"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">可变类型和不可变类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的命名空间-Namespaces"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">变量的命名空间(Namespaces)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名空间的四种范围-four-scopes-of-namespace"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">命名空间的四种范围(four scopes of namespace)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Class的命名空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">Class的命名空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python基本语言机制"><span class="post-toc-number">7.</span> <span class="post-toc-text">Python基本语言机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解释型、面向对象、动态数据类型"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">解释型、面向对象、动态数据类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python2和python3的区别"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">python2和python3的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mac中的python"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">Mac中的python</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python如何在代码如何换行"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">Python如何在代码如何换行</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

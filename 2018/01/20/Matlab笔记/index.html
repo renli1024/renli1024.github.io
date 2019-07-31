@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Matlab笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="matlab基本操作 一些操作Tips:  clear：清空Workspace     clc：清空Command Window 批量修改变量名：shift+enter（只针对变量第一次出现时） 控制输出格式：formatformat short：小数点后4位，之后输出的数都按此格式 digits(4)    vpa(x)   一起用控制x输出为4位有效数字。或者直接vpa(x,4) 批量注释：c">
+<meta name="keywords" content="Matlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/20/Matlab笔记/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="matlab基本操作 一些操作Tips:  clear：清空Workspace     clc：清空Command Window 批量修改变量名：shift+enter（只针对变量第一次出现时） 控制输出格式：formatformat short：小数点后4位，之后输出的数都按此格式 digits(4)    vpa(x)   一起用控制x输出为4位有效数字。或者直接vpa(x,4) 批量注释：c">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-29T01:38:16.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Matlab笔记">
+<meta name="twitter:description" content="matlab基本操作 一些操作Tips:  clear：清空Workspace     clc：清空Command Window 批量修改变量名：shift+enter（只针对变量第一次出现时） 控制输出格式：formatformat short：小数点后4位，之后输出的数都按此格式 digits(4)    vpa(x)   一起用控制x输出为4位有效数字。或者直接vpa(x,4) 批量注释：c">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Matlab笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Matlab笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-20
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="matlab基本操作"><a href="#matlab基本操作" class="headerlink" title="matlab基本操作"></a>matlab基本操作</h2><ol>
+<li><p><strong>一些操作Tips:</strong></p>
+<ul>
+<li>clear：清空Workspace     clc：清空Command Window</li>
+<li>批量修改变量名：shift+enter（只针对变量第一次出现时）</li>
+<li>控制输出格式：format<br>format short：小数点后4位，之后输出的数都按此格式</li>
+<li>digits(4)    vpa(x)   一起用控制x输出为4位有效数字。或者直接vpa(x,4)</li>
+<li>批量注释：ctrl+R  取消注释：ctrl+T</li>
+<li>单步调试：F10</li>
+<li>查看变量：who(只列举)       whos(附带变量空间大小、字节数等信息)</li>
+</ul>
+</li>
+<li><p><strong>文件操作：</strong></p>
+<ul>
+<li>save filename  x1 x2 x3  (-append)<br>存储变量值至filename.mat文件，默认存储至matlab.mat文件。-append追加存储，默认为覆盖存储</li>
+<li>load filename  x1 x2 x3：加载变量，默认为加载所有变量。会覆盖Workspace同名变量</li>
+</ul>
+</li>
+<li><p><strong>函数.m文件定义</strong><br>function [y1,y2] = fun(x1,x2)      y1,y2…是输出变量，直接在函数内参与运算，函数内不要写clear，会清掉输入变量</p>
+</li>
+<li><p><strong>字符串操作：</strong><br>eval(‘xxx’)：执行字符串所对应的matlab语句<br>str2num(‘xxx’)：将数字字符串转化为数字<br>num2str(xxx)：将数字转化为数字字符串<br>取字符串特定字符：str(2)<br>字符串拼接：str=[str1,str2]<br>abs(‘x’)函数：求字符x的ASCII码<br>char(x)：求ASCII码为x的字符 </p>
+</li>
+</ol>
+<h2 id="matlab矩阵操作"><a href="#matlab矩阵操作" class="headerlink" title="matlab矩阵操作"></a>matlab矩阵操作</h2><ol>
+<li><p>矩阵的建立：  a=[1 2 3;4 5 6;7 8 9]<br>矩阵取元素：  </p>
+<ul>
+<li>下标：a(2,3)，行、列皆从1开始</li>
+<li>序号：a(8)，按列计数</li>
+</ul>
+</li>
+<li><p>冒号表达式建立行向量  x=5:2:20</p>
+</li>
+<li><p>矩阵拼接：直接中括号拼接[  ]</p>
+</li>
+<li><p>矩阵拆分： b=a(2:4,5:6)，b为矩阵a2~4行5~6列的内容。<br>用end来表示最后一行/列，用冒号：表示所有行/列<br>b=a(:)，按矩阵a元素的【排列顺序】取元素，最终排成列向量</p>
+</li>
+<li><p>矩阵查找特定元素：<br>num/[rows,cols,vals]=find(A&gt;10)，找矩阵A中所有&gt;10的数。一个返回值为序号，两个返回值即为下标，三个返回值加上值。</p>
+</li>
+<li><p>矩阵转置：B=A’</p>
+</li>
+<li><p>删除矩阵元素，对矩阵整行/整列元素置空，后面元素序号前补     a(2,:)=[]</p>
+</li>
+<li><p>复制矩阵         repat(&lt;矩阵名&gt;,x,y)，以此矩阵为“一块”复制x行，y列</p>
+</li>
+<li><p>矩阵计算：直接+-<em>/<br>/为右除   \为左除   /即为乘矩阵的逆<br>.</em>和./为点乘点除，矩阵对应元素的乘除。<br>注意：矩阵的幂^和矩阵元素的幂.^不一样</p>
+</li>
+<li><p>A(:)表示以一列的方式显示矩阵A中所有元素</p>
+</li>
+<li><p>size(A,1)矩阵的行数，size(A,2)矩阵的列数</p>
+</li>
+<li><p>特殊矩阵的建立<br>zeros：零矩阵    zeros(x,y)：x行y列零矩阵<br>ones：1矩阵<br>eye：单位矩阵<br>rand：随机矩阵，元素为0~1随机数的矩阵<br>rand（a,b）表示产生a行b列随机数<br>产生a到b之间的x行y列随机矩阵：a+(b-a) * rand(x,y)<br>randn：均值为0，方差为1的标准正态分布的随机矩阵<br>inv()：求方程组的逆矩阵<br>diff()：计算差分（后项减前项）<br>diag()：构建对角矩阵(输入向量)or从矩阵中取对角线(输入矩阵)    </p>
+</li>
+</ol>
+<h2 id="matlab绘图"><a href="#matlab绘图" class="headerlink" title="matlab绘图"></a>matlab绘图</h2><ol>
+<li><p>绘制函数图形标识符：legend(‘’,’’,’’)<br>多个图例要依据添加对应数据的顺序依次加入</p>
+</li>
+<li><p>plot(x,y)<br>最基本的绘图函数<br>画多条函数plot(x,y1,x,y2,x,y3….)</p>
+</li>
+<li><p>设置线型和线的粗细：plot(x,y,’-.’,’linewidth’,1.5);可通过线型、点型和颜色改变线条外观，粗细设置尤为重要。<br>更改坐标范围：axis([Xmin, Xmax, Ymin, Ymax])、xlim([Xmin, Xmax])、ylim([Ymin, Ymax])<br>坐标轴名字(并设置字体)：xlabel(‘titke’,’fontsize’,12)</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>loglog(),semilogx(),semilogy()函数分别以<br>两坐标轴为log10刻度，x轴为log10刻度，y轴为log10刻度作函数图</p>
+</li>
+<li><p>plotyy(x,y1,x,y2)双y轴作图</p>
+</li>
+<li><p>errorbar(y,E)函数，E为1/2误差长度的向量<br>在函数上标明误差(对应离散点作图，且x/y和E向量长度相等)</p>
+</li>
+<li><p>fplot(‘&lt;M文件名&gt;’,[范围])<br>调用M文件函数绘图，有范围限制</p>
+</li>
+<li><p>ezplot(‘函数表达式’,[x范围],[y范围])<br>隐函数绘图。easy plot，直接写函数表达式即可绘图</p>
+</li>
+<li><p>polar(x,y)、ezpolar(‘函数表达式’)<br>极坐标绘图，(ρ,Θ)</p>
+</li>
+<li><p>hist(data,&lt;区间数&gt;)<br>绘制频数分布直方图，频数总分数默认10份</p>
+</li>
+<li><p>对图形的修改可直接在figur面板上进行</p>
+</li>
+</ol>
+<h2 id="解线性方程组"><a href="#解线性方程组" class="headerlink" title="解线性方程组"></a>解线性方程组</h2><ol>
+<li><p>基本概念<br>tol：误差<br>rank(A)：返回矩阵A的秩<br>size(A,1)：返回矩阵A的行数<br>size(A,2)：返回矩阵A的列数<br>null(A)：求齐次方程组的解<br>det(A):求【方阵】的行列式<br>diag(diag(A))：构造矩阵A的对角线矩阵<br>norm(A):求向量A的范数（向量中各元素的平方和再开根号）<br>可用来求两向量的的“差值”norm(A-B)</p>
+</li>
+<li><p>左除法：matlab一般用inv()&lt;方阵求逆&gt;、pinv()&lt;非方阵求伪逆&gt;来代替左除。<br>左除法分三种情况：<br>恰定方程组：rank(A) = rank([A,b]) = n，方程组有唯一解<br>欠定方程组：rank(A) = rank([A,b]) &lt; n，方程组有无穷解，通解用”特解+对应齐次方程组解”来表示。<br>超定方程组：rank(A) != rank([A,b])，方程组无解，求出的是最小二乘解。</p>
+</li>
+</ol>
+<ol start="3">
+<li>[r]=eig(A)：求矩阵A的特征值r&lt;列向量形式&gt;<br>[x,r]=eig[A]：求矩阵A的特征向量x和特征值r&lt;对角矩阵形式&gt;<br>使A<em>x=x</em>r<br>max(max(abs(r)))：找绝对值最大的特征值</li>
+</ol>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-20</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Matlab/" class="color2">Matlab</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#matlab基本操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">matlab基本操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#matlab矩阵操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">matlab矩阵操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#matlab绘图"><span class="post-toc-number">3.</span> <span class="post-toc-text">matlab绘图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解线性方程组"><span class="post-toc-number">4.</span> <span class="post-toc-text">解线性方程组</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

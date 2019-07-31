@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Network &amp; Data Center Management Revision | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文介绍了计算机网络和数据中心管理的基础知识, 较偏重概念和理论讲解, 是本人在UWTSD Network &amp;amp; Data Center Management module的课程总结, 也是考试的复习笔记。  ISO Network Model7 Application Layer6 Presentation Layer5 Session Layer4 Transport Layer3 Ne">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network &amp; Data Center Management Revision">
+<meta property="og:url" content="https://renli1024.github.io/2018/05/26/Network/N & DCM/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文介绍了计算机网络和数据中心管理的基础知识, 较偏重概念和理论讲解, 是本人在UWTSD Network &amp;amp; Data Center Management module的课程总结, 也是考试的复习笔记。  ISO Network Model7 Application Layer6 Presentation Layer5 Session Layer4 Transport Layer3 Ne">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/网络体系结构.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv6%20address.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/三类IPV6地址.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv6%20Link-Local%20address.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv6%20GLobal-Unicast%20address.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv6%20Multicast%20address.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/four%20ND%20message%20types.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv4和IPv6.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/IPv6%20extension%20header.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/DataCentre%20Network2.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/DataCentre%20Network.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/DC%20storage%20and%20transport%20layer.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/Dedicated%20Internet%20Server%20Farm.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/DMZ%20Server%20Farm.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/Intranet%20Server%20Farm.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/Extranet%20Server%20Farm.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/Type1%20hypervisors.png">
+<meta property="og:image" content="https://renli1024.github.io/images/计算机网络/Type2%20hypervisors.png">
+<meta property="og:updated_time" content="2019-05-29T00:20:06.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Network &amp; Data Center Management Revision">
+<meta name="twitter:description" content="本文介绍了计算机网络和数据中心管理的基础知识, 较偏重概念和理论讲解, 是本人在UWTSD Network &amp;amp; Data Center Management module的课程总结, 也是考试的复习笔记。  ISO Network Model7 Application Layer6 Presentation Layer5 Session Layer4 Transport Layer3 Ne">
+<meta name="twitter:image" content="https://renli1024.github.io/images/计算机网络/网络体系结构.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Network/N &amp; DCM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Network &amp; Data Center Management Revision
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-26
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文介绍了计算机网络和数据中心管理的基础知识, 较偏重概念和理论讲解, 是本人在UWTSD Network &amp; Data Center Management module的课程总结, 也是考试的复习笔记。 </p>
+<h2 id="ISO-Network-Model"><a href="#ISO-Network-Model" class="headerlink" title="ISO Network Model"></a>ISO Network Model</h2><p><img src="/images/计算机网络/网络体系结构.png" width="500" height="250" alt="三种网络体系结构" align="center"><br>7 Application Layer<br>6 Presentation Layer<br>5 Session Layer<br>4 Transport Layer<br>3 Network Layer<br>2 Data Link Layer<br>1 Physical Layer</p>
+<ul>
+<li><strong>应用层：</strong>应用层协议定义的是<strong>进程</strong>间的交互规则，因为主机间通信的本质是主机上进程的通信（进程即为正在运行的程序）。具体的应用层协议有DNS、HTTP等。应用层数据单位：<strong>报文</strong>(message)。</li>
+<li><strong>运输层：</strong>运输层负责为主机进程间的通信提供通用的数据传输服务，目前主要有两种协议：传输控制协议TCP和用户数据报协议UDP，TCP提供面向连接、可靠的数据传输服务，UDP提供无连接的、尽最大努力的数据传输服务。运输层数据单位：TCP为<strong>报文段</strong>(segment)，UDP为<strong>用户数据报</strong>。</li>
+<li><strong>网络层：</strong>网络层负责分组交换网的数据传输服务，使用IP协议。与运输层的不同在于：运输层针对互联网的边缘部分，网络层针对互联网的核心部分，路由器在转发时最高就涉及到网络层，不涉及运输层和应用层。网络层数据单位：<strong>IP数据报</strong>（就是之前所说的分组）。</li>
+<li><strong>数据链路层：</strong>数据链路层负责分组交换网中相邻结点的数据传输，与网络层的不同在于：网络层是源结点到目的结点(中间可能有多个结点)，而数据链路层是相邻结点。数据链路层数据单位：<strong>帧</strong>(framing)。</li>
+<li><strong>物理层：</strong>负责物理硬件层面的数据传输，物理层数据单位：<strong>比特</strong>(bit)。<br>注：数据从上层到下层需要加首部，加上相关控制信息。另外，从网络层-&gt;链路层还要加尾部（做差错校验的工作）。</li>
+</ul>
+<h2 id="Network-Management"><a href="#Network-Management" class="headerlink" title="Network Management"></a>Network Management</h2><h3 id="Five-functional-areas-of-Network-Management"><a href="#Five-functional-areas-of-Network-Management" class="headerlink" title="Five functional areas of Network Management:"></a>Five functional areas of Network Management:</h3><ul>
+<li>Fault Management</li>
+<li>Configuration Management</li>
+<li>Security Management</li>
+<li>Performance Management</li>
+<li>Accounting Management</li>
+</ul>
+<h4 id="Fault-Management"><a href="#Fault-Management" class="headerlink" title="Fault Management:"></a>Fault Management:</h4><ul>
+<li>detcting faults found on the network, isolating and correcting the faults. </li>
+<li>Preemptive approach is better than reducing downtime. </li>
+<li>The most widely implemented NM element. </li>
+</ul>
+<h4 id="Performance-Management"><a href="#Performance-Management" class="headerlink" title="Performance Management"></a>Performance Management</h4><ul>
+<li>Monitoring performance aspects of the network including:Downtime, Available Bandwidth, Latency and Broadcast storms.</li>
+<li>Metrics: Throughput, reponse time, utilization. Maintain them at a certain level, and notify system if level falling. </li>
+<li>Steps: gather data-&gt;analyze-&gt;set threshold-&gt;monitor.</li>
+</ul>
+<h4 id="Configuration-Management"><a href="#Configuration-Management" class="headerlink" title="Configuration Management"></a>Configuration Management</h4><ul>
+<li>Monitoring network and system configuration, including configuration file, inventory, known naming conventions and so on.</li>
+<li>Steps: Create Standards-&gt;Implement-&gt;Maintain Documentation-&gt;Validate &amp; Audit-&gt;Review Standards</li>
+</ul>
+<h4 id="Accounting-Management"><a href="#Accounting-Management" class="headerlink" title="Accounting Management"></a>Accounting Management</h4><ul>
+<li>Monitoring usage aspects of the network.(Such as: What services are used? When are the services used and who uses them?)</li>
+<li>Measuring utilization of all important network resources.</li>
+</ul>
+<h4 id="Security-Management"><a href="#Security-Management" class="headerlink" title="Security Management"></a>Security Management</h4><ul>
+<li>Control access to the network resources(only authorized individuals) and monitor security aspects of the network.</li>
+<li>Notify administrator if anyone trying to breach security.</li>
+</ul>
+<h3 id="Network-Management-Protocol"><a href="#Network-Management-Protocol" class="headerlink" title="Network Management Protocol"></a>Network Management Protocol</h3><p>SNMP(Simple Network Management Protocol)IMPORTANT<br>CMIP(Common Management Information Protocol)<br>RMON(Remote Monitoring)</p>
+<h4 id="SNMP"><a href="#SNMP" class="headerlink" title="SNMP"></a>SNMP</h4><p>An application-layer protocol that provides a message format for communication between SNMP manager sandagents.And it is part of the TCP/IP protocol suite.<br>Three parts of SNMP framework.<br>1.SNMP manager<br>2.SNMP agent<br>3.MIB(Management Information Base)</p>
+<ul>
+<li><p><strong>SNMP manager</strong><br>The system to control and monitor the activities of network hosts. </p>
+</li>
+<li><p><strong>SNMP agent</strong><br>The software component within the managed device that maintains the data for the device and reports these data.<br>The agent and MIB reside on the routing device (router, access server, or switch). </p>
+</li>
+<li><p><strong>MIB(Management Information Base)</strong><br>The Management Information Base (MIB) is a virtual information storage area for network management information, which consists of collections of managed objects</p>
+</li>
+</ul>
+<h4 id="SNMPv3"><a href="#SNMPv3" class="headerlink" title="SNMPv3"></a>SNMPv3</h4><ul>
+<li><p>Two main components: SNMPv3 engine and SNMPv3 applications.</p>
+</li>
+<li><p>SNMPv3 engine: four subcomponents<br>Dispatcher: handles message sending and receiving.<br>Message subsystem: handles message processing.<br>Security subsystem: handles security processing for security model.<br>Access control subsystem: handles the granting/rejecting of access to specific managed objects.</p>
+</li>
+<li><p>SNMPv3 applications<br>Command generators: create SNMP messages.<br>Command responders: respond to SNMP messages.<br>Notification originators, send trap or inform messages.<br>Notification receivers: receive and process trap or inform messages.<br>Proxy forwarders: forward messages between SNMP entity components.</p>
+</li>
+</ul>
+<h3 id="Network-Management-Software-System"><a href="#Network-Management-Software-System" class="headerlink" title="Network Management Software System"></a>Network Management Software System</h3><p>Two major Components: platform and application.</p>
+<h4 id="Network-Management-Platform"><a href="#Network-Management-Platform" class="headerlink" title="Network Management Platform"></a>Network Management Platform</h4><p>Goal: To provide <strong>generic</strong> functionality for managing a variety of network devices.</p>
+<p><strong>Basic features:</strong><br>Graphical User Interface(GUI)<br>Network Map(discovers the devices on the network and their connectivity, and present overview of network visually)<br>Database Management System(DBMS)<br>Standard Method to Query Devices<br>Customizable Menu System<br>Event Log</p>
+<h4 id="Network-Management-Application"><a href="#Network-Management-Application" class="headerlink" title="Network Management Application"></a>Network Management Application</h4><ul>
+<li><strong>Goals</strong><br>1.Effectively manage a specific set of devices.<br>2.Avoid functionality overlap with the platform.<br>3.Integrate with a platform through the API and menu system.<br>4.Reside on multiple platforms.</li>
+</ul>
+<h2 id="IPV4-amp-IPV6"><a href="#IPV4-amp-IPV6" class="headerlink" title="IPV4 &amp; IPV6"></a>IPV4 &amp; IPV6</h2><h3 id="Issues-of-IPV4"><a href="#Issues-of-IPV4" class="headerlink" title="Issues of IPV4"></a>Issues of IPV4</h3><ul>
+<li>Internet routing table expansion<br>Internet core routers require more processing power and overhead.</li>
+<li>Lack of true end-to-end model<br>IPv4 networks typically use NAT as the solution to address depletion. </li>
+</ul>
+<h3 id="Features-of-IPV6"><a href="#Features-of-IPV6" class="headerlink" title="Features of IPV6"></a>Features of IPV6</h3><ul>
+<li>Larger address space<br>IPv6 addresses are 128 bits, compared to IPv4’s 32 bits. </li>
+<li>Elimination of public-to-private NAT<br>End-to-end  communication traceability is possible.</li>
+<li>Elimination of broadcast addresses<br>IPv6 now includes unicast, multicast, and anycast addresses. </li>
+<li>Support for mobility and security<br>Helps ensure compliance with mobile IP and IPsec standards. </li>
+<li>Simplified header for improved router efficiency</li>
+<li>IPv6 routers no longer perform fragmentation.<br>A discovery process is used to determine the optimum MTU (maximum transmission Unit) to use during a given session. </li>
+<li>Multiple addresses per interface<br>An IPv6 interface can have multiple addresses.</li>
+<li><strong>Stateless autoconfiguration(IMPORTANT)</strong><br>DHCP is not required because an IPv6 device can automatically assign itself a unique IPv6 link-local address.</li>
+</ul>
+<h3 id="IPv6-Address"><a href="#IPv6-Address" class="headerlink" title="IPv6 Address"></a>IPv6 Address</h3><h4 id="地址表示法"><a href="#地址表示法" class="headerlink" title="地址表示法"></a>地址表示法</h4><ul>
+<li><p>采用16进制, 16比特为一组, 总共8组(16*8=128)<br>e.g. 2035:0001:2BC5:0000:0000:087C:0000:000A</p>
+</li>
+<li><p>省略规则:<br>1.每组开头的0可以省略<br>2.当有多个连0时可用“::”代替<br>e.g. 3FFE:0501:0008:0000:0260:97FF:FE40:EFAB<br>= 3FFE:501:8::260:97FF:FE40:EFAB</p>
+</li>
+</ul>
+<h4 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h4><ul>
+<li>IPv6包含两个部分: Subnet Prefix &amp; Interface ID, 且Interface ID通常固定为后64位, 前64位表示一些前缀码和子网号<br><img src="/images/计算机网络/IPv6 address.png" width="400" height="200" alt="IPv6 address" align="center"></li>
+</ul>
+<h4 id="IPv6-Address-types"><a href="#IPv6-Address-types" class="headerlink" title="IPv6 Address types"></a>IPv6 Address types</h4><p>Three Types: Unicast, Multicast and Anycast<br><img src="/images/计算机网络/三类IPV6地址.png" width="500" height="250" alt="三类IPV6地址" align="center"><br>Three destination scopes: Site-local address(deprecated, no longer supported), Link-Local address, Global unicast address.</p>
+<ul>
+<li><p>Link-Local address<br>Used for trasmitting packets to the interface on the same local link, not routable off the link.<br>Composed of a link-local prefix of <code>FE80::/10</code> and a 64-bit interface identifier.<br><img src="/images/计算机网络/IPv6 Link-Local address.png" width="500" height="250" alt="IPv6 Link-Local address" align="center"><br>tips: An interface can have multiple IPv6 addresses simultaneously configured and enabled on it.one link-local and one or more global unicast address.</p>
+</li>
+<li><p>Global Unicast Address<br>Used to transmit in Internet. Consists of a 48-bit global routing prefix, a 16-bit subnet ID and a 64-bit interface ID.<br><img src="/images/计算机网络/IPv6 GLobal-Unicast address.png" width="500" height="250" alt="IPv6 GLobal-Unicast address" align="center"><br>The prefixes of addresses are from  2000::/3 (001) to E000::/3 (111) </p>
+</li>
+<li><p>Multicast Address<br>a replacement for the broadcast address, defined by the prefix <code>FF::/8</code>, an interface can belong to any number of multicast groups.<br>The second octet of the address contains the prefix and lifetime flags, and the scope of the multicast address.<br><img src="/images/计算机网络/IPv6 Multicast address.png" width="500" height="400" alt="IPv6 Multicast address" align="center"></p>
+</li>
+<li><p>Solicited-Node Multicast Addresses<br>defined by <code>FF02::1:FF</code> and is used for Neighbor discovery (ND) process and Stateless address autoconfiguration.</p>
+</li>
+</ul>
+<h4 id="Neighbor-Discovery"><a href="#Neighbor-Discovery" class="headerlink" title="Neighbor Discovery"></a>Neighbor Discovery</h4><ul>
+<li><p>used to<br>Determine the local-link address of the neighbor.<br>Determine the routers on the link and default route.<br>Actively keep track of neighbor reachability.</p>
+</li>
+<li><p>four message types<br><img src="/images/计算机网络/four ND message types.png" width="600" height="300" alt="four ND message types.png" align="center"></p>
+</li>
+<li><p>process example<br>see slides</p>
+</li>
+</ul>
+<h4 id="Stateledss-Autoconfiguration-IMPORTANT"><a href="#Stateledss-Autoconfiguration-IMPORTANT" class="headerlink" title="Stateledss Autoconfiguration(IMPORTANT)"></a>Stateledss Autoconfiguration(IMPORTANT)</h4><p>see slides<br>Dupicate Address Detection(DAD)</p>
+<h3 id="IPv4-Header-vs-IPv6-Header"><a href="#IPv4-Header-vs-IPv6-Header" class="headerlink" title="IPv4 Header vs IPv6 Header"></a>IPv4 Header vs IPv6 Header</h3><p><img src="/images/计算机网络/IPv4和IPv6.png" width="400" height="200" alt="IPv4和IPv6请求头" align="center"></p>
+<p>Multiple extension headers (called a chain) may be included in an IPv6 packet.<br>The number of extension headers is not fixed, so the total length of the extension header chain is variable.<br>Extension headers make the handling of options more efficient.<br>[More information can be found in slides]<br><img src="/images/计算机网络/IPv6 extension header.png" width="300" height="200" alt="IPv6 extension header" align="center"></p>
+<h2 id="Wireless-LANs"><a href="#Wireless-LANs" class="headerlink" title="Wireless LANs"></a>Wireless LANs</h2><h3 id="Before-installing-a-wireless-router-what-are-some-of-the-management-parameters-to-be-considered"><a href="#Before-installing-a-wireless-router-what-are-some-of-the-management-parameters-to-be-considered" class="headerlink" title="Before installing a wireless router, what are some of the management parameters to be considered?"></a>Before installing a wireless router, what are some of the management parameters to be considered?</h3><ul>
+<li><strong>SSID</strong><br>Unique identifier that wireless clients use to distinguish between multiple wireless networks in the same vicinity.</li>
+<li><strong>Password</strong><br>Required from the wireless client to authenticate to the AP. Sometimes called the security key.</li>
+<li><strong>Network mode</strong><br>Refers to the 802.11a/b/g/n/ac/ad WLAN standards. APs and wireless routers can operate in a mixed mode; i.e., it can simultaneously use multiple standards.</li>
+<li><strong>Security mode</strong><br>Refers to the security parameter settings, such as WEP, WPA, or WPA2.</li>
+<li><strong>Channel settings</strong><br>Refers to the frequency bands used to transmit wireless data. Wireless routers and AP can choose the channel setting or it can be manually set.</li>
+</ul>
+<h3 id="When-configuring-a-wireless-router-what-the-Implemetation-Plan-steps-consists-of"><a href="#When-configuring-a-wireless-router-what-the-Implemetation-Plan-steps-consists-of" class="headerlink" title="When configuring a wireless router, what the Implemetation Plan steps consists of?"></a>When configuring a wireless router, what the Implemetation Plan steps consists of?</h3><ul>
+<li><p>Step 1<br>Start the WLAN implementation process with a single AP and a single wireless client, without enabling wireless security.</p>
+</li>
+<li><p>Step 2<br>Verify that the client has received a DHCP IP address and can ping the local, wired default router, and then browse to the external Internet.</p>
+</li>
+<li><p>Step 3<br>Configure wireless security using WPA2/WPA Mixed Personal. Never use WEP unless no other options exist.</p>
+</li>
+<li><p>Step 4<br>Back up the configuration.</p>
+</li>
+</ul>
+<h3 id="What-does-the-Smart-Wi-Fi-setteings-enable-you-to-do"><a href="#What-does-the-Smart-Wi-Fi-setteings-enable-you-to-do" class="headerlink" title="What does the Smart Wi-Fi setteings enable you to do?"></a>What does the Smart Wi-Fi setteings enable you to do?</h3><ul>
+<li>Configure the router’s basic settings for the local network.</li>
+<li>Diagnose and troubleshoot connectivity issues on the network.</li>
+<li>Secure and personalize the wireless network.</li>
+<li>Configure the DMZ feature, view connected computers and devices on the network, and set up port forwarding.</li>
+</ul>
+<h3 id="Name-and-explain-some-of-the-features-of-the-Smart-Wi-Fi-Tools"><a href="#Name-and-explain-some-of-the-features-of-the-Smart-Wi-Fi-Tools" class="headerlink" title="Name and explain some of the features of the Smart Wi-Fi Tools."></a>Name and explain some of the features of the Smart Wi-Fi Tools.</h3><ul>
+<li><strong>Device List</strong><br>Lists who is connected to the WLAN. Personalize device names and icons. Connect devices.</li>
+<li><strong>Guest Access</strong><br>Creates a separate network for up to 50 guests at home while keeping network files safe with the Guest Access Tool.</li>
+<li><strong>Parental Controls</strong><br>Protects kids and family members by restricting access to potentially harmful websites</li>
+<li><strong>Media Prioritization</strong><br>Prioritizes bandwidth to specific devices and applications. </li>
+<li><strong>Speed Test</strong><br>Tests the upload and download speed of the Internet link. Useful for baselining.</li>
+<li><strong>USB Storage</strong><br>Controls access to shared files. </li>
+</ul>
+<h2 id="Data-Centre-Design"><a href="#Data-Centre-Design" class="headerlink" title="Data Centre Design"></a>Data Centre Design</h2><p>Data centres are designed to host critical computing resources in a centralized place.</p>
+<h3 id="Multilayer-Data-Centre-Network"><a href="#Multilayer-Data-Centre-Network" class="headerlink" title="Multilayer Data Centre Network"></a>Multilayer Data Centre Network</h3><p><img src="/images/计算机网络/DataCentre Network2.png" width="300" height="300" alt="Data Centre Network Layers" align="center"><br><img src="/images/计算机网络/DataCentre Network.png" width="400" height="400" alt="Data Centre Network Layers" align="center"><br>Aggregation Layer: Multilayer switches, firewalss, load balancers…<br>Access Layer: Layer2 switch, web and client facing servers…</p>
+<h3 id="Three-demands-of-data-centre"><a href="#Three-demands-of-data-centre" class="headerlink" title="Three demands of data centre"></a>Three demands of data centre</h3><p>scalability(fast and seamless growth), flexibility(support of new service without major overhaul), high availability(predictable uptime)</p>
+<h3 id="With-aid-of-a-diagram-explain-storage-layer-and-transport-layer-of-the-data-centre-architecture"><a href="#With-aid-of-a-diagram-explain-storage-layer-and-transport-layer-of-the-data-centre-architecture" class="headerlink" title="With aid of a diagram explain storage layer and transport layer of the data centre architecture"></a>With aid of a diagram explain storage layer and transport layer of the data centre architecture</h3><p><img src="/images/计算机网络/DC storage and transport layer.png" width="400" height="400" alt="DC storage and transport layer" align="center"></p>
+<h2 id="Server-Farm"><a href="#Server-Farm" class="headerlink" title="Server Farm"></a>Server Farm</h2><p>There are three types server farm: Internet, Intranet and extranet.</p>
+<h3 id="With-aid-of-a-diagram-explain-Internet-Server-Farm"><a href="#With-aid-of-a-diagram-explain-Internet-Server-Farm" class="headerlink" title="With aid of a diagram explain Internet Server Farm"></a>With aid of a diagram explain Internet Server Farm</h3><p>Users use Internet to access the server farm and rely on the web interface and web browsers.<br>Two types: Dedicated Internet Server Farm &amp; DMZ Server Farm</p>
+<ul>
+<li><p><strong>Dedicated Internet Server Farm</strong><br><img src="/images/计算机网络/Dedicated Internet Server Farm.png" width="350" height="550" alt="Dedicated Internet Server Farm" align="center"><br>Built to support large-scale Internet-facing applications that support the core business function<br>Because of users are located on the Internet and number of likely users is high, Security and scalability are a major concern in this type of server farm. </p>
+</li>
+<li><p><strong>DMZ Server Farm</strong><br><img src="/images/计算机网络/DMZ Server Farm.png" width="350" height="550" alt="DMZ Server Farm" align="center"><br>Built to support Internet-based applications in addition to Internet access from the enterprise.<br>DMZ Server Farms locate in the demilitarized zone (DMZ) because they are part of the enterprise network yet are accessible from the Internet.</p>
+</li>
+</ul>
+<h3 id="Intranet-Server-Farm"><a href="#Intranet-Server-Farm" class="headerlink" title="Intranet Server Farm"></a>Intranet Server Farm</h3><p><img src="/images/计算机网络/Intranet Server Farm.png" width="350" height="550" alt="Intranet Server Farm" align="center"><br>Intranet server farms resemble the Internet server farms in their ease of access, yet they are available only to the enterprise’s internal users.<br>Intranet server farms include most of the enterprise-critical computing resources that support business processes and internal applications.</p>
+<h3 id="Draw-the-topology-diagram-of-extranet-server-farm"><a href="#Draw-the-topology-diagram-of-extranet-server-farm" class="headerlink" title="Draw the topology diagram of extranet server farm"></a>Draw the topology diagram of extranet server farm</h3><p><img src="/images/计算机网络/Extranet Server Farm.png" width="400" height="400" alt="Extranet Server Farm" align="center"><br>Extranet server farms sit between Internet and intranet server farms, they are accessed only by a selected group of users(e.g. business partners) that are neither Internet- nor intranet-based.<br>The main purpose for extranets is to improve business-to-business communication by allowing faster exchange of information in a user-friendly and secure environment. This reduces time to market and the cost of conducting business.</p>
+<h3 id="Explain-the-functionality-of-server-clustering"><a href="#Explain-the-functionality-of-server-clustering" class="headerlink" title="Explain the functionality of server clustering"></a>Explain the functionality of server clustering</h3><p>Clustering consists of using multiple-server computers to provide a single application that is virtually running on a single server.<br>The application runs effectively on multiple servers, but the end user thinks he is accessing a single server.<br>Clustering provides both load distribution and high availability.</p>
+<h2 id="Storage-area-network"><a href="#Storage-area-network" class="headerlink" title="Storage-area network"></a>Storage-area network</h2><h3 id="Explain-a-Storage-area-network"><a href="#Explain-a-Storage-area-network" class="headerlink" title="Explain a Storage-area network"></a>Explain a Storage-area network</h3><p>A network whose primary purpose is the transfer of data between computer systems and storage elements and among storage elements.<br>A SAN is a specialized, high-speed network that attaches servers and storage devices.<br>Three key benefits: simplification of the infrastructure, information life-cycle management (ILS), and business continuity.</p>
+<h2 id="Server-Virtualisation"><a href="#Server-Virtualisation" class="headerlink" title="Server Virtualisation"></a>Server Virtualisation</h2><p>server virtualisation comprises several components working in synergy to deliver a holistic solution.<br>With reference to this expalin the following:</p>
+<h3 id="Type-1-and-Type-2-Hypervisiors"><a href="#Type-1-and-Type-2-Hypervisiors" class="headerlink" title="Type-1 and Type-2 Hypervisiors"></a>Type-1 and Type-2 Hypervisiors</h3><ul>
+<li><p><strong>Type-1 Hypervisor</strong><br><img src="/images/计算机网络/Type1 hypervisors.png" width="200" height="200" alt="Type1 hypervisors" align="center"><br>Type-1 hypervisors run directly on top of the physical server hardware. Virtual machines run on top, and guest operating systems leverage virtual hardware exposed by the hypervisor.<br><strong>better performance characteristics</strong><br>Examples: Microsoft Hyper-V, Vmware ESXi, XenServer, and KVM</p>
+</li>
+<li><p><strong>Type-2 Hypervisor</strong><br><img src="/images/计算机网络/Type2 hypervisors.png" width="200" height="200" alt="Type2 hypervisors" align="center"><br>Type-2 hypervisors run as an application on top of the server operating system. Type-2 hypervisors coordinate a call to the physical server resources through the host operating system installed on the server. The actual virtual machines run one level higher.<br><strong>easier implementation and maintenance</strong><br>Examples: VMware Workstation, VMware Fusion, Oracle VM VirtualBox.</p>
+</li>
+</ul>
+<h3 id="Virtual-machines"><a href="#Virtual-machines" class="headerlink" title="Virtual machines"></a>Virtual machines</h3><p>A virtual machine is a software on top of the hypervisor.<br>Virtual machines emulate operation of the physical computing environment and rely on the hypervisor for access to the physical server resources.<br>Guest operating system: The OS run in Virtual machine.<br>Host operating system: the server operating system runs virtual machine.</p>
+<h3 id="Virtual-switching"><a href="#Virtual-switching" class="headerlink" title="Virtual switching"></a>Virtual switching</h3><p>Virtual switches take care of forwarding the network traffic between the virtual machines residing on the same or different physical hosts.<br>When virtual machines move around the virtualisation layer, virtual switching will also be important to maintain configuration consistency for the virtual machine attachment points. </p>
+<h3 id="Management-tools"><a href="#Management-tools" class="headerlink" title="Management tools"></a>Management tools</h3><p>The virtualisation management tool is also referred to as Virtual Machine Manager.<br>They help create, edit, clone, start, stop, and move virtual machines.<br>They help view performance characteristics and utilisation of the VMs, they also provide a programmatic way to interact with server virtualisation environment through APIs. </p>
+<h2 id="Data-Centre-Management"><a href="#Data-Centre-Management" class="headerlink" title="Data Centre Management"></a>Data Centre Management</h2><h3 id="Explain-the-importance-of-Data-Centre-Infrastructure-Management-DCIM"><a href="#Explain-the-importance-of-Data-Centre-Infrastructure-Management-DCIM" class="headerlink" title="Explain the importance of Data Centre Infrastructure Management(DCIM)"></a>Explain the importance of Data Centre Infrastructure Management(DCIM)</h3><p>The outward expansion and increasing rack density of modern data centre have created serious space and energy consumptions concerns.<br>So we should consolidate and construct large data centres driven by economy of scale benefits.<br>Data Centre should be organised and operated to deliver quality of service reliably, securely and economically.<br>So we need DCIM.</p>
+<h3 id="State-the-domains-for-Data-Centre-DC"><a href="#State-the-domains-for-Data-Centre-DC" class="headerlink" title="State the domains for Data Centre(DC)"></a>State the domains for Data Centre(DC)</h3><p>Facilities: Physical space, power and cooling<br>Networking: Fiber optic and copper cable plants, LANs, SANs and WANs<br>Systems: Mainframes, servers, virtual servers and storage</p>
+<h3 id="Name-the-Data-Centre-Management-DCM-components-and-discuss-their-functions"><a href="#Name-the-Data-Centre-Management-DCM-components-and-discuss-their-functions" class="headerlink" title="Name the Data Centre Management(DCM) components and discuss their functions."></a>Name the Data Centre Management(DCM) components and discuss their functions.</h3><p>see the last slides</p>
+<h3 id="What-are-the-key-questions-you-would-ask-or-the-step-to-take-before-implemeting-and-improving-a-data-centre"><a href="#What-are-the-key-questions-you-would-ask-or-the-step-to-take-before-implemeting-and-improving-a-data-centre" class="headerlink" title="What are the key questions you would ask or the step to take before implemeting and improving a data centre?"></a>What are the key questions you would ask or the step to take before implemeting and improving a data centre?</h3><p>see the last slides</p>
+<p>left questions:</p>
+<ul>
+<li>交换机, 路由器等设备的符号</li>
+<li>总结 case study分析的要点(e.g. no single point failure, redundant components)</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-05-26</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Network/" class="color3">Network</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ISO-Network-Model"><span class="post-toc-number">1.</span> <span class="post-toc-text">ISO Network Model</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Network-Management"><span class="post-toc-number">2.</span> <span class="post-toc-text">Network Management</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Five-functional-areas-of-Network-Management"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Five functional areas of Network Management:</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Fault-Management"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">Fault Management:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Performance-Management"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">Performance Management</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Configuration-Management"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">Configuration Management</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Accounting-Management"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">Accounting Management</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Security-Management"><span class="post-toc-number">2.1.5.</span> <span class="post-toc-text">Security Management</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Network-Management-Protocol"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Network Management Protocol</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SNMP"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">SNMP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SNMPv3"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">SNMPv3</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Network-Management-Software-System"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Network Management Software System</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Network-Management-Platform"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Network Management Platform</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Network-Management-Application"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">Network Management Application</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IPV4-amp-IPV6"><span class="post-toc-number">3.</span> <span class="post-toc-text">IPV4 &amp; IPV6</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Issues-of-IPV4"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Issues of IPV4</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Features-of-IPV6"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Features of IPV6</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPv6-Address"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">IPv6 Address</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#地址表示法"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">地址表示法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组成部分"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">组成部分</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IPv6-Address-types"><span class="post-toc-number">3.3.3.</span> <span class="post-toc-text">IPv6 Address types</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Neighbor-Discovery"><span class="post-toc-number">3.3.4.</span> <span class="post-toc-text">Neighbor Discovery</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Stateledss-Autoconfiguration-IMPORTANT"><span class="post-toc-number">3.3.5.</span> <span class="post-toc-text">Stateledss Autoconfiguration(IMPORTANT)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPv4-Header-vs-IPv6-Header"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">IPv4 Header vs IPv6 Header</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Wireless-LANs"><span class="post-toc-number">4.</span> <span class="post-toc-text">Wireless LANs</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Before-installing-a-wireless-router-what-are-some-of-the-management-parameters-to-be-considered"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Before installing a wireless router, what are some of the management parameters to be considered?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#When-configuring-a-wireless-router-what-the-Implemetation-Plan-steps-consists-of"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">When configuring a wireless router, what the Implemetation Plan steps consists of?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#What-does-the-Smart-Wi-Fi-setteings-enable-you-to-do"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">What does the Smart Wi-Fi setteings enable you to do?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Name-and-explain-some-of-the-features-of-the-Smart-Wi-Fi-Tools"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">Name and explain some of the features of the Smart Wi-Fi Tools.</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Data-Centre-Design"><span class="post-toc-number">5.</span> <span class="post-toc-text">Data Centre Design</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Multilayer-Data-Centre-Network"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Multilayer Data Centre Network</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Three-demands-of-data-centre"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">Three demands of data centre</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#With-aid-of-a-diagram-explain-storage-layer-and-transport-layer-of-the-data-centre-architecture"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">With aid of a diagram explain storage layer and transport layer of the data centre architecture</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Server-Farm"><span class="post-toc-number">6.</span> <span class="post-toc-text">Server Farm</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#With-aid-of-a-diagram-explain-Internet-Server-Farm"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">With aid of a diagram explain Internet Server Farm</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Intranet-Server-Farm"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">Intranet Server Farm</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Draw-the-topology-diagram-of-extranet-server-farm"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">Draw the topology diagram of extranet server farm</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Explain-the-functionality-of-server-clustering"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">Explain the functionality of server clustering</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Storage-area-network"><span class="post-toc-number">7.</span> <span class="post-toc-text">Storage-area network</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Explain-a-Storage-area-network"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">Explain a Storage-area network</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Server-Virtualisation"><span class="post-toc-number">8.</span> <span class="post-toc-text">Server Virtualisation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Type-1-and-Type-2-Hypervisiors"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">Type-1 and Type-2 Hypervisiors</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Virtual-machines"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">Virtual machines</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Virtual-switching"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">Virtual switching</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Management-tools"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">Management tools</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Data-Centre-Management"><span class="post-toc-number">9.</span> <span class="post-toc-text">Data Centre Management</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Explain-the-importance-of-Data-Centre-Infrastructure-Management-DCIM"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">Explain the importance of Data Centre Infrastructure Management(DCIM)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#State-the-domains-for-Data-Centre-DC"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">State the domains for Data Centre(DC)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Name-the-Data-Centre-Management-DCM-components-and-discuss-their-functions"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">Name the Data Centre Management(DCM) components and discuss their functions.</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#What-are-the-key-questions-you-would-ask-or-the-step-to-take-before-implemeting-and-improving-a-data-centre"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">What are the key questions you would ask or the step to take before implemeting and improving a data centre?</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

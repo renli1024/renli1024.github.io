@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python3 数据结构 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本文介绍了python3常用的数据结构。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3 数据结构">
+<meta property="og:url" content="https://renli1024.github.io/2019/03/06/Python/Python3 Data Structure/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本文介绍了python3常用的数据结构。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-28T04:18:31.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3 数据结构">
+<meta name="twitter:description" content="本文介绍了python3常用的数据结构。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Python/Python3 Data Structure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Python3 数据结构
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-06
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本文介绍了python3常用的数据结构。<br><a id="more"></a></p>
+<h2 id="字符串string"><a href="#字符串string" class="headerlink" title="字符串string"></a>字符串string</h2><p>双引号””、单引号’’括起来都是字符串<br>访问字符串中元素：str[i]<br>数字转字符串：str()；字符串转数字：int()/float()<br>求字符串长度：len()<br>截取字符串：str[x:y]，前包后不包<br>字符-&gt;ASCII：<code>ord(&#39;a&#39;)</code>; ASCII-&gt;字符：<code>chr(78)</code></p>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\n</code></td>
+<td style="text-align:left">换行符，另起一行</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\r</code></td>
+<td style="text-align:left">将光标的位置回退到本行的开头位置，因此再输出就会覆盖之前的值</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>注1：<code>\r</code>在VSCode的DEBUG CONCOLE下不起效果（不会覆盖之前的值），只在TERMINAL下起效果。</li>
+<li>注2：用<code>\r</code>可以实现很多有趣的小功能，如倒计时（每次用新string覆盖上一条string）、进度条等。</li>
+</ul>
+<h3 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h3><h4 id="百分号法"><a href="#百分号法" class="headerlink" title="百分号法"></a>百分号法</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">占位符</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">%d</td>
+<td style="text-align:left">十进制整数</td>
+</tr>
+<tr>
+<td style="text-align:center">%f</td>
+<td style="text-align:left">浮点数，保留小数点后面六位</td>
+</tr>
+<tr>
+<td style="text-align:center">.3%f</td>
+<td style="text-align:left">浮点数，保留小数点后面三位</td>
+</tr>
+<tr>
+<td style="text-align:center">%e</td>
+<td style="text-align:left">浮点数，保留小数点后面六位有效数字，指数形式输出</td>
+</tr>
+<tr>
+<td style="text-align:center">%s</td>
+<td style="text-align:left">字符串</td>
+</tr>
+</tbody>
+</table>
+<p>具体用法：<br>带占位符的字符串 + % + 要填充的内容（有多项的话用括号括起来，中间用逗号分割）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'%d'</span> % <span class="number">20</span>) <span class="comment"># 输出20</span></span><br><span class="line">s1 = <span class="string">"i am %s, i am %d years old"</span> % (<span class="string">'jeck'</span>,<span class="number">26</span>)    <span class="comment">#按位置顺序依次输出</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="format法"><a href="#format法" class="headerlink" title="format法"></a>format法</h4><ul>
+<li>由花括号<code>{}</code>充当占位符<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">"I like &#123;&#125;"</span>.format(<span class="string">"you"</span>) <span class="comment"># "I like you"</span></span><br><span class="line">str2 = <span class="string">"I like &#123;0&#125; and &#123;1&#125;"</span>.format(<span class="string">"running"</span>,<span class="string">"swimming"</span>) <span class="comment"># "I like running and swimming"</span></span><br><span class="line">str3 = <span class="string">"I like &#123;&#125; and &#123;&#125;"</span>.format(<span class="string">"running"</span>,<span class="string">"swimming"</span>) <span class="comment"># 与str2等价，会自动按0,1,2的顺序向占位符中填充</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h2><p>即数组，但里面元素类型可不一致，lst=[‘a’,13,”lrrr”]<br>数组尾追加元素：lst.append，数组间插入元素：lst.insert(i,x)<br>删除数组元素：lst.pop(i)，返回值为删除的元素<br>将数组元素顺序颠倒：lst.reverse()<br>数组排序函数：lst.sort()<br>字符串-&gt;数组：split();数组-&gt;字符串：join()</p>
+<h3 id="List-Comprehension机制"><a href="#List-Comprehension机制" class="headerlink" title="List Comprehension机制"></a>List Comprehension机制</h3><p>list comprehension是python中一种简洁的生成list的方式，可以在括号<code>[]</code>内部写生成的表达式，甚至可以加一些逻辑判断条件，用法如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a new list with the values doubled</span></span><br><span class="line">vec = [<span class="number">-4</span>, <span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">list1 = [x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> vec]  <span class="comment"># [-8, -4, 0, 4, 8] </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加判断条件</span></span><br><span class="line">list1 = [x <span class="keyword">for</span> x <span class="keyword">in</span> vec <span class="keyword">if</span> x &gt;= <span class="number">0</span>]  <span class="comment"># [0, 2, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># call a method on each element</span></span><br><span class="line">freshfruit = [<span class="string">'  banana'</span>, <span class="string">'  loganberry '</span>, <span class="string">'passion fruit  '</span>]</span><br><span class="line">[weapon.strip() <span class="keyword">for</span> weapon <span class="keyword">in</span> freshfruit]</span><br><span class="line"><span class="comment"># 生成 ['banana', 'loganberry', 'passion fruit']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 同样可以生成元组</span></span><br><span class="line">[(x, x**<span class="number">2</span>) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">6</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若有多个for语句则从左到右依次嵌套</span></span><br><span class="line"><span class="comment"># flatten a list using a listcomp with two 'for'</span></span><br><span class="line">vec = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line"><span class="comment"># 生成 [1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"></span><br><span class="line">[num <span class="keyword">for</span> elem <span class="keyword">in</span> vec <span class="keyword">for</span> num <span class="keyword">in</span> elem]</span><br><span class="line">[(x, y) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="keyword">for</span> y <span class="keyword">in</span> [<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>] <span class="keyword">if</span> x != y]</span><br><span class="line"><span class="comment"># 生成 [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]</span></span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line"><span class="comment"># for x in [1,2,3]:</span></span><br><span class="line"><span class="comment">#     for y in [3,1,4]:</span></span><br><span class="line"><span class="comment">#         if x != y:</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="元组tuple"><a href="#元组tuple" class="headerlink" title="元组tuple"></a>元组tuple</h2><p>元素值不可改变的list，遍历操作与list相同<br>初始化：<code>t=(1,&quot;ab&quot;,[123,&quot;abc&quot;])</code> 或 <code>d=dict([(&quot;1&quot;,&quot;22&quot;),(&quot;2&quot;,&quot;22&quot;)])</code>用数组初始化<br>优点：遍历比列表快；对数据进行“写保护”；可在字典中用作key</p>
+<h2 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h2><p>即哈希表，以键值对存储：<code>dic={&quot;n1&quot;:&quot;ab&quot;,&quot;n2&quot;:&quot;cd&quot;,&quot;n3&quot;:12}</code><br>键(key)不可修改，可以是字符串或元组；但键值可以更改。<br>通过键访问键值：dic[‘n1’]</p>
+<h3 id="如何根据value查key"><a href="#如何根据value查key" class="headerlink" title="如何根据value查key"></a>如何根据value查key</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> dictionary.items():    </span><br><span class="line">    <span class="keyword">if</span> v == search_avalue:</span><br><span class="line">        print(k)</span><br></pre></td></tr></table></figure>
+<h3 id="字典和JSON格式相互转化"><a href="#字典和JSON格式相互转化" class="headerlink" title="字典和JSON格式相互转化"></a>字典和JSON格式相互转化</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">dict_obejct = &#123; <span class="string">'a'</span> : <span class="number">1</span>, <span class="string">'b'</span> : <span class="number">2</span>, <span class="string">'c'</span> : <span class="number">3</span>, <span class="string">'d'</span> : <span class="number">4</span>, <span class="string">'e'</span> : <span class="number">5</span> &#125;</span><br><span class="line"><span class="comment"># 将dict对象转化为json字符串</span></span><br><span class="line">dict_json = json.dumps(dict_obejct)</span><br><span class="line">print(dict_json)</span><br><span class="line"><span class="comment"># &#123;"a": 1, "b": 2, "c": 3, "d": 4, "e": 5&#125;</span></span><br><span class="line"><span class="comment"># 之后直接将字符串写到文件中里即可（最后记得加 \n）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文件中读取的json字符串</span></span><br><span class="line">json_str = <span class="string">"&#123;\"a\": 1, \"b\": 2, \"c\": 3, \"d\": 4, \"e\": 5&#125;"</span></span><br><span class="line">dict_object = json.loads(json_str)</span><br><span class="line"><span class="comment"># JSON的object类型直接即转化为python的dict类型</span></span><br></pre></td></tr></table></figure>
+<p>JSON类型和Python类型转化(默认和dict相互转化)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">JSON</th>
+<th style="text-align:center">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">object</td>
+<td style="text-align:center">dict</td>
+</tr>
+<tr>
+<td style="text-align:center">array</td>
+<td style="text-align:center">list/(tuple)</td>
+</tr>
+<tr>
+<td style="text-align:center">string</td>
+<td style="text-align:center">str</td>
+</tr>
+<tr>
+<td style="text-align:center">number(int)</td>
+<td style="text-align:center">int, long</td>
+</tr>
+<tr>
+<td style="text-align:center">number(real)</td>
+<td style="text-align:center">float</td>
+</tr>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h2><p><strong>无序、不重复</strong>序列，<code>s=set([123,&#39;lrrr&#39;,&quot;asd&quot;])-&gt;s={&#39;lrrr&#39;, 123, &#39;asd&#39;}</code><br>集合增加元素：add；删除元素：remove<br>不可改变的集合：frozenset，集合一旦创建就不能再增加/删除元素。<br>可进行集合的“交并补”等运算，得到新的集合。</p>
+<h2 id="range类型"><a href="#range类型" class="headerlink" title="range类型"></a>range类型</h2><ul>
+<li>用于产生一个有序序列，通常和for循环嵌套使用</li>
+</ul>
+<p>range(a,b,t)：a为起点，b为终点，t为步长，是一个前开后闭的区间（包括起点不包括终点）<br>注：a默认0，t默认1。<br>range主要用于产生一个序列，在<code>for in</code>循环中很常见<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = range(<span class="number">10</span>) <span class="comment">#x是从0到9的一个range类型</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    print(i) <span class="comment">#循环输出0-9</span></span><br></pre></td></tr></table></figure></p>
+<p>range转List：<code>list(range(1,10,3))</code></p>
+<h2 id="迭代器iter"><a href="#迭代器iter" class="headerlink" title="迭代器iter"></a>迭代器iter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">遍历操作</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    it.__next__()</span><br><span class="line"></span><br><span class="line">数组转迭代器：it=iter(list)</span><br><span class="line">文件流默认为可迭代对象，可直接调用__next__()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>generator</strong><br>和可迭代类型（Iterator）类似，区别：其不保存所有值，其只计算一个值，保存一个值，计算下一个值时这个值就会被覆盖。适用于数据只使用一次的场景。<br>在函数中可使用<code>yield</code>语句来返回一个<code>generator</code>，类似return语句，但区别是在调用时其并没有真正计算值，只是返回了一个generator，等到真正访问generator时才会去一个一个地计算其值。</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-03-06</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python/" class="color2">Python</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符串string"><span class="post-toc-number">1.</span> <span class="post-toc-text">字符串string</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#转义字符"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">转义字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式化字符串"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">格式化字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#百分号法"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">百分号法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#format法"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">format法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列表list"><span class="post-toc-number">2.</span> <span class="post-toc-text">列表list</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#List-Comprehension机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">List Comprehension机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#元组tuple"><span class="post-toc-number">3.</span> <span class="post-toc-text">元组tuple</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字典dict"><span class="post-toc-number">4.</span> <span class="post-toc-text">字典dict</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何根据value查key"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">如何根据value查key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字典和JSON格式相互转化"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">字典和JSON格式相互转化</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#集合set"><span class="post-toc-number">5.</span> <span class="post-toc-text">集合set</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#range类型"><span class="post-toc-number">6.</span> <span class="post-toc-text">range类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代器iter"><span class="post-toc-number">7.</span> <span class="post-toc-text">迭代器iter</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

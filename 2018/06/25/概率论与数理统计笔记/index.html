@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>概率论与数理统计笔记 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="最近在学习数据挖掘、机器学习的相关算法时，感到统计知识的应用还是非常广泛且重要的，因此决定从新温习一遍概率论和数理统计，为进一步学习数据挖掘打下基础。  绪言 概率论数学的一个分支，研究如何定量描述随机现象及其规律。  数理统计以数据为研究对象，包括数据的收集、整理、分析和建模，从而对随机现象的某些规律进行预测或决策。    第一章_随机事件与概率 三个基本概念样本空间：随机试验中所有可能结">
+<meta name="keywords" content="Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论与数理统计笔记">
+<meta property="og:url" content="https://renli1024.github.io/2018/06/25/概率论与数理统计笔记/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="最近在学习数据挖掘、机器学习的相关算法时，感到统计知识的应用还是非常广泛且重要的，因此决定从新温习一遍概率论和数理统计，为进一步学习数据挖掘打下基础。  绪言 概率论数学的一个分支，研究如何定量描述随机现象及其规律。  数理统计以数据为研究对象，包括数据的收集、整理、分析和建模，从而对随机现象的某些规律进行预测或决策。    第一章_随机事件与概率 三个基本概念样本空间：随机试验中所有可能结">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/0-1分布.png">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/泊松分布.jpg">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/分布函数.png">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/概率密度1.png">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/概率密度2.png">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/均匀分布.png">
+<meta property="og:image" content="https://renli1024.github.io/images/概率论与数理统计/均匀分布2.png">
+<meta property="og:updated_time" content="2019-05-29T00:19:02.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="概率论与数理统计笔记">
+<meta name="twitter:description" content="最近在学习数据挖掘、机器学习的相关算法时，感到统计知识的应用还是非常广泛且重要的，因此决定从新温习一遍概率论和数理统计，为进一步学习数据挖掘打下基础。  绪言 概率论数学的一个分支，研究如何定量描述随机现象及其规律。  数理统计以数据为研究对象，包括数据的收集、整理、分析和建模，从而对随机现象的某些规律进行预测或决策。    第一章_随机事件与概率 三个基本概念样本空间：随机试验中所有可能结">
+<meta name="twitter:image" content="https://renli1024.github.io/images/概率论与数理统计/0-1分布.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-概率论与数理统计笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      概率论与数理统计笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-25
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<hr>
+<p>最近在学习数据挖掘、机器学习的相关算法时，感到统计知识的应用还是非常广泛且重要的，因此决定从新温习一遍概率论和数理统计，为进一步学习数据挖掘打下基础。</p>
+<hr>
+<h2 id="绪言"><a href="#绪言" class="headerlink" title="绪言"></a>绪言</h2><ul>
+<li><p><strong>概率论</strong><br>数学的一个分支，研究如何定量描述随机现象及其规律。</p>
+</li>
+<li><p><strong>数理统计</strong><br>以数据为研究对象，包括数据的收集、整理、分析和建模，从而对随机现象的某些规律进行预测或决策。</p>
+</li>
+</ul>
+<hr>
+<h2 id="第一章-随机事件与概率"><a href="#第一章-随机事件与概率" class="headerlink" title="第一章_随机事件与概率"></a>第一章_随机事件与概率</h2><ul>
+<li><p><strong>三个基本概念</strong><br>样本空间：随机试验中所有可能结果的集合称为样本空间，记为S。<br>样本点：S中的单个元素称为样本点，也称为基本事件。<br>随机事件：样本空间S的子集，称为随机事件，一个随机事件可以包含多个基本事件。</p>
+</li>
+<li><p><strong>事件的相互关系</strong>（若有事件A和事件B）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>记法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合事件</td>
+<td>\(A\cup B\)</td>
+<td>A、B至少有一个发生</td>
+</tr>
+<tr>
+<td>积事件</td>
+<td>\(A\cap B\) 或简写为 \(AB\)</td>
+<td>A、B同时发生</td>
+</tr>
+<tr>
+<td>差事件</td>
+<td>\(A-B\)</td>
+<td>A发生且B不发生</td>
+</tr>
+<tr>
+<td>互斥事件/不相容事件</td>
+<td>\(AB=\phi\)</td>
+<td>AB不能同时发生</td>
+</tr>
+<tr>
+<td>对立事件/逆事件</td>
+<td>\(\bar{A}\)</td>
+<td>\(A\cup \bar{A} = S\)，\(A\cap \bar{A} = \phi\)</td>
+</tr>
+</tbody>
+</table>
+<p>注1：差事件有多种表示方法，如\(A-B = A\bar{B} = A-AB\)<br>注2：区分\(\overline{AB}\)和\(\bar{A}\bar{B}\)，\(\overline{AB}\)表示A、B不同时发生(可单独发生)，\(\bar{A}\bar{B}\)表示A、B都不发生</p>
+<ul>
+<li><p><strong>重要的事件运算定律</strong><br>结合律：<br>  \(A\cup (B\cap C) = (A\cup B)\cap (A\cup C)\)<br>  \(A\cap (B\cup C) = (A\cap B)\cup (A\cap C)\)<br>德摩根律：<br>  \(\overline{A\cup B} = \bar{A}\cap \bar{B}\)<br>  \(\overline{A\cap B} = \bar{A}\cup \bar{B}\)<br>注1：事件运算很多时候可通过画维恩图来表示<br>注2：两个公式都可扩展到多事件的情况</p>
+</li>
+<li><p><strong>频率与概率</strong><br>频率\(f_n(A)\)：表示事件A发生的次数占试验总次数的比例。<br>$$f_n(A) = \frac {n_A} {n}$$<br>概率\(P(A)\)：当实验次数增加时，频率的稳定值称为概率。<br>$$P(A) = lim_{n \rightarrow \infty} f_n(A)$$</p>
+</li>
+<li><p><strong>概率的性质</strong><br>对事件A和事件B<br>(1). \(P(B-A) = P(B)-P(AB)\)。若\(A \subset B\)，则有\(P(B-A) = P(B)-P(A)\)<br>(2). \(P(A \cup B) = P(A)+P(B)-P(AB)\)<br>(3). \(P(\bar{A}) = 1-P(A)\)</p>
+</li>
+<li><p><strong>古典概型</strong><br>两个特征：样本空间S中样本点有限(有限性) &amp; 每一个样本点的概率相等(等可能性)。<br>因此计算概率有：<br>$$P(A) = (A所包含的样本点数)/(S中的样本点总数)$$<br>注1：古典概率只需要计算不同事件对应的样本点个数即可。<br>注2：因为样本点个数有限，所有情况可枚举，因此古典概型经常转化为排列组合的问题求解。</p>
+</li>
+<li><p><strong>补充排列组合公式</strong><br>排列：$$A_n^m = n(n-1)\cdots(n-m+1)$$<br>组合：$$C_n^m = A_n^m/m!$$<br>$$C_n^m = C_n^{n-m}$$</p>
+</li>
+<li><p><strong>条件概率</strong><br>P(B|A)表示在事件A发生的前提下，事件B发生的概率。<br>计算方法：\(P(B|A) = \frac {P(AB)} {P(A)} \)，事件A的发生改变了样本空间。<br>注：注意区分P(AB)和P(B|A)，前者是在整个样本空间下计算，是“原始”的概率；后者是在A的样本空间下计算，是“二次影响”后的概率，条件概率即表征一种影响程度。</p>
+</li>
+<li><p><strong>乘法公式</strong>(计算多个事件同时发生的概率)<br>$$P(AB) = P(A)\cdot P(B|A) = P(B)\cdot P(A|B)$$<br>$$P(ABC) = P(A)\cdot P(B|A)\cdot P(C|AB)$$</p>
+</li>
+<li><p><strong>全概率公式</strong><br>定义划分：若有<br>(1). \(B_1\cup B_2\cup \cdots\cup B_n = S\)<br>(2). \(B_iB_j = \phi,i\not=j\)<br>则称\(B_1,B_2,\cdots,B_n \)为S的一个划分。<br>计算A事件概率就有：<br>$$P(A) = \sum_{j=1}^n P(AB_j) = \sum_{j=1}^n P(B_j)P(A|B_j)$$<br>公式的直观理解：“由因求果”，B1,B2…代表引起事件A发生的各种原因，因此事件A发生的总概率就是各种原因下发生概率的加和。</p>
+</li>
+<li><p><strong>贝叶斯公式</strong><br>\(B_1,B_2,\cdots,B_n \)为S的一个划分，<br>$$P(B_i|A) = \frac {P(B_iA)} {P(A)} = \frac {P(A|B_i)P(B_i)} {\sum_{j=1}^n P(A|B_j)P(B_j)}$$<br>P(B)称为先验概率，代表根据以往经验得到的引起某件事发生的原因的概率。<br>P(B|A)称为后验概率，代表<strong>事情已经发生</strong>，求这件事发生是由某个因素引起的可能性的大小。<br><strong>公式的直观理解</strong>：“执果寻因”，观测某事件已经发生，求导致该事件发生的各种原因的概率。<br>影响后验概率的有两个因素，一个是原因本身的概率P(B)，另一个是原因引起结果的概率P(A|B)，只有当各原因引起结果的概率有差别时，贝叶斯公式才有意义，否则计算出的仅仅就是各原因概率的比例而已。两个影响因素对结果的共同作用大，求出的后验概率P(B|A)就会大，这也是符合直观认知的。<br>此外，后验概率还代表着根据实际情况对先验概率的“修正”：通常情况下，依照经验求得的先验概率不会太准确，这时就需从实际中寻找相关事实对其进行修正。<br>更多贝叶斯公式的讲解：<a href="https://www.cnblogs.com/yemanxiaozu/p/7680761.html" target="_blank" rel="noopener">贝叶斯公式的直观理解(先验概率/后验概率)</a></p>
+</li>
+<li><p><strong>事件的独立性</strong><br><strong>定义</strong>：满足\(P(AB) = P(A)P(B)\)，则称事件A与事件B相互独立。若\(P(A)&gt;0,P(B)&gt;0\)，则有\(P(B|A) = P(B)\)（这个公式理解起来更直观些）。<br><strong>直观理解</strong>：在一次实验中，一个事件的发生不会影响到另一个事件发生的概率。<br><strong>注1</strong>：事件的独立性\(\not=\)互斥性。互斥性指事件不可能同时发生，即\(P(AB)=0\)；独立性指一个事件的发生不会影响到另一个事件发生的概率，即\(P(AB)=P(A)P(B)\)。在维恩图中，互斥事件没有交集，而独立事件则可以有交集，只是交集占B圈的概率与A圈占总体的概率相等罢了。<br><strong>注2</strong>：若多个事件相互独立，则有\(P(ABC) = P(A)P(B)P(C)\)，但注意<br>$$\left.<br>\begin{align}<br>P(AB)=P(A)P(B) \\<br>P(AC)=P(A)P(C) \\<br>P(BC)=P(B)P(C)<br>\end{align}<br>\right\rbrace<br>\not\Rightarrow P(ABC)=P(A)P(B)P(C)$$<br>即两两独立不能推出相互独立，因为相互独立还要求满足\(P(ABC)=P(A)P(BC)\)。</p>
+</li>
+</ul>
+<hr>
+<h2 id="第二章-离散型随机变量"><a href="#第二章-离散型随机变量" class="headerlink" title="第二章_离散型随机变量"></a>第二章_离散型随机变量</h2><ul>
+<li><p><strong>随机变量</strong><br><strong>定义</strong>：样本空间S，样本点e，若\(X=X(e)\)为定义在S上的实值单值函数，则称\(X(e)\)为随机变量，简写为\(X\)。<br>注1：随机变量虽然叫变量，但实际是一个函数，是样本点到实数的一种映射。<br>注2：引入随机变量的原因，是为了将无法量化的随机事件用具有实际意义的数值来表示，便于量化研究随机现象的规律。如在抛硬币实验中，可将实验结果用“正面出现的次数”来表示。<br>注3：随机变量本质是函数，也要满足函数的性质，可以多个样本点对一个实数值，但不能一对多。<br>注4：随机变量一般用大写字母\(X,Y,Z\)或希腊字母\(\eta,\xi\)来表示，且都将\(X(e)\)简写为\(X\)，直接用\(X\)来表示映射后的实数值。</p>
+</li>
+<li><p><strong>离散型随机变量</strong><br>若随机变量X的取值为有限个或可数个，则称X为离散型随机变量。<br>“可数”指其中的元素可以被一一数到。(元素数可以是无限个，如整数集、正奇数集等，都是可数的)<br><strong>离散型随机变量的分布律：</strong>所有随机变量对应的概率，叫做分布律。需要满足两个条件：非负性 &amp; 加和为1。<br><strong>三种常见的离散分布：</strong>0-1分布、二项分布、泊松分布、几何分布。</p>
+</li>
+<li><p><strong>0-1分布</strong><br>若X的分布律满足<br><img src="\images\概率论与数理统计\0-1分布.png" width="200" height="80" align="center"><br>就称X服从参数为p的0-1分布(或两点分布)，即为\(X\sim 0-1(p)\)或\(X\sim B(1,p)\)<br>其分布律可写为：<br>$$P(X=k)=p^k(1-p)^{1-k},k=0,1$$</p>
+</li>
+<li><p><strong>伯努利实验(Bernoulli)</strong><br>设A是一随机事件，且\(P(A)=p(0&lt; p &lt;1)\)。若仅考虑事件A发生与否，就可定义一个服从参数p的0-1分布的随机变量X：<br>$$ X=\left\{<br>\begin{align}<br>0 &amp; , &amp; 若A发生 \\<br>1 &amp; , &amp; 若A不发生(即\bar{A}发生)<br>\end{align}<br>\right.<br>$$<br>来描述这个随机实验的结果。<br>这种只有两个可能结果的实验，称为伯努利实验。<br>注1：将伯努利实验独立重复地进行n次，就称为n重伯努利实验。<br>注2：设X表示n重伯努利实验中事件A发生的次数，则X的可能取值为0,1,…,n，概率为\(P\{X=k\}=C_n^kp^k(1-p)^{n-k}\)。</p>
+</li>
+<li><p><strong>二项分布(Binomial)</strong><br>定义：若随机变量X的概率分布律为<br>$$P\{X=k\}=C_n^kp^k(1-p)^{n-k},k=0,1,\cdots,n$$<br>即称X服从参数为n,p的二项分布，记为\(X\sim B(n,p)\)。<br>n代表进行伯努利实验的次数，p代表一次实验中事件A发生的概率。<br>二项分布作用：描述n重伯努利实验中，事件发生的次数。<br>注：0-1分布也是一种特殊的二项分布，即只进行一次伯努利实验。</p>
+</li>
+<li><p><strong>泊松分布(Poisson)</strong><br>设随机变量\(X\)的取值为0,1,2,…，而取各个值的概率为<br>$$P\{X=k\}=\frac {\lambda^ke^{-\lambda}} {k!},k=0,1,2,…$$<br>其中\(\lambda&gt;0\)且是常数，则称\(X\)服从参数为\(\lambda\)的泊松分布，记为\(X\sim \pi (\lambda)\)<br><strong>证明其满足分布律的两条件：</strong>对于非负性，明显满足；对于加和为1性质，有：<br>$$\sum_{k=0}^\infty P\{X=k\}=\sum_{k=0}^\infty \frac {\lambda^ke^{-\lambda}} {k!}=e^{-\lambda}\sum_{k=0}^\infty \frac {\lambda^k} {k!}=e^{-\lambda}\cdot e^\lambda = 1$$<br><strong>注1</strong>：上式证明所涉及定理：<br>$$e^x=1+x+\frac {x^2} {2!}+\cdots+\frac {x^k} {k!}+\cdots$$<br><strong>注2</strong>：若某事件以固定强度\(\lambda\)，随机且独立地出现，该事件在单位时间内出现的次数可认为服从泊松分布。<br>如公共汽车站到达的乘客数，一本书一页中的印刷错误数等。<br><strong>注3</strong>：不同参数\(\lambda\)的泊松分布概率图，横坐标为k值，纵坐标为概率值<br><img src="\images\概率论与数理统计\泊松分布.jpg" width="343" height="185" align="center"><br>更多泊松分布的解释见：<a href="https://www.zhihu.com/question/26441147" target="_blank" rel="noopener">泊松分布的现实意义是什么？</a><br><strong>注4</strong>：二项分布与泊松分布的近似关系：当\(n&gt;10,p&lt;0.1\)时，<br>$$C_n^k(1-p)^{n-k}\approx \frac {e^{-\lambda}\lambda^k} {k!}, \lambda=np. $$<br>即当\(n\)很大而\(p\)很小，且\(np\)大小适中时，可用泊松分布来近似二项分布。因为\(n\)很大时，二项分布公式中\(C_n^kp^k(1-p)^{n-k}\)计算次方和阶乘会很麻烦，因此用泊松来近似。</p>
+</li>
+<li><p><strong>几何分布(Geometric)</strong><br>定义：若\(X\)的概率分布律为：<br>$$P(X=k)=p(1-p)^{k-1},k=1,2,3,\cdots$$<br>则称\(X\)服从参数为\(p\)的几何分布，记为\(X\sim Grom(p)\)。<br><strong>用处</strong>：在重复多次的伯努利实验中，实验进行到某种结果出现第一次为止，此时实验总次数服从几何分布。</p>
+</li>
+</ul>
+<hr>
+<h2 id="第三章-连续型随机变量"><a href="#第三章-连续型随机变量" class="headerlink" title="第三章_连续型随机变量"></a>第三章_连续型随机变量</h2><ul>
+<li><p><strong>分布函数</strong><br>如果随机变量不是离散型的，分布律就无法描述其取值规律了，因此引入分布函数，分布函数对所有类型的随机变量都适用。<br><strong>定义：</strong>随机变量X，对任意实数x，称函数\(F(x)=P(X\le x)\)为X的概率分布函数，简称分布函数。<br><strong>几何意义：</strong>表示X落到\((-\infty , x)\)区间上的概率。<br><img src="\images\概率论与数理统计\分布函数.png" width="400" height="60" align="center"><br><strong>如何表示落到任意区间的概率：</strong><br>$$ \begin{align}<br>P(a&lt;X\le b) &amp;=P(X\le b)-P(X\le a) \\<br>&amp;=F(b)-F(a)<br>\end{align}<br>$$</p>
+</li>
+<li><p><strong>概率密度</strong><br>对于随机变量\(X\)的分布函数\(F(X)\)，若存在非负函数\(f(x)\)，使对于任意实数\(x\)有：<br>$$F(x)=\int_{-\infty}^x f(t)dt$$<br>则称\(X\)为<strong>连续型随机变量</strong>，其中\(f(x)\)称为\(X\)的概率密度函数，简称<strong>概率密度</strong>。</p>
+</li>
+<li><p><strong>概率密度的性质</strong><br><strong>性质1：</strong>\(f(x)\ge 0\)<br><strong>性质2：</strong>\(\int_{-\infty}^{+\infty} f(x)dx=F(+\infty)=1 \)<br><strong>性质3：</strong>概率密度函数的面积值表示概率（分布函数是y值表示概率）<br>$$P(x_1 &lt; X\le x_2)=\int_{x_1}^{x_2} f(t)dt$$<br><img src="\images\概率论与数理统计\概率密度1.png" width="220" height="140" align="center"><br>因此当\(x_1,x_2\)重合的时候，面积为0，概率也为0，因此连续型随机变量中任意<strong>单点概率</strong>都为0，但并非是不可能事件，即不可能事件\(\Rightarrow\)概率为0，概率为0\(\not\Rightarrow\)不可能事件。<br><strong>性质4：</strong>若\(f(x)\)在点\(x\)连续，则有\(f(x)=F’(x)\)。<br>$$\begin{align}<br>&amp;f(x)=F’(x)=\lim_{\Delta x \rightarrow 0} \frac {F(x+\Delta x)-F(x)} {\Delta x}=\lim_{\Delta x\rightarrow 0} \frac {P(x&lt;X\le x+\Delta x)} {\Delta x}&amp;\\<br>\\<br>&amp;P(x&lt;X\le x+\Delta x)\approx f(x)\cdot \Delta x<br>\end{align}$$<br>表明\(X\)落在点\(x\)邻域附近的概率近似等于\(f(x)\cdot \Delta x\)</p>
+</li>
+<li><p><strong>对性质4的说明：</strong>下图是某概率密度函数<br><img src="\images\概率论与数理统计\概率密度2.png" width="250" height="120" align="center"><br>图中\(f(x_2)&lt;f(x_1)\)，但这并不表明\(x_1\)点的概率比\(x_2\)点的概率大(单点概率都为0)，其表明\(f(x_2)\cdot \Delta x&lt;f(x_1)\cdot \Delta x\)，即\(X\)落在\(x_1\)附近的概率比落在\(x_2\)附近的概率大。同理，在此图中，\(X\)落在\(0\)附近的概率是最大的。</p>
+</li>
+<li><p><strong>均匀分布(Uniform)</strong><br>若\(X\)的概率密度函数为<br>$$f(x)=<br>\left\{<br>  \begin{align}<br>  &amp;\frac {1} {b-a},&amp;x\in (a,b)\\<br>  &amp;0,&amp;其他<br>  \end{align}<br>\right.<br>$$<br>就称\(X\)服从\((a,b)\)上的均匀分布，记为\(X\sim U(a,b)\)。<br>概率密度函数图如下：<br><img src="\images\概率论与数理统计\均匀分布.png" width="280" height="140" align="center"><br><strong>注1：</strong>均匀分布的直观理解就是“均匀”的，具有等可能性，即对于任意的\(a&lt;k&lt;k+l&lt;b\)，有<br>$$P(k&lt; X&lt; k+l)=\int_{k}^{k+l} \frac {1} {b-a}dt=\frac {l} {b-a} $$<br>\(X\)落入\((a,b)\)中任意子区间上的概率，只与区间<strong>长度</strong>有关，与区间位置无关。<br><strong>注2：</strong>均匀分布的分布函数为：<br>$$F(x)=<br>\left\{<br>  \begin{align}<br>  &amp;0, &amp;x&lt; a;\\<br>  &amp;\frac {x-a} {b-a}, &amp;a\le x&lt; b;\\<br>  &amp;1, &amp;x\ge b.<br>  \end{align}<br>\right.<br>$$<br>图像如下所示：<br><img src="\images\概率论与数理统计\均匀分布2.png" width="217" height="134" align="center"></p>
+</li>
+<li><p><strong>指数分布</strong></p>
+</li>
+<li><p><strong>高斯分布</strong></p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-06-25</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Math/" class="color5">Math</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绪言"><span class="post-toc-number">1.</span> <span class="post-toc-text">绪言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-随机事件与概率"><span class="post-toc-number">2.</span> <span class="post-toc-text">第一章_随机事件与概率</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-离散型随机变量"><span class="post-toc-number">3.</span> <span class="post-toc-text">第二章_离散型随机变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-连续型随机变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">第三章_连续型随机变量</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
