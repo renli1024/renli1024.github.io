@@ -38,11 +38,16 @@ function initSearch() {
 
     function render(data) {
         var html = '';
+        var prt = window.location.protocol;
+        var url_prefix = 'http://localhost:4000'
+        if (prt == 'https'){
+            url_prefix = window.mihoConfig.root;
+        }
         if (data.length) {
             html = data.map(function (post) {
                 return tpl(searchTpl, {
                     title: post.title,
-                    url: (window.mihoConfig.root + '/' + post.path)
+                    url: (url_prefix + '/' + post.path)
                 });
             }).join('');
         } else {

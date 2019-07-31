@@ -1002,24 +1002,26 @@ body {
   border: none;
 }
 .article-entry table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #ddd;
+  border: 5px solid #000;
+  font-size: 1rem;
+  margin-left: 10%;
 }
 .article-entry table thead th {
-  background: #f1f1f1;
+  background: #ddd;
   text-align: center;
-  border: 1px solid #ddd;
-  padding: 15px 0;
+  border: 1px solid #000;
 }
 .article-entry table th {
   font-weight: bold;
 }
 .article-entry table td {
-  border: 1px solid #ddd;
+  background: #ddd;
+  border: 1px solid #000;
   vertical-align: middle;
-  padding: 15px 0;
+  padding: 5px 0;
   text-align: center;
 }
 .article-entry center {
