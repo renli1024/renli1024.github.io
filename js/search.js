@@ -39,7 +39,7 @@ function initSearch() {
     function render(data) {
         var html = '';
         var prt = window.location.protocol;
-        var url_prefix = 'http://localhost:4000'
+        var url_prefix = 'https://renli1024.github.io'
         if (prt == 'https'){
             url_prefix = window.mihoConfig.root;
         }
