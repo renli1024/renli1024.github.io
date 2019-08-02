@@ -43,6 +43,7 @@ function initSearch() {
         if (prt == 'https'){
             url_prefix = window.mihoConfig.root;
         }
+        console.log(prt)
         if (data.length) {
             html = data.map(function (post) {
                 return tpl(searchTpl, {
