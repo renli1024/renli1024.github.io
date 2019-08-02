@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Shell常用命令总结 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="常用Bash命令Bash命令适用于Linux和Mac下的terminal  创建空目录（在当前目录下）：mkdir xxx： 切换目录：cd &amp;lt;目录路径&amp;gt;（&amp;lt;目录路径&amp;gt;可以是绝对路径，也可以是当前目录的相对路径） 显示当前目录路径：pwd 查看当前文件夹下的文件：ls 删除文件：rm [文件名] 删除整个文件夹：rm -rf [文件夹名]  查看当前目录下各个文件及目录占用">
+<meta name="keywords" content="Linux,Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell常用命令总结">
+<meta property="og:url" content="https://renli1024.github.io/2019/08/02/linux/shell常用命令总结/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="常用Bash命令Bash命令适用于Linux和Mac下的terminal  创建空目录（在当前目录下）：mkdir xxx： 切换目录：cd &amp;lt;目录路径&amp;gt;（&amp;lt;目录路径&amp;gt;可以是绝对路径，也可以是当前目录的相对路径） 显示当前目录路径：pwd 查看当前文件夹下的文件：ls 删除文件：rm [文件名] 删除整个文件夹：rm -rf [文件夹名]  查看当前目录下各个文件及目录占用">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-02T05:46:09.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell常用命令总结">
+<meta name="twitter:description" content="常用Bash命令Bash命令适用于Linux和Mac下的terminal  创建空目录（在当前目录下）：mkdir xxx： 切换目录：cd &amp;lt;目录路径&amp;gt;（&amp;lt;目录路径&amp;gt;可以是绝对路径，也可以是当前目录的相对路径） 显示当前目录路径：pwd 查看当前文件夹下的文件：ls 删除文件：rm [文件名] 删除整个文件夹：rm -rf [文件夹名]  查看当前目录下各个文件及目录占用">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-linux/shell常用命令总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Shell常用命令总结
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-08-02
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="常用Bash命令"><a href="#常用Bash命令" class="headerlink" title="常用Bash命令"></a>常用Bash命令</h2><p>Bash命令适用于Linux和Mac下的terminal</p>
+<ul>
+<li>创建空目录（在当前目录下）：<code>mkdir xxx</code>：</li>
+<li>切换目录：<code>cd &lt;目录路径&gt;</code>（<code>&lt;目录路径&gt;</code>可以是绝对路径，也可以是当前目录的相对路径）</li>
+<li>显示当前目录路径：<code>pwd</code></li>
+<li>查看当前文件夹下的文件：<code>ls</code></li>
+<li>删除文件：<code>rm [文件名]</code></li>
+<li><p>删除整个文件夹：<code>rm -rf [文件夹名]</code></p>
+</li>
+<li><p>查看当前目录下各个文件及目录占用空间大小：<code>du -sh *</code>，<code>du -sh * | sort -n</code>统计文件大小，并按文件大小排序。<br><code>du</code>: disk usage,<br><code>-s, –summarize</code>: display only total for each directory（不列举子目录的大小）<br><code>-h, –human-readable</code>: print sizes in human readable format（按KB/M/G的格式，否则会只打印Byte字节数）<br>最后<code>*</code>表示列出所有的文件&amp;目录</p>
+</li>
+<li><p>使程序在后台运行，<code>nohup command</code>，这样关闭当前terminal也不会杀掉进程（使用ssh连接的场景，ssh断了执行的命令还会继续执行）<br><code>nohup</code>: no hangup，hangup意为“挂断”，hangup (HUP) signal表示用户退出登陆了（关闭了当前的terminal）（即hang up），因此程序就停止了。nohup 命令即保证了程序不会随着用户的log off而结束。</p>
+</li>
+<li><p>使程序打印到某个文件中，<code>command &gt;file_name 2&gt;&amp;1 &amp;</code>，这样程序的标准输出都会直接写到指定的文件中。<br><code>&gt;</code>：表示redirection，即将标准输出的结果输出到文件中（而不是输出到命令行中）<br><code>2</code>：是一种file discriptor，表示stderr，<code>2&gt;&amp;1</code>表示将stderr的结果redirect到和<code>1</code>相同的文件中（<code>&amp;</code>表示相同文件）（<code>&gt;</code>后要么接file_name，要么接<code>&amp;x</code>）。<br>数字的含义：<code>2</code>表示的是file discriptor，0 - stdin，1 - stdout，2 - stderr。<br>最后的<code>&amp;</code>：command的最后接<code>&amp;</code>表示命令在后台运行，terminal不用等到当前命令结束才能执行下一条命令。</p>
+</li>
+<li><p>查看当前的进程：<code>ps -ef</code>，列出所有的活动进程；若要筛选某些进程，<code>ps -ef | grep xxx</code>，把名字包含xxx的进程列出来。</p>
+</li>
+<li><p>结束进程：<code>kill PID</code>，结束pid对应的进程，pid：process identifier，即进程对应的序号。<br>eg.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(base) renli-mbp:<span class="built_in">test</span> lrrr$ python test.py &gt;<span class="built_in">log</span> &amp;</span><br><span class="line">[1] 40207</span><br><span class="line">(base) renli-mbp:<span class="built_in">test</span> lrrr$ ps 40207</span><br><span class="line">  PID   TT  STAT      TIME COMMAND</span><br><span class="line">40207 s003  R      0:06.74 python test.py</span><br><span class="line">(base) renli-mbp:<span class="built_in">test</span> lrrr$ <span class="built_in">kill</span> 40207</span><br><span class="line">(base) renli-mbp:<span class="built_in">test</span> lrrr$ ps 40207</span><br><span class="line">  PID   TT  STAT      TIME COMMAND</span><br><span class="line">[1]+  Terminated: 15          python test.py &gt; <span class="built_in">log</span></span><br><span class="line"><span class="comment"># 这个时候进程已经结束了，只是还没有被回收，因此会显示Terminated</span></span><br><span class="line">(base) renli-mbp:<span class="built_in">test</span> lrrr$ ps 40207</span><br><span class="line">  PID   TT  STAT      TIME COMMAND</span><br><span class="line"><span class="comment"># 这时进程已经真正消失了</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>grep</code></p>
+</li>
+<li><p><code>sort</code></p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-08-02</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Linux/" class="color1">Linux</a>
+      
+    <a href="/tags/Mac/" class="color4">Mac</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用Bash命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">常用Bash命令</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.67px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.67px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

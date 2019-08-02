@@ -951,7 +951,7 @@ body {
 .article-entry p,
 .article-entry table {
   line-height: 1.7em;
-  font-size: 1.1rem;
+  font-size: 17px;
   margin: 0.8em 0;
   word-wrap: break-word;
 }
@@ -983,10 +983,11 @@ body {
   text-decoration: underline;
 }
 .article-entry ol,
-.article-entry dl {
+.article-entry dl,
+.article-entry ul {
   margin-top: 0.8em;
   margin-bottom: 0.8em;
-  font-size: 16px;
+  font-size: 17px;
 }
 .article-entry p img,
 .article-entry p video {

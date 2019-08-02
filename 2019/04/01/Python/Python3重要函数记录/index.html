@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Ren Li&#39;s blog">
 <meta property="og:description" content="os模块os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。  os.makedirs(path)：按照所给地址生成目录。os.pathos.path模块主要用于处理文件的目录信息，常用方法有如下几个： os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。 os.path.curd">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T01:38:49.228Z">
+<meta property="og:updated_time" content="2019-08-01T11:37:39.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3函数、模块用法记录">
 <meta name="twitter:description" content="os模块os 模块提供了非常丰富的方法用来处理文件和目录，具体介绍如下。  os.makedirs(path)：按照所给地址生成目录。os.pathos.path模块主要用于处理文件的目录信息，常用方法有如下几个： os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。 os.path.curd">
@@ -100,12 +100,29 @@
 <li>os.makedirs(path)：按照所给地址生成目录。<h3 id="os-path"><a href="#os-path" class="headerlink" title="os.path"></a>os.path</h3>os.path模块主要用于处理文件的目录信息，常用方法有如下几个：</li>
 <li>os.path.join(path, *paths)：将多个字符串合成一个目录，中间以目录分隔符隔开。使用这个函数保证在各个系统下目录元素都可以被正确地组合。</li>
 <li>os.path.curdir：这是path模块的一个属性而非函数，返回当前目录的相对路径（在Mac OSX下就是<code>.</code>）。</li>
-<li>os.path.abspath(path)：path参数的返回绝对路径，通常用法是传入当前目录的相对路径，返回绝对路径。</li>
-<li>os.path.exists(path)：检查某个目录或文件是否存在。</li>
+<li>os.path.abspath(path)：将相对路径转化为绝对路径。</li>
+<li>os.path.exists(path)：检查某个目录或文件是否存在。<h3 id="关于相对路径"><a href="#关于相对路径" class="headerlink" title="关于相对路径"></a>关于相对路径</h3></li>
+<li>python文件中写的相对路径都是相对与当前目录下而言的，如果直接调用命令行：则是相对当前命令行的路径；如果在IDE里执行，通常情况下是相对于当前IDE打开的项目文件夹的路径（因为项目文件夹是命令的执行路径），在其他语言的IDE里情况也类似。</li>
+<li>相对路径不一定是相对python文件所在的文件夹，而是相对执行命令的路径。</li>
 </ul>
 <h2 id="time模块"><a href="#time模块" class="headerlink" title="time模块"></a>time模块</h2><p>Python提供了time 和 calendar 两个模块可以用于处理日期和时间相关信息，首先介绍time模块。</p>
 <ul>
 <li>time.time()：返回当前时间的时间戳（1970纪元后所经过的浮点秒数）。</li>
+</ul>
+<h2 id="python导入自建模块"><a href="#python导入自建模块" class="headerlink" title="python导入自建模块"></a>python导入自建模块</h2><ul>
+<li>模块（modeule）的实现就是.py文件，想使用其他文件中的函数/类，文件开头声明<code>from 文件名 import 函数/类</code>即可。</li>
+<li>在同一个目录下的模块文件可直接导入（当前的目录会被默认导入到系统搜索路径中）。</li>
+<li>导入在不同目录下的文件，总共分为三步：<br>eg. 在目录<code>a</code>中导入目录<code>b</code>下的<code>crawler.py</code>文件：</li>
+</ul>
+<ol>
+<li>首先目录b下要有<code>__init__.py</code>文件（空文件即可），有这个文件目录b才能被初始化为模块。</li>
+<li>将目录b的父地址添加到模块搜索路径中，<code>import sys</code>，<code>sys.path.append(&quot;parent_dirctory_of_b&quot;)</code>，只有这样目录b才能被检测到。</li>
+<li><code>import b.crawler</code>即可（模块间的上下级关系通过<code>.</code>来表示）。<br>注1：或者将目录b的地址添加到搜索路径，之后直接<code>import crawler</code><br>注2：添加到搜索路径中的地址，绝对路径or相对路径都可以（推荐相对路径），但注意相对路径不一定是相对python文件的地址，在IDE中通常为相对当前工程文件夹的地址。</li>
+</ol>
+<h3 id="import-和-from-import的区别"><a href="#import-和-from-import的区别" class="headerlink" title="import 和 from import的区别"></a>import 和 from import的区别</h3><ul>
+<li><code>import module1</code>语句直接将这个模块导入到当前文件中，如果要使用模块中的函数/类，则需要通过模块来调用：<code>module1.function1</code>/<code>module1.class1</code></li>
+<li><code>from module1 import function1</code>则直接导入特定的函数/类，使用函数时就直接调用<code>function1</code>即可。</li>
+<li>何时使用<code>from import</code>：一般用来导入类，因为调用类本身的成员就需要加点<code>.</code>，再加上模块和类之间的点，显得比较冗杂。<br>注1: 两种方法都是赋值语句，相当于在新的文件中声明了相应的变量，因此要注意源文件中不能有重名的<code>module1</code>/<code>function1</code>变量名，否则会被覆盖。<br>注2：不推荐<code>from module1 import *</code>这种方式，因为很有可能造成变量名冲突（module1模块中和当前文件中）。</li>
 </ul>
 <h2 id="其他函数记录"><a href="#其他函数记录" class="headerlink" title="其他函数记录"></a>其他函数记录</h2><h3 id="存储-加载数据-pickle"><a href="#存储-加载数据-pickle" class="headerlink" title="存储/加载数据 pickle"></a>存储/加载数据 pickle</h3><p>file为文件对象，<code>open(&quot;file_address&quot;, &quot;wb&quot;/&quot;rb&quot;)</code>存储为wb，读取维rb，都按二进制来就行。<br>pickle.dump(obj, file)：存储<br>pickle.load(file)：加载</p>
 <h3 id="如何查看变量类型"><a href="#如何查看变量类型" class="headerlink" title="如何查看变量类型"></a>如何查看变量类型</h3><p><code>type(object)</code>函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">123</span></span><br><span class="line">print(type(i))</span><br><span class="line"><span class="comment"># &lt;type 'int'&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -145,7 +162,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#os模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">os模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#os-path"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">os.path</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#time模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">time模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他函数记录"><span class="post-toc-number">3.</span> <span class="post-toc-text">其他函数记录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#存储-加载数据-pickle"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">存储/加载数据 pickle</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何查看变量类型"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">如何查看变量类型</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#os模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">os模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#os-path"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">os.path</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于相对路径"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">关于相对路径</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#time模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">time模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#python导入自建模块"><span class="post-toc-number">3.</span> <span class="post-toc-text">python导入自建模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#import-和-from-import的区别"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">import 和 from import的区别</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他函数记录"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他函数记录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#存储-加载数据-pickle"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">存储/加载数据 pickle</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何查看变量类型"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">如何查看变量类型</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -198,7 +215,7 @@
             
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.67px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -231,7 +248,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.67px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.67px;">Matlab</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 15px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.33px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 16.67px;">cs224n</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
 </div>
