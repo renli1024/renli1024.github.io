@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="Ren Li's Blog" />
   
-  <meta name="description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+  <meta name="description" content="本文主要介绍Python3的基本概念、语言机制和程序结构等知识。">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3 Programming">
 <meta property="og:url" content="https://renli1024.github.io/2018/09/13/Python/Python3 Programming/index.html">
 <meta property="og:site_name" content="Ren Li&#39;s blog">
-<meta property="og:description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+<meta property="og:description" content="本文主要介绍Python3的基本概念、语言机制和程序结构等知识。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-06T01:48:09.383Z">
+<meta property="og:updated_time" content="2019-08-03T13:05:35.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3 Programming">
-<meta name="twitter:description" content="本文介绍了Python3的语言机制、程序结构和一些重要函数。">
+<meta name="twitter:description" content="本文主要介绍Python3的基本概念、语言机制和程序结构等知识。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -95,20 +95,161 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>本文介绍了Python3的语言机制、程序结构和一些重要函数。<br><a id="more"></a></p>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h3><ul>
-<li><p>python中对象有类型，变量无类型(变量可随意更改值类型)<br>数字类型有：int、float、bool、complex（复数）</p>
-</li>
-<li><p>注释<br>单行注释：#<br>多行注释：三对单/双引号，’’’xxx’’’或”””xxx”””</p>
-</li>
-<li><p>python中“/”做除法结果肯定是浮点数，取商为“//”，取余为“%”，x**y：x的y次方</p>
-</li>
-<li><p>分数除法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fraction <span class="keyword">import</span> Fraction</span><br><span class="line">Fraction(<span class="number">10</span>,<span class="number">3</span>)  <span class="comment"># 分数10/3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python3和python2区别<br>1、输出: python3是<code>print(xxx)</code>, python2是<code>print xxx</code><br>2、输入:<br>3、自定义class：python2要手动继承<code>object</code>变量，python3则自动继承了。<br>其他地方都差不多</p>
-</li>
+            <p>本文主要介绍Python3的基本概念、语言机制和程序结构等知识。<br><a id="more"></a></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="面向对象-amp-动态类型"><a href="#面向对象-amp-动态类型" class="headerlink" title="面向对象 &amp; 动态类型"></a>面向对象 &amp; 动态类型</h3><ul>
+<li>python是一门面向对象的语言，所有出现的值都是对象，都具有类型（可通过<code>type()</code>查看）。</li>
+<li>python中对象有类型，变量无类型：变量相当于指针，只是对象的一个引用，用来访问对象的值；就像一个标签，贴到哪个对象上就代表哪个对象，可随意更改其指向的对象，因此也就没有固定类型。具体见<a href="#变量的绑定-binding-机制">python变量的绑定(binding)机制</a></li>
+<li>Python变量也可以说是<strong>动态类型</strong>的：变量类型是在运行过程中决定的，系统会自动根据变量名绑定所绑定的对象来推断其类型，且变量的类型在程序中可随意更改。这样做的好处是为程序带来了灵活性，但坏处是增加了程序调试难度（较难明确变量类型），且变量很容易被误覆盖（没有关于类型的赋值限制）。</li>
 </ul>
+<h3 id="并非解释型语言"><a href="#并非解释型语言" class="headerlink" title="并非解释型语言"></a>并非解释型语言</h3><ul>
+<li>常有人说python是解释型语言，其是并不是这样的。python和java类似，其实是先编译再解释类型的语言，python会将源代码文件编译为pyc文件（在项目文件夹的<code>__pycache__/下</code>），然后再在虚拟机上解释运行。更详细的介绍可见<a href="#关于编译型和解释型语言">关于编译型和解释型语言</a></li>
+</ul>
+<h3 id="数"><a href="#数" class="headerlink" title="数"></a>数</h3><h4 id="数的类型"><a href="#数的类型" class="headerlink" title="数的类型"></a>数的类型</h4><ul>
+<li><code>int</code>类型(signed intergers，有符号整数)：python3中<code>int</code>就是长整型，且python对大整数进行了特殊处理，因此一般不用担心整数溢出问题。</li>
+<li>python中int是动态长度的，即内存中并非严格的4Byte，会根据数的大小动态变化。（不过也在4Byte左右，估算时可以就用4Byte来算）。</li>
+<li><code>float</code>类型(floating point real values)：在内存中按4Byte来存储，采用科学计数法的表示形式，最大值在在e+308级。</li>
+<li><code>complex</code>类型(complex numbers)：暂时还没用到过。</li>
+<li>数之间的转化直接调用构造函数即可，eg. <code>int()</code>、<code>float()</code>。</li>
+</ul>
+<h4 id="float的误差问题"><a href="#float的误差问题" class="headerlink" title="float的误差问题"></a>float的误差问题</h4><ul>
+<li>在计算机中数都是以二进制的形式存储的，因此十进制小数转化为二进制时会存在误差，eg. 0.1的二进制表示为0.000110011…（无限小数，无法精确表示）</li>
+<li><p>虽然，但还是要明确：每次使用浮点运算都是有可能引入舍入误差的。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 0.1+0.2</span><br><span class="line">0.30000000000000004</span><br><span class="line">&gt;&gt;&gt; 10/3</span><br><span class="line">3.3333333333333335</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不过大多数情况下误差是很小的（python浮点数精度为小数点后16位，到17位后才开始不准确），完全满足日常的计算需求。且对于数比较相等、比大小等情况，python内部也会对其处理，因此并不会有影响。</p>
+</li>
+<li>对于实在特殊的精确计算要求，有如下解决办法：</li>
+</ul>
+<ol>
+<li>使用<code>decimal</code>模块，其实现了十进制的运算，因此不存在浮点误差；</li>
+<li>使用<code>fractions</code>模块，其会按照分数的规则来计算，也不存在误差；</li>
+<li>使用<code>numpy</code>等其他科学计算包<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line">a = deciamal.Decimal(<span class="string">"10.0"</span>)</span><br><span class="line">b = decimal.Decimal(<span class="string">"3"</span>)</span><br><span class="line">print(a/b)</span><br><span class="line"><span class="comment"># 3.333333333333333333333333333</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fractions <span class="keyword">import</span> Fraction</span><br><span class="line">print(Fraction(<span class="number">10</span>, <span class="number">3</span>)) <span class="comment"># 分数10/3</span></span><br><span class="line">print(Fraction(<span class="number">10</span>, <span class="number">8</span>)) <span class="comment"># 分数5/4</span></span><br><span class="line">print(Fraction(<span class="number">5</span>, <span class="number">3</span>))</span><br><span class="line"><span class="comment"># 10/3</span></span><br><span class="line"><span class="comment"># 5/4</span></span><br><span class="line"><span class="comment"># 5/3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h3><h4 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h4><ul>
+<li>只要运算的两方有一方是浮点数，那么结果为浮点数；</li>
+<li>对于除法运算<code>/</code>，其结果一定位浮点数。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">对应运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">加</td>
+<td style="text-align:center"><code>+</code></td>
+</tr>
+<tr>
+<td style="text-align:center">减</td>
+<td style="text-align:center"><code>-</code></td>
+</tr>
+<tr>
+<td style="text-align:center">乘</td>
+<td style="text-align:center"><code>*</code></td>
+</tr>
+<tr>
+<td style="text-align:center">除</td>
+<td style="text-align:center"><code>/</code></td>
+</tr>
+<tr>
+<td style="text-align:center">取余</td>
+<td style="text-align:center"><code>%</code></td>
+</tr>
+<tr>
+<td style="text-align:center">取商</td>
+<td style="text-align:center"><code>math.floor(x%y)</code>或<code>divmod(x, y)[0]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">取绝对值</td>
+<td style="text-align:center"><code>abs()</code></td>
+</tr>
+<tr>
+<td style="text-align:center">取整</td>
+<td style="text-align:center"><code>math.floor()</code>（直接截断到整数位）</td>
+</tr>
+<tr>
+<td style="text-align:center">控制小数位数/精度</td>
+<td style="text-align:center"><code>round()</code>或字符串格式化</td>
+</tr>
+<tr>
+<td style="text-align:center">指数运算</td>
+<td style="text-align:center"><code>**</code></td>
+</tr>
+<tr>
+<td style="text-align:center">开平方</td>
+<td style="text-align:center"><code>sqrt()</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h4 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">对应运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">boolean或</td>
+<td style="text-align:center"><code>or</code></td>
+</tr>
+<tr>
+<td style="text-align:center">boolean与</td>
+<td style="text-align:center"><code>and</code></td>
+</tr>
+<tr>
+<td style="text-align:center">boolean非</td>
+<td style="text-align:center"><code>not x</code></td>
+</tr>
+<tr>
+<td style="text-align:center">是/不是其中的成员</td>
+<td style="text-align:center"><code>in, not in</code></td>
+</tr>
+<tr>
+<td style="text-align:center">两个对象是否为同一个</td>
+<td style="text-align:center"><code>is, is not</code></td>
+</tr>
+<tr>
+<td style="text-align:center">比较</td>
+<td style="text-align:center"><code>==, !=, &lt;. &lt;=, &gt;, &gt;=</code></td>
+</tr>
+<tr>
+<td style="text-align:center">正负号</td>
+<td style="text-align:center"><code>+x, -x</code></td>
+</tr>
+<tr>
+<td style="text-align:center">按位与（转为二进制后计算）</td>
+<td style="text-align:center"><code>&amp;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">按位异或</td>
+<td style="text-align:center"><code>^</code></td>
+</tr>
+<tr>
+<td style="text-align:center">按位翻转</td>
+<td style="text-align:center"><code>~x</code></td>
+</tr>
+<tr>
+<td style="text-align:center">左移y位</td>
+<td style="text-align:center"><code>x&lt;&lt;y</code></td>
+</tr>
+<tr>
+<td style="text-align:center">右移y位</td>
+<td style="text-align:center"><code>x&gt;&gt;y</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>按位或：<code>|</code></li>
+</ul>
+<h3 id="注释写法"><a href="#注释写法" class="headerlink" title="注释写法"></a>注释写法</h3><ul>
+<li>注释<br>单行注释：#<br>多行注释：三对单/双引号，’’’xxx’’’或”””xxx”””</li>
+</ul>
+<h3 id="python3和python2区别"><a href="#python3和python2区别" class="headerlink" title="python3和python2区别"></a>python3和python2区别</h3><p>1、输出: python3是<code>print(xxx)</code>, python2是<code>print xxx</code>；<br>2、输入: 从键盘输入字符不同；<br>3、自定义class：python2要手动继承<code>object</code>变量，python3则自动继承了。<br>其他地方暂时还没碰到过。</p>
 <h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><ul>
 <li><strong>if语句</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a==<span class="number">5</span>:</span><br><span class="line">    xxx</span><br><span class="line"><span class="keyword">elif</span> a==<span class="number">10</span>:</span><br><span class="line">    xxx</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    xxx</span><br></pre></td></tr></table></figure>
 </li>
@@ -227,26 +368,12 @@
 </li>
 </ul>
 <h3 id="Class的命名空间"><a href="#Class的命名空间" class="headerlink" title="Class的命名空间"></a>Class的命名空间</h3><p>类变量的命名空间是高于实例变量的，因此实例访问类变量也是可以访问的（实例内部没有，因此就会向上查找）；但实例无法对类变量进行赋值操作，一旦赋值就会生成新的实例变量覆盖掉类变量了。</p>
-<h2 id="Python基本语言机制"><a href="#Python基本语言机制" class="headerlink" title="Python基本语言机制"></a>Python基本语言机制</h2><h3 id="解释型、面向对象、动态数据类型"><a href="#解释型、面向对象、动态数据类型" class="headerlink" title="解释型、面向对象、动态数据类型"></a>解释型、面向对象、动态数据类型</h3><ul>
-<li>解释型：开发过程中没有编译环节；</li>
-<li>面向对象：Python是一种严格的面向对象语言，可以说在python中一切都是对象(object)。</li>
-<li>动态数据类型：<ul>
-<li>在python中，变量名没有类型，类型属于对象而不是变量名。从另一方面讲，对象知道自己的类型，每个对象都包含了一个头部信息，其中标记了这个对象的类型。</li>
-<li>在python中，类型是在运行过程中自动决定的，系统会自动根据变量名绑定所绑定的对象来推断其类型。</li>
-</ul>
-</li>
-<li>python中，因为无需对变量进行声明，变量直接赋值(assignment)后就可以使用了。如<code>int_x = 3</code>, <code>list_y = [1, 2, 3]</code>, <code>class_z = some_class()</code>。系统会自动为object申请内存空间，并将变量名绑定到object上。</li>
-</ul>
-<h3 id="python2和python3的区别"><a href="#python2和python3的区别" class="headerlink" title="python2和python3的区别"></a>python2和python3的区别</h3><ul>
-<li>输出函数不同：python3中print当函数用：<code>print(..)</code>，python2中直接print即可 <code>print ..</code>。</li>
-<li>从键盘输入字符不同：</li>
-</ul>
-<h3 id="Mac中的python"><a href="#Mac中的python" class="headerlink" title="Mac中的python"></a>Mac中的python</h3><ul>
+<h2 id="其他一些杂七杂八"><a href="#其他一些杂七杂八" class="headerlink" title="其他一些杂七杂八"></a>其他一些杂七杂八</h2><h3 id="Mac中的python"><a href="#Mac中的python" class="headerlink" title="Mac中的python"></a>Mac中的python</h3><ul>
 <li>Mac自带python2，且不能卸载 (一部分系统功能依赖这个python)。</li>
-<li><p>因此装python3后，系统中就会带有两个版本python, python命令就不能只写<code>python</code>了，需要用<code>python2</code>和<code>python3</code>来区分, pip命令也是<code>pip2</code> &amp; <code>pip3</code>(所以推荐使用annaconda来管理python版本)。</p>
-</li>
-<li><p>何为attritube：attribute指跟在点后面的名字，如<code>z.real</code>中<code>real</code>即是<code>z</code>的attribute。</p>
-</li>
+<li>因此装python3后，系统中就会带有两个版本python, python命令就不能只写<code>python</code>了，需要用<code>python2</code>和<code>python3</code>来区分, pip命令也是<code>pip2</code> &amp; <code>pip3</code>(所以推荐使用annaconda来管理python版本)。</li>
+</ul>
+<h3 id="关于面向对象"><a href="#关于面向对象" class="headerlink" title="关于面向对象"></a>关于面向对象</h3><ul>
+<li>何为attritube：attribute指跟在点后面的名字，如<code>z.real</code>中<code>real</code>即是<code>z</code>的attribute。</li>
 <li>类(Class)、对象(Object)和实例(Instance)区别：<br>对象感觉是一个更为抽象的概念，如面向对象编程；<br>类是一类方法和属性的集合，可理解为一个抽象的模版。<br>实例是类的具体实现。<br>接口：抽象程度更高的类，仅仅指明了应该有什么样的功能，没有规定具体实现。</li>
 </ul>
 <h3 id="Python如何在代码如何换行"><a href="#Python如何在代码如何换行" class="headerlink" title="Python如何在代码如何换行"></a>Python如何在代码如何换行</h3><ul>
@@ -254,12 +381,23 @@
 <li>但如果遇到一行写不完的情况，有两种换行方法：</li>
 </ul>
 <ol>
-<li>在该行代码末尾加反斜杠<code>\</code>，即可在下一行接着写（但要注意<code>\</code>必须是一行的最末字符，其后不能再有任何字符）；</li>
-<li>在括号<code>(), {}, []</code>内部不需要特别加<code>\</code>，可直接enter进行换行（但只能在项与项之间换行，不能把单个项拆开）。</li>
+<li>在该行代码末尾加反斜杠<code>\</code>，即可在下一行接着写（但要注意<code>\</code>必须是一行的最末字符，其后不能再有任何字符，包括空格）；</li>
+<li>在括号<code>(), {}, []</code>内部不需要特别加<code>\</code>，在项与项之间可直接enter进行换行（但不能把单个项拆开）。</li>
 </ol>
 <ul>
 <li>注：换行后最好缩进四个空格/tab，以增强可读性。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test1 = <span class="string">"123456"</span></span><br><span class="line">test2 = <span class="string">"123\</span></span><br><span class="line"><span class="string">    456"</span>  <span class="comment"># 与test相同</span></span><br><span class="line"></span><br><span class="line">test3 = (<span class="string">"123"</span>, <span class="string">"456"</span>)</span><br><span class="line">test4 = (<span class="string">"123"</span>, </span><br><span class="line">    <span class="string">"456"</span>)  <span class="comment"># 正确，与test3相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#test4 = ("123", "4</span></span><br><span class="line"><span class="comment">#    56")  </span></span><br><span class="line"><span class="comment">#错误，不能用enter将单个项拆开</span></span><br><span class="line"></span><br><span class="line">test5 = (<span class="string">"123"</span>, <span class="string">"4\</span></span><br><span class="line"><span class="string">    56"</span>)  <span class="comment"># 正确</span></span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<h2 id="关于编译型和解释型语言"><a href="#关于编译型和解释型语言" class="headerlink" title="关于编译型和解释型语言"></a>关于编译型和解释型语言</h2><p>摘自<a href="https://www.cnblogs.com/nucdy/p/7736116.html" target="_blank" rel="noopener">Python是解释性语言吗？ 直到看到有 python py、pyc、pyo、pyd 文件</a></p>
+<ul>
+<li>计算机是不能够识别高级语言的，所以当我们运行一个高级语言程序的时候，就需要一个“翻译机”来从事把高级语言转变成计算机能读懂的机器语言的过程。这个过程分成两类，第一种是编译，第二种是解释。</li>
+<li>编译型语言在程序执行之前，先会通过编译器对程序执行一个编译的过程，把程序转变成机器语言。运行时就不需要翻译，而直接执行就可以了。最典型的例子就是C语言。</li>
+<li>解释型语言就没有这个编译的过程，而是在程序运行的时候，通过解释器对程序逐行作出解释，然后直接运行这一行代码，最典型的例子是Ruby。</li>
+<li>通过以上的例子，我们可以来总结一下解释型语言和编译型语言的优缺点，因为编译型语言在程序运行之前就已经对程序做出了“翻译”，所以在运行时就少掉了“翻译”的过程，所以效率比较高。但是我们也不能一概而论，一些解释型语言也可以通过解释器的优化来在对程序做出翻译时对整个程序做出优化（但总体上还是编译型语言效率更高）。</li>
+<li>然而当前随着Java/Python等基于虚拟机的语言的兴起，我们往往不能把语言纯粹地分成解释型和编译型这两种。用Java来举例，Java首先是通过编译器编译成字节码文件，然后在运行时通过解释器给解释成机器文件。所以我们说Java是一种先编译后解释的语言。<h3 id="关于跨平台性的理解"><a href="#关于跨平台性的理解" class="headerlink" title="关于跨平台性的理解"></a>关于跨平台性的理解</h3>摘自<a href="https://blog.csdn.net/xu892278564/article/details/90211095" target="_blank" rel="noopener">解释型语言可以跨平台而编译型语言不行</a></li>
+<li>对于解释型语言跨平台而编译型语言不能跨平台，网上的解释都是：编译器需依靠平台，而解释型语言依靠不同平台的解释器就可以实现跨平台。我就想如果在不同平台上装对应的编译器，不也可以实现跨平台吗？</li>
+<li>首先，其实说编译型语言不能跨平台是不准确的，理论上只要在不同平台装上对应的编译器，编译型语言（比如c语言）也是跨平台的。但是因为编译型语言与平台联系比较紧密、较为底层（操作系统都是用编译型语言编写的，因为编译型语言的特性——快），因此编译性语言往往会使用很多和平台相关的方法。比如，在Windows用c写了调用Windows API的程序，在Linux系统的编译器上编译自然会出错。因此如果能避免这些特殊的使用，编译型语言理论上也是跨平台的。</li>
+<li>而对于解释型语言就很少存在这个问题，其先天就和和平台底层接触较少，所以用解释型语言写出来的程序，只要通过不同的解释器/虚拟机解释执行，就可以在对应不同的平台上使用。</li>
 </ul>
 
             <div class="post-copyright">
@@ -297,7 +435,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python基础"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Python基础</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#语句"><span class="post-toc-number">2.</span> <span class="post-toc-text">语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Context-Manager-机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Context Manager 机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#With-Statement"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">With Statement</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件操作"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">文件操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python面向对象"><span class="post-toc-number">4.</span> <span class="post-toc-text">Python面向对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何定义类"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">如何定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类变量-amp-实例变量"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">类变量 &amp; 实例变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#如何定义类属性"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">如何定义类属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#slice机制"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">slice机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python-Naming-Conventions"><span class="post-toc-number">5.</span> <span class="post-toc-text">Python Naming Conventions</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Naming-With-Underscores"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Naming With Underscores</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python变量的命名空间机制"><span class="post-toc-number">6.</span> <span class="post-toc-text">Python变量的命名空间机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的绑定-binding-机制"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">变量的绑定(binding)机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引用、赋值操作与namescope"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">引用、赋值操作与namescope</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变类型和不可变类型"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">可变类型和不可变类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的命名空间-Namespaces"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">变量的命名空间(Namespaces)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名空间的四种范围-four-scopes-of-namespace"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">命名空间的四种范围(four scopes of namespace)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Class的命名空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">Class的命名空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python基本语言机制"><span class="post-toc-number">7.</span> <span class="post-toc-text">Python基本语言机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解释型、面向对象、动态数据类型"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">解释型、面向对象、动态数据类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python2和python3的区别"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">python2和python3的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mac中的python"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">Mac中的python</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python如何在代码如何换行"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">Python如何在代码如何换行</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#面向对象-amp-动态类型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">面向对象 &amp; 动态类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并非解释型语言"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">并非解释型语言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数的类型"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">数的类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#float的误差问题"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">float的误差问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本运算"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">基本运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#算数运算符"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">算数运算符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他运算符"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">其他运算符</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注释写法"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">注释写法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python3和python2区别"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">python3和python2区别</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#语句"><span class="post-toc-number">2.</span> <span class="post-toc-text">语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Context-Manager-机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Context Manager 机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#With-Statement"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">With Statement</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件操作"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">文件操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python面向对象"><span class="post-toc-number">4.</span> <span class="post-toc-text">Python面向对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何定义类"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">如何定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类变量-amp-实例变量"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">类变量 &amp; 实例变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#如何定义类属性"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">如何定义类属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#slice机制"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">slice机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python-Naming-Conventions"><span class="post-toc-number">5.</span> <span class="post-toc-text">Python Naming Conventions</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Naming-With-Underscores"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Naming With Underscores</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python变量的命名空间机制"><span class="post-toc-number">6.</span> <span class="post-toc-text">Python变量的命名空间机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的绑定-binding-机制"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">变量的绑定(binding)机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引用、赋值操作与namescope"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">引用、赋值操作与namescope</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变类型和不可变类型"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">可变类型和不可变类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的命名空间-Namespaces"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">变量的命名空间(Namespaces)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名空间的四种范围-four-scopes-of-namespace"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">命名空间的四种范围(four scopes of namespace)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Class的命名空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">Class的命名空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他一些杂七杂八"><span class="post-toc-number">7.</span> <span class="post-toc-text">其他一些杂七杂八</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mac中的python"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">Mac中的python</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于面向对象"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">关于面向对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python如何在代码如何换行"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">Python如何在代码如何换行</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于编译型和解释型语言"><span class="post-toc-number">8.</span> <span class="post-toc-text">关于编译型和解释型语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于跨平台性的理解"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">关于跨平台性的理解</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
