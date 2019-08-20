@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Example机制 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="example是tensorflow官方定义的一种数据组织形式，本质就是字典，可以方便地进行序列化与反解析，与TFRecord存储格式相结合，可以最大限度地发挥数据的并行读写效率。 example分为普通example和sequence example两种Example tensorflow的example包含的是基于key-value对的存储方法，其中key是一个字符串，其映射到的是featu">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Example机制">
+<meta property="og:url" content="https://renli1024.github.io/2019/08/19/TensorFlow/Example/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="example是tensorflow官方定义的一种数据组织形式，本质就是字典，可以方便地进行序列化与反解析，与TFRecord存储格式相结合，可以最大限度地发挥数据的并行读写效率。 example分为普通example和sequence example两种Example tensorflow的example包含的是基于key-value对的存储方法，其中key是一个字符串，其映射到的是featu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-19T04:04:15.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Example机制">
+<meta name="twitter:description" content="example是tensorflow官方定义的一种数据组织形式，本质就是字典，可以方便地进行序列化与反解析，与TFRecord存储格式相结合，可以最大限度地发挥数据的并行读写效率。 example分为普通example和sequence example两种Example tensorflow的example包含的是基于key-value对的存储方法，其中key是一个字符串，其映射到的是featu">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-TensorFlow/Example" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Example机制
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-08-19
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <ul>
+<li>example是tensorflow官方定义的一种数据组织形式，本质就是字典，可以方便地进行序列化与反解析，与TFRecord存储格式相结合，可以最大限度地发挥数据的并行读写效率。</li>
+<li>example分为普通example和sequence example两种<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2></li>
+<li>tensorflow的example包含的是基于key-value对的存储方法，其中key是一个字符串，其映射到的是feature信息，feature包含三种类型：Int64List（64位整数列表）、FloatList（浮点数列表）和BytesList（字符串列表）。以上三种类型都是列表类型，因此不仅可以存储一个数，也可以存储一列数（如矩阵）。</li>
+<li>注1：Int64List、FloatList、BytesList都只能接收list形式，因此如果是scalar要先转成list，其他iterabal也要转成list。</li>
+<li>注2：example是按照行读的，因此如果要存储一个<code>M*N</code>大小的矩阵，需要转化为长度为<code>M*N</code>的一行来存储，即0~M-1存储第一行，M~2M-1存储第二行，以此类推。<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example构造过程：原始数据-&gt;Int64List-&gt;Feature-&gt;Features-&gt;Example</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 先构造feature</span></span><br><span class="line"><span class="comment"># Int64List()需要传入list类型</span></span><br><span class="line">value1 = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">value2 = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">f1 = tf.train.Feature(int64_list=tf.train.Int64List(value=value1))</span><br><span class="line">f2 = tf.train.Feature(int64_list=tf.train.Int64List(value=value2))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再构造features</span></span><br><span class="line">dict_features = collections.OrderedDict()</span><br><span class="line"><span class="comment"># or dict_features = &#123;&#125; 只要是字典即可</span></span><br><span class="line"><span class="comment"># 构造 str-feature mapping</span></span><br><span class="line">dict_features[<span class="string">"f1"</span>] = f1</span><br><span class="line">dict_features[<span class="string">"f2"</span>] = f2</span><br><span class="line"><span class="comment"># feature参数传入构造好的字典即可</span></span><br><span class="line">features = tf.train.Features(feature=dict_features)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再转化为example</span></span><br><span class="line">tf_example = tf.train.Example(features=features)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 序列化example</span></span><br><span class="line">serialized_example = tf_example.SerializeToString()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将序列化的example写到TFRecord中</span></span><br><span class="line">writer = tf.python_io.TFRecordWriter(output_file_path)</span><br><span class="line">writer.write(tf_example.SerializeToString())</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(tf_example)输出</span></span><br><span class="line">features &#123;</span><br><span class="line">  feature &#123;</span><br><span class="line">    key: <span class="string">"f1"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      int64_list &#123;</span><br><span class="line">        value: <span class="number">0</span></span><br><span class="line">        value: <span class="number">1</span></span><br><span class="line">        value: <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  feature &#123;</span><br><span class="line">    key: <span class="string">"f2"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      int64_list &#123;</span><br><span class="line">        value: <span class="number">4</span></span><br><span class="line">        value: <span class="number">5</span></span><br><span class="line">        value: <span class="number">6</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Sequence-Example"><a href="#Sequence-Example" class="headerlink" title="Sequence Example"></a>Sequence Example</h2><ul>
+<li>Sequence Example用于存储一系列的Examples，适合那些一次需要处理一个group的数据的模型；同样也可以用于表示序列建模（sequence modeling）。即对于feature list的value，axis0可以表示不同对象的feature（同一group内），也可以表示时间步长（一个feature随时间的变化情况）。</li>
+<li>一个sequence example包括<code>context</code>和<code>feature_lists</code>两部分，<code>context</code>表示group层面的一些特征（如group_id、group内对象的labels等），其和<code>features</code>组织形式是一样的；<code>feature_lists</code>则表示group内各个对象的特征，下面介绍其组织形式。</li>
+<li>Sequence Example的基础数据单元是feature_list，组织形式也由features-&gt;feature_lists。feature_list也是key-value对的形式，只不过一个value中包含了多个feature（即一个key对应多个value值），一个feature就对应了一个group内一个对象的一维特征。</li>
+<li>sequence example的一些要求：<ul>
+<li>同一feature list内的feature类型必须一致；</li>
+<li>同一feature list内的feature大小最好一致（也可设置成不一致，但不推荐）；</li>
+<li>同一feature lists内的不同feature list的长度必须一致（因为不同feature list内的第i个feature都代表了group内第i个对象的一个特征）。</li>
+<li>不同sequence example的对应feature list长度可以不一致（代表了不同group的元素个数的不同）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SequenceExample构造过程：原始数据-&gt;Int64List-&gt;Feature-&gt;list of Feature-&gt;FeatureList-&gt;FeatureLists-&gt;SequenceExample</span></span><br><span class="line"><span class="comment"># 构建 context（与构建Features的过程相同）</span></span><br><span class="line">group_id = <span class="number">1</span></span><br><span class="line">labels = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">group_id_feature = tf.train.Feature(</span><br><span class="line">    int64_list=tf.train.Int64List(value=[group_id])) <span class="comment"># 传入的必须是list形式</span></span><br><span class="line">labels_feature = tf.train.Feature(int64_list=tf.train.Int64List(value=labels))</span><br><span class="line">context_dict = &#123;&#125;</span><br><span class="line">context_dict[<span class="string">"group_id"</span>] = group_id_feature</span><br><span class="line">context_dict[<span class="string">"labels"</span>] = labels_feature</span><br><span class="line">context = tf.train.Features(feature=context_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建 各个feature，将feature组成list的形式</span></span><br><span class="line">value_list1 = [[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br><span class="line">value_list2 = [[<span class="number">0</span>, <span class="number">-1</span>, <span class="number">-2</span>], [<span class="number">-3</span>, <span class="number">-4</span>, <span class="number">-5</span>], [<span class="number">-6</span>, <span class="number">-7</span>, <span class="number">-8</span>]]</span><br><span class="line">list_of_feature1 = [tf.train.Feature(int64_list=tf.train.Int64List(value=value)) <span class="keyword">for</span> value <span class="keyword">in</span> value_list1]</span><br><span class="line">list_of_feature2 = [tf.train.Feature(int64_list=tf.train.Int64List(value=value)) <span class="keyword">for</span> value <span class="keyword">in</span> value_list2]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将各个feature组装feature_list, 再组装成feature_lists</span></span><br><span class="line">feature_lists_dict = &#123;&#125;</span><br><span class="line">feature_lists_dict[<span class="string">"feature_list1"</span>] = tf.train.FeatureList(feature = list_of_feature1)</span><br><span class="line">feature_lists_dict[<span class="string">"feature_list2"</span>] = tf.train.FeatureList(feature = list_of_feature2)</span><br><span class="line">feature_lists = tf.train.FeatureLists(feature_list = feature_lists_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将context和feature lists组装成 sequence example</span></span><br><span class="line">seq_example = tf.train.SequenceExample(context = context, feature_lists = feature_lists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 序列化 sequence example</span></span><br><span class="line">serialized_seq_example = seq_example.SerializeToString()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将序列化的example写到TFRecord中</span></span><br><span class="line">writer = tf.python_io.TFRecordWriter(output_file_path)</span><br><span class="line">writer.write(tf_example.SerializeToString())</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(seq_example)输出</span></span><br><span class="line">context &#123;</span><br><span class="line">  feature &#123;</span><br><span class="line">    key: <span class="string">"group_id"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      int64_list &#123;</span><br><span class="line">        value: <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  feature &#123;</span><br><span class="line">    key: <span class="string">"labels"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      int64_list &#123;</span><br><span class="line">        value: <span class="number">1</span></span><br><span class="line">        value: <span class="number">0</span></span><br><span class="line">        value: <span class="number">0</span></span><br><span class="line">        value: <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">feature_lists &#123;</span><br><span class="line">  feature_list &#123;</span><br><span class="line">    key: <span class="string">"feature_list1"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">0</span></span><br><span class="line">          value: <span class="number">1</span></span><br><span class="line">          value: <span class="number">2</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">3</span></span><br><span class="line">          value: <span class="number">4</span></span><br><span class="line">          value: <span class="number">5</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">6</span></span><br><span class="line">          value: <span class="number">7</span></span><br><span class="line">          value: <span class="number">8</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  feature_list &#123;</span><br><span class="line">    key: <span class="string">"feature_list2"</span></span><br><span class="line">    value &#123;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">0</span></span><br><span class="line">          value: <span class="number">-1</span></span><br><span class="line">          value: <span class="number">-2</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">-3</span></span><br><span class="line">          value: <span class="number">-4</span></span><br><span class="line">          value: <span class="number">-5</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      feature &#123;</span><br><span class="line">        int64_list &#123;</span><br><span class="line">          value: <span class="number">-6</span></span><br><span class="line">          value: <span class="number">-7</span></span><br><span class="line">          value: <span class="number">-8</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="example的字符串展现形式"><a href="#example的字符串展现形式" class="headerlink" title="example的字符串展现形式"></a>example的字符串展现形式</h2><p><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/example/example.proto" target="_blank" rel="noopener">example字符串形式展现形式</a></p>
+<h2 id="从TFRecord文件中读取example"><a href="#从TFRecord文件中读取example" class="headerlink" title="从TFRecord文件中读取example"></a>从TFRecord文件中读取example</h2><ul>
+<li>从TFRecord读取example，分为两步：<ol>
+<li>通过dataset读取TFRecord，dataset内置了record文件的读取函数；</li>
+<li>因为dataset加载的是serialized str的形式，所以再将str解析为程序需要的形式（通过<code>map</code>函数）。</li>
+</ol>
+</li>
+</ul>
+<h3 id="解析example"><a href="#解析example" class="headerlink" title="解析example"></a>解析example</h3><p>tf.parse_single_example(<br>    serialized,<br>    features,<br>    name=None,<br>    example_names=None<br>)</p>
+<ul>
+<li>解析单个序列化的example。</li>
+<li>参数：<ul>
+<li>serialized：待解析的serialized字符串</li>
+<li>features：str-<code>FixedLenFeature</code>的字典。</li>
+</ul>
+</li>
+<li><p>return：str-tensor的字典</p>
+</li>
+<li><p><code>tf.parse_example</code>：与<code>tf.parse_single_example</code>的不同在于：其解析的是一个batch的serialized examples，即传入(batch_size，)的tensor。</p>
+</li>
+<li>一般不推荐用<code>tf.parse_example()</code>，直接解析单个example即可，解析完使用<code>dataset.batch()</code>做batch。</li>
+</ul>
+<h4 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">name_to_features = &#123;</span><br><span class="line">    <span class="string">"input_ids"</span>: tf.FixedLenFeature([seq_length], tf.int64),</span><br><span class="line">    <span class="string">"input_mask"</span>: tf.FixedLenFeature([seq_length], tf.int64),</span><br><span class="line">    <span class="string">"segment_ids"</span>: tf.FixedLenFeature([seq_length], tf.int64),</span><br><span class="line">    <span class="string">"label_ids"</span>: tf.FixedLenFeature([], tf.int64),</span><br><span class="line">    <span class="string">"is_real_example"</span>: tf.FixedLenFeature([], tf.int64),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_decode_record</span><span class="params">(record, name_to_features)</span>:</span></span><br><span class="line">  <span class="string">"""Decodes a record to a TensorFlow example."""</span></span><br><span class="line">  example = tf.parse_single_example(record, name_to_features) <span class="comment"># type: dict</span></span><br><span class="line">  <span class="comment"># 返回值会作为dataset新的的元素</span></span><br><span class="line">  <span class="keyword">return</span> example</span><br><span class="line"></span><br><span class="line">d = tf.data.TFRecordDataset(input_file)</span><br><span class="line">d = d.map(<span class="keyword">lambda</span> record: _decode_record(record, name_to_features))</span><br><span class="line">d = d.batch(batch_size)</span><br></pre></td></tr></table></figure>
+<h3 id="解析sequence-example"><a href="#解析sequence-example" class="headerlink" title="解析sequence example"></a>解析sequence example</h3><p>tf.io.parse_single_sequence_example(<br>    serialized,<br>    context_features=None,<br>    sequence_features=None,<br>    example_name=None,<br>    name=None<br>)</p>
+<ul>
+<li>解析单个序列化的sequence example。</li>
+<li>参数：<ul>
+<li>context_features：str-<code>tf.FixedLenFeature</code>的字典。</li>
+<li>sequence_features：str-<code>tf.FixedLenSequenceFeature</code>的字典。</li>
+</ul>
+</li>
+<li>return：context和feature_lists两个字典，str-tensor格式。</li>
+</ul>
+<h4 id="code-3"><a href="#code-3" class="headerlink" title="code"></a>code</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shape参数指定了group内单个元素的shape</span></span><br><span class="line"><span class="comment"># 最后解析出来的维度是(None)+shape，None为group size</span></span><br><span class="line">name_to_feature_lists = &#123;</span><br><span class="line">    <span class="string">"input_ids"</span>: tf.FixedLenSequenceFeature(shape=[seq_length], dtype=tf.int64),</span><br><span class="line">    <span class="string">"input_mask"</span>: tf.FixedLenSequenceFeature(shape=[seq_length], dtype=tf.int64),</span><br><span class="line">    <span class="string">"segment_ids"</span>: tf.FixedLenSequenceFeature(shape=[seq_length], dtype=tf.int64),</span><br><span class="line">    <span class="string">"label_ids"</span>: tf.FixedLenSequenceFeature(shape=[], dtype=tf.int64),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_decode_record</span><span class="params">(record, name_to_feature_lists)</span>:</span></span><br><span class="line">  <span class="string">"""Decodes a record to a TensorFlow example."""</span></span><br><span class="line">  _, seq_example = tf.parse_single_sequence_example(record, context_features=<span class="keyword">None</span>,sequence_features=name_to_feature_lists)</span><br><span class="line"></span><br><span class="line">d = tf.data.TFRecordDataset(input_file)</span><br><span class="line">d = d.map(<span class="keyword">lambda</span> record:  _decode_record(record, name_to_feature_lists))</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-08-19</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/TensorFlow/" class="color1">TensorFlow</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Example"><span class="post-toc-number">1.</span> <span class="post-toc-text">Example</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#code"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">code</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Sequence-Example"><span class="post-toc-number">2.</span> <span class="post-toc-text">Sequence Example</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#code-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">code</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#example的字符串展现形式"><span class="post-toc-number">3.</span> <span class="post-toc-text">example的字符串展现形式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#从TFRecord文件中读取example"><span class="post-toc-number">4.</span> <span class="post-toc-text">从TFRecord文件中读取example</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解析example"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">解析example</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#code-2"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">code</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解析sequence-example"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">解析sequence example</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#code-3"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">code</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
