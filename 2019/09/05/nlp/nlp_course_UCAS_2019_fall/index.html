@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>国科大2019秋季《自然语言处理》课程 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="本博客是国科大2019年春季刘洋老师自然语言处理课程的笔记。教材-《统计自然语言处理》。 预备知识语言学 vs 计算语言学：语言学指对语言的科学研究，语音和文字是语言的两个基本属性。计算语言学为建立形式化的计算模型来处理自然语言，自然语言理解：探索人类语言的思维本质。HLT（human language technology）：人类语言技术。 三大语系屈折语：用词的形态变化表示语法关系，如英文。黏">
+<meta name="keywords" content="nlp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国科大2019秋季《自然语言处理》课程">
+<meta property="og:url" content="https://renli1024.github.io/2019/09/05/nlp/nlp_course_UCAS_2019_fall/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="本博客是国科大2019年春季刘洋老师自然语言处理课程的笔记。教材-《统计自然语言处理》。 预备知识语言学 vs 计算语言学：语言学指对语言的科学研究，语音和文字是语言的两个基本属性。计算语言学为建立形式化的计算模型来处理自然语言，自然语言理解：探索人类语言的思维本质。HLT（human language technology）：人类语言技术。 三大语系屈折语：用词的形态变化表示语法关系，如英文。黏">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-12T11:31:51.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国科大2019秋季《自然语言处理》课程">
+<meta name="twitter:description" content="本博客是国科大2019年春季刘洋老师自然语言处理课程的笔记。教材-《统计自然语言处理》。 预备知识语言学 vs 计算语言学：语言学指对语言的科学研究，语音和文字是语言的两个基本属性。计算语言学为建立形式化的计算模型来处理自然语言，自然语言理解：探索人类语言的思维本质。HLT（human language technology）：人类语言技术。 三大语系屈折语：用词的形态变化表示语法关系，如英文。黏">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-nlp/nlp_course_UCAS_2019_fall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      国科大2019秋季《自然语言处理》课程
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-09-05
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>本博客是国科大2019年春季刘洋老师自然语言处理课程的笔记。<br>教材-《统计自然语言处理》。</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>语言学 vs 计算语言学：语言学指对语言的科学研究，语音和文字是语言的两个基本属性。计算语言学为建立形式化的计算模型来处理自然语言，<br>自然语言理解：探索人类语言的思维本质。<br>HLT（human language technology）：人类语言技术。</p>
+<h3 id="三大语系"><a href="#三大语系" class="headerlink" title="三大语系"></a>三大语系</h3><p>屈折语：用词的形态变化表示语法关系，如英文。<br>黏着语：词内有专门表示语法意义的附加成分，经常会有一句话只有两三个词，但每个词会特别长，如日语。<br>孤立语：形态变化少，语法关系靠词序和虚词表示，如中文。</p>
+<h3 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h3><ul>
+<li>机器翻译</li>
+<li>信息检索</li>
+<li>自动文摘</li>
+<li>问答系统 Q-A</li>
+<li>信息过滤</li>
+<li>信息抽取 </li>
+<li>文档分类</li>
+<li>情感分类</li>
+<li>…</li>
+</ul>
+<p>中文词法分析：1、分词 2、词法标注 3、命名实体识别</p>
+<h3 id="nlp应用平台"><a href="#nlp应用平台" class="headerlink" title="nlp应用平台"></a>nlp应用平台</h3><p>云孚科技<br>standford sentimnet analysis<br>清华九歌<br>microsoft-CaptionBot </p>
+<h3 id="基本问题"><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h3><ul>
+<li>形态学（Morphology）：词是由有意义的基本单位-词素构成的，词素：词根、前缀、后缀、词尾（eg. recreation，图书馆：图-书-馆）</li>
+<li>句法（Syntax）：研究句子结构成分之间的相互关系和组成句子序列的规则。</li>
+<li>语义（senmantics）：如何从句子中的词和句子的语法结构来推测句子的意义</li>
+<li>语用（Pragmatics）：研究在不同上下文中语句的应用，以及上下文对语句理解所产生的影响。</li>
+<li>语音学（Phonetics）：</li>
+</ul>
+<h3 id="困难"><a href="#困难" class="headerlink" title="困难"></a>困难</h3><ul>
+<li>大量歧义：词性歧义、结构歧义、语义歧义</li>
+</ul>
+<h3 id="基本研究方法"><a href="#基本研究方法" class="headerlink" title="基本研究方法"></a>基本研究方法</h3><ul>
+<li>规则方法，基于规则、符号，知识库+推理系统-&gt;nlp系统（归约、推导、歧义消解）；理论基础：Chomsky文法理论。</li>
+<li>统计方法，经验主义(emperical baseed)：对大规模预料数据中人们所实际使用的额普通语句的统计。语料库+统计模型-&gt;nlp系统</li>
+</ul>
+<h3 id="期刊-amp-会议"><a href="#期刊-amp-会议" class="headerlink" title="期刊&amp;会议"></a>期刊&amp;会议</h3><p>ACL，EEMNLP，COLING，NAACL，IJCNLP</p>
+<p>文献综述作业写法：<br>1、问题定义<br>2、主要方法</p>
+<h2 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h2><p>概率论<br>线性代数<br>离散数学、图论</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-09-05</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/nlp/" class="color4">nlp</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#预备知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">预备知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三大语系"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">三大语系</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#研究内容"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">研究内容</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nlp应用平台"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">nlp应用平台</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本问题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">基本问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#困难"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">困难</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本研究方法"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">基本研究方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#期刊-amp-会议"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">期刊&amp;会议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数学基础"><span class="post-toc-number">2.</span> <span class="post-toc-text">数学基础</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Ren Li&#39;s blog">
 <meta property="og:description" content="购买在线下 AppleStore直营零售店买，全国统一定价；但若想要定制版（加内存、加硬盘），需要在官网买。买了三年的保修：电池不耐用了就可以换（电量小于80%），键盘有问题也可以换，所有的配件包括电源线都可以修。送了2300的beats耳机买mac14天无条件退换退货日期：2018-9-22延长保修计划：保修期到2021-9-7送的耳机：Beats Solo3 Wireless头戴式耳机-磨砂黑">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T08:38:34.896Z">
+<meta property="og:updated_time" content="2019-09-27T13:53:34.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OS X操作">
 <meta name="twitter:description" content="购买在线下 AppleStore直营零售店买，全国统一定价；但若想要定制版（加内存、加硬盘），需要在官网买。买了三年的保修：电池不耐用了就可以换（电量小于80%），键盘有问题也可以换，所有的配件包括电源线都可以修。送了2300的beats耳机买mac14天无条件退换退货日期：2018-9-22延长保修计划：保修期到2021-9-7送的耳机：Beats Solo3 Wireless头戴式耳机-磨砂黑">
@@ -139,9 +139,13 @@
 <p>它的 plist 位于 /Library/LaunchDaemons/com.sangfor.EasyMonitor.plist 使用上述命令可以干掉它。</p>
 <p>干掉他这个进程非常开心，但是会遇到一个问题，再次启动 EasyConnect 的时候，它不乐意了，会提示初始化失败，请重新安装，这时候就得重新 load 这个 plist 了，执行 sudo launchctl load /Library/LaunchDaemons/com.sangfor.EasyMonitor.plist</p>
 <h2 id="Windows下文件在mac上解压缩乱码"><a href="#Windows下文件在mac上解压缩乱码" class="headerlink" title="Windows下文件在mac上解压缩乱码"></a>Windows下文件在mac上解压缩乱码</h2><ul>
-<li>乱码问题只存在于中文字符，英文和数字都不存在此问题。因为windows的字符编码是gbk，mac则是unicode，这两者中文编码不统一，所以会有乱码问腿。</li>
-<li>解决：使用The Unarchiever解压，不要用mac系统自动自带的解压缩软件。</li>
+<li>乱码问题只存在于中文字符，英文和数字都不存在此问题。因为windows的字符编码是GBK，mac则是utf-8，这两者中文编码不统一，所以会有乱码问题。</li>
+<li>解决：</li>
 </ul>
+<ol>
+<li>对于压缩包文件：解压时用The Unarchiever解压，不要用mac系统自动自带的解压缩软件。</li>
+<li>对于文件本身就是GBK编码的，使用命令行进行转换：<code>enca -L chinese -x utf-8 file_name</code>，支持批量转换：<code>enca -L chinese -x utf-8 *</code>。<br>注1：<br><code>-L</code>：指定当前编码（根据语言来分类），如<code>chinese</code>包含了<code>GBK BIG5 HZ</code>三种编码，因此<code>enca</code>就只会转换这三种编码的文件。<br><code>-x</code>：指定目标编码。<br><code>enca -l language</code>：查看所支持的语言。<br>注2：批量转换无法转换目录，因此对于子目录中的文件需要单独再在子目录里转换。<br>注3：命令<code>iconv -f from_encoding -t to_enconding from_file &gt; to_file</code>也可以转换，但只能转换单个文件。</li>
+</ol>
 
             <div class="post-copyright">
     <hr />
@@ -231,7 +235,7 @@
             
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -264,7 +268,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
 </div>
