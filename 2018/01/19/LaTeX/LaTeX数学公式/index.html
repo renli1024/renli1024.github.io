@@ -18,7 +18,16 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://renli1024.github.io/images/LaTeX/各种矩阵.png">
 <meta property="og:image" content="https://renli1024.github.io/images/LaTeX/行内矩阵.png">
-<meta property="og:updated_time" content="2019-10-05T03:26:14.298Z">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/小写希腊字母表.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/大写希腊字母表.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/各种函数算子.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/定界符middle.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/数学公式会用到的标点符号.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/下标的多行显示.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/对齐的公式插入文字.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/连等公式.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/子公式编号.png">
+<meta property="og:updated_time" content="2019-10-05T12:29:29.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LaTeX教程——数学公式篇">
 <meta name="twitter:description" content="因为数学公式的写法是LaTeX非常重要的一部分内容，而且相对比较独立，因此将这部分单独整理为一篇博客，也方便日后进行查阅。">
@@ -58,7 +67,7 @@
                         <span>Archives</span>
                     </a>
                     
-                    <a  href="https://github.com/lrStyle">
+                    <a  href="https://github.com/renli1024">
                         <i class="fa fa-user"></i>
                         <span>Github</span>
                     </a>
@@ -136,10 +145,11 @@
 <li>上、下花括号：<code>\overbrace{a_0, a_1, \dots, a_n}^{\text{共 $n+1$ 项}}</code>, \(\overbrace{a_0, a_1, \dots, a_n}^{\text{共 $n+1$ 项}}\)，可通过上标来作标注。<br>下花括号：<code>\underbrace{}</code></li>
 </ul>
 <h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><h4 id="各种矩阵形式"><a href="#各种矩阵形式" class="headerlink" title="各种矩阵形式"></a>各种矩阵形式</h4><ul>
-<li><p><code>amsmath</code>提供了一系列矩阵命令，对应于矩阵相关的各种表现形式，如下所示：<br><img src="/images/LaTeX/各种矩阵.png" alt="各种矩阵形式"></p>
-</li>
-<li><p>矩阵中不同的列使用<code>&amp;</code>分隔，不同的行使用<code>\\</code>分隔<br>$$<br>\begin{pmatrix}<br> 1 &amp; 2 &amp; 3 \\<br> 4 &amp; 5 &amp; 6 \\<br> 7 &amp; 8 &amp; 9<br>\end{pmatrix}<br>$$</p>
-</li>
+<li><code>amsmath</code>提供了一系列矩阵命令，对应于矩阵相关的各种表现形式，如下所示：</li>
+</ul>
+<p><img src="/images/LaTeX/各种矩阵.png" alt="各种矩阵形式"></p>
+<ul>
+<li>矩阵中不同的列使用<code>&amp;</code>分隔，不同的行使用<code>\\</code>分隔<br>$$<br>\begin{pmatrix}<br> 1 &amp; 2 &amp; 3 \\<br> 4 &amp; 5 &amp; 6 \\<br> 7 &amp; 8 &amp; 9<br>\end{pmatrix}<br>$$</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;pmatrix&#125;</span><br><span class="line">  1 &amp; 2 &amp; 3 \\</span><br><span class="line">  4 &amp; 5 &amp; 6 \\</span><br><span class="line">  7 &amp; 8 &amp; 9</span><br><span class="line">\end&#123;pmatrix&#125; </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
 <ul>
@@ -165,7 +175,7 @@
 </li>
 <li><p>希伯来字母：<code>\aleph</code>：\(\aleph\)</p>
 </li>
-<li><p>附：希腊字母表<br>【插入图片】</p>
+<li><p>附：希腊字母表<br><img src="\images\LaTeX\小写希腊字母表.png" alt=""><br><img src="\images\LaTeX\大写希腊字母表.png" alt=""></p>
 </li>
 </ul>
 <h3 id="数学算子"><a href="#数学算子" class="headerlink" title="数学算子"></a>数学算子</h3><p>数学算子按显示形式，大致可以分为两类，一类为大小会随着行间公式&amp;行内公式而改变的，称为巨算子（large operator），如求和\(\sum\)、积分\(\int\)；一类则是普通的数学算子。</p>
@@ -177,7 +187,7 @@
 </li>
 </ul>
 <p>$$<br>\newcommand{\diff}{\mathrm{d}}<br>\int_a^b f(x) \, \diff x \\<br>\iint_\limits{0&lt;x,y&lt;1}f(x,y) \, \diff x \diff y<br>$$</p>
-<h4 id="一些文字名称的算子"><a href="#一些文字名称的算子" class="headerlink" title="一些文字名称的算子"></a>一些文字名称的算子</h4><p>通常为各种函数名，这类算子也需要正体显示。<br>【插入图片】</p>
+<h4 id="一些文字名称的算子"><a href="#一些文字名称的算子" class="headerlink" title="一些文字名称的算子"></a>一些文字名称的算子</h4><p>通常为各种函数名，这类算子也需要正体显示。<br><img src="\images\LaTeX\各种函数算子.png" alt=""></p>
 <h4 id="自定义算子"><a href="#自定义算子" class="headerlink" title="自定义算子"></a>自定义算子</h4><p>在概率论中，期望<code>E()</code>、方差<code>Var()</code>函数需要正体显示为算子，但默认没有定义，这里我们可以单独将其进行定义。<br><code>\DeclareMathOperator</code>定义不带上下限的算子，<code>\DeclareMathOperator*</code>定义带上下限的算子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% 导言区定义</span><br><span class="line">\DeclareMathOperator&#123;\var&#125;&#123;Var&#125;</span><br><span class="line">\DeclareMathOperator&#123;\E&#125;&#123;E&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="二元运算符与关系符"><a href="#二元运算符与关系符" class="headerlink" title="二元运算符与关系符"></a>二元运算符与关系符</h3><h4 id="常用二元运算符："><a href="#常用二元运算符：" class="headerlink" title="常用二元运算符："></a>常用二元运算符：</h4><p>可直接从键盘输入的二元运算符有：<code>+ - * / = &gt; &lt; :</code>，其他常用运算符</p>
 <table>
@@ -260,9 +270,10 @@
 </ul>
 <p>$$<br>\left. \int_0^xf(t) \, \mathrm{d}t \right \vert_{x=1}<br>$$</p>
 <ul>
-<li>此外还可通过<code>\middle</code>命令来为<code>\left</code>、<code>\right</code>的中间加入一个可变大小的定界符。<br>【加入p257示例图片】</li>
+<li>此外还可通过<code>\middle</code>命令来为<code>\left</code>、<code>\right</code>的中间加入一个可变大小的定界符。</li>
 </ul>
-<h3 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a>标点符号</h3><h4 id="常用标点符号"><a href="#常用标点符号" class="headerlink" title="常用标点符号"></a>常用标点符号</h4><p>公式中常用的标点符号如下，都可以通过英文键盘直接输入<br>【p259页插图】</p>
+<p><img src="\images\LaTeX\定界符middle.png" alt=""></p>
+<h3 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a>标点符号</h3><h4 id="常用标点符号"><a href="#常用标点符号" class="headerlink" title="常用标点符号"></a>常用标点符号</h4><p>公式中常用的标点符号如下，都可以通过英文键盘直接输入<br><img src="\images\LaTeX\数学公式会用到的标点符号.png" alt=""></p>
 <h4 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h4><table>
 <thead>
 <tr>
@@ -384,10 +395,10 @@
 </tbody>
 </table>
 <ul>
-<li>求和、连乘符号的多行下标显示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\sum_&#123;\substack&#123;0&lt;i&lt;10 \\ 10&lt;j&lt;15&#125;&#125; A_&#123;ij&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<li>求和、连乘符号的多行下标显示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\sum_&#123;\substack&#123;0&lt;i&lt;10 \\ 10&lt;j&lt;15&#125;&#125; A_&#123;ij&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>$$<br>\sum_{\substack{0&lt;i&lt;10 \\ 10&lt;j&lt;15}} A_{ij}<br>$$</p>
+<p><img src="\images\LaTeX\下标的多行显示.png" alt=""></p>
 <h2 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h2><p>对于行间公式<code>$$ xxx $$</code>，空格会被忽略，也不允许出现单独的空行，换行符<code>\\</code>也不起作用，因此如果要输入多行公式的话必须使用其他的环境。</p>
 <h3 id="罗列多个公式"><a href="#罗列多个公式" class="headerlink" title="罗列多个公式"></a>罗列多个公式</h3><ul>
 <li>最常用的情形即将多个公式摆在一起，因为正常公式中不能换行，因此可使用<code>begin{align}</code>环境，在<code>align</code>环境中允许通过换行符<code>\\</code>来进行换行。</li>
@@ -399,22 +410,30 @@
 <li><p><code>&amp;</code>符号一般放在等号<code>=</code>前面，来保证正确的对齐间距<br>$$<br>\begin{align}<br>x &amp;= t + \cos t +1 \\<br>y &amp;= 2\sin t<br>\end{align}<br>$$</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= t + \cos t +1 \\</span><br><span class="line">  y &amp;= 2\sin t</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>如何在中间插入文字：mathtools宏包的 \shortintertext命令</p>
+<li><p>如何在不影响公式对齐的情况下插入文字：mathtools宏包的 \shortintertext命令</p>
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x^2+2x &amp;= -1 \\</span><br><span class="line">  \shortintertext&#123;移项得&#125;</span><br><span class="line">  x^2+2x+1 &amp;= 0</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
-<p>【插入p266图片】</p>
+<p><img src="\images\LaTeX\对齐的公式插入文字.png" alt=""></p>
 <ul>
-<li>如何排版连等公式：使用空分组来使空白处对齐</li>
+<li>如何排版连等公式：使用空分组来使空白处对齐<br>注：连等公式只需要一个标号即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= (a+b)(a^2-ab+b^2) \notag \\ </span><br><span class="line">    &amp;= a^3-a^2b+ab^2+a^2-ab^2+b^3 \\ % 只在这一行进行公式编号</span><br><span class="line">    &amp;= a^3+b^3 \notag</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= (a+b)(a^2-ab+b^2) \notag \\ </span><br><span class="line">    &amp;= a^3-a^2b+ab^2+a^2-ab^2+b^3 \\ % 只在这一行进行公式编号</span><br><span class="line">    &amp;= a^3+b^3 \notag</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
-<p>【插入图片】</p>
+<p><img src="\images\LaTeX\连等公式.png" alt=""></p>
 <ul>
 <li>如何进行子公式编号：<code>\begin{subequations}</code>环境<br><code>subequations</code>环境中的子公式会共用一个数字主编号，里面再使用字母进行子公式编号。<br><code>subequations</code>环境中的主公式和子公式都可进行<code>label</code>设定标签。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;subequations&#125;</span><br><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= t + \cos t +1 \\ </span><br><span class="line">  y &amp;= 2\sin t \\</span><br><span class="line">  z &amp;= 6\cos t</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line">\end&#123;subequations&#125;</span><br></pre></td></tr></table></figure>
-<p>【插入图片】</p>
-<h4 id="align环境中-amp-的对齐方式"><a href="#align环境中-amp-的对齐方式" class="headerlink" title="align环境中&amp;的对齐方式"></a>align环境中&amp;的对齐方式</h4><p>假设有n个&amp;，会将一行分为n+1列，从左向右两个列分为一组(如1、2列为一组，3、4列为一组…，若有奇数列，则最后一列单独为一组)。每一行的&amp;数量要保证相同，否则对齐格式会乱。<br>首先明确，LaTex对齐方式包括组内对齐和组间对齐。<br><strong>组内对齐：</strong>两列一组，在组内部，第一列向右对齐，第二列向左对齐，即两列在所在位置上向中间对齐。<br><strong>组间对齐：</strong>首先，不同行的对应组会根据组的中线进行对齐，因为每行组数是一样的，因此为保证组的中线在同一位置，会统一固定组的长度，因此若公式较短就会出现空白。<br>其次在中线对齐的基础上，第一组会紧靠页<strong>左侧</strong>，最后一组则紧靠页<strong>右侧</strong>，紧靠页左/右侧就是将最长的一组紧靠上去，也就是说对于长度不一样的行，较短的那一行是靠不上去的(因为首先要保证组的中线对齐)。</p>
+<p><img src="\images\LaTeX\子公式编号.png" alt=""></p>
+<h4 id="align环境中-amp-的对齐方式"><a href="#align环境中-amp-的对齐方式" class="headerlink" title="align环境中&amp;的对齐方式"></a>align环境中&amp;的对齐方式</h4><ul>
+<li>假设有n个&amp;，会将一行分为n+1列，从左向右两个列分为一组(如1、2列为一组，3、4列为一组…，若有奇数列，则最后一列单独为一组)。每一行的&amp;数量要保证相同，否则对齐格式会乱。</li>
+<li>首先明确，LaTex对齐方式包括组内对齐和组间对齐。<ul>
+<li>组内对齐：两列一组，在组内部，第一列向右对齐，第二列向左对齐，即两列在所在位置上向中间对齐。</li>
+<li>组间对齐：首先，不同行的对应组会根据组的中线进行对齐，因为每行组数是一样的，因此为保证组的中线在同一位置，会统一固定组的长度，因此若公式较短就会出现空白。</li>
+</ul>
+</li>
+<li>其次在中线对齐的基础上，第一组会紧靠页<strong>左侧</strong>，最后一组则紧靠页<strong>右侧</strong>，紧靠页左/右侧就是将最长的一组紧靠上去，也就是说对于长度不一样的行，较短的那一行是靠不上去的(因为首先要保证组的中线对齐)。</li>
+</ul>
 <h3 id="如何组合多个公式"><a href="#如何组合多个公式" class="headerlink" title="如何组合多个公式"></a>如何组合多个公式</h3><p>有时我们需要将多个公式组合为一个大公式块，然后对整个公式块进行一定的操作，这时就不能使用换行公式的写法了（因为<code>align</code>本身就是数学环境了，其外不能再嵌套一层数学环境）。</p>
 <h4 id="分段函数（条件函数）的表示"><a href="#分段函数（条件函数）的表示" class="headerlink" title="分段函数（条件函数）的表示"></a>分段函数（条件函数）的表示</h4><ul>
 <li>对于分段函数，可使用<code>cases</code>环境和<code>mathtools</code>宏包提供的<code>dcases</code>环境，推荐使用后者，公式的字号会更小一点，显得更紧凑。</li>
@@ -426,9 +445,10 @@
 <li><code>dcases</code>环境毕竟非常特殊，只适用于分段函数的情形，下面介绍<code>aligned</code>环境，其是一种更一般的公式组合方式。</li>
 <li><code>aligned</code>是<code>align</code>环境的变体，使用方式基本一样，只是因为其本身不是数学环境，只是用来组合多个子公式的，因此可以在行间公式环境中使用。</li>
 <li>多个子公式组合后就相当于是一个公式了，可以被当作一个公式来对待。</li>
-<li>示例<br>$$<br>\begin{aligned}<br>x+y+z &amp;= 10 \\<br>x+y &amp;= -1<br>\end{aligned}<br>\implies<br>\begin{aligned}<br>xy &amp;= 2 \\<br>z &amp;= 3<br>\end{aligned}<br>$$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  x+y+z &amp;= 10 \\</span><br><span class="line">  x+y &amp;= -1</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\implies</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  xy &amp;= 2 \\</span><br><span class="line">  z &amp;= 3</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<li>示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  x+y+z &amp;= 10 \\</span><br><span class="line">  x+y &amp;= -1</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\implies</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  xy &amp;= 2 \\</span><br><span class="line">  z &amp;= 3</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>$$<br>\begin{aligned}<br>  x+y+z &amp;= 10 \\<br>  x+y &amp;= -1<br>\end{aligned}<br>\implies<br>\begin{aligned}<br>  xy &amp;= 2 \\<br>  z &amp;= 3<br>\end{aligned}<br>$$</p>
 
             <div class="post-copyright">
     <hr />
@@ -541,7 +561,7 @@
             </li>
             
             <li>
-                <a  href="https://github.com/lrStyle">
+                <a  href="https://github.com/renli1024">
                     <i class="fa fa-user"></i><span>Github</span>
                 </a>
             </li>

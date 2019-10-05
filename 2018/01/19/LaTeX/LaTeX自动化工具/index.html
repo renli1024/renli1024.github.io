@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="Ren Li&#39;s blog">
 <meta property="og:description" content="使用LaTeX时，很多工具是不需要手工排版的，可以由计算机进行自动化输出，最常见的是编号（如页码，章节等）、目录、交叉引用、文献管理等，都可由LaTeX引擎来自动完成，这一节即对这些自动化工具进行介绍。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-02T01:15:15.733Z">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/交叉引用中的类型缩写.png">
+<meta property="og:updated_time" content="2019-10-05T12:45:29.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LaTeX教程——自动化工具篇">
 <meta name="twitter:description" content="使用LaTeX时，很多工具是不需要手工排版的，可以由计算机进行自动化输出，最常见的是编号（如页码，章节等）、目录、交叉引用、文献管理等，都可由LaTeX引擎来自动完成，这一节即对这些自动化工具进行介绍。">
+<meta name="twitter:image" content="https://renli1024.github.io/images/LaTeX/交叉引用中的类型缩写.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -55,7 +57,7 @@
                         <span>Archives</span>
                     </a>
                     
-                    <a  href="https://github.com/lrStyle">
+                    <a  href="https://github.com/renli1024">
                         <i class="fa fa-user"></i>
                         <span>Github</span>
                     </a>
@@ -101,7 +103,7 @@
 <li>生成目录需要xeLaTeX编译两次才能生效，第一遍是让LaTeX引擎读完整个文档，第二遍则是根据文档中的标题生成目录。</li>
 <li>在目录中增加项目：<code>\usepackage[nottoc]{tocbibind}</code>，会为目录中引入目录项本身、参考文献、索引等项目（<code>nottoc</code>参数指定不增加目录本身）。</li>
 </ul>
-<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><p>交叉引用（cross reference）：可以通过一个符号标签，来引用文档中某个对象的编号、页码、标题等信息，而不必知道对象具体在何处，而且引用内容也会随着对象的修改而实时更改（只要标签未发生变化），这对于编写大型文档是非常有用的。<br>交叉引用大致需要两步：<br>1、给对象加标签，<code>\label{标签名}</code>，标签命名并没有规定的格式，但推荐使用<code>类型：内容</code>这样的格式，如<code>fig: xxx</code>/<code>eq: xxx</code>等，<br>2、引用标签：LaTeX提供了<code>\ref{标签名}</code>和<code>\pageref{标签名}</code>两个引用命令，分别用来产生对应对象的编号和页码。<br>注1：标签命令的位置：建议直接写在引用对象中的花括号<code>{}</code>中。但对于多行公式，标签要加到对应行公式的后面（换行符<code>//</code>之前）。<br>注2：因为公式的编号是带圆括号的，但交叉引用产生的编号是没有的，解决：使用<code>amsmath</code>宏包提供的<code>\eqref{标签名}</code>命令，编号默认是带括号的。<br>注3：推荐的类型缩写如下：<br>【加入图片】</p>
+<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><p>交叉引用（cross reference）：可以通过一个符号标签，来引用文档中某个对象的编号、页码、标题等信息，而不必知道对象具体在何处，而且引用内容也会随着对象的修改而实时更改（只要标签未发生变化），这对于编写大型文档是非常有用的。<br>交叉引用大致需要两步：<br>1、给对象加标签，<code>\label{标签名}</code>，标签命名并没有规定的格式，但推荐使用<code>类型：内容</code>这样的格式，如<code>fig: xxx</code>/<code>eq: xxx</code>等，<br>2、引用标签：LaTeX提供了<code>\ref{标签名}</code>和<code>\pageref{标签名}</code>两个引用命令，分别用来产生对应对象的编号和页码。<br>注1：标签命令的位置：建议直接写在引用对象中的花括号<code>{}</code>中。但对于多行公式，标签要加到对应行公式的后面（换行符<code>//</code>之前）。<br>注2：因为公式的编号是带圆括号的，但交叉引用产生的编号是没有的，解决：使用<code>amsmath</code>宏包提供的<code>\eqref{标签名}</code>命令，编号默认是带括号的。<br>注3：推荐的类型缩写如下：<br><img src="\images\LaTeX\交叉引用中的类型缩写.png" alt=""></p>
 <h2 id="文献管理"><a href="#文献管理" class="headerlink" title="文献管理"></a>文献管理</h2><h3 id="如何导入文献"><a href="#如何导入文献" class="headerlink" title="如何导入文献"></a>如何导入文献</h3><ul>
 <li>需导入包：<code>\uspackage{hyperref}</code>（同时实现了超链接跳转的功能）。文章中的引用命令：<code>\cite {name}</code></li>
 <li>编译过程：xe-&gt;bib-&gt;xe-&gt;xe，总共需要四步。先latex编译，再bibtex编译，再用bibtex编译两遍。</li>
@@ -223,7 +225,7 @@
             </li>
             
             <li>
-                <a  href="https://github.com/lrStyle">
+                <a  href="https://github.com/renli1024">
                     <i class="fa fa-user"></i><span>Github</span>
                 </a>
             </li>

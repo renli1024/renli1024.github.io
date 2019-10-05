@@ -35,9 +35,9 @@
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式命令字.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255C口按位复位置位命令字.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1输入过程.png">
-<meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1信号时序图(输入).png">
+<meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1信号时序图(输入">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1输出过程.png">
-<meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1信号时序图(输出).png">
+<meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1信号时序图(输出">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/8255方式1C口状态字.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/中断分类.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/计算中断入口地址eg.png">
@@ -73,7 +73,7 @@
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/字位扩展.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/非编码键盘.png">
 <meta property="og:image" content="https://renli1024.github.io/images/接口技术及应用/七段数码管.png">
-<meta property="og:updated_time" content="2019-10-05T04:19:50.937Z">
+<meta property="og:updated_time" content="2019-10-05T11:39:39.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微机接口技术与应用">
 <meta name="twitter:description" content="在微机系统中，微处理器的强大功能必须通过外部设备才能实现，而外设与微处理器之间的信息交换及通信又是靠接口实现的，所以，微机应用系统的研究和微机系统的产品的开发，从硬件角度来讲，就是接口技术的演进和开发。微机的应用随着外设的不断更新早已深入各个领域。  第一章 概述预备知识 CPU架构分类目前市面上的CPU分类主要分有两大阵营，一个是intel、AMD为首的复杂指令集CPU，另一个是以IBM、">
@@ -113,7 +113,7 @@
                         <span>Archives</span>
                     </a>
                     
-                    <a  href="https://github.com/lrStyle">
+                    <a  href="https://github.com/renli1024">
                         <i class="fa fa-user"></i>
                         <span>Github</span>
                     </a>
@@ -172,7 +172,7 @@
 </li>
 <li><p><strong>设立接口原因</strong><br>CPU与外设两者的工作速度不兼容<br>CPU与外设两者的信号不兼容<br>有利于外设的标准化</p>
 </li>
-<li><p><strong>接口电路一般结构</strong><br><img src="/images/接口技术及应用/接口电路一般结构.png" alt=""><br>DB, AB, CB即数据总线、地址总线、控制总线。<br>接口内主要有三类寄存器：命令口（CPU向其中写命令，只写）、状态口（CPU从其中读取接口的状态信息，只读）、数据口（CPU与外设间的交换信息，可读可写）。</p>
+<li><p><strong>接口电路一般结构</strong><br><img src="/images/接口技术及应用/接口电路一般结构.png" alt="接口电路一般结构"><br>DB, AB, CB即数据总线、地址总线、控制总线。<br>接口内主要有三类寄存器：命令口（CPU向其中写命令，只写）、状态口（CPU从其中读取接口的状态信息，只读）、数据口（CPU与外设间的交换信息，可读可写）。</p>
 </li>
 <li><p><strong>CPU与接口交换数据方式</strong><br><strong>程序控制方式：</strong>CPU主动。<strong>无条件传送方式</strong>（同步传送），外设一直是准备好的，传送前CPU不需要了解外设的状态，适合一些较简单的外设，如LED显示器；<strong>查询传送方式</strong>（条件传送），传数据前CPU先检测外设状态（状态字），外设没准备好，CPU就一直等待。<br><strong>中断方式：</strong>外设主动，CPU被动。外设做好准备时，主动向CPU发出中断请求，CPU响应中断。<br><strong>DMA方式：</strong>DMA控制外设与存储器间的数据传送，传送过程由特定硬件完成，无需CPU介入。</p>
 </li>
@@ -183,9 +183,9 @@
 </li>
 <li><p><strong>8086中端口地址分配</strong><br>地址空间：<code>000-3FFH</code>，A0-A9共10根地址线，可访问1024个端口。<code>3FFH=15+15*16+3*16*16=1023</code>。<br>系统板上的I/O接口芯片：地址<code>000-0FFH</code>，单字节地址。较为简单的接口，定时器、中断控制器等。<br>扩展槽上的I/O接口卡：地址<code>100-3FFH</code>，双字节地址。若干个集成电路合在一起，较为复杂，显卡、声卡、网卡等。</p>
 </li>
-<li><p><strong>端口地址译码方式</strong><br>三种译码方式：全译码、部分译码和地址开关译码。<br><strong>全译码：</strong>所有I/O地址线A0~A9全部作为译码的输入参与译码。<br><strong>部分译码：</strong>将地址线分为两部分：<code>端口地址=芯片地址（高位）+片内地址（低位）</code>，只有高位地址线参加译码，可分为片间寻址与片内端口寻址。<strong>片间寻址：</strong>高位地址信号与控制信号组合，经译码电路产生接口的片选信号\(\small \overline{CS}\)。控制信号如：读信号\(\small \overline{IOR}\)、写信号\(\small \overline{IOW}\)等。<strong>片内端口寻址：</strong>低位地址信号不参加译码，直接连到接口芯片中，进行端口寻址。<br><img src="/images/接口技术及应用/部分译码.png" width="230" height="140" alt="部分译码示意图" align="center"><br><strong>地址开关译码：</strong>在部分译码方法的基础上，加上地址开关来改变端口地址。</p>
+<li><p><strong>端口地址译码方式</strong><br>三种译码方式：全译码、部分译码和地址开关译码。<br><strong>全译码：</strong>所有I/O地址线A0~A9全部作为译码的输入参与译码。<br><strong>部分译码：</strong>将地址线分为两部分：<code>端口地址=芯片地址（高位）+片内地址（低位）</code>，只有高位地址线参加译码，可分为片间寻址与片内端口寻址。<strong>片间寻址：</strong>高位地址信号与控制信号组合，经译码电路产生接口的片选信号\(\small \overline{CS}\)。控制信号如：读信号\(\small \overline{IOR}\)、写信号\(\small \overline{IOW}\)等。<strong>片内端口寻址：</strong>低位地址信号不参加译码，直接连到接口芯片中，进行端口寻址。<br><img src="/images/接口技术及应用/部分译码.png" alt=""><br><strong>地址开关译码：</strong>在部分译码方法的基础上，加上地址开关来改变端口地址。</p>
 </li>
-<li><p><strong>地址译码电路设计</strong><br><strong>固定式译码：</strong>接口中用到的端口地址不能更改，分为门电路译码和译码器译码。<strong>门电路译码：</strong>对单一端口地址进行译码，使用与门、与非门等各种门电路；<strong>译码器译码：</strong>对多个端口地址译码，使用各种译码器元件。<br><strong>可选式译码：</strong>采用开关式端口地址译码。通过开关改变接口卡的端口地址（无需改动线路）。如果要求端口地址能适应不同的地址分配场合，或为系统以后扩充留有余地，则采用开关式端口地址译码，电路可由地址开关、译码器、比较器或异或门几种元器件组合而成。<br>地址译码电路设计原则如下：<br><img src="/images/接口技术及应用/地址译码电路设计原则.png" width="545" height="265" alt="地址译码电路设计原则" align="center"></p>
+<li><p><strong>地址译码电路设计</strong><br><strong>固定式译码：</strong>接口中用到的端口地址不能更改，分为门电路译码和译码器译码。<strong>门电路译码：</strong>对单一端口地址进行译码，使用与门、与非门等各种门电路；<strong>译码器译码：</strong>对多个端口地址译码，使用各种译码器元件。<br><strong>可选式译码：</strong>采用开关式端口地址译码。通过开关改变接口卡的端口地址（无需改动线路）。如果要求端口地址能适应不同的地址分配场合，或为系统以后扩充留有余地，则采用开关式端口地址译码，电路可由地址开关、译码器、比较器或异或门几种元器件组合而成。<br>地址译码电路设计原则如下：<br><img src="/images/接口技术及应用/地址译码电路设计原则.png" alt=""></p>
 </li>
 </ul>
 <h3 id="接口I-O指令"><a href="#接口I-O指令" class="headerlink" title="接口I/O指令"></a>接口I/O指令</h3><p>8086中通过AL寄存器与外设交换信息。</p>
@@ -197,59 +197,59 @@
 <li><strong>什么是定时与计数</strong><br>定时：确定时间间隔。<br>计数：统计个数。<br>在计算中定时就是对时钟脉冲(CLK)进行计数，定时和计数本质是一样的。</li>
 </ul>
 <h3 id="定时计数接口82C54"><a href="#定时计数接口82C54" class="headerlink" title="定时计数接口82C54"></a>定时计数接口82C54</h3><ul>
-<li><p><strong>可编程定时计数器</strong><br><img src="/images/接口技术及应用/可编程定时计数器.png" width="300" height="210" alt="可编程定时计数器内部结构图" align="center/"><br><strong>初值寄存器CR：</strong>设定计数初值<br><strong>计数执行单元CE：</strong>执行计数操作，CPU不能访问<br><strong>计数输出锁存器OL：</strong>CPU从中读取当前计数值<br><strong>控制寄存器：</strong>决定82C54工作方式<br><strong>CLK：</strong>CPU时钟信号信号<br><strong>GATE：</strong>门控信号，控制83C54是否工作<br><strong>OUT：</strong>输出端<br>注：寄存器都是<strong>16位</strong>的，但因为数据线只有8位，所以一次只能读写8位数据。<br><strong>工作原理：</strong><br>对CLK信号进行减1计数<br>1、将控制字写入控制寄存器，确定82C54工作方式<br>2、将计数初始值写入初值寄存器。<br>3、从计数初值开始，在GATE控制下，每当CLK信号出现一次，计数值减1。<br>4、当计数值减到0，从OUT端输出规定的信号。<br>注：CLK信号出现时，计数器是否减1，由门控信号GATE控制</p>
+<li><p><strong>可编程定时计数器</strong><br><img src="/images/接口技术及应用/可编程定时计数器.png" alt=""><br><strong>初值寄存器CR：</strong>设定计数初值<br><strong>计数执行单元CE：</strong>执行计数操作，CPU不能访问<br><strong>计数输出锁存器OL：</strong>CPU从中读取当前计数值<br><strong>控制寄存器：</strong>决定82C54工作方式<br><strong>CLK：</strong>CPU时钟信号信号<br><strong>GATE：</strong>门控信号，控制83C54是否工作<br><strong>OUT：</strong>输出端<br>注：寄存器都是<strong>16位</strong>的，但因为数据线只有8位，所以一次只能读写8位数据。<br><strong>工作原理：</strong><br>对CLK信号进行减1计数<br>1、将控制字写入控制寄存器，确定82C54工作方式<br>2、将计数初始值写入初值寄存器。<br>3、从计数初值开始，在GATE控制下，每当CLK信号出现一次，计数值减1。<br>4、当计数值减到0，从OUT端输出规定的信号。<br>注：CLK信号出现时，计数器是否减1，由门控信号GATE控制</p>
 </li>
 <li><p><strong>定时计数接口82C54</strong><br>82C54具有三个独立的16位计数器（0#~2#通道），每个通道就是一个独立的可编程定时计数器。<br>每个通道有6种工作方式；<br>可以进行二进制或十进制计数，计数方式为减1计数。<br>注：82C54、8254、8253都是一个意思</p>
 </li>
-<li><p><strong>82C54内部结构</strong><br><img src="/images/接口技术及应用/定时计数接口82C54.png" width="310" height="200" alt="82C54内部结构图" align="center/"></p>
+<li><p><strong>82C54内部结构</strong><br><img src="/images/接口技术及应用/定时计数接口82C54.png" alt=""></p>
 <ul>
 <li><strong>数据总线缓冲器：</strong><br>8位，双向，用于暂存数据。<br>1、初始化时向其写入控制字；<br>2、向某一通道写入计数初值；<br>3、从某一通道读当前计数初值。</li>
 <li><strong>控制逻辑：</strong><br>接收CPU发来的RD、WR、CS、A1、A0信号，经过逻辑控制电路产生出对82C54要执行的操作。 </li>
 <li><strong>控制字寄存器：</strong><br>接收8位的方式命令字（控制字）</li>
 </ul>
 </li>
-<li><p><strong>82C54外部引脚</strong><br><img src="/images/接口技术及应用/82C54外部引脚.png" width="460" height="190" alt="82C54外部引脚" align="center/"><br>\(\small \rm \textbf{D0}\cdots \textbf{D7}\)：双向，8位数据线<br>\(\small \rm \overline{\textbf{WR}}\)：输入，写信号<br>\(\small \rm \overline{\textbf{RD}}\)：输入，读信号<br>\(\small \rm \overline{\textbf{CS}}\)：输入，接口片选信号<br>\(\small \rm \textbf{A0 A1}\)：输入，片内地址选择<br><code>00</code>：通道0<br><code>01</code>：通道1<br><code>10</code>：通道2<br><code>11</code>：方式命令字<br>\(\small \rm \textbf{OUT}\)：输出信号</p>
+<li><p><strong>82C54外部引脚</strong><br><img src="/images/接口技术及应用/82C54外部引脚.png" alt=""><br>\(\small \rm \textbf{D0}\cdots \textbf{D7}\)：双向，8位数据线<br>\(\small \rm \overline{\textbf{WR}}\)：输入，写信号<br>\(\small \rm \overline{\textbf{RD}}\)：输入，读信号<br>\(\small \rm \overline{\textbf{CS}}\)：输入，接口片选信号<br>\(\small \rm \textbf{A0 A1}\)：输入，片内地址选择<br><code>00</code>：通道0<br><code>01</code>：通道1<br><code>10</code>：通道2<br><code>11</code>：方式命令字<br>\(\small \rm \textbf{OUT}\)：输出信号</p>
 </li>
 </ul>
 <h3 id="82C54初始化编程"><a href="#82C54初始化编程" class="headerlink" title="82C54初始化编程"></a>82C54初始化编程</h3><ul>
-<li><p><strong>方式命令字格式</strong><br><img src="/images/接口技术及应用/82C54方式命令字.png" width="500" height="60" align="center/"></p>
+<li><p><strong>方式命令字格式</strong><br><img src="/images/接口技术及应用/82C54方式命令字.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">D7 D6：控制字是针对哪个计数器的</span><br><span class="line">    00：计数器0</span><br><span class="line">    01：计数器1</span><br><span class="line">    10：计数器2</span><br><span class="line">    11：非法。</span><br><span class="line">D5 D4：设置读写格式，由计数初值的位数决定，8位-01，16位-11。</span><br><span class="line">    00：计数器锁存命令</span><br><span class="line">    01：只读写低字节</span><br><span class="line">    10：只读写高字节</span><br><span class="line">    11：先读写低字节，后读写高字节。</span><br><span class="line">D3 D2 D1：指定82C54的工作模式</span><br><span class="line">    000：方式0</span><br><span class="line">    ...</span><br><span class="line">    101：方式5。</span><br><span class="line">D0：指定计数模式</span><br><span class="line">    0：二进制</span><br><span class="line">    1：十进制，即BCD码，将每个十进制位转化为4位二进制，求和还是按十进制来算。</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>编程流程</strong><br><strong>原则: 先写方式命令字、再写计数初值。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">;端口地址为60H~63H，选择1#，工作方式2，计数初值33H，BCD码制。初始化程序段为：</span><br><span class="line">MOV AL,01010101B     ;写入方式命令字</span><br><span class="line">OUT 63H,AL           ;片内地址为11</span><br><span class="line">MOV AL,33H           ;写入计数初值</span><br><span class="line">OUT 61H,AL           ;片内地址为01（使用1号通道）</span><br><span class="line"></span><br><span class="line">;若计数初值为5533H，其他不变，则程序段为：</span><br><span class="line">MOV AL,01110101B   ;写入控制命令字</span><br><span class="line">OUT 63H,AL         </span><br><span class="line">MOV AL,33H         ;写入计数初值低字节</span><br><span class="line">OUT 61H,AL         </span><br><span class="line">MOV AL,55H         ;写入计数初值高字节</span><br><span class="line">OUT 61H,AL</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="82C54六种工作方式"><a href="#82C54六种工作方式" class="headerlink" title="82C54六种工作方式"></a>82C54六种工作方式</h3><p>方式0：计数结束产生中断<br>方式1：可重复编程的单脉冲<br>方式2：分频器<br>方式3：方波发生器<br>方式4：软件触发的选通信号发生器<br>方式5：硬件触发的选通信号发生器<br><strong>重点是方式2和方式3</strong><br><img src="/images/接口技术及应用/82C54工作方式.png" width="315" height="125" align="center/"></p>
+<h3 id="82C54六种工作方式"><a href="#82C54六种工作方式" class="headerlink" title="82C54六种工作方式"></a>82C54六种工作方式</h3><p>方式0：计数结束产生中断<br>方式1：可重复编程的单脉冲<br>方式2：分频器<br>方式3：方波发生器<br>方式4：软件触发的选通信号发生器<br>方式5：硬件触发的选通信号发生器<br><strong>重点是方式2和方式3</strong><br><img src="/images/接口技术及应用/82C54工作方式.png" alt=""></p>
 <ul>
 <li><p><strong>6种方式不同之处</strong><br>启动计数的触发方式不同。<br>门控信号GATE对计数操作控制不同。<br>是否有初值重装功能。<br>OUT引脚输出波形不同</p>
 </li>
-<li><p><strong>方式0（计数结束产生中断）</strong><br><img src="/images/接口技术及应用/82C54方式0.png" width="310" height="160" align="center/"><br><strong>触发方式：</strong>软启动。写入控制字后，立即启动，OUT-&gt;低电平，但写入初值后才开始计数。<br>注：写入初值后要等下一个clk才开始计数，一低一高算一个clk。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：</strong>不具有<br><strong>OUT波形：</strong>只计数一次，计数时为低电平，计数结束输出持续的高电平，在写入初值\((n+1)\cdot T_{clk}\)时间后发生0到1跳变。</p>
+<li><p><strong>方式0（计数结束产生中断）</strong><br><img src="/images/接口技术及应用/82C54方式0.png" alt=""><br><strong>触发方式：</strong>软启动。写入控制字后，立即启动，OUT-&gt;低电平，但写入初值后才开始计数。<br>注：写入初值后要等下一个clk才开始计数，一低一高算一个clk。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：</strong>不具有<br><strong>OUT波形：</strong>只计数一次，计数时为低电平，计数结束输出持续的高电平，在写入初值\((n+1)\cdot T_{clk}\)时间后发生0到1跳变。</p>
 </li>
-<li><p><strong>方式1（可重复编程的单脉冲）</strong><br><img src="/images/接口技术及应用/82C54方式1.png" width="310" height="160" align="center/"><br><strong>触发方式：</strong>硬件启动，写入控制字后，OUT-&gt;高电平；检测到GATE上升沿，OUT-&gt;低电平，开始计数。<br><strong>GATE信号：</strong>可重复触发计数，检测到GATE上升后就重新计数。<br><strong>初值重装：</strong>不具有。<br><strong>OUT波形：</strong>宽度为\(n\cdot T_{clk}\)的负脉冲。<br><strong>用途：</strong>单脉冲发生器，宽度由程序设置的n决定。 </p>
+<li><p><strong>方式1（可重复编程的单脉冲）</strong><br><img src="/images/接口技术及应用/82C54方式1.png" alt=""><br><strong>触发方式：</strong>硬件启动，写入控制字后，OUT-&gt;高电平；检测到GATE上升沿，OUT-&gt;低电平，开始计数。<br><strong>GATE信号：</strong>可重复触发计数，检测到GATE上升后就重新计数。<br><strong>初值重装：</strong>不具有。<br><strong>OUT波形：</strong>宽度为\(n\cdot T_{clk}\)的负脉冲。<br><strong>用途：</strong>单脉冲发生器，宽度由程序设置的n决定。 </p>
 </li>
-<li><p><strong>方式2 周期性负脉冲输出（分频器）</strong><br><img src="/images/接口技术及应用/82C54方式2.png" width="350" height="165" align="center/"><br><strong>触发方式：</strong>写入控制字后，OUT-&gt;高电平，但写入初值后才开始计数。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：具有</strong>，在计数过程中若重新写入计数初值，对正在进行的计数过程没有影响，但在计到1输出一个CLK宽度的负脉冲后，计数器将按新的计数初值开始计数。<br><img src="/images/接口技术及应用/82C54方式2初值重装.png" width="360" height="90" align="center/"><br><strong>OUT波形：</strong>产生连续的负脉冲，宽度为\(T_{clk}\)，周期为\(n\cdot T_{clk}\)。<br><strong>用途：</strong>分频器，放大\(T_{clk} \rightarrow n\cdot T_{clk}\)，可用来提供周期性脉冲信号/时终信号。<br>注：分频器意思是高频-&gt;低频就行，波形不一定要相同。</p>
+<li><p><strong>方式2 周期性负脉冲输出（分频器）</strong><br><img src="/images/接口技术及应用/82C54方式2.png" alt=""><br><strong>触发方式：</strong>写入控制字后，OUT-&gt;高电平，但写入初值后才开始计数。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：具有</strong>，在计数过程中若重新写入计数初值，对正在进行的计数过程没有影响，但在计到1输出一个CLK宽度的负脉冲后，计数器将按新的计数初值开始计数。<br><img src="/images/接口技术及应用/82C54方式2初值重装.png" alt=""><br><strong>OUT波形：</strong>产生连续的负脉冲，宽度为\(T_{clk}\)，周期为\(n\cdot T_{clk}\)。<br><strong>用途：</strong>分频器，放大\(T_{clk} \rightarrow n\cdot T_{clk}\)，可用来提供周期性脉冲信号/时终信号。<br>注：分频器意思是高频-&gt;低频就行，波形不一定要相同。</p>
 </li>
-<li><p><strong>方式3 方波发生器</strong><br><img src="/images/接口技术及应用/82C54方式3.png" width="350" height="165" align="center/"><br>（和方式2类似，只不过输出的是方波）<br><strong>触发方式：</strong>写入控制字后，OUT-&gt;高电平，但写入初值后才开始计数。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：具有</strong>，和方式2原理一样。<br><strong>OUT波形：</strong>产生连续的负脉冲，宽度为\(\frac {n} {2}\cdot T_{clk}\)，周期为\(n\cdot T_{clk}\)。<br>注：当n是奇数时，输出不对称方波，前\(\frac {n+1} {2}\)个计数期间，OUT输出高电平；后\(\frac {n-1} {2}\)个计数期间，OUT输出低电平。<br><strong>用途：</strong>方波发生器，也可分频。</p>
+<li><p><strong>方式3 方波发生器</strong><br><img src="/images/接口技术及应用/82C54方式3.png" alt=""><br>（和方式2类似，只不过输出的是方波）<br><strong>触发方式：</strong>写入控制字后，OUT-&gt;高电平，但写入初值后才开始计数。<br><strong>GATE信号：</strong>高电平时计数，低电平时暂停计数。<br><strong>初值重装：具有</strong>，和方式2原理一样。<br><strong>OUT波形：</strong>产生连续的负脉冲，宽度为\(\frac {n} {2}\cdot T_{clk}\)，周期为\(n\cdot T_{clk}\)。<br>注：当n是奇数时，输出不对称方波，前\(\frac {n+1} {2}\)个计数期间，OUT输出高电平；后\(\frac {n-1} {2}\)个计数期间，OUT输出低电平。<br><strong>用途：</strong>方波发生器，也可分频。</p>
 </li>
 </ul>
 <h2 id="第四章-并行接口"><a href="#第四章-并行接口" class="headerlink" title="第四章 并行接口"></a>第四章 并行接口</h2><p>串/并接口指<strong>接口和外设</strong>间的连线是单根还是多根，接口和CPU间肯定是多根线。</p>
 <ul>
-<li><strong>并行接口特点</strong><br>通过多根信号线同时传送多位数据，且传送时一般不需要特定的数据传送格式；<br>并行接口多用于距离短，数据量大，速率高的实时传输场合；<br>并行接口布线成本高，且有线路间互相干扰、时钟同步等问题，因此并行传输技术发展受限。<br>常用并行接口：<br><img src="/images/接口技术及应用/常见并行接口.png" width="390" height="175" alt="常见并行接口" align="center/"></li>
+<li><strong>并行接口特点</strong><br>通过多根信号线同时传送多位数据，且传送时一般不需要特定的数据传送格式；<br>并行接口多用于距离短，数据量大，速率高的实时传输场合；<br>并行接口布线成本高，且有线路间互相干扰、时钟同步等问题，因此并行传输技术发展受限。<br>常用并行接口：<br><img src="/images/接口技术及应用/常见并行接口.png" alt=""></li>
 </ul>
 <h3 id="可编程并行接口8255"><a href="#可编程并行接口8255" class="headerlink" title="可编程并行接口8255"></a>可编程并行接口8255</h3><p>上一章介绍的82C54属于非通道接口，其主要功能为驱动外设，而非在CPU和外设间传数据；<br>本章介绍的8255是通道接口，主要功能就是在CPU和外设间传数据。</p>
 <ul>
 <li><p><strong>8255特点</strong><br>有三个输入输出端口：端口A，端口B，端口C。<br>每个端口可编程设定为输入端口或输出端口，并可设定不同的工作方式。<br>端口C可作为一个独立的端口使用，但常常是配合A口和B口工作，为A、B端口的提供联络信号。</p>
 </li>
-<li><p><strong>8255的内部结构</strong><br><img src="/images/接口技术及应用/8255内部结构.png" width="400" height="300" alt="8255内部结构" align="center/"><br>三个并行输入输出端口（A口、B口、C口）分为两组进行控制，分别对应一个控制寄存器：<br>A组：A口、C口高4位<br>B组：B口、C口低4位</p>
+<li><p><strong>8255的内部结构</strong><br><img src="/images/接口技术及应用/8255内部结构.png" alt=""><br>三个并行输入输出端口（A口、B口、C口）分为两组进行控制，分别对应一个控制寄存器：<br>A组：A口、C口高4位<br>B组：B口、C口低4位</p>
 </li>
-<li><p><strong>8255的外部引脚</strong><br><img src="/images/接口技术及应用/8255外部引脚.png" width="460" height="185" alt="8255外部引脚" align="center/"><br><strong>片选地址A1 A0：</strong><br><code>00</code>：A端口<br><code>01</code>：B端口<br><code>10</code>：C端口<br><code>11</code>：方式命令字</p>
+<li><p><strong>8255的外部引脚</strong><br><img src="/images/接口技术及应用/8255外部引脚.png" alt=""><br><strong>片选地址A1 A0：</strong><br><code>00</code>：A端口<br><code>01</code>：B端口<br><code>10</code>：C端口<br><code>11</code>：方式命令字</p>
 </li>
 </ul>
 <h3 id="8255初始化编程"><a href="#8255初始化编程" class="headerlink" title="8255初始化编程"></a>8255初始化编程</h3><p>8255A有两个控制字（方式命令字，C口按位复位/置位命令字）和一个状态字，设置方法也不同。</p>
 <ul>
-<li><p><strong>方式命令字</strong><br><img src="/images/接口技术及应用/8255方式命令字.png" width="510" height="210" alt="8255方式命令字" align="center/"><br>D7：<code>1</code>时表示方式命令字，<code>0</code>时表示C口按位复位/置位命令字<br>其余位按A、B组分为两组，进行不同的控制。</p>
+<li><p><strong>方式命令字</strong><br><img src="/images/接口技术及应用/8255方式命令字.png" alt=""><br>D7：<code>1</code>时表示方式命令字，<code>0</code>时表示C口按位复位/置位命令字<br>其余位按A、B组分为两组，进行不同的控制。</p>
 </li>
-<li><p><strong>C口按位复位/置位命令字</strong><br>在方式1和方式2时要用到这个控制字，对C口的某一位置1/0，输出正/负脉冲。<br>此控制字只对C口有效。<br>它被写入控制口，不是写入C口。<br><img src="/images/接口技术及应用/8255C口按位复位置位命令字.png" width="490" height="250" alt="8255C口按位复位置位命令字" align="center/"></p>
+<li><p><strong>C口按位复位/置位命令字</strong><br>在方式1和方式2时要用到这个控制字，对C口的某一位置1/0，输出正/负脉冲。<br>此控制字只对C口有效。<br>它被写入控制口，不是写入C口。<br><img src="/images/接口技术及应用/8255C口按位复位置位命令字.png" alt=""></p>
 </li>
 <li><p><strong>编程流程</strong><br>和82C54编程原则相同：先写控制字，再写数据值。</p>
 </li>
@@ -259,32 +259,32 @@
 <ul>
 <li><p><strong>方式0</strong><br>最简单的连接方式，直接读写数据即可。<br>2个8位的端口和2个4位的端口，都可以作为输入或输出。<br>单向I/0，端口只能做输入或输出一项功能。<br>系统没有指定C口的某些线作为专门的信号联络线和状态位，但是用户可以自定义C口的某些线作为信号联络线。<br>端口信号线之间无固定的时序关系，由用户根据数据传送的要求决定输入输出的操作过程。不需要任何选通信号。</p>
 </li>
-<li><p><strong>方式1（输入过程）</strong><br><img src="/images/接口技术及应用/8255方式1输入过程.png" width="435" height="67" alt="方式1输入过程示意图" align="center/"><br><strong>各信号意义：</strong><br>\(\small \rm \overline{STB}\)：选通信号，表示外设已经准备好数据。<br>IBF：输入缓冲器满信号，表示端口已经接收数据完毕。<br>INTR：中断请求信号，请求CPU接收数据。<br>\(\small \rm \overline{RD}\)：读数据信号，有效代表CPU在读取数据。在外设向CPU发出INTR信号后，什么时候CPU响应了中断，\(\small \rm \overline{RD}\)即变为有效。<br><img src="/images/接口技术及应用/8255方式1信号时序图(输入).png" width="433" height="180" alt="信号时序图（输入）" align="center/"></p>
+<li><p><strong>方式1（输入过程）</strong><br><img src="/images/接口技术及应用/8255方式1输入过程.png" alt=""><br><strong>各信号意义：</strong><br>\(\small \rm \overline{STB}\)：选通信号，表示外设已经准备好数据。<br>IBF：输入缓冲器满信号，表示端口已经接收数据完毕。<br>INTR：中断请求信号，请求CPU接收数据。<br>\(\small \rm \overline{RD}\)：读数据信号，有效代表CPU在读取数据。在外设向CPU发出INTR信号后，什么时候CPU响应了中断，\(\small \rm \overline{RD}\)即变为有效。<br><img src="/images/接口技术及应用/8255方式1信号时序图(输入" alt="">.png)</p>
 </li>
-<li><p><strong>方式1（输出过程）</strong><br><img src="/images/接口技术及应用/8255方式1输出过程.png" width="435" height="67" alt="方式1输出过程示意图" align="center/"><br><strong>各信号意义：</strong><br>INTR：中断请求信号，接口向CPU发出中断。<br>\(\small \rm \overline{WR}\)：写信号，表示CPU向接口在写数据。<br>\(\small \rm \overline{OBF}\)：输出缓冲器满信号，表示外设可以从接口中取数据了 。<br>\(\small \rm \overline{ACK}\)：外设应答信号，\(\small \rm \overline{ACK}=0\)其实是一个负脉冲，表示外设已接收完数据，可以再发下一个数据，因此马上会回到高电平。<br><img src="/images/接口技术及应用/8255方式1信号时序图(输出).png" width="433" height="180" alt="信号时序图（输出）" align="center/"><br>CPU响应中断以后，向8255输出数据，写信号出现；写信号撤消，其上升沿一方面撤消中断请求信号INTR，另一方面使\(\small \rm \overline{OBF}\)信号变为有效的低电平，通知外设可以接收数据。<br>当外设接收完数据后，便发出一个\(\small \rm \overline{ACK}\)信号，同时使\(\small \rm \overline{OBF}\)变为无效，表示数据已经取走，当前缓冲器空。\(\small \rm \overline{ACK}\)信号结束时使INTR信号变为有效的高电平，向CPU发出中断请求信号，从而开始新的数据输出过程。</p>
+<li><p><strong>方式1（输出过程）</strong><br><img src="/images/接口技术及应用/8255方式1输出过程.png" alt=""><br><strong>各信号意义：</strong><br>INTR：中断请求信号，接口向CPU发出中断。<br>\(\small \rm \overline{WR}\)：写信号，表示CPU向接口在写数据。<br>\(\small \rm \overline{OBF}\)：输出缓冲器满信号，表示外设可以从接口中取数据了 。<br>\(\small \rm \overline{ACK}\)：外设应答信号，\(\small \rm \overline{ACK}=0\)其实是一个负脉冲，表示外设已接收完数据，可以再发下一个数据，因此马上会回到高电平。<br><img src="/images/接口技术及应用/8255方式1信号时序图(输出" alt="">.png)<br>CPU响应中断以后，向8255输出数据，写信号出现；写信号撤消，其上升沿一方面撤消中断请求信号INTR，另一方面使\(\small \rm \overline{OBF}\)信号变为有效的低电平，通知外设可以接收数据。<br>当外设接收完数据后，便发出一个\(\small \rm \overline{ACK}\)信号，同时使\(\small \rm \overline{OBF}\)变为无效，表示数据已经取走，当前缓冲器空。\(\small \rm \overline{ACK}\)信号结束时使INTR信号变为有效的高电平，向CPU发出中断请求信号，从而开始新的数据输出过程。</p>
 </li>
-<li><p><strong>方式1下的C口状态字</strong><br><img src="/images/接口技术及应用/8255方式1C口状态字.png" width="457" height="225" alt="8255方式1 C口状态字" align="center/"><br><strong>INTE：</strong>中断使能状态，表示是否允许端口发出INTR信号。初始化时通过C口按位复位/置位命令字来设定，设定后，就会在状态字中反映出来。<br><strong>PC0-PC7：</strong>指C口的对应位，为A口和B口的提供辅助信号。A组：8位数据口+5位控制口(PC3-PC7)，B组：8位数据口+3位控制口(PC0-PC2)。<br><strong>状态字作用：</strong><br>状态字主要为查询方式提供了状态标志位，方式1下，CPU读取的C口某几位内容，主要有：\(\small \rm \overline{OBF}\)、IBF、INTE、INTR，来判断下一步应该进行的操作。<br>注1：A口、B口都有相应的状态字，实质是相互独立的两个数据口。<br>注2：\(\small \rm \overline{STB}\)、\(\small \rm \overline{ACK}\)线的状态不能读取，因为是来自外设的信号，所以状态字中没有，CPU也不需要知道。<br>注3：端口C状态字寄存器的值和对应的引脚信号不一定一样。如输入状态下，PC4寄存器值表示INTE，而引脚则接\(\small \rm \overline{STB}\)信号。因为INTE是在初始化时设置的，而\(\small \rm \overline{STB}\)信号又不写到寄存器中，所以两者并不冲突，这样可以提升端口利用率。</p>
+<li><p><strong>方式1下的C口状态字</strong><br><img src="/images/接口技术及应用/8255方式1C口状态字.png" alt=""><br><strong>INTE：</strong>中断使能状态，表示是否允许端口发出INTR信号。初始化时通过C口按位复位/置位命令字来设定，设定后，就会在状态字中反映出来。<br><strong>PC0-PC7：</strong>指C口的对应位，为A口和B口的提供辅助信号。A组：8位数据口+5位控制口(PC3-PC7)，B组：8位数据口+3位控制口(PC0-PC2)。<br><strong>状态字作用：</strong><br>状态字主要为查询方式提供了状态标志位，方式1下，CPU读取的C口某几位内容，主要有：\(\small \rm \overline{OBF}\)、IBF、INTE、INTR，来判断下一步应该进行的操作。<br>注1：A口、B口都有相应的状态字，实质是相互独立的两个数据口。<br>注2：\(\small \rm \overline{STB}\)、\(\small \rm \overline{ACK}\)线的状态不能读取，因为是来自外设的信号，所以状态字中没有，CPU也不需要知道。<br>注3：端口C状态字寄存器的值和对应的引脚信号不一定一样。如输入状态下，PC4寄存器值表示INTE，而引脚则接\(\small \rm \overline{STB}\)信号。因为INTE是在初始化时设置的，而\(\small \rm \overline{STB}\)信号又不写到寄存器中，所以两者并不冲突，这样可以提升端口利用率。</p>
 </li>
 </ul>
 <h2 id="第五章-中断技术"><a href="#第五章-中断技术" class="headerlink" title="第五章 中断技术"></a>第五章 中断技术</h2><h3 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h3><p>中断的本质是程序转移：CPU响应中断请求，暂停现行的主程序，转去执行中断服务子程序，完成中断事件处理后，返回断点继续执行主程序的过程。</p>
 <ul>
-<li><p><strong>中断的分类</strong><br><img src="/images/接口技术及应用/中断分类.png" width="475" height="207" alt="中断分类" align="center/"><br>中断的内、外是针对CPU而言的，外部中断即来自CPU外部的中断。</p>
+<li><p><strong>中断的分类</strong><br><img src="/images/接口技术及应用/中断分类.png" alt=""><br>中断的内、外是针对CPU而言的，外部中断即来自CPU外部的中断。</p>
 </li>
 <li><p><strong>外部可屏蔽中断的一般流程</strong><br>1、中断请求：INTR，请求信号应保持到本次中断被响应<br>2、中断识别及判优：通过类型号区分不同中断源，通过优先级进行中断判优<br>3、中断响应：保护现场等操作（硬件完成）<br>4、中断处理：执行中断服务子程序<br>5、中断返回：恢复现场等操作（硬件完成）</p>
 </li>
-<li><p><strong>中断向量与中断向量表</strong><br><strong>中断类型号：</strong>8086微处理器支持256种中断，编号为0~255号。<br><strong>中断向量：</strong>中断服务程序的入口地址，CS:IP的形式存储，占4个字节的地址。<br><strong>中断向量表：</strong>系统中所有的中断向量集中起来放到存储器的某一区域内，即为中断向量表。在内存中用000~3FFH共1024(4*256)个地址作为中断向量表存储区。<br><strong>由中断号计算中断服务程序地址：</strong>先计算中断向量的地址(4*中断号)，再取出中断服务程序的地址。总共四个字节，低2字节为IP，高2字节为CS，都是小端存储。<br>eg：计算中断类型号为4AH的中断服务程序入口地址<br><img src="/images/接口技术及应用/计算中断入口地址eg.png" width="340" height="270" align="center/"></p>
+<li><p><strong>中断向量与中断向量表</strong><br><strong>中断类型号：</strong>8086微处理器支持256种中断，编号为0~255号。<br><strong>中断向量：</strong>中断服务程序的入口地址，CS:IP的形式存储，占4个字节的地址。<br><strong>中断向量表：</strong>系统中所有的中断向量集中起来放到存储器的某一区域内，即为中断向量表。在内存中用000~3FFH共1024(4*256)个地址作为中断向量表存储区。<br><strong>由中断号计算中断服务程序地址：</strong>先计算中断向量的地址(4*中断号)，再取出中断服务程序的地址。总共四个字节，低2字节为IP，高2字节为CS，都是小端存储。<br>eg：计算中断类型号为4AH的中断服务程序入口地址<br><img src="/images/接口技术及应用/计算中断入口地址eg.png" alt=""></p>
 </li>
 </ul>
 <h3 id="可编程中断控制器8259A"><a href="#可编程中断控制器8259A" class="headerlink" title="可编程中断控制器8259A"></a>可编程中断控制器8259A</h3><p><strong>作用：</strong>接收外设传来的中断，进行中断识别和判优，并将应该响应中断的中断号传给CPU。只传中断号，并不执行中断。<br>8259A只是帮助系统管理外部可屏蔽中断，外部不可屏蔽中断及内部中断CPU自己处理。<br>8259A具有8级优先权控制，通过级连可扩展至64级优先权控制。</p>
 <ul>
-<li><p><strong>8259A内部结构</strong><br><img src="/images/接口技术及应用/8259A内部结构.png" width="370" height="270" alt="8259A内部结构图" align="center/"><br><strong>中断请求寄存器(IRR)：</strong>该寄存器8位(D0～D7)对应于IR0~IR7线上传来的中断请求，哪一根输入线有请求，哪位就置“1”，中断被响应后对应位就置0。<br><strong>中断屏蔽寄存器(IMR)：</strong>寄存器8位(D0～D7)对应8级中断屏蔽，IR0~IR7哪一个中断被屏蔽，哪位就写1。<br><strong>优先权分析器(PR)：</strong>PR将当前中断请求的优先级和“正在服务中的中断”进行比较，决定是否让这个中断请求送给处理器（低优先级就不送了）。<br><strong>ISR寄存器：</strong>寄存了正在服务的\(\small \rm IR_{i}\)中断源和被挂起的中断源，可根据优先级规则判断哪个中断源正在被服务。<br><strong>被挂起的含义：</strong>低优先级中断先响应了，之后来了高优先级中断，就挂起去执行高优先级（若高优先级先响应，低优先级压根就不会送到ISR）。<br>如下图：若IR0中断优先级最高，IR7优先级最低，则当前被服务的是IR0，被挂起的是IR2和IR6。<br><img src="/images/接口技术及应用/8259A_ISR寄存器.png" width="330" height="50" alt="8259A ISR寄存器" align="center/"><br><strong>级联缓冲/比较器（CAS0~CAS2）：</strong>主控和从控芯片的CAS0~CAS2相互连接，进行级联；从控的INT引脚接到主控的IR上，传递中断号。<br><strong>如何区分主控和从控：</strong>SP/EN引脚接高电平为主控，接低电平为从控。</p>
+<li><p><strong>8259A内部结构</strong><br><img src="/images/接口技术及应用/8259A内部结构.png" alt=""><br><strong>中断请求寄存器(IRR)：</strong>该寄存器8位(D0～D7)对应于IR0~IR7线上传来的中断请求，哪一根输入线有请求，哪位就置“1”，中断被响应后对应位就置0。<br><strong>中断屏蔽寄存器(IMR)：</strong>寄存器8位(D0～D7)对应8级中断屏蔽，IR0~IR7哪一个中断被屏蔽，哪位就写1。<br><strong>优先权分析器(PR)：</strong>PR将当前中断请求的优先级和“正在服务中的中断”进行比较，决定是否让这个中断请求送给处理器（低优先级就不送了）。<br><strong>ISR寄存器：</strong>寄存了正在服务的\(\small \rm IR_{i}\)中断源和被挂起的中断源，可根据优先级规则判断哪个中断源正在被服务。<br><strong>被挂起的含义：</strong>低优先级中断先响应了，之后来了高优先级中断，就挂起去执行高优先级（若高优先级先响应，低优先级压根就不会送到ISR）。<br>如下图：若IR0中断优先级最高，IR7优先级最低，则当前被服务的是IR0，被挂起的是IR2和IR6。<br><img src="/images/接口技术及应用/8259A_ISR寄存器.png" alt=""><br><strong>级联缓冲/比较器（CAS0~CAS2）：</strong>主控和从控芯片的CAS0~CAS2相互连接，进行级联；从控的INT引脚接到主控的IR上，传递中断号。<br><strong>如何区分主控和从控：</strong>SP/EN引脚接高电平为主控，接低电平为从控。</p>
 </li>
-<li><p><strong>8259A外部引脚</strong><br><img src="/images/接口技术及应用/8259A外部引脚.png" width="430" height="280" alt="8259A外部引脚" align="center/"></p>
+<li><p><strong>8259A外部引脚</strong><br><img src="/images/接口技术及应用/8259A外部引脚.png" alt=""></p>
 </li>
 <li><p><strong>8259A中断响应过程</strong><br>1、IRQ0~IRQ7有中断请求，IRR的相应位置1<br>2、IRR与IMR相应位进行比较，封锁或发送中断请求给PR<br>3、PR分析后，把当前最高优先级的中断请求由INT送至CPU<br>4、若IF=1，CPU执行完当前指令后，连续发出2个\(\small \rm \overline{INTA}\)信号（IF=1表示开中断）<br><strong>5、</strong>接到第1个\(\small \rm \overline{INTA}\)后，ISR对应位置1，IRR对应位清0<br><strong>6、</strong>接到第2个\(\small \rm \overline{INTA}\)后，8259A把中断类型号送上数据总线<br>7、CPU根据收到的中断类型号，到中断向量表中取中断向量，执行中断子程序。</p>
 </li>
 </ul>
-<h3 id="8259A工作方式"><a href="#8259A工作方式" class="headerlink" title="8259A工作方式"></a>8259A工作方式</h3><p><img src="/images/接口技术及应用/8259A工作方式.png" width="508" height="293" align="center/"><br>因为其他部分都不太重要，因此接下来重点介绍<strong>优先级排队方式</strong>。</p>
+<h3 id="8259A工作方式"><a href="#8259A工作方式" class="headerlink" title="8259A工作方式"></a>8259A工作方式</h3><p><img src="/images/接口技术及应用/8259A工作方式.png" alt=""><br>因为其他部分都不太重要，因此接下来重点介绍<strong>优先级排队方式</strong>。</p>
 <ul>
 <li><p><strong>普通完全嵌套方式</strong><br>在该方式下，IR7～IR0的优先级顺序是IR0最高，IR7最低。且一个中断被响应，只有比它更高优先级的中断请求才会被响应。</p>
 </li>
@@ -295,38 +295,38 @@
 </ul>
 <h3 id="8259A初始化命令字"><a href="#8259A初始化命令字" class="headerlink" title="8259A初始化命令字"></a>8259A初始化命令字</h3><p>8259A有4个初始化命令字ICW1~ICW4，在接口使用前进行设置。<br>初始化命令字必须按ICW1~ICW4的顺序写入，中间不能被打断（关中断）。且ICW1、ICW2是必须写的，ICW3、ICW4需不需要写视工作方式而定。<br><strong>写入地址：</strong>ICW1要写到<strong>偶地址（A0=0）</strong>，ICW2~ICW4写到<strong>奇地址（A0=1）</strong>。</p>
 <ul>
-<li><p><strong>ICW1（芯片控制命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW1.png" width="420" height="50" align="center/"></p>
+<li><p><strong>ICW1（芯片控制命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW1.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">D7 D6 D5：可任意设置，建议设为0</span><br><span class="line">D4：标志位，只能设为1</span><br><span class="line">D3：设置中断触发方式</span><br><span class="line">    1：电平触发方式</span><br><span class="line">    0：边沿触发方式 </span><br><span class="line">D2：任意设置，建议为0</span><br><span class="line">D1：规定单片还是级连方式</span><br><span class="line">    1：单片方式</span><br><span class="line">    0：级连方式</span><br><span class="line">D0：是否写入ICW4</span><br><span class="line">    1：要写入ICW4</span><br><span class="line">    0：不写入ICW4</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>ICW2（中断类型号命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW2.png" width="420" height="50" align="center/"></p>
+<li><p><strong>ICW2（中断类型号命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW2.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">D7~D3：设置中断向量号的高5位，手动设置。</span><br><span class="line">D2~D0：中断向量号的低3位，8259A会自动确定。</span><br><span class="line">IR0为000、IR1为001...IR7为111</span><br><span class="line">写的时候只用写D7~D3即可，D2~D0自动设为0。</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>最终中断号=ICW2的高5位+\(\small \rm IR_{i}\)组合而成。</p>
 <ul>
-<li><p><strong>ICW3（级联控制命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW3.png" width="485" height="85" align="center/"><br>ICW3是级联时才需写入的控制字，且对于主、从片的意义不同。</p>
+<li><p><strong>ICW3（级联控制命令字）</strong><br><img src="/images/接口技术及应用/8259A_ICW3.png" alt=""><br>ICW3是级联时才需写入的控制字，且对于主、从片的意义不同。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对于主片：Di=1表示IRi接有从片，否则IRi没有接从片。</span><br><span class="line">对于从片：D2~D0表明从片的INT引脚接到主片的哪个IR引脚。</span><br><span class="line"></span><br><span class="line">例：主控8259第IR3、IR6上联了从控。</span><br><span class="line">主控：ICW3=01001000B，</span><br><span class="line">从控A：ICW3=00000011B，</span><br><span class="line">从控B：ICW3=00000110B。</span><br><span class="line"></span><br><span class="line">如何区分主控和从控：SP/EN接高电平为主控，接低电平为从控。</span><br><span class="line">主控和从控的CAS0~CAS2相互连接，进行级联；从控的INT引脚接到主控的IR上，传递中断号。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>ICW4（方式命令控制字）</strong><br><img src="/images/接口技术及应用/8259A_ICW4.png" width="485" height="85" align="center/"></p>
+<li><p><strong>ICW4（方式命令控制字）</strong><br><img src="/images/接口技术及应用/8259A_ICW4.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">D7 D6 D5：直接设0</span><br><span class="line">D4：设置嵌套方式</span><br><span class="line">    1：特殊嵌套方式</span><br><span class="line">    0：普通完全嵌套方式</span><br><span class="line">D3：数据线的缓冲方式</span><br><span class="line">    1：缓冲方式</span><br><span class="line">    0：非缓冲方式 </span><br><span class="line">D2：主片/从片选择</span><br><span class="line">    1：主片</span><br><span class="line">    0：从片</span><br><span class="line">D1：中断结束方式</span><br><span class="line">    1：自动中断结束</span><br><span class="line">    0：非自动中断结束</span><br><span class="line">D0：微处理器类型</span><br><span class="line">    1：16位80x86</span><br><span class="line">    0：8位8080/8085</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>8259A初始化流程</strong><br><img src="/images/接口技术及应用/8259A初始化流程.png" width="220" height="300" alt="8259A初始化流程" align="center/"></p>
+<li><p><strong>8259A初始化流程</strong><br><img src="/images/接口技术及应用/8259A初始化流程.png" alt=""></p>
 </li>
 </ul>
 <h3 id="8259A操作命令字"><a href="#8259A操作命令字" class="headerlink" title="8259A操作命令字"></a>8259A操作命令字</h3><p>8259A有3个操作命令字OCW1~OCW3，负责对8259A的工作状态进行设置。<br>在8259A工作期间，可以随时接受操作命令字，且对写入顺序没有要求，需要哪个OCW就写入那个OCW。<br><strong>写入地址：</strong>OCW1写到<strong>奇地址（A0=1）</strong>，OCW2、OCW3写到<strong>偶地址（A0=0）</strong></p>
 <ul>
-<li><p><strong>OCW1（屏蔽命令字）</strong><br><img src="/images/接口技术及应用/8259A_OCW1.png" width="485" height="85" align="center/"><br>内容写入中断屏蔽寄存器IMR，\(\small \rm D_i\)对应\(\small \rm IR_i\)<br><code>1</code>：禁止\(\small \rm IR_i\)中断<br><code>0</code>：允许\(\small \rm IR_i\)中断</p>
+<li><p><strong>OCW1（屏蔽命令字）</strong><br><img src="/images/接口技术及应用/8259A_OCW1.png" alt=""><br>内容写入中断屏蔽寄存器IMR，\(\small \rm D_i\)对应\(\small \rm IR_i\)<br><code>1</code>：禁止\(\small \rm IR_i\)中断<br><code>0</code>：允许\(\small \rm IR_i\)中断</p>
 </li>
-<li><p><strong>OCW2</strong><br><img src="/images/接口技术及应用/8259A_OCW2.png" width="410" height="300" align="center/"><br>OCW2用于设置优先级循环方式和中断结束方式</p>
+<li><p><strong>OCW2</strong><br><img src="/images/接口技术及应用/8259A_OCW2.png" alt=""><br>OCW2用于设置优先级循环方式和中断结束方式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">D7 D6 D5：组合为设置编码</span><br><span class="line">D7：是否允许优先权循环</span><br><span class="line">D6：设置优先级方式</span><br><span class="line">    1：循环优先级（按D2~D0决定哪个引脚优先级最低）</span><br><span class="line">    0：固定优先级（IR7最低，IR0最高）</span><br><span class="line">D5：是否允许EOI，EOI：结束中断，结束D2~D0对应引脚的中断</span><br><span class="line">    1：允许</span><br><span class="line">    0：不允许</span><br><span class="line">D2 D1 D0：指定优先级循环时，初始的最低优先级的引脚</span><br><span class="line"></span><br><span class="line">eg：D2~D0为101，表明指定初始时最低优先级为IR5，则最高优先级为IR6。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>OCW3</strong><br><img src="/images/接口技术及应用/8259A_OCW3.png" width="375" height="160" align="center/"><br>OCW3用于设置和撤消特殊屏蔽方式、设置中断查询方式以及发出对8259A内部寄存器的读出命令。</p>
+<li><p><strong>OCW3</strong><br><img src="/images/接口技术及应用/8259A_OCW3.png" alt=""><br>OCW3用于设置和撤消特殊屏蔽方式、设置中断查询方式以及发出对8259A内部寄存器的读出命令。</p>
 </li>
 <li><p><strong>如何区分初始化命令字和方式命令字</strong><br>8259A只有两个端口用来写命令字（一个奇地址一个偶地址），如何区分写到地址中的命令字？<br><strong>对于奇地址：</strong>ICW1、OCW2、OCW3都写到奇地址，通过命令字的<code>D4 D3</code>两位来区分。<br><strong>对于偶地址：</strong>ICW2~4、OCW1都写到偶地址，通过写入顺序来区分，系统规定只能按<code>ICW2-&gt;ICW3-&gt;ICW4-&gt;OCW1</code>的顺序写入。</p>
 </li>
 </ul>
 <h2 id="第六章-A-D、D-A转换器接口"><a href="#第六章-A-D、D-A转换器接口" class="headerlink" title="第六章 A/D、D/A转换器接口"></a>第六章 A/D、D/A转换器接口</h2><p>在实际工业生产环境，都是连续变化的模拟量 ，如：压力、温度、流量等；<br>而在计算机内部，则都是离散的数字量，二进制数、十进制数、十六进制等。<br>因此需要对连续的模拟量和离散的数字量做转换，就出现了A/D(Analog to Digital)、D/A(Digital to Analog)转换器芯片。</p>
-<h3 id="D-A转换芯片DAC0832"><a href="#D-A转换芯片DAC0832" class="headerlink" title="D/A转换芯片DAC0832"></a>D/A转换芯片DAC0832</h3><p>D/A转换器的功能是把二进制数字量电信号–&gt;与其数值成正比的模拟量电信号(电压、电流..)。<br>如下图：横坐标为输入的数字信号量，纵坐标为输出的模拟信号量。<br><img src="/images/接口技术及应用/DA转换器功能.png" width="275" height="155" alt="D/A转换器功能" align="center/"></p>
+<h3 id="D-A转换芯片DAC0832"><a href="#D-A转换芯片DAC0832" class="headerlink" title="D/A转换芯片DAC0832"></a>D/A转换芯片DAC0832</h3><p>D/A转换器的功能是把二进制数字量电信号–&gt;与其数值成正比的模拟量电信号(电压、电流..)。<br>如下图：横坐标为输入的数字信号量，纵坐标为输出的模拟信号量。<br><img src="/images/接口技术及应用/DA转换器功能.png" alt=""></p>
 <p>DAC0832主要有三项技术指标：分辨率、精度和建立时间。</p>
 <ul>
 <li><p><strong>分辨率</strong><br>分辨率是指输入数字量发生一个单位的变化时，输出模拟量的变化量，这个参数反映了DAC对模拟量的分辨能力<br>eg：<br>满刻度值电压为5V、10位DAC：能分辨的电压为\(\small 5/2^{10}=4.88(mV)\)。<br>满刻度值电压为5V、8位DAC：能分辨的电压为\(\small 5/2^8=19.53(mV)\)。</p>
@@ -335,20 +335,20 @@
 </li>
 <li><p><strong>建立时间</strong><br>从数字输入端发生变化开始，到模拟输出稳定在理想值的\(\pm \frac{1} {2}\)\(\small LSB\)时所需的时间（LSB指分辨率）。</p>
 </li>
-<li><p><strong>DAC0832内部结构</strong><br><img src="/images/接口技术及应用/DAC0832结构.png" width="400" height="206" alt="D/A转换器结构" align="center/"><br>DAC0832内部有两个数据缓冲器，分别由两组控制信号控制：<br><strong>输入寄存器：</strong>存放外部输入的数据，当\(\small ILE=1\cap \overline{CS}=0\cap \overline{WR1}=0\)时，\(\small LE1\)端有效，DI7~DI0上的数据锁被写到输入寄存器中。<br><strong>DAC寄存器：</strong>存放要输出的数据（D/A转换器根据DAC寄存器中的值计算输出的模拟值），当\(\small \overline{XFER}=0\cap \overline{WR2}=0\)时，\(\small LE2\)端有效，输入寄存器中的数据被写到DAC寄存器中。<br><strong>DAC0832外部引脚：</strong><br>\(\small DI0\sim DI7\)：8位数字输入端，DI0为最低端，DI7为最高端。<br>\(\small ILE\)：数据输入锁存允许，通常一直为高电平；<br>\(\small \overline{CS}\)：片选信号1–&gt;输入寄存器。<br>\(\small \overline{XFER}\)：片选信号2–&gt;DAC寄存器。<br>\(\small \overline{WR1}\)：写信号1，输入寄存器写选通信号。<br>\(\small \overline{WR2}\)：写信号2，DAC寄存器写选通信号。<br>\(\small Iout1\)：DAC电流输出端1，为数字输入端为1的位的输出电流之和。全1时最大，全0时最小。<br>\(\small Iout2\)：电流输出端2，\(\small Iout1+Iout2=常数\)</p>
+<li><p><strong>DAC0832内部结构</strong><br><img src="/images/接口技术及应用/DAC0832结构.png" alt=""><br>DAC0832内部有两个数据缓冲器，分别由两组控制信号控制：<br><strong>输入寄存器：</strong>存放外部输入的数据，当\(\small ILE=1\cap \overline{CS}=0\cap \overline{WR1}=0\)时，\(\small LE1\)端有效，DI7~DI0上的数据锁被写到输入寄存器中。<br><strong>DAC寄存器：</strong>存放要输出的数据（D/A转换器根据DAC寄存器中的值计算输出的模拟值），当\(\small \overline{XFER}=0\cap \overline{WR2}=0\)时，\(\small LE2\)端有效，输入寄存器中的数据被写到DAC寄存器中。<br><strong>DAC0832外部引脚：</strong><br>\(\small DI0\sim DI7\)：8位数字输入端，DI0为最低端，DI7为最高端。<br>\(\small ILE\)：数据输入锁存允许，通常一直为高电平；<br>\(\small \overline{CS}\)：片选信号1–&gt;输入寄存器。<br>\(\small \overline{XFER}\)：片选信号2–&gt;DAC寄存器。<br>\(\small \overline{WR1}\)：写信号1，输入寄存器写选通信号。<br>\(\small \overline{WR2}\)：写信号2，DAC寄存器写选通信号。<br>\(\small Iout1\)：DAC电流输出端1，为数字输入端为1的位的输出电流之和。全1时最大，全0时最小。<br>\(\small Iout2\)：电流输出端2，\(\small Iout1+Iout2=常数\)</p>
 </li>
-<li><p><strong>DAC0832工作时序</strong><br><img src="/images/接口技术及应用/DAC0832工作时序.png" width="485" height="317" alt="DAC0832工作时序" align="center/"></p>
+<li><p><strong>DAC0832工作时序</strong><br><img src="/images/接口技术及应用/DAC0832工作时序.png" alt=""></p>
 </li>
 </ul>
 <h3 id="DAC0832工作方式"><a href="#DAC0832工作方式" class="headerlink" title="DAC0832工作方式"></a>DAC0832工作方式</h3><p>DAC0832没有应答信号，有数据输入时，若已经选通了，即开始转换；也没有控制字信号，直接送数据即可。<br>DAC0832有单缓冲模式、双缓冲模式、无缓冲模式三种工作方式，重点是<strong>单缓冲模式</strong>。<br><strong>缓冲的含义：</strong>缓冲即指锁存，锁存就是寄存器能否暂存数据（尽管有新的输入数据，但仍旧保持原有的值，直到某个信号的到来才更新寄存器的值）。如果没有锁存功能，就是寄存器值和输入值保持同步，输出会随着输入而变化。<br>在DAC0832中，实现两个寄存器的缓冲功能，要通过寄存器对应的选通信号线：选通信号线处于无效状态，数据就写不进去，就实现了缓冲/锁存。若选通信号线恒有效，就没有缓冲功能。<br><strong>如何设置工作方式：</strong>0832没有命令字，根据选通信号引脚连线的不同来决定工作方式。</p>
 <ul>
-<li><p><strong>双缓冲方式</strong><br>输入寄存器、DAC寄存器都有缓冲功能。当把数据由输入寄存器写到DAC寄存器以后，输入寄存器就可以接受新数据而不影响模拟输出值，该结构便于多路DAC同时工作（可以时分复用，利用DAC寄存器中数据转换的时间读取数据）。<br><img src="/images/接口技术及应用/DAC0832双缓冲方式.png" width="380" height="275" align="center/"></p>
+<li><p><strong>双缓冲方式</strong><br>输入寄存器、DAC寄存器都有缓冲功能。当把数据由输入寄存器写到DAC寄存器以后，输入寄存器就可以接受新数据而不影响模拟输出值，该结构便于多路DAC同时工作（可以时分复用，利用DAC寄存器中数据转换的时间读取数据）。<br><img src="/images/接口技术及应用/DAC0832双缓冲方式.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要分别对两个寄存器写数据</span><br><span class="line">MOV DX，200H    ;DAC0832 的输入锁存器的地址为200H </span><br><span class="line">OUT DX，AL      ;AL中数据DATA送输入寄存器</span><br><span class="line">MOV DX，201H	;DAC0832 的DAC锁存器的地址为201H </span><br><span class="line">OUT DX，AL   	;数据DATA写入DAC锁存器并转换</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>单缓冲方式</strong><br>只有输入寄存器有缓冲功能。只需一次写操作，就开始转换，提高了D/A的数据吞吐量。适合在不要求多片D/A同时输出时。<br><img src="/images/接口技术及应用/DAC0832单缓冲方式.png" width="390" height="234" align="center/"></p>
+<li><p><strong>单缓冲方式</strong><br>只有输入寄存器有缓冲功能。只需一次写操作，就开始转换，提高了D/A的数据吞吐量。适合在不要求多片D/A同时输出时。<br><img src="/images/接口技术及应用/DAC0832单缓冲方式.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV	DX，200H	;设DAC0832的地址为200H</span><br><span class="line">OUT	DX，AL	    ;AL内数据送DAC转换</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>直通方式</strong><br>两寄存器都没有缓冲功能，输出随输入同步变化。<br><img src="/images/接口技术及应用/DAC0832直通方式.png" width="385" height="180" align="center/"></p>
+<li><p><strong>直通方式</strong><br>两寄存器都没有缓冲功能，输出随输入同步变化。<br><img src="/images/接口技术及应用/DAC0832直通方式.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV   DX，200H 	  ;8255的A口地址为200H</span><br><span class="line">OUT   DX，AL      ;AL中数据送A口锁存并转换</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>用DAC0832输出三角波</strong></p>
@@ -357,16 +357,16 @@
 </ul>
 <h3 id="A-D转换芯片ADC0809"><a href="#A-D转换芯片ADC0809" class="headerlink" title="A/D转换芯片ADC0809"></a>A/D转换芯片ADC0809</h3><p>将模拟信号转换为数字信号</p>
 <ul>
-<li><p><strong>A/D转换基本原理：</strong><br><strong>采样：</strong>利用采样脉冲序列，从信号中抽取一系列离散值，使之成为采样信号；<br><strong>量化：</strong>把采样信号经过舍入变为只有有限个有效数字的数，使电流和数据有一一对应的关系；<br><strong>编码：</strong>将经过量化的值变为二进制数字。<br><strong>如何将十进制数值转换为二进制：</strong>使用逐次逼近的方法，具体原理如下图：<br><img src="/images/接口技术及应用/AD转换逐次逼近原理.png" width="385" height="180" alt="A/D转换逐次逼近原理" align="center/"></p>
+<li><p><strong>A/D转换基本原理：</strong><br><strong>采样：</strong>利用采样脉冲序列，从信号中抽取一系列离散值，使之成为采样信号；<br><strong>量化：</strong>把采样信号经过舍入变为只有有限个有效数字的数，使电流和数据有一一对应的关系；<br><strong>编码：</strong>将经过量化的值变为二进制数字。<br><strong>如何将十进制数值转换为二进制：</strong>使用逐次逼近的方法，具体原理如下图：<br><img src="/images/接口技术及应用/AD转换逐次逼近原理.png" alt=""></p>
 </li>
-<li><p><strong>ADC0809结构</strong><br><img src="/images/接口技术及应用/ADC0809结构图.png" width="375" height="252" alt="ADC0809结构图" align="center/"><br><strong>IN7~IN0：</strong>8路模拟信号输入。<br><strong>ADDC、ADDB、ADDA：</strong>8路模拟信号量的地址选择线，选择要接收的一路模拟信号量。<br><strong>ALE：</strong>地址锁存允许，其正跳变锁存地址选择线状态，经译码选通对应的模拟输入信号。<br><strong>START：</strong>启动信号，上升沿使片内所有寄存器清零，下降沿启动A/D转换（通常与ALE共用一根线）。<br><strong>EOC：</strong>AD转换结束信号，转换开始后，此引脚变为低电平，转换一结束，此引脚变为高电平；<br><strong>OE：</strong>输出允许，当有效时，D7~D0输出结果。<br><strong>D7~D0：</strong>8位数据输出线。</p>
+<li><p><strong>ADC0809结构</strong><br><img src="/images/接口技术及应用/ADC0809结构图.png" alt=""><br><strong>IN7~IN0：</strong>8路模拟信号输入。<br><strong>ADDC、ADDB、ADDA：</strong>8路模拟信号量的地址选择线，选择要接收的一路模拟信号量。<br><strong>ALE：</strong>地址锁存允许，其正跳变锁存地址选择线状态，经译码选通对应的模拟输入信号。<br><strong>START：</strong>启动信号，上升沿使片内所有寄存器清零，下降沿启动A/D转换（通常与ALE共用一根线）。<br><strong>EOC：</strong>AD转换结束信号，转换开始后，此引脚变为低电平，转换一结束，此引脚变为高电平；<br><strong>OE：</strong>输出允许，当有效时，D7~D0输出结果。<br><strong>D7~D0：</strong>8位数据输出线。</p>
 </li>
 <li><p><strong>ADC0809输出数据的传送方式</strong><br><strong>延时等待法：</strong>软件延时等待足够长的时间（大于转换时间），此时不用EOC信号，CPU效率最低。<br><strong>中断法：</strong>把EOC作为中断请求信号，在中断服务程序中读入转换结果，效率较高。<br><strong>查询法：</strong>软件查询EOC信号的状态。<br>具体代码见PPT</p>
 </li>
 </ul>
 <h2 id="第七章-串行接口"><a href="#第七章-串行接口" class="headerlink" title="第七章 串行接口"></a>第七章 串行接口</h2><h3 id="串行通信方式基本概念"><a href="#串行通信方式基本概念" class="headerlink" title="串行通信方式基本概念"></a>串行通信方式基本概念</h3><p><strong>串行通信方式：</strong>在一条传输线上，将多位数据从低位到高位顺序地进行传输。<br><strong>并行通信方式：</strong>在多条传输线上同时传输多位数据，且有专门的联络、控制信号线。</p>
 <ul>
-<li><p><strong>串行通信的数据传送方向</strong><br><img src="/images/接口技术及应用/串行通信数据传送方向.png" width="455" height="222" alt="串行通信数据传送方向" align="center/"></p>
+<li><p><strong>串行通信的数据传送方向</strong><br><img src="/images/接口技术及应用/串行通信数据传送方向.png" alt=""></p>
 </li>
 <li><p><strong>信号的调制和解调</strong><br>数据通信设备DCE：Modern<br>数据终端设备DTC：主机、终端通讯设备。<br>三种调制方式：振幅键控（ASK），频移键控（FSK）和相移键控（PSK） </p>
 </li>
@@ -374,38 +374,38 @@
 </li>
 <li><p><strong>串行通信的基本方式</strong><br><strong>异步串行通信：</strong>以字符为单位发送数据，字符间间隔不定（异步），但字符内各位是同步的。适合数据量少、速率低，发送数据不连续的场合。<br><strong>同步串行通信：</strong>以数据块为单位发送数据，字符间、字符内都是同步的。适合速率高，连续传输大批量数据的场合。<br><strong>外同步：</strong>发送端发数据前先发送同步时钟信号，接收方用这一同步信号来锁定自己的时钟脉冲频率，来达到收发双方位同步的目的。<br><strong>自同步法：</strong>接收方利用包含有同步信号的特殊编码（如曼彻斯特编码）从信号自身提取同步信号来锁定自己的时钟脉冲频率，达到同步目的。</p>
 </li>
-<li><p><strong>串行通信数据格式</strong><br>对于异步串行通信，因为字符间的间隙不固定，因此要有起始位和终止位。<br><img src="/images/接口技术及应用/异步串行通信数据格式.png" width="375" height="90" alt="异步串行通信数据格式" align="center/"><br>对于同步串行通信，要求有时钟来实现发送端与接收端之间的同步，因此有很多控制字符，因较为复杂就不列举了。</p>
+<li><p><strong>串行通信数据格式</strong><br>对于异步串行通信，因为字符间的间隙不固定，因此要有起始位和终止位。<br><img src="/images/接口技术及应用/异步串行通信数据格式.png" alt=""><br>对于同步串行通信，要求有时钟来实现发送端与接收端之间的同步，因此有很多控制字符，因较为复杂就不列举了。</p>
 </li>
 </ul>
 <h3 id="串行接口标准RS-232C"><a href="#串行接口标准RS-232C" class="headerlink" title="串行接口标准RS-232C"></a>串行接口标准RS-232C</h3><ul>
 <li><p><strong>电气特性</strong><br><strong>在TxD和RxD数据上：</strong><br>逻辑1(MARK) = -3 ~ -15V<br>逻辑0(SPACE) = +3 ~ +15V<br><strong>在RTS、CTS、DSR、DTR和DCD等控制线上：</strong><br>信号有效（接通，ON状态）= +3 ~ +15V<br>信号无效（断开，OFF状态）= -3 ~ -15V </p>
 </li>
-<li><p><strong>RS-232C的引脚信号线</strong><br><img src="/images/接口技术及应用/RS232C引脚图.png" width="353" height="243" alt="RS232C引脚信号线" align="center/"><br>数据发送与接收线：<br>TxD：发送数据，将串行数据发送到MODEM　　<br>RxD：接收数据，从MODEM接收发来的串行数据<br>状态线：<br>DSR：表明MODEM可以使用。<br>DTR：表明数据终端可以使用。<br>信号联络线（modem之间建立通信链路）：<br>RI：振铃指示，当MODEM收到交换台送来的振铃呼叫信号时，通知终端，表示交换台准备好了。<br>DCD：数据载波检出线，表示MODEM已接通通信链路。<br>信号联络线（modem与终端之间）：<br>RTS：请求发送，表示DTE请求DCE发送数据。<br>CTS：允许发送，表示DCE准备好了，DTE可以发数据，是对RTS的响应信号。<br>地线：<br>GND：地线</p>
+<li><p><strong>RS-232C的引脚信号线</strong><br><img src="/images/接口技术及应用/RS232C引脚图.png" alt=""><br>数据发送与接收线：<br>TxD：发送数据，将串行数据发送到MODEM　　<br>RxD：接收数据，从MODEM接收发来的串行数据<br>状态线：<br>DSR：表明MODEM可以使用。<br>DTR：表明数据终端可以使用。<br>信号联络线（modem之间建立通信链路）：<br>RI：振铃指示，当MODEM收到交换台送来的振铃呼叫信号时，通知终端，表示交换台准备好了。<br>DCD：数据载波检出线，表示MODEM已接通通信链路。<br>信号联络线（modem与终端之间）：<br>RTS：请求发送，表示DTE请求DCE发送数据。<br>CTS：允许发送，表示DCE准备好了，DTE可以发数据，是对RTS的响应信号。<br>地线：<br>GND：地线</p>
 </li>
-<li><p><strong>数据传输过程</strong><br><img src="/images/接口技术及应用/RS232C数据传输过程.png" width="495" height="315" alt="RS232C数据传输过程" align="center/"></p>
+<li><p><strong>数据传输过程</strong><br><img src="/images/接口技术及应用/RS232C数据传输过程.png" alt=""></p>
 </li>
-<li><p><strong>微机间连线方式</strong><br>重点是不使用联络信号的3线相连方式，如下图所示：<br><img src="/images/接口技术及应用/串口连接方式.png" width="220" height="190" alt="R串口连接方式" align="center/"><br>不使用Modem，TxD和RxD要交叉连接。</p>
+<li><p><strong>微机间连线方式</strong><br>重点是不使用联络信号的3线相连方式，如下图所示：<br><img src="/images/接口技术及应用/串口连接方式.png" alt=""><br>不使用Modem，TxD和RxD要交叉连接。</p>
 </li>
 </ul>
-<h3 id="8251可编程通信接口"><a href="#8251可编程通信接口" class="headerlink" title="8251可编程通信接口"></a>8251可编程通信接口</h3><p>8251是通用同步异步接收发送器USART(Univesal Synchronous Asynchronous Receiver and Transmitter)，适合作为异步起止式和同步面向字符式的接口。<br><img src="/images/接口技术及应用/8251接口.png" width="275" height="165" alt="8251接口" align="center/"></p>
+<h3 id="8251可编程通信接口"><a href="#8251可编程通信接口" class="headerlink" title="8251可编程通信接口"></a>8251可编程通信接口</h3><p>8251是通用同步异步接收发送器USART(Univesal Synchronous Asynchronous Receiver and Transmitter)，适合作为异步起止式和同步面向字符式的接口。<br><img src="/images/接口技术及应用/8251接口.png" alt=""></p>
 <h2 id="第八章-存储器"><a href="#第八章-存储器" class="headerlink" title="第八章 存储器"></a>第八章 存储器</h2><ul>
-<li><p><strong>内存的分类</strong><br><img src="/images/接口技术及应用/内存的分类.png" width="450" height="200" alt="内存分类" align="center/"><br>DRAM的特点：主要由电容构成，需要定时刷新<br>DRAM芯片举例：intel 2164A，容量为\(64k\times 1\)</p>
+<li><p><strong>内存的分类</strong><br><img src="/images/接口技术及应用/内存的分类.png" alt=""><br>DRAM的特点：主要由电容构成，需要定时刷新<br>DRAM芯片举例：intel 2164A，容量为\(64k\times 1\)</p>
 </li>
 <li><p><strong>存储器扩展技术</strong><br>存储器的存储容量等于：单元数(字节数)×每单元的位数(字长)，因此就有三种扩容方式：字扩展、位扩展、字位扩展。</p>
 </li>
-<li><p><strong>位扩展</strong><br>地址线、片选线和读写信号线各芯片共用，数据线单独引出。<br>eg：8片64K×1位的SRAM芯片构成容量为64KB的存储器<br><img src="/images/接口技术及应用/位扩展.png" width="400" height="305" alt="位扩展" align="center/"></p>
+<li><p><strong>位扩展</strong><br>地址线、片选线和读写信号线各芯片共用，数据线单独引出。<br>eg：8片64K×1位的SRAM芯片构成容量为64KB的存储器<br><img src="/images/接口技术及应用/位扩展.png" alt=""></p>
 </li>
-<li><p><strong>字扩展</strong><br>地址线、读写信号线和数据线各芯片共用，片选线单独引出。<br>eg：4片16K×8位的SRAM芯片构成容量为64KB的存储器<br><img src="/images/接口技术及应用/字扩展.png" width="470" height="320" alt="字扩展" align="center/"></p>
+<li><p><strong>字扩展</strong><br>地址线、读写信号线和数据线各芯片共用，片选线单独引出。<br>eg：4片16K×8位的SRAM芯片构成容量为64KB的存储器<br><img src="/images/接口技术及应用/字扩展.png" alt=""></p>
 </li>
-<li><p><strong>字位扩展</strong><br>结合了上述两种方法的特点。<br>eg：用8片16K×4位的存储器芯片组成64K×8位的存储器<br><img src="/images/接口技术及应用/字位扩展.png" width="440" height="240" alt="字位扩展" align="center/"></p>
+<li><p><strong>字位扩展</strong><br>结合了上述两种方法的特点。<br>eg：用8片16K×4位的存储器芯片组成64K×8位的存储器<br><img src="/images/接口技术及应用/字位扩展.png" alt=""></p>
 </li>
 </ul>
 <h2 id="第九章-人机接口"><a href="#第九章-人机接口" class="headerlink" title="第九章 人机接口"></a>第九章 人机接口</h2><ul>
 <li><p><strong>键盘接口的分类</strong><br><strong>编码键盘：</strong>这种键盘内部能自动检测被按下的键，并提供与被按键对应的键码（如ASCII码），以并行或串行方式送给CPU。<br><strong>非编码键盘：</strong>这种键盘只提供键盘的行列矩阵，而按键的识别和键值的确定、输入等工作通过软件完成。这是目前可得到的最便宜的微机输入设备。 </p>
 </li>
-<li><p><strong>软件实现非编码键盘识别的方法</strong><br><img src="/images/接口技术及应用/非编码键盘.png" width="330" height="165" alt="非编码键盘示意图" align="center/"><br><strong>扫描法：</strong><br>依次查询键盘矩阵的每一行线，然后读取列数据确定按键是否在本行，具体方法如下：<br>首先使PA0=0，然后读取PB端口。<br>若PB=0FFH则表示行0没有按键按下，再使PA1=0再读取PB判断行2有无按键按下，依次扫描全部的行线。<br>当PB读取的数据不为0FFH，则表示该扫描行有按键按下，则再确定相应的按键序号。<br>时间复杂度：\(n^2\)<br><strong>行列交换法：</strong><br>使CPU通过A口向各行线上全部送低电平，然后从B口读入列线的值。<br>如果某按键按下，则必定会使某一列线值为0。然后，交换A口B口的输入输出方向，并将刚才读到的列线值从列线所接的并口输出。<br>再读取行线上的输入值，在闭合键所在的行线上的值必定为0。这样，当一个按键被按下时，必定可以读取一对唯一的行值和列值。<br>时间复杂度：\(2n\)</p>
+<li><p><strong>软件实现非编码键盘识别的方法</strong><br><img src="/images/接口技术及应用/非编码键盘.png" alt=""><br><strong>扫描法：</strong><br>依次查询键盘矩阵的每一行线，然后读取列数据确定按键是否在本行，具体方法如下：<br>首先使PA0=0，然后读取PB端口。<br>若PB=0FFH则表示行0没有按键按下，再使PA1=0再读取PB判断行2有无按键按下，依次扫描全部的行线。<br>当PB读取的数据不为0FFH，则表示该扫描行有按键按下，则再确定相应的按键序号。<br>时间复杂度：\(n^2\)<br><strong>行列交换法：</strong><br>使CPU通过A口向各行线上全部送低电平，然后从B口读入列线的值。<br>如果某按键按下，则必定会使某一列线值为0。然后，交换A口B口的输入输出方向，并将刚才读到的列线值从列线所接的并口输出。<br>再读取行线上的输入值，在闭合键所在的行线上的值必定为0。这样，当一个按键被按下时，必定可以读取一对唯一的行值和列值。<br>时间复杂度：\(2n\)</p>
 </li>
-<li><p><strong>七段数码管</strong><br>七段数码管就是并行接口8255，7个段分别对应8255的一个引脚，通过设置引脚电平来控制亮灭，示意图如下：<br><img src="/images/接口技术及应用/七段数码管.png" width="330" height="165" alt="七段数码管" align="center/"></p>
+<li><p><strong>七段数码管</strong><br>七段数码管就是并行接口8255，7个段分别对应8255的一个引脚，通过设置引脚电平来控制亮灭，示意图如下：<br><img src="/images/接口技术及应用/七段数码管.png" alt=""></p>
 </li>
 </ul>
 
@@ -520,7 +520,7 @@
             </li>
             
             <li>
-                <a  href="https://github.com/lrStyle">
+                <a  href="https://github.com/renli1024">
                     <i class="fa fa-user"></i><span>Github</span>
                 </a>
             </li>
