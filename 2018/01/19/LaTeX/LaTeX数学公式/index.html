@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LaTeX教程——数学公式篇 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="因为数学公式的写法是LaTeX非常重要的一部分内容，而且相对比较独立，因此将这部分单独整理为一篇博客，也方便日后进行查阅。">
+<meta name="keywords" content="LaTeX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX教程——数学公式篇">
+<meta property="og:url" content="https://renli1024.github.io/2018/01/19/LaTeX/LaTeX数学公式/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="因为数学公式的写法是LaTeX非常重要的一部分内容，而且相对比较独立，因此将这部分单独整理为一篇博客，也方便日后进行查阅。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/各种矩阵.png">
+<meta property="og:image" content="https://renli1024.github.io/images/LaTeX/行内矩阵.png">
+<meta property="og:updated_time" content="2019-10-05T03:26:14.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LaTeX教程——数学公式篇">
+<meta name="twitter:description" content="因为数学公式的写法是LaTeX非常重要的一部分内容，而且相对比较独立，因此将这部分单独整理为一篇博客，也方便日后进行查阅。">
+<meta name="twitter:image" content="https://renli1024.github.io/images/LaTeX/各种矩阵.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-LaTeX/LaTeX数学公式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      LaTeX教程——数学公式篇
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-19
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>因为数学公式的写法是LaTeX非常重要的一部分内容，而且相对比较独立，因此将这部分单独整理为一篇博客，也方便日后进行查阅。<br><a id="more"></a></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="行内公式与行间公式"><a href="#行内公式与行间公式" class="headerlink" title="行内公式与行间公式"></a>行内公式与行间公式</h3><ul>
+<li>行内公式：两个美元符号扩起来<code>$ 公式 $</code>，或者<code>\( 公式 \)</code></li>
+<li>行间公式：<ul>
+<li>不带编号的写法：两对美元符号扩起来<code>$$ 公式 $$</code>，或者<code>\[ 公式 \]</code></li>
+<li>带自动编号的写法：<code>\begin{equation} 公式 \end{equation}</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="amsmath宏包"><a href="#amsmath宏包" class="headerlink" title="amsmath宏包"></a>amsmath宏包</h3><p>LaTeX排版数学公式最常用的即为<code>amsmath</code>宏包，其是由美国数学学会AMS(American mathematical society)设计开发的。<br>若无特别说明，下文中的所有介绍都是基于<code>amsmath</code>宏包的。<br>一般常用的数学宏包：<code>\usepackage{amsmath, amssymb, mathtools}</code></p>
+<h3 id="数学模式"><a href="#数学模式" class="headerlink" title="数学模式"></a>数学模式</h3><ul>
+<li>数学模式中空格会被忽略（也不能输入单独的空行），也不能直接输入汉字，若要输入汉字需要使用<code>\text</code>命令，如<code>$a+b=3 \text{加法}$</code>。</li>
+<li>因为空格不显示，所以多个公式字母排列时，每个都需要加入数学模式，如<code>$a$, $b$, $c$, $d$</code>。</li>
+</ul>
+<h3 id="在markdown中使用LaTex公式"><a href="#在markdown中使用LaTex公式" class="headerlink" title="在markdown中使用LaTex公式"></a>在markdown中使用LaTex公式</h3><ol>
+<li>导入MathJax引擎, 在文章的任意地方加入以下代码即可：<br><code>&lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML&#39; async&gt;&lt;/script&gt;</code></li>
+<li>使用LaTex语法写公式。</li>
+</ol>
+<ul>
+<li>注1：MathJax引擎本质是一个js脚本，把页面中的LaTex代码翻译成数学公式。</li>
+<li>注2：工作流程：Markdown先把代码按Markdown语法翻译一遍，因此一些\和特殊字符的组合，要对反斜杠进行转义，如<code>\\{</code>；之后再由js脚本对翻译为数学公式。</li>
+<li>注3：这个脚本只能识别<code>\( 公式 \)</code>形式的行内公式，且需要写成<code>\\( 公式 \\)</code>形式。因为markdown中<code>\</code>也是转义符，因此需要两个斜杠<code>\\</code>来表达反斜杠的本身含义。</li>
+<li>注4：markdown中使用LaTex，若使用了<code>A_{xxx}</code>这种复合下标(下划线和花括号连用)，且前面的公式还出现了下划线，公式就会出错。<br>原因：markdown将两个下划线作为斜体符号进行了翻译，公式就无法正常解析了。<br>解决：在两个下划线前分别加反斜杠，<code>\_</code>，对下划线进行转义。</li>
+</ul>
+<h2 id="数学公式结构"><a href="#数学公式结构" class="headerlink" title="数学公式结构"></a>数学公式结构</h2><p>在这一节中介绍一些数学公式的常用结构，这些结构构成了数学公式的整体骨架，而如何填充这些骨架（使用各种数学符号）则会在下一节中介绍。</p>
+<h3 id="上标和下标"><a href="#上标和下标" class="headerlink" title="上标和下标"></a>上标和下标</h3><ul>
+<li><code>^</code>表示上标，<code>_</code>表示下标，默认将这两个符号后的第一个字母作为上/下标，如果上下标有多个字母，则要用<code>{}</code>括起来。<br>如：<code>z_{i+2} = x^{k+2}+y_2</code><br>$$z_{i+2} = x^{k+2}+y_2$$</li>
+<li>上下标同时出现时，先后次序并不重要，二者不互相影响。</li>
+</ul>
+<h3 id="上划线与花括号"><a href="#上划线与花括号" class="headerlink" title="上划线与花括号"></a>上划线与花括号</h3><ul>
+<li>短上划线：<code>\bar{A}</code>，\(\bar{A}\)，通常用于大写字母的上划线（用<code>\overline</code>会很长）。</li>
+<li>上划线：<code>\overline{a+b}=\overline{a}+\overline{b}</code>, \(\overline{a+b}=\overline{a}+\overline{b}\)</li>
+<li>上箭头：<code>\overrightarrow{AB}</code>, \(\overrightarrow{AB}\)</li>
+<li>上、下花括号：<code>\overbrace{a_0, a_1, \dots, a_n}^{\text{共 $n+1$ 项}}</code>, \(\overbrace{a_0, a_1, \dots, a_n}^{\text{共 $n+1$ 项}}\)，可通过上标来作标注。<br>下花括号：<code>\underbrace{}</code></li>
+</ul>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><h4 id="各种矩阵形式"><a href="#各种矩阵形式" class="headerlink" title="各种矩阵形式"></a>各种矩阵形式</h4><ul>
+<li><p><code>amsmath</code>提供了一系列矩阵命令，对应于矩阵相关的各种表现形式，如下所示：<br><img src="/images/LaTeX/各种矩阵.png" alt="各种矩阵形式"></p>
+</li>
+<li><p>矩阵中不同的列使用<code>&amp;</code>分隔，不同的行使用<code>\\</code>分隔<br>$$<br>\begin{pmatrix}<br> 1 &amp; 2 &amp; 3 \\<br> 4 &amp; 5 &amp; 6 \\<br> 7 &amp; 8 &amp; 9<br>\end{pmatrix}<br>$$</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;pmatrix&#125;</span><br><span class="line">  1 &amp; 2 &amp; 3 \\</span><br><span class="line">  4 &amp; 5 &amp; 6 \\</span><br><span class="line">  7 &amp; 8 &amp; 9</span><br><span class="line">\end&#123;pmatrix&#125; </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若把矩阵放在行内公式中，正常的矩阵会显得很大，这时可以用<code>\smallmatrix</code>环境，只是其不在矩阵外面加括号，需要手动加上。示例：</li>
+</ul>
+<p><img src="/images/LaTeX/行内矩阵.png" alt="行内矩阵"></p>
+<h4 id="矩阵中的省略号"><a href="#矩阵中的省略号" class="headerlink" title="矩阵中的省略号"></a>矩阵中的省略号</h4><ul>
+<li>矩阵中常用的省略号有：<code>\cdots</code>横向点，<code>\vdots</code>竖向点，<code>\ddtots</code>斜向点。</li>
+<li>示例<br>$$<br>\begin{pmatrix}<br>a_{11} &amp; \cdots &amp; a_{1n} \\<br>&amp; \ddots &amp; \vdots \\<br>0 &amp; &amp; a_{nn}<br>\end{pmatrix}_{n\times n}<br>$$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;pmatrix&#125;</span><br><span class="line">  a_&#123;11&#125; &amp; \cdots &amp; a_&#123;1n&#125; \\</span><br><span class="line">  &amp; \ddots &amp; \vdots \\</span><br><span class="line">  0 &amp; &amp; a_&#123;nn&#125;</span><br><span class="line">\end&#123;pmatrix&#125;_&#123;n\times n&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="分块矩阵"><a href="#分块矩阵" class="headerlink" title="分块矩阵"></a>分块矩阵</h4><p>需要用到横线来分隔矩阵的各个部分，使用<code>array</code>环境，参考刘海洋书5.1节。</p>
+<h2 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h2><p>数学公式中符号可大致分为五大类：字母符号、数学算子、二元运算符与关系符、括号与定界符、标点。下面来分别介绍：</p>
+<h3 id="字母符号"><a href="#字母符号" class="headerlink" title="字母符号"></a>字母符号</h3><ul>
+<li>字母是数学公式中的最基本内容，可以输入的有拉丁字母（\(A、B、c、d\)等）和希腊字母(\(\alpha, \beta, \Delta, \Theta\))等。</li>
+<li><p>希腊字母直接用<code>\字母名</code>即可，如<code>\alpha</code>为\(\alpha\)，<code>\beta</code>为\(\beta\)，<code>\theta</code>为\(\theta\)</p>
+</li>
+<li><p>公式中的字母默认是斜体显示，但一些常量规定用直立罗马体显示，命令为<code>\mathrm{}</code>。<br>包括：圆周率pi，自然对数的底 e，微分符号 d，虚数单位 i<br>可定义新命令来简化公式：<code>\newcommand{\mpi}{mathrm{\pi}}</code></p>
+</li>
+<li><p>空集：<code>\varnothing</code> \(\varnothing\)</p>
+</li>
+<li><p>大写字母的黑板粗体显示：\(\mathbb{R}\), \(\mathbb{N}\), \(\mathbb{X}\)<br>使用<code>amssymb</code>宏包，命令为<code>\mathbb{R}</code>。</p>
+</li>
+<li><p>希伯来字母：<code>\aleph</code>：\(\aleph\)</p>
+</li>
+<li><p>附：希腊字母表<br>【插入图片】</p>
+</li>
+</ul>
+<h3 id="数学算子"><a href="#数学算子" class="headerlink" title="数学算子"></a>数学算子</h3><p>数学算子按显示形式，大致可以分为两类，一类为大小会随着行间公式&amp;行内公式而改变的，称为巨算子（large operator），如求和\(\sum\)、积分\(\int\)；一类则是普通的数学算子。</p>
+<h4 id="积分符号"><a href="#积分符号" class="headerlink" title="积分符号"></a>积分符号</h4><p>因为积分符号有较多的格式要求，因此单独拿出来说。</p>
+<ul>
+<li>积分号要求正体显示</li>
+<li>积分号前与被积函数要留一定间隔，通过<code>\,</code>来实现</li>
+<li>单个积分符号上下限放角标位置（默认格式），多重积分有时则需要放在上下限的位置（<code>\limits</code>命令设置）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\newcommand&#123;\diff&#125;&#123;\mathrm&#123;d&#125;&#125;</span><br><span class="line">\int_a^b f(x) \, \diff x % 单个积分</span><br><span class="line">\iint_\limits&#123;0&lt;x,y&lt;1&#125;f(x,y) \, \diff x \diff y % 多重积分</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$$<br>\newcommand{\diff}{\mathrm{d}}<br>\int_a^b f(x) \, \diff x \\<br>\iint_\limits{0&lt;x,y&lt;1}f(x,y) \, \diff x \diff y<br>$$</p>
+<h4 id="一些文字名称的算子"><a href="#一些文字名称的算子" class="headerlink" title="一些文字名称的算子"></a>一些文字名称的算子</h4><p>通常为各种函数名，这类算子也需要正体显示。<br>【插入图片】</p>
+<h4 id="自定义算子"><a href="#自定义算子" class="headerlink" title="自定义算子"></a>自定义算子</h4><p>在概率论中，期望<code>E()</code>、方差<code>Var()</code>函数需要正体显示为算子，但默认没有定义，这里我们可以单独将其进行定义。<br><code>\DeclareMathOperator</code>定义不带上下限的算子，<code>\DeclareMathOperator*</code>定义带上下限的算子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% 导言区定义</span><br><span class="line">\DeclareMathOperator&#123;\var&#125;&#123;Var&#125;</span><br><span class="line">\DeclareMathOperator&#123;\E&#125;&#123;E&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二元运算符与关系符"><a href="#二元运算符与关系符" class="headerlink" title="二元运算符与关系符"></a>二元运算符与关系符</h3><h4 id="常用二元运算符："><a href="#常用二元运算符：" class="headerlink" title="常用二元运算符："></a>常用二元运算符：</h4><p>可直接从键盘输入的二元运算符有：<code>+ - * / = &gt; &lt; :</code>，其他常用运算符</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公式</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乘</td>
+<td><code>\times</code>（叉乘）或<code>\cdot</code>（点乘）</td>
+<td>\(a\times b\), \(a\cdot b\)</td>
+</tr>
+<tr>
+<td>除</td>
+<td><code>\div</code>或<code>/</code></td>
+<td>\(a\div b\), \(a/b\)</td>
+</tr>
+<tr>
+<td>小于等于</td>
+<td><code>\leq</code></td>
+<td>\(a \leq b\)</td>
+</tr>
+<tr>
+<td>大于等于</td>
+<td><code>\geq</code></td>
+<td>\(a \geq b\)</td>
+</tr>
+<tr>
+<td>属于/不属于</td>
+<td><code>\in</code> <code>\notin</code></td>
+<td>\(a \in S\)</td>
+</tr>
+<tr>
+<td>包含于/真包含于</td>
+<td><code>\subset</code> <code>\subseteq</code></td>
+<td>\(A \subset B\)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="括号与定界符"><a href="#括号与定界符" class="headerlink" title="括号与定界符"></a>括号与定界符</h3><p>LaTeX中常用括号如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">公式</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">圆括号()</td>
+<td style="text-align:center"><code>( )</code></td>
+<td style="text-align:center">\(a)\)</td>
+</tr>
+<tr>
+<td style="text-align:center">方括号[]</td>
+<td style="text-align:center"><code>[ ]</code></td>
+<td style="text-align:center">\([a]\)</td>
+</tr>
+<tr>
+<td style="text-align:center">花括号</td>
+<td style="text-align:center"><code>\{ \}</code></td>
+<td style="text-align:center">\(\{a\}\)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>竖线 | ：可以直接使用<code>|</code>，也可以使用<code>\lvert a \rvert</code>组合表示，\(\lvert a \rvert\)<br>双竖线：表示范数，<code>\lVert a \rVert</code>，\(\lVert a \rVert\)<br>可以定义新的命令来简化表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\newcommand&#123;\abs[1]&#125;&#123;\lvert #1 \rvert&#125; % 导言区定义</span><br><span class="line">\abs&#123;x+y&#125; \le \abs&#123;x&#125; + \abs&#123;y&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定界符<br>定界符（delimeter）意思是标识内容起始、终止的符号，在LaTeX中各种括号以及竖线<code>|</code>都是定界符<br>定界符的一个特性是其大小可随着所标识内容的大小而改变。</p>
+</li>
+<li><p>大小可变的定界符：<br>使用<code>\left</code>和<code>\right</code>命令可使得定界符按中间内容的大小来改变，命令格式为<code>\left open-delimeter 内容 \right end-delimeter</code>。<br>两边的定界符无需保持一致，eg. 可以一边是<code>(</code>另一边是<code>]</code>表示半开半闭区间。<br>但<code>\left</code>和<code>\right</code>必须成对出现，如果只有一边需要定界符（如左边），可用<code>\right .</code>（在右边加句号）表示空的定界符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\left. \int_0^xf(t) \, \mathrm&#123;d&#125;t \right \vert_&#123;x=1&#125; </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$$<br>\left. \int_0^xf(t) \, \mathrm{d}t \right \vert_{x=1}<br>$$</p>
+<ul>
+<li>此外还可通过<code>\middle</code>命令来为<code>\left</code>、<code>\right</code>的中间加入一个可变大小的定界符。<br>【加入p257示例图片】</li>
+</ul>
+<h3 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a>标点符号</h3><h4 id="常用标点符号"><a href="#常用标点符号" class="headerlink" title="常用标点符号"></a>常用标点符号</h4><p>公式中常用的标点符号如下，都可以通过英文键盘直接输入<br>【p259页插图】</p>
+<h4 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">省略号类型</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">通用省略号</td>
+<td style="text-align:center"><code>\dots</code></td>
+<td style="text-align:center">\(\dots\)</td>
+</tr>
+<tr>
+<td style="text-align:center">横向、圆点在底部</td>
+<td style="text-align:center"><code>\ldots</code></td>
+<td style="text-align:center">\(1,2,\dots ,n\)</td>
+</tr>
+<tr>
+<td style="text-align:center">横向、圆点在中间</td>
+<td style="text-align:center"><code>\cdots</code></td>
+<td style="text-align:center">\(1+2+\cdots +n\)</td>
+</tr>
+<tr>
+<td style="text-align:center">纵向圆点</td>
+<td style="text-align:center"><code>\vdots</code></td>
+<td style="text-align:center">\(\vdots\)</td>
+</tr>
+<tr>
+<td style="text-align:center">斜向圆点</td>
+<td style="text-align:center"><code>\ddots</code></td>
+<td style="text-align:center">\(\ddots\)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>\ldots</code>位置较低，多用于逗号之间，如\(1,2,\dots ,n\)<br><code>\cdots</code>位置较高，用于运算符之间，如\(1+2+\cdots +n\)<br>大体原则是省略号与前后符号高度一致，使用<code>amsmath</code>，可使用<code>\dots</code>命令，其可自动根据周围来调整省略号高度，使用正确的省略号。</li>
+</ul>
+<h3 id="其他符号总结"><a href="#其他符号总结" class="headerlink" title="其他符号总结"></a>其他符号总结</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>LaTex语法</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分数</td>
+<td><code>\frac {a} {b}</code></td>
+<td>\(\frac {a} {b}\)</td>
+</tr>
+<tr>
+<td>求导符号</td>
+<td>即为单引号<code>&#39;</code></td>
+<td>\(a_0’=a_0’’\)</td>
+</tr>
+<tr>
+<td>平方根</td>
+<td><code>\sqrt{a*x+b}</code></td>
+<td>\(\sqrt{a*x+b}\)</td>
+</tr>
+<tr>
+<td>n次方根</td>
+<td><code>\sqrt[n]{a*x+b}</code></td>
+<td>\(\sqrt[n]{a*x+b}\)</td>
+</tr>
+<tr>
+<td>极限</td>
+<td><code>\lim_{n \rightarrow 0} (\sin{x} / x)</code></td>
+<td>\(\lim_{n \rightarrow 0} (\sin{x} / x)\)</td>
+</tr>
+<tr>
+<td>求和</td>
+<td><code>\sum_{i=0}^n i</code></td>
+<td>\(\sum_{i=0}^n i\)</td>
+</tr>
+<tr>
+<td>求积/连乘</td>
+<td><code>\prod_{i=0}^n i</code></td>
+<td>\(\prod_{i=0}^n i\)</td>
+</tr>
+<tr>
+<td>偏微分算子</td>
+<td><code>\partial</code></td>
+<td>\(\partial\)</td>
+</tr>
+<tr>
+<td>梯度算子</td>
+<td><code>\nabla</code></td>
+<td>\(\nabla\)</td>
+</tr>
+<tr>
+<td>Laplace算子</td>
+<td><code>\Delta</code></td>
+<td>\(\Delta\)</td>
+</tr>
+<tr>
+<td>向量符号</td>
+<td><code>\vec{a}</code></td>
+<td>\(\vec{a}\)</td>
+</tr>
+<tr>
+<td>二项式系数</td>
+<td><code>\binom nk</code></td>
+<td>\(\binom nk\)</td>
+</tr>
+<tr>
+<td>角度符号</td>
+<td><code>^{\circ}</code></td>
+<td>\(90^{\circ}\)</td>
+</tr>
+<tr>
+<td>加帽</td>
+<td><code>\hat a</code></td>
+<td>\(\hat a\)（a帽）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>求和、连乘符号的多行下标显示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\sum_&#123;\substack&#123;0&lt;i&lt;10 \\ 10&lt;j&lt;15&#125;&#125; A_&#123;ij&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$$<br>\sum_{\substack{0&lt;i&lt;10 \\ 10&lt;j&lt;15}} A_{ij}<br>$$</p>
+<h2 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h2><p>对于行间公式<code>$$ xxx $$</code>，空格会被忽略，也不允许出现单独的空行，换行符<code>\\</code>也不起作用，因此如果要输入多行公式的话必须使用其他的环境。</p>
+<h3 id="罗列多个公式"><a href="#罗列多个公式" class="headerlink" title="罗列多个公式"></a>罗列多个公式</h3><ul>
+<li>最常用的情形即将多个公式摆在一起，因为正常公式中不能换行，因此可使用<code>begin{align}</code>环境，在<code>align</code>环境中允许通过换行符<code>\\</code>来进行换行。</li>
+<li><code>align</code>环境本身就是数学环境（类似<code>equation</code>环境），表示行间公式，因此外面就不能再重复写<code>$$ $$</code>了。</li>
+<li><code>align</code>环境中各公式默认居中对齐，但也使用<code>&amp;</code>符号进行分组对齐。</li>
+<li><code>\notag</code>命令使得该行公式不进行编号，适合连等公式的情形（只有最后一行公式需要编号）。</li>
+</ul>
+<h4 id="公式举例"><a href="#公式举例" class="headerlink" title="公式举例"></a>公式举例</h4><ul>
+<li><p><code>&amp;</code>符号一般放在等号<code>=</code>前面，来保证正确的对齐间距<br>$$<br>\begin{align}<br>x &amp;= t + \cos t +1 \\<br>y &amp;= 2\sin t<br>\end{align}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= t + \cos t +1 \\</span><br><span class="line">  y &amp;= 2\sin t</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何在中间插入文字：mathtools宏包的 \shortintertext命令</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x^2+2x &amp;= -1 \\</span><br><span class="line">  \shortintertext&#123;移项得&#125;</span><br><span class="line">  x^2+2x+1 &amp;= 0</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+<p>【插入p266图片】</p>
+<ul>
+<li>如何排版连等公式：使用空分组来使空白处对齐</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= (a+b)(a^2-ab+b^2) \notag \\ </span><br><span class="line">    &amp;= a^3-a^2b+ab^2+a^2-ab^2+b^3 \\ % 只在这一行进行公式编号</span><br><span class="line">    &amp;= a^3+b^3 \notag</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+<p>【插入图片】</p>
+<ul>
+<li>如何进行子公式编号：<code>\begin{subequations}</code>环境<br><code>subequations</code>环境中的子公式会共用一个数字主编号，里面再使用字母进行子公式编号。<br><code>subequations</code>环境中的主公式和子公式都可进行<code>label</code>设定标签。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;subequations&#125;</span><br><span class="line">\begin&#123;align&#125;</span><br><span class="line">  x &amp;= t + \cos t +1 \\ </span><br><span class="line">  y &amp;= 2\sin t \\</span><br><span class="line">  z &amp;= 6\cos t</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line">\end&#123;subequations&#125;</span><br></pre></td></tr></table></figure>
+<p>【插入图片】</p>
+<h4 id="align环境中-amp-的对齐方式"><a href="#align环境中-amp-的对齐方式" class="headerlink" title="align环境中&amp;的对齐方式"></a>align环境中&amp;的对齐方式</h4><p>假设有n个&amp;，会将一行分为n+1列，从左向右两个列分为一组(如1、2列为一组，3、4列为一组…，若有奇数列，则最后一列单独为一组)。每一行的&amp;数量要保证相同，否则对齐格式会乱。<br>首先明确，LaTex对齐方式包括组内对齐和组间对齐。<br><strong>组内对齐：</strong>两列一组，在组内部，第一列向右对齐，第二列向左对齐，即两列在所在位置上向中间对齐。<br><strong>组间对齐：</strong>首先，不同行的对应组会根据组的中线进行对齐，因为每行组数是一样的，因此为保证组的中线在同一位置，会统一固定组的长度，因此若公式较短就会出现空白。<br>其次在中线对齐的基础上，第一组会紧靠页<strong>左侧</strong>，最后一组则紧靠页<strong>右侧</strong>，紧靠页左/右侧就是将最长的一组紧靠上去，也就是说对于长度不一样的行，较短的那一行是靠不上去的(因为首先要保证组的中线对齐)。</p>
+<h3 id="如何组合多个公式"><a href="#如何组合多个公式" class="headerlink" title="如何组合多个公式"></a>如何组合多个公式</h3><p>有时我们需要将多个公式组合为一个大公式块，然后对整个公式块进行一定的操作，这时就不能使用换行公式的写法了（因为<code>align</code>本身就是数学环境了，其外不能再嵌套一层数学环境）。</p>
+<h4 id="分段函数（条件函数）的表示"><a href="#分段函数（条件函数）的表示" class="headerlink" title="分段函数（条件函数）的表示"></a>分段函数（条件函数）的表示</h4><ul>
+<li>对于分段函数，可使用<code>cases</code>环境和<code>mathtools</code>宏包提供的<code>dcases</code>环境，推荐使用后者，公式的字号会更小一点，显得更紧凑。</li>
+<li><code>dcases</code>的效果是将多个子公式合成一个大公式块，公式中使用<code>&amp;</code>分隔值和后面的操作，最后再在公式块前加上花括号。</li>
+<li>示例<br>$$<br>f(x)=<br>\begin{cases}<br>x^2+3, &amp; x&lt;3 \\<br>x^3+2, &amp; x\geq3<br>\end{cases}<br>$$</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">% \usepackage&#123;mathtools&#125;</span><br><span class="line">$$</span><br><span class="line">f(x)=</span><br><span class="line">\begin&#123;dcases&#125;</span><br><span class="line">  x^2+3, &amp; x&lt;3 \\\\</span><br><span class="line">  x^3+2, &amp; x\geq3</span><br><span class="line">\end&#123;dcases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<h4 id="更一般的公式块组合"><a href="#更一般的公式块组合" class="headerlink" title="更一般的公式块组合"></a>更一般的公式块组合</h4><ul>
+<li><code>dcases</code>环境毕竟非常特殊，只适用于分段函数的情形，下面介绍<code>aligned</code>环境，其是一种更一般的公式组合方式。</li>
+<li><code>aligned</code>是<code>align</code>环境的变体，使用方式基本一样，只是因为其本身不是数学环境，只是用来组合多个子公式的，因此可以在行间公式环境中使用。</li>
+<li>多个子公式组合后就相当于是一个公式了，可以被当作一个公式来对待。</li>
+<li>示例<br>$$<br>\begin{aligned}<br>x+y+z &amp;= 10 \\<br>x+y &amp;= -1<br>\end{aligned}<br>\implies<br>\begin{aligned}<br>xy &amp;= 2 \\<br>z &amp;= 3<br>\end{aligned}<br>$$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  x+y+z &amp;= 10 \\</span><br><span class="line">  x+y &amp;= -1</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\implies</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">  xy &amp;= 2 \\</span><br><span class="line">  z &amp;= 3</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2018-01-19</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/LaTeX/" class="color1">LaTeX</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#行内公式与行间公式"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">行内公式与行间公式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#amsmath宏包"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">amsmath宏包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学模式"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数学模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在markdown中使用LaTex公式"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">在markdown中使用LaTex公式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数学公式结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">数学公式结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上标和下标"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">上标和下标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上划线与花括号"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">上划线与花括号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#矩阵"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">矩阵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#各种矩阵形式"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">各种矩阵形式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#矩阵中的省略号"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">矩阵中的省略号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分块矩阵"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">分块矩阵</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数学符号"><span class="post-toc-number">3.</span> <span class="post-toc-text">数学符号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字母符号"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">字母符号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学算子"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">数学算子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#积分符号"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">积分符号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一些文字名称的算子"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">一些文字名称的算子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自定义算子"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">自定义算子</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二元运算符与关系符"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">二元运算符与关系符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用二元运算符："><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">常用二元运算符：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#括号与定界符"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">括号与定界符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标点符号"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">标点符号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用标点符号"><span class="post-toc-number">3.5.1.</span> <span class="post-toc-text">常用标点符号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#省略号"><span class="post-toc-number">3.5.2.</span> <span class="post-toc-text">省略号</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他符号总结"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">其他符号总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多行公式"><span class="post-toc-number">4.</span> <span class="post-toc-text">多行公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#罗列多个公式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">罗列多个公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#公式举例"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">公式举例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#align环境中-amp-的对齐方式"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">align环境中&amp;的对齐方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何组合多个公式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">如何组合多个公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分段函数（条件函数）的表示"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">分段函数（条件函数）的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更一般的公式块组合"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">更一般的公式块组合</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

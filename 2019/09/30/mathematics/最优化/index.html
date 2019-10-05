@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>实用最优化算法设计 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="基础概念 Optimization：minimization or maximization of a function subject to constraints on its variables.优化问题的标准形式：变量x，目标函数f(x)——需要最大化or最小化的值（objective function），约束函数c_i(x)——x的等式或不等式（constraint function">
+<meta name="keywords" content="math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实用最优化算法设计">
+<meta property="og:url" content="https://renli1024.github.io/2019/09/30/mathematics/最优化/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="基础概念 Optimization：minimization or maximization of a function subject to constraints on its variables.优化问题的标准形式：变量x，目标函数f(x)——需要最大化or最小化的值（objective function），约束函数c_i(x)——x的等式或不等式（constraint function">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-30T05:47:58.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实用最优化算法设计">
+<meta name="twitter:description" content="基础概念 Optimization：minimization or maximization of a function subject to constraints on its variables.优化问题的标准形式：变量x，目标函数f(x)——需要最大化or最小化的值（objective function），约束函数c_i(x)——x的等式或不等式（constraint function">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/lrStyle">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-mathematics/最优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      实用最优化算法设计
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-09-30
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul>
+<li>Optimization：minimization or maximization of a function subject to constraints on its variables.<br>优化问题的标准形式：<br>变量x，目标函数f(x)——需要最大化or最小化的值（objective function），约束函数c_i(x)——x的等式或不等式（constraint function），表征了对变量取值的限制。</li>
+<li>unconstrained optimization &amp; constrained optimization：是否有约束函数</li>
+<li>linear programming：如果目标函数和约束函数都是线性函数，那么优化问题也称为线性规划（linear programming）</li>
+</ul>
+<h2 id="Unconstrained-Optimization"><a href="#Unconstrained-Optimization" class="headerlink" title="Unconstrained Optimization"></a>Unconstrained Optimization</h2><ul>
+<li>无约束优化问题：即在整个实数域上优化目标函数</li>
+<li>global minimizer（全局最小）：整个定义域上最小<br>weak local minimizer: 存在领域在其中最小（小于等于其他值）<br>strict/strong local minimizer: 存在领域在其中最小（小于其他值，不包括其自身）<br>isolated local minimizer: 存在领域在其中是唯一的local minimizer<br>注：孤立极小一定是严格极小，但反之不然。<br>即严格极小不一定是孤立的，在其邻域内有可能存在另一个严格极小。<br>eg. 你是你们这一届最好的不妨碍你身边的人是他们寝室最好的。</li>
+</ul>
+<h3 id="Recognizing-a-Local-Minimum"><a href="#Recognizing-a-Local-Minimum" class="headerlink" title="Recognizing a Local Minimum"></a>Recognizing a Local Minimum</h3><ul>
+<li>如何判断x<em> 是否是Local Minimizer：<br>最朴素的方法：对x\</em>的immediate vicinity内的所有点，判断f(x*)是否比它们都小。注：immediate vicinity指一个非常小的邻域。<br>但如果对于一个光滑的函数，我们有更简便的方法：<br>特别地，对于二阶可微的函数f(R^n-&gt;R)，可通过分析其梯度和Hessian矩阵来判断——泰勒展开。</li>
+</ul>
+<h4 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h4><ul>
+<li><p>局部极小值的一阶必要条件（First-Order Necessary Conditions）：<br>若x*是局部极小值，且函数f在x*的一个开区间内连续可微，则\(\bigtriangledownf(x^<em>)=0\)<br>通常如果\(\bigtriangledownf(x^</em>)=0\)，则\(x^*\)称为稳定点（stationary point）。因此局部极小值一定是稳定点。</p>
+</li>
+<li><p>局部极小值的二阶必要条件（Second-Order Necessary Conditions）：<br>若x*是局部极小值，且\(f(x)和\\bigtriangledown^2f(x^*))在x*的一个开区间内都存在而且连续，则\(\bigtriangledownf(x^*)=0\)且\(\bigtriangledown^2f(x^*)\)是半正定的。</p>
+</li>
+</ul>
+<h4 id="充分条件"><a href="#充分条件" class="headerlink" title="充分条件"></a>充分条件</h4><ul>
+<li>局部极小值的二阶充分条件（Second-Order Sufficient Conditions）<br>如果\(\bigtriangledown^2 f(x^<em>)\)在x\</em>的一个开区间内连续，且\(\bigtriangledownf(x^*)=0\) &amp; \(\bigtriangledown^2f(x^*)\)是正定的，则x*是局部极小值点。<br>注：二阶充分条件并非必要条件，即局部极小值点不一定满足这些充分条件。<br>且对于一般的无约束问题，取到充分必要条件很困难。<br>eg. \(x^4\)，x=0时局部极小，但不存在Hessian矩阵（自然也非正定）。</li>
+</ul>
+<h3 id="Global-Minimizer-VS-Local-Minimizer"><a href="#Global-Minimizer-VS-Local-Minimizer" class="headerlink" title="Global Minimizer VS Local Minimizer"></a>Global Minimizer VS Local Minimizer</h3><ul>
+<li>一般情况下，我们很难寻找全局极小值（尤其当函数有多个局部极小值时），但对于某些特殊函数，我们可以将问题进行简化。</li>
+<li>如对于凸函数（convex function），局部极小值也是全局最小值。</li>
+</ul>
+<h3 id="Convex-Function"><a href="#Convex-Function" class="headerlink" title="Convex Function"></a>Convex Function</h3><h4 id="何为-convex"><a href="#何为-convex" class="headerlink" title="何为 convex"></a>何为 convex</h4><p>convex可指一个集合，也可指一个函数。</p>
+<ul>
+<li>针对集合：若一个集合S是凸集（convex set），则对于任意x、y属于S，\(\alpha x + (1-\alpha)y \in S\)，对任意\(\alpha \in [0,1]\)都成立。</li>
+<li>针对函数：若一个函数f是凸函数（convex function），则1、其定义域S是凸集，2、对S内任意x、y，\(f(\alpha x + (1-\alpha)y) \leq \alpha f(x)+(1-\alpha)f(y)\)，对任意\(\alpha \in [0,1]\)都成立。</li>
+<li>对于凸函数，粗糙理解：中点的函数值小于函数值的中点，即函数形状是下凸的。</li>
+<li>严格凸函数：上式严格小于（\(x \neq y \)且\(\alpha\)为0–1的开区间）</li>
+<li>凹函数f（concave function） ：-f是凸函数</li>
+</ul>
+<h4 id="convex-programming"><a href="#convex-programming" class="headerlink" title="convex programming"></a>convex programming</h4><ul>
+<li>目标函数为凸函数</li>
+<li>等式约束函数为线性</li>
+<li>不等式约束函数为凹函数</li>
+</ul>
+<h4 id="求凸函数全局最小值"><a href="#求凸函数全局最小值" class="headerlink" title="求凸函数全局最小值"></a>求凸函数全局最小值</h4><p>定理：若f是凸函数，则f的局部极小值就是全集最小值。额外的，如果f可微，则任何稳定点也是全局最小值。</p>
+<h2 id="信赖域"><a href="#信赖域" class="headerlink" title="信赖域"></a>信赖域</h2><p>也是迭代方法，在当前迭代点附近，建立简单的数学模型（如泰勒展开），认为在迭代点的邻域附近这个模型都是成立。<br>minimizer: 最小值点（即x值）<br>Minimum：最小值（即y值）<br>minima：</p>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2019-09-30</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/math/" class="color5">math</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unconstrained-Optimization"><span class="post-toc-number">2.</span> <span class="post-toc-text">Unconstrained Optimization</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recognizing-a-Local-Minimum"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Recognizing a Local Minimum</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#必要条件"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">必要条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#充分条件"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">充分条件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Global-Minimizer-VS-Local-Minimizer"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Global Minimizer VS Local Minimizer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Convex-Function"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Convex Function</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#何为-convex"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">何为 convex</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#convex-programming"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">convex programming</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#求凸函数全局最小值"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">求凸函数全局最小值</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信赖域"><span class="post-toc-number">3.</span> <span class="post-toc-text">信赖域</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/lrStyle">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
