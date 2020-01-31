@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PyTorch基础知识 | Ren Li&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Ren Li's Blog" />
+  
+  <meta name="description" content="pytorch的优势 torch是动态计算图系统，不同于tensorflow 1.0的静态计算图（先构建好图再计算），torch是边构建图边计算，因此更加易用。 torch的代码风格更加python-style，api也更稳定，因此相比tf更加便于上手。  基本数据结构tensor使用方法 构造tensor123456# 法1：调用函数# 构造shape为(3,2)的全 0 tensortens">
+<meta name="keywords" content="PyTorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch基础知识">
+<meta property="og:url" content="https://renli1024.github.io/2020/01/17/PyTorch/基础知识/index.html">
+<meta property="og:site_name" content="Ren Li&#39;s blog">
+<meta property="og:description" content="pytorch的优势 torch是动态计算图系统，不同于tensorflow 1.0的静态计算图（先构建好图再计算），torch是边构建图边计算，因此更加易用。 torch的代码风格更加python-style，api也更稳定，因此相比tf更加便于上手。  基本数据结构tensor使用方法 构造tensor123456# 法1：调用函数# 构造shape为(3,2)的全 0 tensortens">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://renli1024.github.io/images/tensor_storage.png">
+<meta property="og:updated_time" content="2020-01-31T09:48:59.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyTorch基础知识">
+<meta name="twitter:description" content="pytorch的优势 torch是动态计算图系统，不同于tensorflow 1.0的静态计算图（先构建好图再计算），torch是边构建图边计算，因此更加易用。 torch的代码风格更加python-style，api也更稳定，因此相比tf更加便于上手。  基本数据结构tensor使用方法 构造tensor123456# 法1：调用函数# 构造shape为(3,2)的全 0 tensortens">
+<meta name="twitter:image" content="https://renli1024.github.io/images/tensor_storage.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Ren Li&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="https://github.com/renli1024">
+                        <i class="fa fa-user"></i>
+                        <span>Github</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-PyTorch/基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      PyTorch基础知识
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-01-17
+        </li>
+        
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <!--下文的pytorch都以torch来作为简写-->
+<h1 id="pytorch的优势"><a href="#pytorch的优势" class="headerlink" title="pytorch的优势"></a>pytorch的优势</h1><ul>
+<li>torch是动态计算图系统，不同于tensorflow 1.0的静态计算图（先构建好图再计算），torch是边构建图边计算，因此更加易用。</li>
+<li>torch的代码风格更加python-style，api也更稳定，因此相比tf更加便于上手。</li>
+</ul>
+<h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><h2 id="tensor"><a href="#tensor" class="headerlink" title="tensor"></a>tensor</h2><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ul>
+<li>构造tensor<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 法1：调用函数</span></span><br><span class="line"><span class="comment"># 构造shape为(3,2)的全 0 tensor</span></span><br><span class="line">tensor1 = torch.zeros(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 法2：用python list构造tensor</span></span><br><span class="line">tensor2 = torch.tensor([[<span class="number">1.0</span>, <span class="number">4.0</span>], [<span class="number">2.0</span>, <span class="number">1.0</span>], [<span class="number">3.0</span>, <span class="number">5.0</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="理论原理"><a href="#理论原理" class="headerlink" title="理论原理"></a>理论原理</h3><ul>
+<li>pytorch的基本数据结构是tensor，可看作是多维数组。</li>
+<li>pytorch中的tensor和numpy中的ndarry可以很方便地切换，此外tensor在ndarray的基础上加入了分布式计算、计算图跟踪等功能，使其更适用于构建深度学习系统。<h4 id="tensor-和-python-list"><a href="#tensor-和-python-list" class="headerlink" title="tensor 和 python list"></a>tensor 和 python list</h4></li>
+<li>tensor相比python list的优势：1）list中的每一个元素都是一个单独的存储对象，没有存储优化，这在大数据的情况下会占用大量存储；2）并没有针对list上数学运算的优化操作，比如向量加法、点乘等；3）python的解释器非常慢。<br>因此目前的机器学习框架都会重新实现数据存储的基本单元（如tensor、ndarray等），在底层优化数学运算的效率。</li>
+</ul>
+<h4 id="tensor的底层存储"><a href="#tensor的底层存储" class="headerlink" title="tensor的底层存储"></a>tensor的底层存储</h4><ul>
+<li>tensor和python list底层存储的差异：python list中的每个元素都是一个特定的python object，独立地占有内存；torch tensor中的元素直接是C语言的数值类型（如4 bytes 的float类型），所有tensor中的元素共同占有一块连续的内存，因此存储更为高效。</li>
+<li><p>tensor的存储机制：tensor的底层存储是<code>torch.Storge</code>，相当于一维的数组，存储了tensor中元素的数据，是对tensor内存顺序存储的建模。tensor只是指向了<code>torch.Storge</code>中数据的特定部分，类似于指针，不同的tensor也可同时指向一个<code>torch.Storge</code>数据。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># In:</span></span><br><span class="line">points = torch.tensor([[<span class="number">1.0</span>, <span class="number">4.0</span>], [<span class="number">2.0</span>, <span class="number">1.0</span>], [<span class="number">3.0</span>, <span class="number">5.0</span>]])</span><br><span class="line">points.storage()</span><br><span class="line"><span class="comment"># Out:</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="number">4.0</span></span><br><span class="line"><span class="number">2.0</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="number">3.0</span></span><br><span class="line"><span class="number">5.0</span></span><br><span class="line">[torch.FloatStorage of size <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 改变Storage的值也会改变tensor的值</span></span><br><span class="line"><span class="comment"># In[20]:</span></span><br><span class="line">points = torch.tensor([[<span class="number">1.0</span>, <span class="number">4.0</span>], [<span class="number">2.0</span>, <span class="number">1.0</span>], [<span class="number">3.0</span>, <span class="number">5.0</span>]])</span><br><span class="line">points_storage = points.storage()</span><br><span class="line">points_storage[<span class="number">0</span>] = <span class="number">2.0</span></span><br><span class="line">points</span><br><span class="line"><span class="comment"># Out[20]:</span></span><br><span class="line">tensor([[<span class="number">2.</span>, <span class="number">4.</span>],</span><br><span class="line">[<span class="number">2.</span>, <span class="number">1.</span>],</span><br><span class="line">[<span class="number">3.</span>, <span class="number">5.</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tensor和storage的对应关系<br><img src="/images/tensor_storage.png" alt="tensor和storage的对应关系"><br>tensor有三个属性决定了其如何引用storage中的数据，分别是：<br>size：tensor的shape；<br>storage_offset：决定了tensor中的数据(0, 0)是从storage中哪个位置开始的；<br>stride：决定了tensor各维度数据对应在storage中的步长。</p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <hr />
+    <div class="content">
+        <p>Post Date： 2020-01-17</p>
+        <p>版权声明：&nbsp;本文为原创文章，转载请注明出处</p>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PyTorch/" class="color3">PyTorch</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#pytorch的优势"><span class="post-toc-number">1.</span> <span class="post-toc-text">pytorch的优势</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本数据结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">基本数据结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tensor"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">tensor</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用方法"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">使用方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理论原理"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">理论原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tensor-和-python-list"><span class="post-toc-number">2.1.2.1.</span> <span class="post-toc-text">tensor 和 python list</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tensor的底层存储"><span class="post-toc-number">2.1.2.2.</span> <span class="post-toc-text">tensor的底层存储</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Ren Li<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://renli1024.github.io",
+      animate: false,
+      isHome: false,
+      share: false,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/PyTorch/" style="font-size: 10px;">PyTorch</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="https://github.com/renli1024">
+                    <i class="fa fa-user"></i><span>Github</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/PyTorch/" style="font-size: 10px;">PyTorch</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="Ren Li's Blog" />
   
-  <meta name="description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调">
+  <meta name="description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调试">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VSCode_python环境配置">
 <meta property="og:url" content="https://renli1024.github.io/2018/01/19/Python/VSCode_python环境配置/index.html">
 <meta property="og:site_name" content="Ren Li&#39;s blog">
-<meta property="og:description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调">
+<meta property="og:description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调试">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T01:38:46.953Z">
+<meta property="og:updated_time" content="2019-10-16T02:56:14.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VSCode_python环境配置">
-<meta name="twitter:description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调">
+<meta name="twitter:description" content="配置python调试环境1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调试">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -95,15 +95,15 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <ul>
-<li><p><strong>配置python调试环境</strong><br>1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。<br>2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。<br>注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。<br>注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调试。</p>
-</li>
-<li><p><strong>关于调试F5</strong><br>调试(F5)不下断点的话和直接运行(ctrl+F5)没区别。<br>调试时F10和F11的区别：F10一条条语句执行(不进入函数)，F11会进入函数内。不要被F10的翻译“单步跳过”所误导，语句还是会执行，并没有跳过。</p>
-</li>
-<li><p>调试(F5)时自动跳到“终端”而非“调试控制台”的解决办法：<br>在launch.json文件中对应调试项中加 <code>&quot;console&quot;: &quot;none&quot;,</code> 不在最后一行的话句尾要加逗号</p>
-</li>
-<li><p><strong>pylint对C扩展库报错</strong><br>对于VSCode中Pylint的报错：E1101: Module ‘xxx’ has no ‘xxx’ member’<br><strong>原因：</strong>Pylint默认只信任来自标准库stdlib的C扩展，而忽略其他的。模块’xxx’不是stdlib的一部分，因此需要手动将其添加到白名单。<br><strong>解决：</strong><br>1、在项目所在目录新建.pylintrc文件<br>2、参照pylint.config模板，写上默认设置：<a href="https://github.com/robot527/python_primer/blob/master/pylint.conf" target="_blank" rel="noopener">https://github.com/robot527/python_primer/blob/master/pylint.conf</a><br>3、文件最后输入<code>extension-pkg-whitelist=xxx</code>(xxx为模块名)<br>注：直接建立.pylintrc文件会提示必须输入文件名，可先建一个空txt文件，再另存为.pylintrc文件即可。 </p>
-</li>
+            <h2 id="配置python调试环境"><a href="#配置python调试环境" class="headerlink" title="配置python调试环境"></a>配置python调试环境</h2><p>1、新建一个项目文件夹，在文件夹中建一个.py文件，再在VSCode中打开文件夹。<br>2、点开最左边侧栏”debug”项(小虫子图标)，再点左上角齿轮按钮配置launch.json即可。<br>注1：launch.json为调试相关的设置，如调试时是否停在第一行，是否自动跳到终端等。<br>注2：调试选项选Python: Terminal(integrated)，使用VSCode的内置环境调试。</p>
+<h2 id="关于调试F5"><a href="#关于调试F5" class="headerlink" title="关于调试F5"></a>关于调试F5</h2><p>调试(F5)不下断点的话和直接运行(ctrl+F5)没区别。<br>调试时F10和F11的区别：F10一条条语句执行(不进入函数)，F11会进入函数内。不要被F10的翻译“单步跳过”所误导，语句还是会执行，并没有跳过。</p>
+<ul>
+<li>调试(F5)时自动跳到“终端”而非“调试控制台”的解决办法：<br>在launch.json文件中对应调试项中加 <code>&quot;console&quot;: &quot;none&quot;,</code> 不在最后一行的话句尾要加逗号</li>
+</ul>
+<h2 id="pylint对C扩展库报错"><a href="#pylint对C扩展库报错" class="headerlink" title="pylint对C扩展库报错"></a>pylint对C扩展库报错</h2><p>对于VSCode中Pylint的报错：E1101: Module ‘xxx’ has no ‘xxx’ member’<br><strong>原因：</strong>Pylint默认只信任来自标准库stdlib的C扩展，而忽略其他的。模块’xxx’不是stdlib的一部分，因此需要手动将其添加到白名单。<br><strong>解决：</strong><br>1、在项目所在目录新建.pylintrc文件<br>2、参照pylint.config模板，写上默认设置：<a href="https://github.com/robot527/python_primer/blob/master/pylint.conf" target="_blank" rel="noopener">https://github.com/robot527/python_primer/blob/master/pylint.conf</a><br>3、文件最后输入<code>extension-pkg-whitelist=xxx</code>(xxx为模块名)<br>注：直接建立.pylintrc文件会提示必须输入文件名，可先建一个空txt文件，再另存为.pylintrc文件即可。 </p>
+<ul>
+<li>全局设置pylint：在用户目录下设置<code>~/.pylintrc</code>文件</li>
+<li>针对<code>Module &#39;xxx&#39; has no &#39;xxx&#39; member</code>问题：代码可以运行，但pylint无法识别模块成员<br>解决：在<code>.pylintrc</code>文件中设置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[TYPECHECK]</span><br><span class="line">generated-members = torch.zeros, torch.int, torch.float</span><br></pre></td></tr></table></figure></li>
 </ul>
 
             <div class="post-copyright">
@@ -139,6 +139,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置python调试环境"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置python调试环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于调试F5"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于调试F5</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pylint对C扩展库报错"><span class="post-toc-number">3.</span> <span class="post-toc-text">pylint对C扩展库报错</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 
 
@@ -152,7 +158,7 @@
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
-      &copy; 2019 Ren Li<br>
+      &copy; 2020 Ren Li<br>
       </p>
     </div>
   </div>
@@ -188,7 +194,7 @@
             
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/PyTorch/" style="font-size: 10px;">PyTorch</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -221,7 +227,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
+            <a href="/tags/Algorithm/" style="font-size: 12.86px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-Sharp/" style="font-size: 10px;">C_Sharp</a> <a href="/tags/English/" style="font-size: 14.29px;">English</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 12.86px;">LaTeX</a> <a href="/tags/Lingo/" style="font-size: 10px;">Lingo</a> <a href="/tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.43px;">Mac</a> <a href="/tags/MachineLearning/" style="font-size: 10px;">MachineLearning</a> <a href="/tags/Mathematics/" style="font-size: 11.43px;">Mathematics</a> <a href="/tags/Matlab/" style="font-size: 11.43px;">Matlab</a> <a href="/tags/Network/" style="font-size: 15.71px;">Network</a> <a href="/tags/Other/" style="font-size: 20px;">Other</a> <a href="/tags/Paper-Notes/" style="font-size: 14.29px;">Paper Notes</a> <a href="/tags/PyTorch/" style="font-size: 10px;">PyTorch</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/TensorFlow/" style="font-size: 18.57px;">TensorFlow</a> <a href="/tags/cs224n/" style="font-size: 15.71px;">cs224n</a> <a href="/tags/math/" style="font-size: 11.43px;">math</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/课程笔记/" style="font-size: 10px;">课程笔记</a>
         </div>
     </div>
 </div>
